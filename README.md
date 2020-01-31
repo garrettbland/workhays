@@ -6,7 +6,7 @@ Node app using express, handlebars, tailwindcss, and alpinejs
 
 ### Developing locally
 
-Clone this repo, run `npm install`. Then `npm run dev` to fire up the development server on `http://localhost:3000`
+Clone this repo, run `npm install`. Then `npm run dev` to fire up the development server on `http://localhost:3000`. Nodemon is used, so it will watch for file changes and hot reload.
 
 The build process will automatically compile `tailwind.css`, uglify && minify it, and create a new file called `style.min.css`. This is the css file that will be referenced during dev and prod. 
 

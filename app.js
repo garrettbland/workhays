@@ -15,7 +15,7 @@ app.set('views', path.join(__dirname, 'views'))
 app.engine(
   'hbs',
   exphbs({
-    defaultLayout: 'main',
+    defaultLayout: 'main', // set to false to not use layout at all
     extname: '.hbs',
     helpers: require('./public/js/helpers.js').helpers, // same file that gets used on our client
     partialsDir: 'views/partials/', // same as default, I just like to be explicit
