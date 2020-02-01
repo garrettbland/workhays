@@ -1,6 +1,16 @@
 var register = function (Handlebars) {
   var helpers = {
     // put all of your helpers inside this object
+    prod: function () {
+      return process.env.NODE_ENV
+    },
+    environment: function () {
+      if (process.env.NODE_ENV === 'production') {
+        return 'production'
+      } else {
+        return 'development'
+      }
+    },
     foo: function () {
       return 'FOO FUNCTION'
     },

@@ -3,13 +3,20 @@
 
 <head>
     <title>{{title}}</title>
+    {{#if prod}}
     <link rel='stylesheet' href='/stylesheets/style.min.css' />
+    {{else}}
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    {{/if}}
     <script src="/js/alpine-polyfill.min.js"></script>
     <script src="/js/alpine-proxy-polyfill.min.js"></script>
     <script src="/js/alpine.min.js"></script>
 </head>
 
-<body>
+<body class="bg-green-400">
+    <div class="bg-red-200">
+        tes
+    </div>
     {{{body}}}
 </body>
 
