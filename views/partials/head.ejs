@@ -1,0 +1,24 @@
+<%/* 
+===========================================================================
+
+Description:
+Generic head of website. Will reference purged and minified css when in production, 
+in development it will reference the full css file. References other js files.
+
+Params:
+- title | STRING
+
+===========================================================================
+*/%>
+
+<head>
+    <title><%= title %></title>
+    <% if(process.env.NODE_ENV === 'production') { %>
+    <link rel='stylesheet' href='/stylesheets/style.min.css' />
+    <% } else { %>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <% } %>
+    <script src="/js/alpine-polyfill.min.js"></script>
+    <script src="/js/alpine-proxy-polyfill.min.js"></script>
+    <script src="/js/alpine.min.js"></script>
+</head>
