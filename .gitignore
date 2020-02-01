@@ -8,3 +8,7 @@ node_modules/
 
 # mac os
 .DS_Store
+
+# styles
+public/stylesheets/style.min.css
+public/stylesheets/style.css

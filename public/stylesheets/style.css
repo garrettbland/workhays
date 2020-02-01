@@ -631,12 +631,20 @@ video {
   background-color: #a0aec0;
 }
 
+.bg-red-500 {
+  background-color: #f56565;
+}
+
 .bg-blue-500 {
   background-color: #4299e1;
 }
 
 .rounded {
   border-radius: 0.25rem;
+}
+
+.font-black {
+  font-weight: 900;
 }
 
 .py-2 {
@@ -647,6 +655,10 @@ video {
 .px-4 {
   padding-left: 1rem;
   padding-right: 1rem;
+}
+
+.text-4xl {
+  font-size: 2.25rem;
 }
 
 /** custom css goes below **/
