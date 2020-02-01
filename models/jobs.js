@@ -21,14 +21,20 @@ var Jobs = function (task) {
 }
 
 Jobs.getAllJobs = function (result) {
-  DB.query('Select * from jobs', function (err, res) {
-    if (err) {
-      console.log('error: ', err)
-      result(null, err)
-    } else {
-      console.log('jobs : ', res)
-      result(null, res)
-    }
+  DB.query('SELECT * FROM jobs', function (err, res, fields) {
+    if (err) throw new Error(err)
+    result(null, res)
+  })
+}
+
+Jobs.getJobById = function (jobId, result) {
+  DB.query(`SELECT * FROM jobs WHERE id = ${jobId}`, function (
+    err,
+    res,
+    fields
+  ) {
+    if (err) throw new Error(err)
+    result(null, res)
   })
 }
 

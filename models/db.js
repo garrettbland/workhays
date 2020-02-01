@@ -24,35 +24,19 @@ var pool = mysql.createPool({
   port: process.env.DEV_DB_PORT
 })
 
-var DB = (function () {
-  function _query (query, params, callback) {
-    pool.getConnection(function (err, connection) {
-      if (err) {
-        connection.release()
-        callback(null, err)
-        throw err
-      }
-
-      connection.query(query, params, function (err, rows) {
-        connection.release()
-        if (!err) {
-          callback(rows)
-        } else {
-          callback(null, err)
-        }
-      })
-
-      connection.on('error', function (err) {
-        connection.release()
-        callback(null, err)
-        throw err
-      })
-    })
+pool.getConnection((err, connection) => {
+  if (err) {
+    if (err.code === 'PROTOCOL_CONNECTION_LOST') {
+      console.error('Database connection was closed.')
+    }
+    if (err.code === 'ER_CON_COUNT_ERROR') {
+      console.error('Database has too many connections.')
+    }
+    if (err.code === 'ECONNREFUSED') {
+      console.error('Database connection was refused.')
+    }
   }
+  if (connection) connection.release()
+})
 
-  return {
-    query: _query
-  }
-})()
-
-module.exports = DB
+module.exports = pool
