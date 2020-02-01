@@ -6,9 +6,9 @@ Node app using express, handlebars, tailwindcss, and alpinejs
 
 ### Developing locally
 
-Clone this repo, run `npm install`. Then `npm run dev` to fire up the development server on `http://localhost:3000`. Nodemon is used, so it will watch for file changes and hot reload.
+Clone this repo, run `npm install`. Then `npm run dev` to fire up the development server on `http://localhost:3000`. Nodemon is used, so it will watch for file changes and hot reload. Run `npm run prod` to setup production environment
 
-The build process will automatically compile `tailwind.css`, uglify && minify it, and create a new file called `style.min.css`. This is the css file that will be referenced during dev and prod. 
+The build process will automatically compile `tailwind.css`, uglify && minify it, and create a new file called `style.css`. This is the css file that will be referenced during dev. In prod, it will read all of the html, purge the unused css, and then minify for tiny css sizes.
 
 ### Flow
 This app is using handlebars (`.hbs` file extensions) for the view templating engine.  This allows templates, partials, and helpers and some basic level logic to be used before the html is sent to the client.
