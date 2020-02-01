@@ -1,7 +1,19 @@
-var mysql = require('mysql')
+/*
+===========================================================================
 
-console.log('CREATE CONNECTION ===>')
-console.log(process.env.DEV_DB_HOST)
+Description:
+Creates mysql connection pool to database using environment variables and
+handles releasing connections automatically. To use, import this file and
+run your query.
+
+Example usage:
+var DB = require('./db')
+DB.query('Select * from table', function (err, res) { ... }
+
+===========================================================================
+*/
+
+var mysql = require('mysql')
 
 var pool = mysql.createPool({
   connectionLimit: 10,

@@ -1,13 +1,26 @@
-var DB = require('./db.js')
+/*
+===========================================================================
+
+Description:
+Jobs model and functions
+
+Example usage:
+var Jobs = require('./jobs')
+Jobs.getAllJobs(function (err, jobs) { ... }
+
+===========================================================================
+*/
+
+var DB = require('./db')
 
 // Job object constructor
-var Job = function (task) {
+var Jobs = function (task) {
   this.job = job.job
   this.status = job.status
   this.created_at = new Date()
 }
 
-Job.getAllJobs = function (result) {
+Jobs.getAllJobs = function (result) {
   DB.query('Select * from jobs', function (err, res) {
     if (err) {
       console.log('error: ', err)
@@ -19,4 +32,4 @@ Job.getAllJobs = function (result) {
   })
 }
 
-module.exports = Job
+module.exports = Jobs
