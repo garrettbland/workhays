@@ -46,3 +46,15 @@ Single EJS comment (wont get rendered to client)
 ```
 <%# Single line comment %>
 ```
+
+Port already in use
+
+1. Find the PID of the process
+```
+lsof -i :3000 -t
+```
+
+2. Kill the PID
+```
+kill ${pid}
+```

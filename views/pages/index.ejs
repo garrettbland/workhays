@@ -38,9 +38,11 @@ Params:
 
     <div class="bg-red-500 text-4xl font-black">
         <ul>
+            <% if (jobs.length > 0) { %>
             <% jobs.forEach(function(job) { %>
             <li><%= job.title %></li>
             <% }); %>
+            <% } %>
         </ul>
     </div>
 
