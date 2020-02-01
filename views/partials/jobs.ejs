@@ -12,5 +12,65 @@ Params:
 ===========================================================================
 */%>
 
-<div class="mx-auto mt-3 container"><h2>Current Job Listings</h2></div>
+<div class="mx-auto mt-12 container flex max-w-5xl items-center rounded-lg shadow-2xl justify-between">
+    <div class="p-8"><h2>Current Job Listings</h2></div>
+    <div class="p-8">
+        <div class="flex flex-row">
+        <div
+                class="relative mt-4 mr-4" x-data="{ open: false }">
+            <button
+                    @click="open = !open"
+                    class="px-3 py-2 bg-blue-500 text-white text-sm rounded cursor-pointer hover:bg-blue-400 focus:bg-blue-400 focus:outline-none"
+            >
+                Filter by Industry
+            </button>
+            <ul
+                    x-show="open"
+                    x-transition:enter-start="opacity-0 scale-90"
+                    x-transition:enter-end="opacity-100 scale-100"
+                    x-transition:leave="ease-in transition-slow"
+                    x-transition:leave-start="opacity-100 scale-100"
+                    x-transition:leave-end="opacity-0 scale-90"
+
+                    @click.away="open = false"
+                    class="bg-white shadow rounded-sm absolute mt-2 list w-48 text-sm uppercase font-medium"
+            >
+                <li>
+                    <a class="block px-3 py-2 hover:bg-gray-100 rounded-t-sm" href="#">Job Type 1</a>
+                </li>
+                <li>
+                    <a class="block px-3 py-2 hover:bg-gray-100" href="#">Job Type 1</a>
+                </li>
+            </ul>
+        </div>
+        <div
+                class="relative mt-4" x-data="{ open: false }">
+            <button
+                    @click="open = !open"
+                    class="px-3 py-2 bg-blue-500 text-white text-sm rounded cursor-pointer hover:bg-blue-400 focus:bg-blue-400 focus:outline-none"
+            >
+                Filter by Date
+            </button>
+            <ul
+                    x-show="open"
+                    x-transition:enter-start="opacity-0 scale-90"
+                    x-transition:enter-end="opacity-100 scale-100"
+                    x-transition:leave="ease-in transition-slow"
+                    x-transition:leave-start="opacity-100 scale-100"
+                    x-transition:leave-end="opacity-0 scale-90"
+
+                    @click.away="open = false"
+                    class="bg-white shadow rounded-sm absolute mt-2 list w-48 text-sm uppercase font-medium"
+            >
+                <li>
+                    <a class="block px-3 py-2 hover:bg-gray-100 rounded-t-sm" href="#">Job Type 1</a>
+                </li>
+                <li>
+                    <a class="block px-3 py-2 hover:bg-gray-100" href="#">Job Type 1</a>
+                </li>
+            </ul>
+        </div>
+        </div>
+    </div>
+</div>
 
