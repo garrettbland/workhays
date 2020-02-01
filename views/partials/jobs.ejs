@@ -11,66 +11,119 @@ Params:
 
 ===========================================================================
 */%>
+<div class="mx-auto bg-gray-100 mb-12 p-12 container max-w-6xl rounded-lg shadow-2xl">
+    <div class="justify-between items-center flex">
+        <div class="p-8"><h2>Current Job Listings</h2></div>
+            <div class="p-8">
+                <div class="flex flex-row">
+                <div
+                        class="relative mr-4" x-data="{ open: false }">
+                    <button
+                            @click="open = !open"
+                            class="px-3 py-2 bg-blue-500 text-white text-sm rounded cursor-pointer hover:bg-blue-400 focus:bg-blue-400 focus:outline-none"
+                    >
+                        Filter by Industry
+                    </button>
+                    <ul
+                            x-show="open"
+                            x-transition:enter-start="opacity-0 scale-90"
+                            x-transition:enter-end="opacity-100 scale-100"
+                            x-transition:leave="ease-in transition-slow"
+                            x-transition:leave-start="opacity-100 scale-100"
+                            x-transition:leave-end="opacity-0 scale-90"
 
-<div class="mx-auto mt-12 container flex max-w-5xl items-center rounded-lg shadow-2xl justify-between">
-    <div class="p-8"><h2>Current Job Listings</h2></div>
-    <div class="p-8">
-        <div class="flex flex-row">
-        <div
-                class="relative mt-4 mr-4" x-data="{ open: false }">
-            <button
-                    @click="open = !open"
-                    class="px-3 py-2 bg-blue-500 text-white text-sm rounded cursor-pointer hover:bg-blue-400 focus:bg-blue-400 focus:outline-none"
-            >
-                Filter by Industry
-            </button>
-            <ul
-                    x-show="open"
-                    x-transition:enter-start="opacity-0 scale-90"
-                    x-transition:enter-end="opacity-100 scale-100"
-                    x-transition:leave="ease-in transition-slow"
-                    x-transition:leave-start="opacity-100 scale-100"
-                    x-transition:leave-end="opacity-0 scale-90"
+                            @click.away="open = false"
+                            class="bg-white shadow rounded-sm absolute mt-2 list w-48 text-sm uppercase font-medium"
+                    >
+                        <li>
+                            <a class="block px-3 py-2 hover:bg-gray-100 rounded-t-sm" href="#">Job Type 1</a>
+                        </li>
+                        <li>
+                            <a class="block px-3 py-2 hover:bg-gray-100" href="#">Job Type 1</a>
+                        </li>
+                    </ul>
+                </div>
+                <div
+                        class="relative" x-data="{ open: false }">
+                    <button
+                            @click="open = !open"
+                            class="px-3 py-2 bg-blue-500 text-white text-sm rounded cursor-pointer hover:bg-blue-400 focus:bg-blue-400 focus:outline-none"
+                    >
+                        Filter by Date
+                    </button>
+                    <ul
+                            x-show="open"
+                            x-transition:enter-start="opacity-0 scale-90"
+                            x-transition:enter-end="opacity-100 scale-100"
+                            x-transition:leave="ease-in transition-slow"
+                            x-transition:leave-start="opacity-100 scale-100"
+                            x-transition:leave-end="opacity-0 scale-90"
 
-                    @click.away="open = false"
-                    class="bg-white shadow rounded-sm absolute mt-2 list w-48 text-sm uppercase font-medium"
-            >
-                <li>
-                    <a class="block px-3 py-2 hover:bg-gray-100 rounded-t-sm" href="#">Job Type 1</a>
-                </li>
-                <li>
-                    <a class="block px-3 py-2 hover:bg-gray-100" href="#">Job Type 1</a>
-                </li>
-            </ul>
-        </div>
-        <div
-                class="relative mt-4" x-data="{ open: false }">
-            <button
-                    @click="open = !open"
-                    class="px-3 py-2 bg-blue-500 text-white text-sm rounded cursor-pointer hover:bg-blue-400 focus:bg-blue-400 focus:outline-none"
-            >
-                Filter by Date
-            </button>
-            <ul
-                    x-show="open"
-                    x-transition:enter-start="opacity-0 scale-90"
-                    x-transition:enter-end="opacity-100 scale-100"
-                    x-transition:leave="ease-in transition-slow"
-                    x-transition:leave-start="opacity-100 scale-100"
-                    x-transition:leave-end="opacity-0 scale-90"
-
-                    @click.away="open = false"
-                    class="bg-white shadow rounded-sm absolute mt-2 list w-48 text-sm uppercase font-medium"
-            >
-                <li>
-                    <a class="block px-3 py-2 hover:bg-gray-100 rounded-t-sm" href="#">Job Type 1</a>
-                </li>
-                <li>
-                    <a class="block px-3 py-2 hover:bg-gray-100" href="#">Job Type 1</a>
-                </li>
-            </ul>
-        </div>
-        </div>
+                            @click.away="open = false"
+                            class="bg-white shadow rounded-sm absolute mt-2 list w-48 text-sm uppercase font-medium"
+                    >
+                        <li>
+                            <a class="block px-3 py-2 hover:bg-gray-100 rounded-t-sm" href="#">Job Type 1</a>
+                        </li>
+                        <li>
+                            <a class="block px-3 py-2 hover:bg-gray-100" href="#">Job Type 1</a>
+                        </li>
+                    </ul>
+                </div>
+                </div>
+            </div>
     </div>
+    <div class="mt-8 p-5 mb-12 bg-white border-gray-200 shadow-lg mx-auto max-w-4xl rounded"><div class="font-bold text-2xl">IT Support Specialist</div>
+        <div class="flex flex-row italic text-gray-700"><div>Employer: DSNWK</div>&nbsp;&#183;&nbsp;&nbsp;
+            <div>Posted: 1/1/2020&nbsp;&#183;&nbsp;Category: Technology</div></div><div class="mt-4" style="display: -webkit-box;-webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;overflow:hidden;">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+            irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim
+            id est laborum.</div><div class="flex justify-end"><button class="bg-blue-500 text-white hover:bg-blue-400
+            mt-2 rounded p-2">Learn More</button></div></div>
+    <div class="mt-8 p-5 mb-12 bg-white border-gray-200 shadow-lg mx-auto max-w-4xl rounded"><div class="font-bold text-2xl">IT Support Specialist</div>
+        <div class="flex flex-row italic text-gray-700"><div>Employer: DSNWK</div>&nbsp;&#183;&nbsp;&nbsp;
+            <div>Posted: 1/1/2020&nbsp;&#183;&nbsp;Category: Technology</div></div><div class="mt-4" style="display: -webkit-box;-webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;overflow:hidden;">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+            irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim
+            id est laborum.</div><div class="flex justify-end"><button class="bg-blue-500 text-white hover:bg-blue-400
+            mt-2 rounded p-2">Learn More</button></div></div>
+    <div class="mt-8 p-5 mb-12 bg-white border-gray-200 shadow-lg mx-auto max-w-4xl rounded"><div class="font-bold text-2xl">IT Support Specialist</div>
+        <div class="flex flex-row italic text-gray-700"><div>Employer: DSNWK</div>&nbsp;&#183;&nbsp;&nbsp;
+            <div>Posted: 1/1/2020&nbsp;&#183;&nbsp;Category: Technology</div></div><div class="mt-4" style="display: -webkit-box;-webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;overflow:hidden;">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+            irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim
+            id est laborum.</div><div class="flex justify-end"><button class="bg-blue-500 text-white hover:bg-blue-400
+            mt-2 rounded p-2">Learn More</button></div></div>
+    <div class="mt-8 p-5 mb-12 bg-white border-gray-200 shadow-lg mx-auto max-w-4xl rounded"><div class="font-bold text-2xl">IT Support Specialist</div>
+        <div class="flex flex-row italic text-gray-700"><div>Employer: DSNWK</div>&nbsp;&#183;&nbsp;&nbsp;
+            <div>Posted: 1/1/2020&nbsp;&#183;&nbsp;Category: Technology</div></div><div class="mt-4" style="display: -webkit-box;-webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;overflow:hidden;">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+            irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim
+            id est laborum.</div><div class="flex justify-end"><button class="bg-blue-500 text-white hover:bg-blue-400
+            mt-2 rounded p-2">Learn More</button></div></div>
+    <div class="mt-8 p-5 mb-12 bg-white border-gray-200 shadow-lg mx-auto max-w-4xl rounded"><div class="font-bold text-2xl">IT Support Specialist</div>
+        <div class="flex flex-row italic text-gray-700"><div>Employer: DSNWK</div>&nbsp;&#183;&nbsp;&nbsp;
+            <div>Posted: 1/1/2020&nbsp;&#183;&nbsp;Category: Technology</div></div><div class="mt-4" style="display: -webkit-box;-webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;overflow:hidden;">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+            irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim
+            id est laborum.</div><div class="flex justify-end"><button class="bg-blue-500 text-white hover:bg-blue-400
+            mt-2 rounded p-2">Learn More</button></div></div>
+
+
 </div>
 
