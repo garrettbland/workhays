@@ -1,0 +1,26 @@
+<%/*
+===========================================================================
+
+Description:
+Home/index page of website.
+
+To Do:
+
+Params:
+
+
+===========================================================================
+*/%>
+
+<!DOCTYPE html>
+<html lang="en">
+<body>
+<%- include('../partials/navbar', { title: 'Work Hays' }) %>
+<main class="flex-grow mx-auto pt-32 bg-gray-200 p-12 shadow-xl h-screen relative h-full container max-w-6xl">
+    <%- include('../partials/privacyPolicy', { title: 'Privacy Policy' }) %>
+</main>
+<footer>
+    <%- include('../partials/footer') %>
+</footer>
+</body>
+</html>
