@@ -15,6 +15,7 @@ var router = express.Router()
 var home = require('../controllers/index')
 var job = require('../controllers/job')
 
+// routes and route type (get, put, post, delete)
 router.get('/', home.list)
 router.get('/jobs/:jobId', job.get)
 
