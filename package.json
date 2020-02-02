@@ -22,6 +22,7 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.2",
+    "prettier": "^1.19.1",
     "purgecss": "^2.0.5",
     "tailwindcss": "^1.1.4",
     "uglifycss": "0.0.29"
