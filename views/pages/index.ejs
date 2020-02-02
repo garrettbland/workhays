@@ -14,11 +14,21 @@ Params:
 
 <!DOCTYPE html>
 <html lang="en">
+<body class="flex flex-col min-h-screen">
 <%- include('../partials/navbar', {title: 'Work Hays'}) %>
+<<<<<<< Updated upstream
 <body>
 <div class="mx-auto pt-20 bg-gray-200 p-8 shadow-xl h-full container max-w-6xl">
 <%- include('../partials/jobs') %>
     <%- include('../partials/footer') %>
 </div>
+=======
+    <main class="flex-grow mx-auto pt-32 bg-gray-200 p-12 shadow-xl h-screen relative h-full container max-w-6xl">
+        <%- include('../partials/jobs', { jobs: jobs }) %>
+    </main>
+    <footer>
+        <%- include('../partials/footer') %>
+    </footer>
+>>>>>>> Stashed changes
 </body>
 </html>
