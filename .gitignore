@@ -12,3 +12,6 @@ node_modules/
 # styles
 public/stylesheets/style.min.css
 public/stylesheets/style.css
+
+# misc
+.idea

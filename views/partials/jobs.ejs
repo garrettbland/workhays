@@ -7,11 +7,12 @@ This is the job listings section. Contains all job listings.
 To Do:
 
 Params:
-
+- jobs : ARRAY
 
 ===========================================================================
 */%>
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
     <div class="justify-between items-center flex">
         <div class="p-8"><h2>Current Job Listings</h2></div>
@@ -153,116 +154,69 @@ Params:
         </div>
         <div class="flex items-center"><button class="px-2 py-2 bg-transparent text-blue-500 cursor-pointer
             hover:bg-blue-400 focus:bg-blue-400 rounded text-sm focus:outline-none border border-blue-500 hover:border-transparent hover:text-white">View Listing</button></div>
+=======
+<div class="justify-between items-center flex">
+    <div class="p-8">
+        <h2>Current Job Listings</h2>
+>>>>>>> 9fde590e56655415f23518d176b3a43eca7997e0
     </div>
-</div>
-<div class="mt-1 mb-1 p-2 pl-4 pr-4 bg-white border-gray-200 shadow-lg mx-auto max-w-5xl rounded">
-    <div class="flex justify-between">
-        <div class="flex flex-col">
-            <div class="text-xl">Engineer</div>
-            <div class="flex flex-row italic text-gray-700 text-sm">
-                <div>Employer: Hess Services</div>&nbsp;&#183;&nbsp;<div>Category: Manufacturing & Assembly</div>&nbsp;&#183;&nbsp;<div>Posted: 1/05/2020</div>
+    <div class="p-8">
+        <div class="flex flex-row">
+            <div class="relative mr-4" x-data="{ open: false }">
+                <button @click="open = !open"
+                    class="px-3 py-2 bg-blue-500 text-white text-sm rounded cursor-pointer hover:bg-blue-400 focus:bg-blue-400 focus:outline-none">
+                    Filter by Industry
+                </button>
+                <ul x-show="open" x-transition:enter-start="opacity-0 scale-90"
+                    x-transition:enter-end="opacity-100 scale-100" x-transition:leave="ease-in transition-slow"
+                    x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-90"
+                    @click.away="open = false"
+                    class="bg-white shadow rounded-sm absolute mt-2 list w-48 text-sm uppercase font-medium">
+                    <li>
+                        <a class="block px-3 py-2 hover:bg-gray-100 rounded-t-sm" href="#">Job Type 1</a>
+                    </li>
+                    <li>
+                        <a class="block px-3 py-2 hover:bg-gray-100" href="#">Job Type 1</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="relative" x-data="{ open: false }">
+                <button @click="open = !open"
+                    class="px-3 py-2 bg-blue-500 text-white text-sm rounded cursor-pointer hover:bg-blue-400 focus:bg-blue-400 focus:outline-none">
+                    Filter by Date
+                </button>
+                <ul x-show="open" x-transition:enter-start="opacity-0 scale-90"
+                    x-transition:enter-end="opacity-100 scale-100" x-transition:leave="ease-in transition-slow"
+                    x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-90"
+                    @click.away="open = false"
+                    class="bg-white shadow rounded-sm absolute mt-2 list w-48 text-sm uppercase font-medium">
+                    <li>
+                        <a class="block px-3 py-2 hover:bg-gray-100 rounded-t-sm" href="#">Job Type 1</a>
+                    </li>
+                    <li>
+                        <a class="block px-3 py-2 hover:bg-gray-100" href="#">Job Type 1</a>
+                    </li>
+                </ul>
             </div>
         </div>
-        <div class="flex items-center"><button class="px-2 py-2 bg-transparent text-blue-500 cursor-pointer
-            hover:bg-blue-400 focus:bg-blue-400 rounded text-sm focus:outline-none border border-blue-500 hover:border-transparent hover:text-white">View Listing</button></div>
-    </div>
-</div>
-<div class="mt-1 mb-1 p-2 pl-4 pr-4 bg-white border-gray-200 shadow-lg mx-auto max-w-5xl rounded">
-    <div class="flex justify-between">
-        <div class="flex flex-col">
-            <div class="text-xl">Manual Laborer</div>
-            <div class="flex flex-row italic text-gray-700 text-sm">
-                <div>Employer: Hess Services</div>&nbsp;&#183;&nbsp;<div>Category: Manufacturing & Assembly</div>&nbsp;&#183;&nbsp;<div>Posted: 1/05/2020</div>
-            </div>
-        </div>
-        <div class="flex items-center"><button class="px-2 py-2 bg-transparent text-blue-500 cursor-pointer
-            hover:bg-blue-400 focus:bg-blue-400 rounded text-sm focus:outline-none border border-blue-500 hover:border-transparent hover:text-white">View Listing</button></div>
-    </div>
-</div>
-<div class="mt-1 mb-1 p-2 pl-4 pr-4 bg-white border-gray-200 shadow-lg mx-auto max-w-5xl rounded">
-    <div class="flex justify-between">
-        <div class="flex flex-col">
-            <div class="text-xl">Part-Time Library Assistant</div>
-            <div class="flex flex-row italic text-gray-700 text-sm">
-                <div>Employer: Hays Public Library</div>&nbsp;&#183;&nbsp;<div>Category: Administrative Support & Clerical</div>&nbsp;&#183;&nbsp;<div>Posted: 1/05/2020</div>
-            </div>
-        </div>
-        <div class="flex items-center"><button class="px-2 py-2 bg-transparent text-blue-500 cursor-pointer
-            hover:bg-blue-400 focus:bg-blue-400 rounded text-sm focus:outline-none border border-blue-500 hover:border-transparent hover:text-white">View Listing</button></div>
-    </div>
-</div>
-<div class="mt-1 mb-1 p-2 pl-4 pr-4 bg-white border-gray-200 shadow-lg mx-auto max-w-5xl rounded">
-    <div class="flex justify-between">
-        <div class="flex flex-col">
-            <div class="text-xl">Compliance Coordinator</div>
-            <div class="flex flex-row italic text-gray-700 text-sm">
-                <div>Employer: Bison State Bank</div>&nbsp;&#183;&nbsp;<div>Category: Professional Services</div>&nbsp;&#183;&nbsp;<div>Posted: 1/05/2020</div>
-            </div>
-        </div>
-        <div class="flex items-center"><button class="px-2 py-2 bg-transparent text-blue-500 cursor-pointer
-            hover:bg-blue-400 focus:bg-blue-400 rounded text-sm focus:outline-none border border-blue-500 hover:border-transparent hover:text-white">View Listing</button></div>
-    </div>
-</div>
-<div class="mt-1 mb-1 p-2 pl-4 pr-4 bg-white border-gray-200 shadow-lg mx-auto max-w-5xl rounded">
-    <div class="flex justify-between">
-        <div class="flex flex-col">
-            <div class="text-xl">Specimen Processor, Laboratory</div>
-            <div class="flex flex-row italic text-gray-700 text-sm">
-                <div>Employer: Quest Services</div>&nbsp;&#183;&nbsp;<div>Category: Healthcare</div>&nbsp;&#183;&nbsp;<div>Posted: 1/05/2020</div>
-            </div>
-        </div>
-        <div class="flex items-center"><button class="px-2 py-2 bg-transparent text-blue-500 cursor-pointer
-            hover:bg-blue-400 focus:bg-blue-400 rounded text-sm focus:outline-none border border-blue-500 hover:border-transparent hover:text-white">View Listing</button></div>
-    </div>
-</div>
-<div class="mt-1 mb-1 p-2 pl-4 pr-4 bg-white border-gray-200 shadow-lg mx-auto max-w-5xl rounded">
-    <div class="flex justify-between">
-        <div class="flex flex-col">
-            <div class="text-xl">Part-Time Retail Sales Associate - Hays</div>
-            <div class="flex flex-row italic text-gray-700 text-sm">
-                <div>Employer: Nex-Tech Wireless</div>&nbsp;&#183;&nbsp;<div>Category: Retail</div>&nbsp;&#183;&nbsp;<div>Posted: 1/05/2020</div>
-            </div>
-        </div>
-        <div class="flex items-center"><button class="px-2 py-2 bg-transparent text-blue-500 cursor-pointer
-            hover:bg-blue-400 focus:bg-blue-400 rounded text-sm focus:outline-none border border-blue-500 hover:border-transparent hover:text-white">View Listing</button></div>
-    </div>
-</div>
-<div class="mt-1 mb-1 p-2 pl-4 pr-4 bg-white border-gray-200 shadow-lg mx-auto max-w-5xl rounded">
-    <div class="flex justify-between">
-        <div class="flex flex-col">
-            <div class="text-xl">Information Technology Support Specialist</div>
-            <div class="flex flex-row italic text-gray-700 text-sm">
-                <div>Employer: Fort Hays State University</div>&nbsp;&#183;&nbsp;<div>Category: Technology</div>&nbsp;&#183;&nbsp;<div>Posted: 1/05/2020</div>
-            </div>
-        </div>
-        <div class="flex items-center"><button class="px-2 py-2 bg-transparent text-blue-500 cursor-pointer
-            hover:bg-blue-400 focus:bg-blue-400 rounded text-sm focus:outline-none border border-blue-500 hover:border-transparent hover:text-white">View Listing</button></div>
-    </div>
-</div>
-<div class="mt-1 mb-1 p-2 pl-4 pr-4 bg-white border-gray-200 shadow-lg mx-auto max-w-5xl rounded">
-    <div class="flex justify-between">
-        <div class="flex flex-col">
-            <div class="text-xl">Part-Time Administrative Assistant</div>
-            <div class="flex flex-row italic text-gray-700 text-sm">
-                <div>Employer: Northwest Kansas Area Agency on Aging</div>&nbsp;&#183;&nbsp;<div>Category: Administrative Support & Clerical</div>&nbsp;&#183;&nbsp;<div>Posted: 1/05/2020</div>
-            </div>
-        </div>
-        <div class="flex items-center"><button class="px-2 py-2 bg-transparent text-blue-500 cursor-pointer
-            hover:bg-blue-400 focus:bg-blue-400 rounded text-sm focus:outline-none border border-blue-500 hover:border-transparent hover:text-white">View Listing</button></div>
-    </div>
-</div>
-<div class="mt-1 mb-1 p-2 pl-4 pr-4 bg-white border-gray-200 shadow-lg mx-auto max-w-5xl rounded">
-    <div class="flex justify-between">
-        <div class="flex flex-col">
-            <div class="text-xl">CBS/CSS Recovery Specialist-Westside Alternative School/Hays</div>
-            <div class="flex flex-row italic text-gray-700 text-sm">
-                <div>Employer: High Plains Mental Health Center</div>&nbsp;&#183;&nbsp;<div>Category: Healthcare</div>&nbsp;&#183;&nbsp;<div>Posted: 1/05/2020</div>
-            </div>
-        </div>
-        <div class="flex items-center"><button class="px-2 py-2 bg-transparent text-blue-500 cursor-pointer
-            hover:bg-blue-400 focus:bg-blue-400 rounded text-sm focus:outline-none border border-blue-500 hover:border-transparent hover:text-white">View Listing</button></div>
     </div>
 </div>
 
-
-
+<% jobs.forEach(function(job) { %>
+<div class="mt-1 mb-1 p-2 pl-4 pr-4 bg-white border-gray-200 shadow-lg mx-auto max-w-5xl rounded">
+    <div class="flex justify-between">
+        <div class="flex flex-col">
+            <div class="text-xl"><%= job.title %></div>
+            <div class="flex flex-row italic text-gray-700 text-sm">
+                <div>Employer: <%= job.employer %></div>&nbsp;&#183;&nbsp;<div>Category: Professional</div>
+                &nbsp;&#183;&nbsp;<div>
+                    Posted: 1/1/2020</div>
+            </div>
+        </div>
+        <div class="flex items-center"><a href="/jobs/<%= job.id %>"
+                class="px-2 py-2 bg-transparent text-blue-500 cursor-pointer
+                hover:bg-blue-400 focus:bg-blue-400 rounded text-sm focus:outline-none border border-blue-500 hover:border-transparent hover:text-white">View
+                Listing</a></div>
+    </div>
+</div>
+<% }) %>
