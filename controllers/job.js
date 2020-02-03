@@ -23,7 +23,7 @@ exports.get = async (req, res) => {
         job: {
           ...job[0],
           updated_at: moment
-            .utc(job[0].created_at)
+            .utc(job[0].updated_at)
             .local()
             .format('MM/DD/YYYY, h:mm a')
         }
