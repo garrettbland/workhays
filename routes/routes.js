@@ -22,7 +22,9 @@ router.get('/privacy', function(req, res) {  res.render('pages/privacy');});
 router.get('/terms', function(req, res) {  res.render('pages/terms');});
 router.get('/login', function(req, res) {  res.render('pages/login');});
 router.get('/employer-inquiry', function(req, res) {  res.render('pages/employerinquiry');});
-router.get('/employers', function(req, res) {  res.render('pages/employers');});
+router.get('/employer-list', function(req, res) {  res.render('pages/employerlist');});
+router.get('/employer-list/employer', function(req, res) {  res.render('pages/employer');});
+
 
 
 module.exports = router

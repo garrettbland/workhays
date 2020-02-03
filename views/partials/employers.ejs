@@ -1,0 +1,77 @@
+<%/*
+===========================================================================
+
+Description:
+This is the employer listings section. Contains all job listings.
+
+To Do:
+
+Params:
+- jobs : ARRAY
+
+===========================================================================
+*/%>
+<div class="justify-between items-center flex">
+  <div class="p-4">
+      <h2>Employers</h2>
+  </div>
+  <!--<div class="p-8">
+      <div class="flex flex-row">
+          <div class="relative mr-4" x-data="{ open: false }">
+              <button @click="open = !open"
+                  class="px-2 py-1 bg-transparent text-blue-500 cursor-pointer
+              hover:bg-blue-400 focus:bg-blue-400 rounded text-sm focus:outline-none border border-blue-500 hover:border-transparent focus:text-white hover:text-white flex flex-row items-center">
+                  <div>Filter by Industry</div><span class="mdi mdi-chevron-down text-lg"></span>
+              </button>
+              <ul x-show="open" x-transition:enter-start="opacity-0 scale-90"
+                  x-transition:enter-end="opacity-100 scale-100" x-transition:leave="ease-in transition-slow"
+                  x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-90"
+                  @click.away="open = false"
+                  class="bg-white shadow rounded-sm absolute mt-0 list w-48 text-sm uppercase font-medium">
+                  <li>
+                      <a class="block px-3 py-2 hover:bg-gray-100 rounded-t-sm" href="#">Job Type 1</a>
+                  </li>
+                  <li>
+                      <a class="block px-3 py-2 hover:bg-gray-100" href="#">Job Type 1</a>
+                  </li>
+              </ul>
+          </div>
+          <div class="relative">
+              <button
+                  class="px-2 py-1 bg-transparent text-blue-500 cursor-pointer
+              hover:bg-blue-400 focus:bg-blue-400 rounded text-sm focus:outline-none border border-blue-500 hover:border-transparent focus:text-white hover:text-white flex flex-row items-center">
+                  <div>Sort By Date</div><span class="mdi mdi-chevron-down text-lg"></span>
+              </button>
+          </div>
+      </div>
+  </div>-->
+</div>
+
+<div class="mt-1 mb-1 p-2 pl-4 pr-4 bg-white border-gray-200 shadow-lg mx-auto max-w-5xl rounded">
+  <div class="flex justify-between">
+      <div class="flex flex-col">
+          <div class="text-xl">Midwest Energy</div>
+          <div class="flex flex-row italic text-gray-700 text-sm">
+              <div>HR Contact: Jane Doe</div>&nbsp;&#183;&nbsp;<div>Email: janedoe@example.com</div>
+          </div>
+      </div>
+      <div class="flex items-center"><a href="#"
+              class="px-2 py-2 bg-transparent text-blue-500 cursor-pointer
+              hover:bg-blue-400 focus:bg-blue-400 rounded text-sm focus:outline-none border border-blue-500 hover:border-transparent focus:text-white hover:text-white">View
+              Employer</a></div>
+  </div>
+</div>
+<div class="mt-1 mb-1 p-2 pl-4 pr-4 bg-white border-gray-200 shadow-lg mx-auto max-w-5xl rounded">
+    <div class="flex justify-between">
+        <div class="flex flex-col">
+            <div class="text-xl">DSNWK</div>
+            <div class="flex flex-row italic text-gray-700 text-sm">
+                <div>HR Contact: Michelle Bland</div>&nbsp;&#183;&nbsp;<div>Email: michellebland@mydsnwk.com</div>
+            </div>
+        </div>
+        <div class="flex items-center"><a href="#"
+                class="px-2 py-2 bg-transparent text-blue-500 cursor-pointer
+                hover:bg-blue-400 focus:bg-blue-400 rounded text-sm focus:outline-none border border-blue-500 hover:border-transparent focus:text-white hover:text-white">View
+                Employer</a></div>
+    </div>
+  </div>
