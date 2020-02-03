@@ -21,6 +21,7 @@ router.get('/jobs/:jobId', job.get)
 router.get('/privacy', function(req, res) {  res.render('pages/privacy');});
 router.get('/terms', function(req, res) {  res.render('pages/terms');});
 router.get('/login', function(req, res) {  res.render('pages/login');});
+router.get('/employer-inquiry', function(req, res) {  res.render('pages/employerinquiry');});
 
 
 module.exports = router
