@@ -14,11 +14,11 @@ Params:
 <!DOCTYPE html>
 <html class="h-full" lang="en">
 <body class='flex w-full flex-col h-full'>
-<pagehead>
+<nav>
     <%- include('../partials/navbar', { title: 'Work Hays' }) %>
-</pagehead>
+</nav>
 
-<pagecontainer class="flex-1 mx-auto pt-32 container max-w-6xl p-12 bg-gray-200 shadow-xl flex justify-center items-center">
+<main class="flex-1 mx-auto pt-32 container max-w-6xl p-12 bg-gray-200 shadow-xl flex justify-center items-center">
     <div class="w-full max-w-xs">
         <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
             <div class="mb-4">
@@ -43,10 +43,10 @@ Params:
             </div>
         </form>
     </div>
-</pagecontainer>
+</main>
 
-<pagefooter class="text-center bg-gray-200 container pb-8 max-w-6xl shadow-xl mx-auto pin-b">
+<footer class="text-center bg-gray-200 container pb-8 max-w-6xl shadow-xl mx-auto pin-b">
     <%- include('../partials/footer') %>
-</pagefooter>
+</footer>
 </body>
 </html>
