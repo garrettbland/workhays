@@ -19,7 +19,7 @@ Params:
         <div class="flex flex-row">
             <div class="relative mr-4" x-data="{ open: false }">
                 <button @click="open = !open"
-                    class="px-2 py-2 bg-transparent text-blue-500 cursor-pointer
+                    class="px-2 py-1 bg-transparent text-blue-500 cursor-pointer
                 hover:bg-blue-400 focus:bg-blue-400 rounded text-sm focus:outline-none border border-blue-500 hover:border-transparent focus:text-white hover:text-white flex flex-row items-center">
                     <div>Filter by Industry</div><span class="mdi mdi-chevron-down text-lg"></span>
                 </button>
@@ -27,7 +27,7 @@ Params:
                     x-transition:enter-end="opacity-100 scale-100" x-transition:leave="ease-in transition-slow"
                     x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-90"
                     @click.away="open = false"
-                    class="bg-white shadow rounded-sm absolute mt-2 list w-48 text-sm uppercase font-medium">
+                    class="bg-white shadow rounded-sm absolute mt-0 list w-48 text-sm uppercase font-medium">
                     <li>
                         <a class="block px-3 py-2 hover:bg-gray-100 rounded-t-sm" href="#">Job Type 1</a>
                     </li>
@@ -38,7 +38,7 @@ Params:
             </div>
             <div class="relative">
                 <button
-                    class="px-2 py-2 bg-transparent text-blue-500 cursor-pointer
+                    class="px-2 py-1 bg-transparent text-blue-500 cursor-pointer
                 hover:bg-blue-400 focus:bg-blue-400 rounded text-sm focus:outline-none border border-blue-500 hover:border-transparent focus:text-white hover:text-white flex flex-row items-center">
                     <div>Sort By Date</div><span class="mdi mdi-chevron-down text-lg"></span>
                 </button>
