@@ -12,10 +12,10 @@ Params:
 ===========================================================================
 */%>
 <div class="justify-between items-center flex">
-    <div class="p-8">
+    <div class="p-4">
         <h2>Current Job Listings</h2>
     </div>
-    <div class="p-8">
+    <!--<div class="p-8">
         <div class="flex flex-row">
             <div class="relative mr-4" x-data="{ open: false }">
                 <button @click="open = !open"
@@ -44,7 +44,7 @@ Params:
                 </button>
             </div>
         </div>
-    </div>
+    </div>-->
 </div>
 
 <% jobs.forEach(function(job) { %>
@@ -53,9 +53,7 @@ Params:
         <div class="flex flex-col">
             <div class="text-xl"><%= job.title %></div>
             <div class="flex flex-row italic text-gray-700 text-sm">
-                <div>Employer: <%= job.employer %></div>&nbsp;&#183;&nbsp;<div>Category: Professional</div>
-                &nbsp;&#183;&nbsp;<div>
-                    Updated: <%= job.updated_at %></div>
+                <div>Employer: <%= job.employer %></div>&nbsp;&#183;&nbsp;<div>Updated: <%= job.updated_at %></div>
             </div>
         </div>
         <div class="flex items-center"><a href="/jobs/<%= job.id %>"
