@@ -1,0 +1,52 @@
+<%/*
+===========================================================================
+
+Description:
+Home/index page of website.
+
+To Do:
+
+Params:
+
+
+===========================================================================
+*/%>
+<!DOCTYPE html>
+<html class="h-full" lang="en">
+<body class='flex w-full flex-col h-full'>
+<pagehead>
+    <%- include('../partials/navbar', { title: 'Work Hays' }) %>
+</pagehead>
+
+<pagecontainer class="flex-1 mx-auto pt-32 container max-w-6xl p-12 bg-gray-200 shadow-xl flex justify-center items-center">
+    <div class="w-full max-w-xs">
+        <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
+                    Username
+                </label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Username">
+            </div>
+            <div class="mb-6">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
+                    Password
+                </label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="******************">
+            </div>
+            <div class="flex items-center justify-between">
+                <button class="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
+                    Sign In
+                </button>
+                <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="#">
+                    Forgot Password?
+                </a>
+            </div>
+        </form>
+    </div>
+</pagecontainer>
+
+<pagefooter class="text-center bg-gray-200 container pb-8 max-w-6xl shadow-xl mx-auto pin-b">
+    <%- include('../partials/footer') %>
+</pagefooter>
+</body>
+</html>

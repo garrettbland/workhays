@@ -19,6 +19,8 @@ var job = require('../controllers/job')
 router.get('/', home.list)
 router.get('/jobs/:jobId', job.get)
 router.get('/privacy', function(req, res) {  res.render('pages/privacy');});
+router.get('/terms', function(req, res) {  res.render('pages/terms');});
+router.get('/login', function(req, res) {  res.render('pages/login');});
 
 
 module.exports = router

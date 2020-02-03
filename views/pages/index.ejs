@@ -13,14 +13,18 @@ Params:
 */%>
 
 <!DOCTYPE html>
-<html lang="en">
-<body>
-<%- include('../partials/navbar', { title: 'Work Hays' }) %>
-    <main class="flex-grow mx-auto pt-32 bg-gray-200 p-12 shadow-xl h-screen relative h-full container max-w-6xl">
-        <%- include('../partials/jobs', { jobs: jobs }) %>
-    </main>
-    <footer>
+<html class="h-full" lang="en">
+<body class='flex w-full flex-col h-full'>
+    <pagehead>
+        <%- include('../partials/navbar', { title: 'Work Hays' }) %>
+    </pagehead>
+
+    <pagecontainer class="flex-1 mx-auto pt-32 container max-w-6xl p-12 bg-gray-200 shadow-xl">
+            <%- include('../partials/jobs', { jobs: jobs }) %>
+    </pagecontainer>
+
+    <pagefooter class="text-center bg-gray-200 container pb-8 max-w-6xl shadow-xl mx-auto pin-b">
         <%- include('../partials/footer') %>
-    </footer>
+    </pagefooter>
 </body>
 </html>
