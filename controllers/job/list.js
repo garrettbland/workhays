@@ -2,18 +2,18 @@
 ===========================================================================
 
 Description:
-Index controller
+Gets all jobs
 
 To Do:
-- Review if this is even needed. Added here initially for testing.
+- Pagination
 
 ===========================================================================
 */
 
-var Jobs = require('../models/jobs')
+var Jobs = require('../../models/jobs')
 var moment = require('moment')
 
-exports.list = async (req, res) => {
+exports.index = async (req, res) => {
   Jobs.getAllJobs(function (err, jobs) {
     console.log('controller')
     if (err) res.send(err)

@@ -38,4 +38,16 @@ Jobs.getJobById = function (jobId, result) {
   })
 }
 
+Jobs.createJob = function (job, result) {
+  DB.query(
+    `INSERT INTO jobs (title, description, employer) VALUES ('${job.title}','${
+      job.description
+    }','${job.employer}')`,
+    function (err, res) {
+      if (err) throw new Error(err)
+      result(null, res)
+    }
+  )
+}
+
 module.exports = Jobs

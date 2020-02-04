@@ -2,15 +2,18 @@
 ===========================================================================
 
 Description:
-Job controller. Handles all logic and is referrenced from main router
+Gets job by id
+
+Params
+- jobId : String
 
 ===========================================================================
 */
 
-var Jobs = require('../models/jobs')
+var Jobs = require('../../models/jobs')
 var moment = require('moment')
 
-exports.get = async (req, res) => {
+exports.index = async (req, res) => {
   Jobs.getJobById(req.params.jobId, function (err, job) {
     console.log('controller')
     if (err) res.send(err)
