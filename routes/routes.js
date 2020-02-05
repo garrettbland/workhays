@@ -39,5 +39,7 @@ router.get('/employer-list/employer', function (req, res) {
 // auth only routes
 // To do: add Auth lol
 router.post('/jobs', job.create_job)
+router.put('/jobs/:jobId', job.update_job)
+router.delete('/jobs/:jobId', job.delete_job)
 
 module.exports = router

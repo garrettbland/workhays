@@ -21,14 +21,14 @@ var Jobs = function (task) {
 }
 
 Jobs.getAllJobs = function (result) {
-  DB.query('SELECT * FROM jobs', function (err, res, fields) {
+  DB.query('SELECT * FROM jobs WHERE deleted = 0', function (err, res, fields) {
     if (err) throw new Error(err)
     result(null, res)
   })
 }
 
 Jobs.getJobById = function (jobId, result) {
-  DB.query(`SELECT * FROM jobs WHERE id = ${jobId}`, function (
+  DB.query(`SELECT * FROM jobs WHERE id = ?`, [jobId], function (
     err,
     res,
     fields
@@ -40,9 +40,36 @@ Jobs.getJobById = function (jobId, result) {
 
 Jobs.createJob = function (job, result) {
   DB.query(
-    `INSERT INTO jobs (title, description, employer) VALUES ('${job.title}','${
-      job.description
-    }','${job.employer}')`,
+    `INSERT INTO jobs (title, description, employer) VALUES (?,?,?)`,
+    [job.title, job.description, job.employer],
+    function (err, res) {
+      if (err) throw new Error(err)
+      result(null, res)
+    }
+  )
+}
+
+Jobs.updateJob = function (jobId, job, result) {
+  DB.query(
+    `UPDATE jobs SET 
+    title = ?,
+    description = ?,
+    employer = ?
+    WHERE id = ?`,
+    [job.title, job.description, job.employer, jobId],
+    function (err, res) {
+      if (err) throw new Error(err)
+      result(null, res)
+    }
+  )
+}
+
+Jobs.deleteJob = function (jobId, result) {
+  DB.query(
+    `UPDATE jobs SET 
+    deleted = 1
+    WHERE id = ?`,
+    [jobId],
     function (err, res) {
       if (err) throw new Error(err)
       result(null, res)
