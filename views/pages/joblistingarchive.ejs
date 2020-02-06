@@ -1,0 +1,74 @@
+<% /* ===========================================================================
+Description: Archived job listing page for old/closed job listings. To Do: archive view, edit view, new listing view Params:
+=========================================================================== */ %>
+<!DOCTYPE html>
+<html class="h-full" lang="en">
+<body class="flex w-full flex-col h-full">
+<nav>
+	<%- include('../partials/navbar', { title: 'Work Hays' }) %>
+</nav>
+
+<main
+	class="flex-1 mx-auto pt-32 container max-w-6xl p-12 bg-gray-200 shadow-xl"
+>
+	<div class="p-4">
+		<h2>Job Listings Archive</h2>
+	</div>
+	<div class="flex flex-col">
+		<div class="p-6 bg-white shadow-xl w-4/5 mx-auto rounded mb-4">
+			<div class="text-gray-500 font-bold">Archived Job Listings</div>
+			<div class="px-8 mt-6">
+				<div class="mt-1 mb-1 p-2 pl-4 pr-4 bg-white border-red-200 border mx-auto max-w-5xl rounded">
+					<div class="flex justify-between">
+						<div class="flex flex-col">
+							<div class="text-xl">IT Support</div>
+							<div class="flex flex-row italic text-gray-700 text-sm">
+								<div>Updated: Jan 18, 2020</div>
+							</div>
+						</div>
+						<div class="flex items-center">
+							<a href="#"
+								 class="px-2 py-2 bg-transparent text-blue-500 cursor-pointer hover:bg-blue-400 focus:bg-blue-400 rounded text-sm focus:outline-none border border-blue-500 hover:border-transparent hover:text-white">Edit
+								Listing</a></div>
+					</div>
+				</div>
+				<div class="mt-1 mb-1 p-2 pl-4 pr-4 bg-white border-gray-200 border mx-auto max-w-5xl rounded">
+					<div class="flex justify-between">
+						<div class="flex flex-col">
+							<div class="text-xl">HR Assistant</div>
+							<div class="flex flex-row italic text-gray-700 text-sm">
+								<div>Updated: Jan 28, 2020</div>
+							</div>
+						</div>
+						<div class="flex items-center"><a href="#"
+																							class="px-2 py-2 bg-transparent text-blue-500 cursor-pointer
+                                hover:bg-blue-400 focus:bg-blue-400 rounded text-sm focus:outline-none border border-blue-500 hover:border-transparent hover:text-white">Edit
+								Listing</a></div>
+					</div>
+				</div>
+				<div class="flex justify-end mt-4">
+					<button
+						class="bg-orange-500 hover:bg-orange-400 mr-4 px-4 py-2 rounded text-white focus:outline-none"
+					>
+						View Archived Listings
+					</button>
+					<button
+						class="bg-blue-500 hover:bg-blue-400 px-4 py-2 rounded text-white focus:outline-none"
+					>
+						New Listing
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</main>
+
+<footer
+	class="text-center bg-gray-200 container pb-8 max-w-6xl shadow-xl mx-auto pin-b"
+>
+	<%- include('../partials/footer') %>
+</footer>
+</body>
+</html>
+
+

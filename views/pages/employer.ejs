@@ -1,38 +1,48 @@
-<%/* ===========================================================================
+<% /* ===========================================================================
 Description: Employer business information page. To Do: Params:
-=========================================================================== */%>
+=========================================================================== */ %>
 <!DOCTYPE html>
 <html class="h-full" lang="en">
 
 <body class='flex w-full flex-col h-full'>
-    <nav>
-        <%- include('../partials/navbar', { title: 'Work Hays' }) %>
-    </nav>
+<nav>
+	<%- include('../partials/navbar', { title: 'Work Hays' }) %>
+</nav>
 
-    <main class="flex-1 mx-auto pt-32 container max-w-6xl p-12 bg-gray-200 shadow-xl">
-        <a href="/employer-list/">
-            <div class="flex flex-row items-center text-blue-500 hover:text-blue-400 text-base">
-                <div><span class="mdi mdi-arrow-left"/></div>
-                <div class="ml-2">Back to All Employers</div>
-            </div>
-        </a>
-        <div class="flex flex-col pt-4">
-            <h2>Midwest Energy</h2>
-            <div class="flex flex-row italic text-gray-700 text-sm">
-                <div>HR Contanct: Jane Doe</div>&nbsp;&#183;&nbsp;<div>
-                    Email: janedoe@example.com</div>
-            </div>
-            <div class="mt-10 text-base"><div class="mb-3">Midwest Energy is a customer-owned electric and natural gas cooperative, serving 93,000 customers in 40 counties in central and western Kansas. </div>
+<main class="flex-1 mx-auto pt-32 container max-w-6xl p-12 bg-gray-200 shadow-xl">
+	<a href="/employer-list/">
+		<div class="flex flex-row items-center text-blue-500 hover:text-blue-400 text-base">
+			<div><span class="mdi mdi-arrow-left"/></div>
+			<div class="ml-2">Back to All Employers</div>
+		</div>
+	</a>
+	<div class="flex flex-col pt-4">
+		<h2>Midwest Energy</h2>
+		<div class="flex flex-row italic text-gray-700 text-sm">
+			<div>HR Contanct: Jane Doe</div>&nbsp;&#183;&nbsp;<div>
+				Email: janedoe@example.com
+			</div>
+		</div>
+		<div class="mt-10 text-base">
+			<div class="mb-3">Midwest Energy is a customer-owned electric and natural gas cooperative, serving 93,000
+				customers in 40 counties in central and western Kansas.
+			</div>
 
-             <div class="mb-3"> Our mission is to provide safe, reliable and efficient energy services. We strive to deliver innovative, affordable and environmentally sound solutions as well as foster leadership and growth throughout our region.</div>
-              
-             <div>We have a vision to build a brighter future for our customer-owners. So, it is important that we value safety, service, stewardship, integrity, innovation, collaboration and a community focus.</div></div>
-        </div>
-    </main>
+			<div class="mb-3"> Our mission is to provide safe, reliable and efficient energy services. We strive to deliver
+				innovative, affordable and environmentally sound solutions as well as foster leadership and growth throughout
+				our region.
+			</div>
 
-    <footer class="text-center bg-gray-200 container pb-8 max-w-6xl shadow-xl mx-auto pin-b">
-        <%- include('../partials/footer') %>
-    </footer>
+			<div>We have a vision to build a brighter future for our customer-owners. So, it is important that we value
+				safety, service, stewardship, integrity, innovation, collaboration and a community focus.
+			</div>
+		</div>
+	</div>
+</main>
+
+<footer class="text-center bg-gray-200 container pb-8 max-w-6xl shadow-xl mx-auto pin-b">
+	<%- include('../partials/footer') %>
+</footer>
 </body>
 
 </html>

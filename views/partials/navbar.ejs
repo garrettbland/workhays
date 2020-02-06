@@ -1,4 +1,4 @@
-<%/*
+<% /*
 ===========================================================================
 
 Description:
@@ -10,16 +10,26 @@ Params:
 
 
 ===========================================================================
-*/%>
+*/ %>
 
 <head>
-    <%- include('../partials/head', {title: 'Work Hays'}) %>
+	<%- include('../partials/head', {title: 'Work Hays'}) %>
 </head>
 <div class="w-full flex fixed z-10 bg-white justify-between items-center p-2 border-b-2 shadow-md">
-    <a href="/"><div class="flex flex-row items-center"><div class="mr-2"><span class="mdi mdi-briefcase-outline text-5xl text-blue-500"></span></div>
-    <h2><span class="font-light text-gray-600">WORK</span><span class="font-bold">hays</span></h2></div></a>
-    <div>
-    <a href="/employer-inquiry"><button class="bg-blue-500 px-4 py-2 rounded hover:bg-blue-400 text-white focus:outline-none">Inquire for Account</button></a>
-        <a href="/login" class="outline-none"><button class="bg-green-500 px-4 py-2 rounded hover:bg-green-400 text-white focus:outline-none">Employer Login</button></a>
-    </div>
+	<a href="/">
+		<div class="flex flex-row items-center">
+			<div class="mr-2"><span class="mdi mdi-briefcase-outline text-5xl text-blue-500"></span></div>
+			<h2><span class="font-light text-gray-600">WORK</span><span class="font-bold">hays</span></h2></div>
+	</a>
+	<div>
+		<a href="/employer-inquiry">
+			<button class="bg-blue-500 px-4 py-2 rounded hover:bg-blue-400 text-white focus:outline-none">Inquire for
+				Account
+			</button>
+		</a>
+		<a href="/login" class="outline-none">
+			<button class="bg-green-500 px-4 py-2 rounded hover:bg-green-400 text-white focus:outline-none">Employer Login
+			</button>
+		</a>
+	</div>
 </div>
