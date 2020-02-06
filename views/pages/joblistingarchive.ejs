@@ -12,13 +12,17 @@ Description: Archived job listing page for old/closed job listings. To Do: archi
 	class="flex-1 mx-auto pt-32 container max-w-6xl p-12 bg-gray-200 shadow-xl"
 >
 	<div class="p-4">
-		<h2>Job Listings Archive</h2>
+		<a href="/account" class="flex flex-row w-1/4 items-center text-blue-500 hover:text-blue-400 text-base">
+			<div><span class="mdi mdi-arrow-left"/></div>
+			<div class="ml-2">Back to Account Settings</div>
+		</a>
+		<h2>Archived Job Listings</h2>
 	</div>
 	<div class="flex flex-col">
 		<div class="p-6 bg-white shadow-xl w-4/5 mx-auto rounded mb-4">
-			<div class="text-gray-500 font-bold">Archived Job Listings</div>
+			<!--<div class="text-gray-500 font-bold">Archived Job Listings</div>-->
 			<div class="px-8 mt-6">
-				<div class="mt-1 mb-1 p-2 pl-4 pr-4 bg-white border-red-200 border mx-auto max-w-5xl rounded">
+				<div class="mt-1 mb-1 p-2 pl-4 pr-4 bg-white border-red-500 border mx-auto max-w-5xl rounded">
 					<div class="flex justify-between">
 						<div class="flex flex-col">
 							<div class="text-xl">IT Support</div>
@@ -32,7 +36,7 @@ Description: Archived job listing page for old/closed job listings. To Do: archi
 								Listing</a></div>
 					</div>
 				</div>
-				<div class="mt-1 mb-1 p-2 pl-4 pr-4 bg-white border-gray-200 border mx-auto max-w-5xl rounded">
+				<div class="mt-1 mb-1 p-2 pl-4 pr-4 bg-white border-red-500 border mx-auto max-w-5xl rounded">
 					<div class="flex justify-between">
 						<div class="flex flex-col">
 							<div class="text-xl">HR Assistant</div>
@@ -47,11 +51,6 @@ Description: Archived job listing page for old/closed job listings. To Do: archi
 					</div>
 				</div>
 				<div class="flex justify-end mt-4">
-					<button
-						class="bg-orange-500 hover:bg-orange-400 mr-4 px-4 py-2 rounded text-white focus:outline-none"
-					>
-						View Archived Listings
-					</button>
 					<button
 						class="bg-blue-500 hover:bg-blue-400 px-4 py-2 rounded text-white focus:outline-none"
 					>

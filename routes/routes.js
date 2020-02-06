@@ -41,6 +41,12 @@ router.get('/account', function (req, res) {
 router.get('/job-listing-archive', function (req, res) {
   res.render('pages/joblistingarchive')
 })
+router.get('/job-listing-new', function (req, res) {
+  res.render('pages/joblistingnew')
+})
+router.get('/job-listing-edit', function (req, res) {
+  res.render('pages/joblistingedit')
+})
 
 // auth only routes
 // To do: add Auth lol
