@@ -33,11 +33,11 @@ Description: Edit job listing page. To Do: archive view, edit view, new listing 
 								Job Title
 							</label>
 							<input
+								value="<%= job.title %>"
 								name="title"
 								class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
 								id="grid-first-name"
 								type="text"
-								placeholder="IT Support Technician"
 							/>
 						</div>
 						<div class="w-full md:w-1/2 px-3">
@@ -72,11 +72,11 @@ Description: Edit job listing page. To Do: archive view, edit view, new listing 
 								Job Description
 							</label>
 							<textarea
+								value="<%= job.description %>"
 								name="description"
 								class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
 								id="grid-business-about"
 								rows="20"
-								placeholder="Please input job listing details here."
 							></textarea>
 						</div>
 					</div>

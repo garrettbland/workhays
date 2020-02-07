@@ -1,19 +1,35 @@
-<%/* 
+<% /*
 ===========================================================================
 
 Description:
-Error 404 page. Will display when route doesn't exist or has moved.
+Home/index page of website.
 
 To Do:
-- Make it pretty
-- Give users something to click on
 
 Params:
 
 
 ===========================================================================
-*/%>
+*/ %>
 
-<div>
-    Error 404
-</div>
+<!DOCTYPE html>
+<html class="h-full" lang="en">
+<body class='flex w-full flex-col h-full'>
+<nav>
+	<%- include('partials/navbar', { title: 'Work Hays' }) %>
+</nav>
+
+<main class="flex-1 mx-auto pt-32 container max-w-6xl p-12 bg-gray-200 shadow-xl">
+	<a href="/" class="flex w-1/4 flex-row items-center text-blue-500 hover:text-blue-400 text-base">
+		<div><span class="mdi mdi-arrow-left"/></div>
+		<div class="ml-2">Back to All Listings</div>
+	</a>
+    <div class="flex align-center justify-center items-center ml-10"><img src="/imgs/404.gif" alt="" class=" h-48 w-auto"/></div>
+		<h2 class="w-1/2 text-center mx-auto">Uh Oh! We can't seem to find what you're looking for.</h2>
+</main>
+
+<footer class="text-center bg-gray-200 container pb-8 max-w-6xl shadow-xl mx-auto pin-b">
+	<%- include('partials/footer') %>
+</footer>
+</body>
+</html>
