@@ -44,7 +44,7 @@ router.get('/job-listing-archive', function (req, res) {
 router.get('/job-listing-new', function (req, res) {
   res.render('pages/joblistingnew')
 })
-router.get('/job-listing-edit', function (req, res) {
+router.get('/jobs/edit/:jobId', function (req, res) {
   res.render('pages/joblistingedit')
 })
 
