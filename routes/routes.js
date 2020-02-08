@@ -14,7 +14,6 @@ var router = express.Router()
 var middleware = require('./middleware')
 
 // controllers
-var job = require('../controllers/job/index')
 var jobController = require('../app/controllers/job.controller')
 var authController = require('../app/controllers/auth.controller')
 
@@ -69,7 +68,7 @@ router.get('/jobs/edit/:jobId', function (req, res) {
 // auth only routes
 // To do: add Auth lol
 router.post('/jobs', jobController.create_job)
-router.put('/jobs/:jobId', job.update_job)
-router.delete('/jobs/:jobId', job.delete_job)
+router.put('/jobs/:jobId', jobController.update_job)
+router.delete('/jobs/:jobId', jobController.delete_job)
 
 module.exports = router

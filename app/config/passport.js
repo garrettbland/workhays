@@ -124,6 +124,7 @@ module.exports = function (passport, user, employer) {
     console.log('deserialzing user')
     User.findByPk(id).then(function (user) {
       if (user) {
+        console.log('logged in as ' + user.id)
         done(null, user.get())
       } else {
         done(user, null)

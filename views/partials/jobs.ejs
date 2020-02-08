@@ -53,7 +53,9 @@ Params:
 		<div class="flex flex-col">
 			<div class="text-xl"><%= job.title %></div>
 			<div class="flex flex-row italic text-gray-600 text-sm">
-				<div>Employer: <%= job.employer %></div>&nbsp;&#183;&nbsp;<div>Updated: <%= job.updatedAt %></div>
+				<div>Employer: <%= job.employer.dataValues.id %></div>&nbsp;&#183;&nbsp;<div>Updated:
+					<%= job.updatedAt %>
+				</div>
 			</div>
 		</div>
 		<div class="flex items-center"><a href="/jobs/<%= job.id %>"

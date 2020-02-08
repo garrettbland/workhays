@@ -4,9 +4,11 @@ var moment = require('moment')
 exports.list_jobs = async (req, res) => {
   try {
     // user object
-    console.log(req.user)
+    // console.log(req.user)
 
-    const jobs = await Models.job.findAll()
+    const jobs = await Models.job.findAll({
+      include: Models.employer
+    })
 
     console.log(jobs)
 
@@ -59,14 +61,20 @@ exports.get_job = async (req, res) => {
 
 exports.create_job = async (req, res) => {
   try {
+    console.log('find employer by user_id of' + req.user.id)
+
     const employer = await Models.employer.findOne({
-      user_id: req.user.id
+      where: {
+        user_id: req.user.id
+      }
     })
+
+    console.log(employer)
 
     const newJob = await Models.job.create({
       title: req.body.title,
       description: req.body.description,
-      employer_id: employer.id
+      employer_id: employer.dataValues.id
     })
 
     if (!newJob) throw 'Job not created'
