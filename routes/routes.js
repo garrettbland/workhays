@@ -58,7 +58,7 @@ router.get('/account', middleware.isLoggedIn, function (req, res) {
 router.get('/job-listing-archive', function (req, res) {
   res.render('pages/joblistingarchive')
 })
-router.get('/job-listing-new', function (req, res) {
+router.get('/job-listing-new', middleware.isLoggedIn, function (req, res) {
   res.render('pages/joblistingnew')
 })
 router.get('/jobs/edit/:jobId', function (req, res) {
