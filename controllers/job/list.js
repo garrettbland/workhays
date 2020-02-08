@@ -15,9 +15,7 @@ var moment = require('moment')
 
 exports.index = async (req, res) => {
   Jobs.getAllJobs(function (err, jobs) {
-    console.log('controller')
     if (err) res.send(err)
-    console.log('res', jobs)
 
     // loops through jobs and formats updated_at. Returns new array with map
     var formattedJobs = jobs.map(function (job) {

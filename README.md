@@ -82,6 +82,26 @@ mysql > flush privileges;
 # service mysql restart
 ```
 
+config/config.json
+```
+{
+    "development": {
+        "username": "",
+        "password": "",
+        "database": "",
+        "host": "",
+        "dialect": "mysql"
+    },
+    "production": {
+        "username": "",
+        "password": "",
+        "database": "",
+        "host": "",
+        "dialect": "mysql"
+    }
+}
+```
+
 #### Lanes notes
 
 #### Kiels notes

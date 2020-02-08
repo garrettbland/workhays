@@ -48,18 +48,18 @@ Params:
 </div>
 
 <% jobs.forEach(function(job) { %>
-	<div class="mt-1 mb-1 p-2 pl-4 pr-4 bg-white border-gray-200 shadow-lg mx-auto max-w-5xl rounded">
-		<div class="flex justify-between">
-			<div class="flex flex-col">
-				<div class="text-xl"><%= job.title %></div>
-				<div class="flex flex-row italic text-gray-600 text-sm">
-					<div>Employer: <%= job.employer %></div>&nbsp;&#183;&nbsp;<div>Updated: <%= job.updated_at %></div>
-				</div>
+<div class="mt-1 mb-1 p-2 pl-4 pr-4 bg-white border-gray-200 shadow-lg mx-auto max-w-5xl rounded">
+	<div class="flex justify-between">
+		<div class="flex flex-col">
+			<div class="text-xl"><%= job.title %></div>
+			<div class="flex flex-row italic text-gray-600 text-sm">
+				<div>Employer: <%= job.employer %></div>&nbsp;&#183;&nbsp;<div>Updated: <%= job.updatedAt %></div>
 			</div>
-			<div class="flex items-center"><a href="/jobs/<%= job.id %>"
-																				class="px-2 py-2 bg-transparent text-blue-500 cursor-pointer
-                hover:bg-blue-400 focus:bg-blue-400 rounded text-sm focus:outline-none border border-blue-500 hover:border-transparent hover:text-white">View
-					Listing</a></div>
 		</div>
+		<div class="flex items-center"><a href="/jobs/<%= job.id %>"
+				class="px-2 py-2 bg-transparent text-blue-500 cursor-pointer
+                hover:bg-blue-400 focus:bg-blue-400 rounded text-sm focus:outline-none border border-blue-500 hover:border-transparent hover:text-white">View
+				Listing</a></div>
 	</div>
+</div>
 <% }) %>
