@@ -14,6 +14,7 @@ Currently, the database will connect to our remote db. Create a file in `/app/co
 {
     "development": {
         "username": "",
+        "password": "",
         "database": "",
         "host": "",
         "dialect": "mysql"
