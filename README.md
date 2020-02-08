@@ -8,14 +8,24 @@ Node app using express, ejs, tailwindcss, and alpinejs
 
 Clone this repo, run `npm install`. Then `npm run dev` to fire up the development server on `http://localhost:3000`. Nodemon is used, so it will watch for file changes and hot reload. Run `npm run prod` to setup production environment
 
-Currently, the database will connect to our remote db. Create a file called `.env` and add the following. Ask Garrett for the credentials to get this to work. This is currently only being used for local development. DO NOT PUT THESE CREDENTIALS ANYWHERE ELSE EXCEPT IN THE ENV FILE.
+Currently, the database will connect to our remote db. Create a file in `/app/config` called `config.json` and add the following. Ask Garrett for the credentials to get this to work. This is currently only being used for local development. DO NOT PUT THESE CREDENTIALS ANYWHERE ELSE. The full path should be `/app/config/config.json`
 
 ```
-DEV_DB_HOST=
-DEV_DB_NAME=
-DEV_DB_USER=
-DEV_DB_PASSWORD=
-DEV_DB_PORT=
+{
+    "development": {
+        "username": "",
+        "database": "",
+        "host": "",
+        "dialect": "mysql"
+    },
+    "production": {
+        "username": "",
+        "password": "",
+        "database": "",
+        "host": "",
+        "dialect": "mysql"
+    }
+}
 ```
 
 The build process will automatically compile `tailwind.css`, uglify && minify it, and create a new file called `style.css`. This is the css file that will be referenced during dev. In prod, it will analyze all of the ejs files, purge the unused css, and then minify for tiny css sizes.
@@ -80,26 +90,6 @@ Updating security to allow remote connections. Probably only needed for dev, but
 mysql > grant all on workhays_dev.* to 'username'@'%';
 mysql > flush privileges;
 # service mysql restart
-```
-
-config/config.json
-```
-{
-    "development": {
-        "username": "",
-        "password": "",
-        "database": "",
-        "host": "",
-        "dialect": "mysql"
-    },
-    "production": {
-        "username": "",
-        "password": "",
-        "database": "",
-        "host": "",
-        "dialect": "mysql"
-    }
-}
 ```
 
 #### Lanes notes
