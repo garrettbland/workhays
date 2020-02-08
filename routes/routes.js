@@ -20,7 +20,7 @@ var authController = require('../app/controllers/auth.controller')
 
 // === public routes ===
 router.get('/', jobController.list_jobs)
-router.get('/jobs/:jobId', job.get_job)
+router.get('/jobs/:jobId', jobController.get_job)
 router.get('/privacy', (req, res) => res.render('pages/privacy'))
 router.get('/terms', (req, res) => res.render('pages/terms'))
 router.get('/login', (req, res) => res.render('pages/login'))
@@ -68,7 +68,7 @@ router.get('/jobs/edit/:jobId', function (req, res) {
 
 // auth only routes
 // To do: add Auth lol
-router.post('/jobs', job.create_job)
+router.post('/jobs', jobController.create_job)
 router.put('/jobs/:jobId', job.update_job)
 router.delete('/jobs/:jobId', job.delete_job)
 

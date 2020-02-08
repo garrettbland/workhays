@@ -34,7 +34,7 @@ app.use(passport.session()) // persistent login sessions
 var models = require('./app/models')
 
 // load passport strategies
-require('./app/config/passport.js')(passport, models.user)
+require('./app/config/passport.js')(passport, models.user, models.employer)
 
 // Routes
 app.use('/', require('./routes/routes'))

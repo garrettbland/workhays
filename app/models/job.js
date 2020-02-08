@@ -1,31 +1,55 @@
 module.exports = function (sequelize, Sequelize) {
-  var Job = sequelize.define('job', {
-    id: {
-      autoIncrement: true,
-      primaryKey: true,
-      type: Sequelize.INTEGER
-    },
+  var Job = sequelize.define(
+    'job',
+    {
+      id: {
+        primaryKey: true,
+        type: Sequelize.UUID,
+        defaultValue: Sequelize.UUIDV4,
+        allowNull: false
+      },
 
-    title: {
-      type: Sequelize.STRING,
-      notEmpty: true
-    },
+      employer_id: {
+        type: Sequelize.UUID,
+        required: true
+      },
 
-    description: {
-      type: Sequelize.STRING,
-      notEmpty: true
-    },
+      title: {
+        type: Sequelize.STRING,
+        required: true
+      },
 
-    employer: {
-      type: Sequelize.STRING,
-      notEmpty: true
-    },
+      job_type: {
+        type: Sequelize.ENUM('full_time', 'part_time'),
+        defaultValue: 'full_time'
+      },
 
-    status: {
-      type: Sequelize.ENUM('active', 'inactive'),
-      defaultValue: 'active'
+      description: {
+        type: Sequelize.STRING,
+        required: false
+      },
+
+      application_link: {
+        type: Sequelize.STRING,
+        required: false
+      },
+
+      status: {
+        type: Sequelize.ENUM('active', 'inactive'),
+        defaultValue: 'active'
+      },
+
+      deleted: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
+      }
+    },
+    {
+      underscored: true
     }
-  })
+  )
+
+  // Job.sync({ alter: true })
 
   return Job
 }

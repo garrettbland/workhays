@@ -21,6 +21,9 @@ var sequelize = new Sequelize(
 )
 var db = {}
 
+db.sequelize = sequelize
+db.Sequelize = Sequelize
+
 fs.readdirSync(__dirname)
   .filter(function (file) {
     return file.indexOf('.') !== 0 && file !== 'index.js'
@@ -36,7 +39,10 @@ Object.keys(db).forEach(function (modelName) {
   }
 })
 
-db.sequelize = sequelize
-db.Sequelize = Sequelize
+// Relations
+db.job.belongsTo(db.employer)
+db.employer.hasMany(db.job)
+db.employer.belongsTo(db.user)
+db.user.hasOne(db.employer)
 
 module.exports = db

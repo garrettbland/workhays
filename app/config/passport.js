@@ -1,7 +1,8 @@
 var bCrypt = require('bcrypt-nodejs')
 
-module.exports = function (passport, user) {
+module.exports = function (passport, user, employer) {
   var User = user
+  var Employer = employer
 
   var LocalStrategy = require('passport-local').Strategy
 
@@ -34,8 +35,8 @@ module.exports = function (passport, user) {
             var data = {
               email: email,
               password: userPassword,
-              firstname: req.body.firstname,
-              lastname: req.body.lastname
+              first_name: req.body.first_name,
+              last_name: req.body.last_name
             }
 
             User.create(data).then(function (newUser, created) {
@@ -44,7 +45,16 @@ module.exports = function (passport, user) {
               }
 
               if (newUser) {
-                return done(null, newUser)
+                // new user is created, now create new employer with user id as owner
+                Employer.create({
+                  user_id: newUser.id
+                }).then(function (newEmployer) {
+                  if (!newEmployer) {
+                    console.log('could not create new employer')
+                    return done(null, false)
+                  }
+                  return done(null, newEmployer)
+                })
               }
             })
           }
@@ -105,16 +115,19 @@ module.exports = function (passport, user) {
 
   // serialize
   passport.serializeUser(function (user, done) {
+    console.log('serializing user')
     done(null, user.id)
   })
 
   // deserialize user
   passport.deserializeUser(function (id, done) {
+    console.log('deserialzing user')
     User.findByPk(id).then(function (user) {
       if (user) {
         done(null, user.get())
       } else {
-        done(user.errors, null)
+        done(user, null)
+        // done(user.errors, null)
       }
     })
   })

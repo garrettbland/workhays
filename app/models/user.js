@@ -1,42 +1,56 @@
 module.exports = function (sequelize, Sequelize) {
-  var User = sequelize.define('user', {
-    id: {
-      autoIncrement: true,
-      primaryKey: true,
-      type: Sequelize.INTEGER
-    },
+  var User = sequelize.define(
+    'user',
+    {
+      id: {
+        primaryKey: true,
+        type: Sequelize.UUID,
+        defaultValue: Sequelize.UUIDV4,
+        allowNull: false
+      },
 
-    firstname: {
-      type: Sequelize.STRING,
-      notEmpty: true
-    },
+      first_name: {
+        type: Sequelize.STRING,
+        required: false
+      },
 
-    lastname: {
-      type: Sequelize.STRING,
-      notEmpty: true
-    },
+      last_name: {
+        type: Sequelize.STRING,
+        required: false
+      },
 
-    email: {
-      type: Sequelize.STRING,
-      validate: {
-        isEmail: true
+      email: {
+        type: Sequelize.STRING,
+        validate: {
+          isEmail: true
+        }
+      },
+
+      password: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+
+      status: {
+        type: Sequelize.ENUM('pending', 'verified'),
+        defaultValue: 'pending'
+      },
+
+      role: {
+        type: Sequelize.ENUM('employer', 'moderator', 'admin'),
+        defaultValue: 'employer'
+      },
+
+      last_login: {
+        type: Sequelize.DATE
       }
     },
-
-    password: {
-      type: Sequelize.STRING,
-      allowNull: false
-    },
-
-    last_login: {
-      type: Sequelize.DATE
-    },
-
-    status: {
-      type: Sequelize.ENUM('active', 'inactive'),
-      defaultValue: 'active'
+    {
+      underscored: true
     }
-  })
+  )
+
+  // User.sync({ alter: true })
 
   return User
 }
