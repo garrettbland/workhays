@@ -36,6 +36,7 @@ Params:
 		<a title="Contact" href="/contact"
 			 class="mdi mdi-email-outline hover:text-blue-400 text-blue-500 focus:outline-none mr-4 text-lg">Contact
 		</a>
+		<% if (user) { %>
 			<a href="/account">
 				<button class="bg-blue-500 px-4 py-2 rounded hover:bg-blue-400 text-white focus:outline-none text-lg">Account
 				</button>
@@ -44,14 +45,16 @@ Params:
 				<button class="bg-red-500 px-4 py-2 rounded hover:bg-red-400 text-white focus:outline-none text-lg">Sign Out
 				</button>
 			</a>
-		<a href="/signup">
-			<button class="bg-blue-500 px-4 py-2 rounded hover:bg-blue-400 text-white focus:outline-none text-lg">Sign Up
-			</button>
-		</a>
-		<a href="/signin">
-			<button class="bg-green-500 px-4 py-2 rounded hover:bg-green-400 text-white focus:outline-none text-lg">Sign In
-			</button>
-		</a>
+		<% } else { %>
+			<a href="/signup">
+				<button class="bg-blue-500 px-4 py-2 rounded hover:bg-blue-400 text-white focus:outline-none text-lg">Sign Up
+				</button>
+			</a>
+			<a href="/signin">
+				<button class="bg-green-500 px-4 py-2 rounded hover:bg-green-400 text-white focus:outline-none text-lg">Sign In
+				</button>
+			</a>
+		<% } %>
 	</div>
 
 </div>
