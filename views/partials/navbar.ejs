@@ -21,7 +21,7 @@ Params:
 			<div class="mr-2"><span class="mdi mdi-briefcase-outline text-5xl text-blue-500"></span></div>
 			<h2><span class="font-light text-gray-600">WORK</span><span class="font-bold">hays</span></h2></div>
 	</a>
-	<div>
+	<div class="flex flex-row justify-center items-center">
 		<a title="Home" href="/"
 			 class="mdi mdi-home hover:text-blue-400 text-blue-500 focus:outline-none mr-4 text-lg">Home</a>
 		<a title="Events" href="/events"
@@ -37,17 +37,39 @@ Params:
 			 class="mdi mdi-email-outline hover:text-blue-400 text-blue-500 focus:outline-none mr-4 text-lg">Contact
 		</a>
 		<% if (user) { %>
-			<a href="/account">
-				<button class="bg-blue-500 px-4 py-2 rounded hover:bg-blue-400 text-white focus:outline-none text-lg">Account
-				</button>
-			</a>
-			<a href="/logout">
-				<button class="bg-red-500 px-4 py-2 rounded hover:bg-red-400 text-white focus:outline-none text-lg">Sign Out
-				</button>
-			</a>
+			<div>
+				<div class="flex flex-row">
+					<div class="relative mr-4" x-data="{ open: false }">
+						<button @click="open = !open"
+										class="focus:outline-none flex flex-row items-center">
+							<span class="mdi mdi-account-circle text-4xl text-blue-500 hover:text-blue-400"></span>
+						</button>
+						<ul x-show="open"
+								@click.away="open = false"
+								class="w-32 bg-white shadow-lg border rounded absolute right-0">
+							<li class="px-2 py-1">
+								<span class="text-lg text-blue-500 focus:outline-none">
+									Hi, <%= user.first_name %>
+								</span>
+							</li>
+							<a href="/account">
+								<li class="hover:bg-gray-100 cursor-pointer px-2 py-1 text-lg text-blue-500 focus:outline-none">
+									Account
+								</li>
+							</a>
+							<a href="/logout">
+								<li class="hover:bg-gray-100 cursor-pointer px-2 py-1 text-lg text-red-500 focus:outline-none">
+									Sign Out
+								</li>
+							</a>
+						</ul>
+					</div>
+				</div>
+			</div>
 		<% } else { %>
 			<a href="/signup">
-				<button class="bg-blue-500 px-4 py-2 rounded hover:bg-blue-400 text-white focus:outline-none text-lg">Sign Up
+				<button class="mr-2 bg-blue-500 px-4 py-2 rounded hover:bg-blue-400 text-white focus:outline-none text-lg">Sign
+					Up
 				</button>
 			</a>
 			<a href="/signin">
