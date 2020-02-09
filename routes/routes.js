@@ -43,9 +43,6 @@ router.get('/logout', authController.logout)
 
 // === private routes ===
 
-router.get('/employer-inquiry', function (req, res) {
-  res.render('pages/employerinquiry')
-})
 router.get('/employer-list', function (req, res) {
   res.render('pages/employerlist')
 })
