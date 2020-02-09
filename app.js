@@ -6,6 +6,8 @@ var logger = require('morgan')
 const bodyParser = require('body-parser')
 var passport = require('passport')
 var session = require('express-session')
+var flash = require('connect-flash')
+
 require('dotenv').config()
 
 var app = express()
@@ -29,6 +31,7 @@ app.use(
 ) // session secret
 app.use(passport.initialize())
 app.use(passport.session()) // persistent login sessions
+app.use(flash())
 
 // Models
 var models = require('./app/models')

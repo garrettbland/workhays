@@ -12,9 +12,8 @@ module.exports = function (passport, user, employer) {
       {
         usernameField: 'email',
         passwordField: 'password',
-        passReqToCallback: true // allows us to pass back the entire request to the callback
+        passReqToCallback: true
       },
-
       function (req, email, password, done) {
         var generateHash = function (password) {
           return bCrypt.hashSync(password, bCrypt.genSaltSync(8), null)
@@ -26,9 +25,12 @@ module.exports = function (passport, user, employer) {
           }
         }).then(function (user) {
           if (user) {
-            return done(null, false, {
-              message: 'That email is already taken'
-            })
+            console.log('email is already taken')
+            return done(
+              null,
+              false,
+              req.flash('loginMessage', 'This email is already in use')
+            )
           } else {
             var userPassword = generateHash(password)
 
@@ -39,21 +41,33 @@ module.exports = function (passport, user, employer) {
               last_name: req.body.last_name
             }
 
-            User.create(data).then(function (newUser, created) {
+            User.create(data).then(function (newUser) {
               if (!newUser) {
                 return done(null, false)
               }
 
               if (newUser) {
+                console.log('new user created')
+
                 // new user is created, now create new employer with user id as owner
                 Employer.create({
                   user_id: newUser.id
                 }).then(function (newEmployer) {
                   if (!newEmployer) {
                     console.log('could not create new employer')
-                    return done(null, false)
+                    return done(null, false, {
+                      message: 'Employer not created'
+                    })
                   }
-                  return done(null, newEmployer)
+
+                  var newData = {
+                    newUser,
+                    newEmployer
+                  }
+
+                  console.log('everything was created good')
+
+                  return done(null, newUser)
                 })
               }
             })
@@ -94,9 +108,11 @@ module.exports = function (passport, user, employer) {
             }
 
             if (!isValidPassword(user.password, password)) {
-              return done(null, false, {
-                message: 'Incorrect password.'
-              })
+              return done(
+                null,
+                false,
+                req.flash('loginMessage', 'Email or Password is incorrect')
+              )
             }
 
             var userinfo = user.get()
@@ -105,9 +121,14 @@ module.exports = function (passport, user, employer) {
           .catch(function (err) {
             console.log('Error:', err)
 
-            return done(null, false, {
-              message: 'Something went wrong with your Signin'
-            })
+            return done(
+              null,
+              false,
+              req.flash(
+                'loginMessage',
+                'Something went wrong with your login on our end.'
+              )
+            )
           })
       }
     )
@@ -116,6 +137,7 @@ module.exports = function (passport, user, employer) {
   // serialize
   passport.serializeUser(function (user, done) {
     console.log('serializing user')
+    console.log(user)
     done(null, user.id)
   })
 

@@ -6,6 +6,7 @@ app/config/config.json
 # Dependency directories
 node_modules/
 .npm
+yarn.lock
 
 # mac os
 .DS_Store
