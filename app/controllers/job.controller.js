@@ -26,7 +26,8 @@ exports.list_jobs = async (req, res) => {
 
     res.render('pages/index', {
       title: 'Express',
-      jobs: formattedJobs
+      jobs: formattedJobs,
+      user:req.user
     })
   } catch (err) {
     console.log('Error in list_jobs')
