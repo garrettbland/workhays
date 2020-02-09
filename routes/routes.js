@@ -18,9 +18,12 @@ var jobController = require('../app/controllers/job.controller')
 var authController = require('../app/controllers/auth.controller')
 
 // === public routes ===
+router.get('/events', jobController.list_jobs)
 router.get('/', jobController.list_jobs)
 router.get('/jobs/:jobId', jobController.get_job)
 router.get('/privacy', (req, res) => res.render('pages/privacy'))
+router.get('/info', (req, res) => res.render('pages/info'))
+router.get('/help', (req, res) => res.render('pages/help'))
 router.get('/terms', (req, res) => res.render('pages/terms'))
 router.get('/login', (req, res) => res.render('pages/login'))
 router.get('/signup', authController.signup)

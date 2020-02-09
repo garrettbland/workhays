@@ -1,0 +1,57 @@
+<% /*
+===========================================================================
+
+Description:
+Home/index page of website.
+
+To Do:
+
+Params:
+
+
+===========================================================================
+*/ %>
+<!DOCTYPE html>
+<html class="h-full" lang="en">
+<body class='flex w-full flex-col h-full'>
+<nav>
+	<%- include('../partials/navbar', { title: 'Work Hays' }) %>
+</nav>
+
+<main class="flex-1 mx-auto pt-32 container max-w-6xl p-12 bg-gray-200 shadow-xl">
+	<a href="/" class="flex w-1/4 mb-4 flex-row items-center text-blue-500 hover:text-blue-400 text-base">
+		<div><span class="mdi mdi-arrow-left"/></div>
+		<div class="ml-2">Back to All Listings</div>
+	</a>
+	<h2>Community Info</h2>
+	<div class="text-xl font-bold mb-2 mt-8">About Hays</div>
+	<div class="pb-4">Hays, America is a <a class="text-blue-500 hover:text-blue-400 underline"
+																							 href="https://www.fhsu.edu"
+																							 target="_blank">university</a> community of
+		20,000 people located half way between Kansas City
+		and Denver on Interstate 70. We are the regional hub of Northwest Kansas for retail, education, medical service,
+		entertainment, and recreation. <a class="text-blue-500 hover:text-blue-400 underline"
+																			href="https://www.ellisco.net/">Ellis
+			County</a> has the largest retail pull
+		factor in the state. Our <a class="text-blue-500 underline hover:text-blue-400"
+																href="https://www.downtownhays.com/">downtown</a> is being
+		revitalized with unique shops and entertainment and the north side of town is expanding with additional retail
+		offerings. We have a very diversified mix of businesses in the area although agriculture and oil are still major
+		parts of the regional economy. The Hays Regional Airport offers two commercial flights each day to both Denver and
+		Kansas City. And, according to recent rankings by Progressive Farmer, E-Podunk, and BizJournal; <a
+			class="text-blue-500 underline hover:text-blue-400" href="https://hayschamber.com/">Hays, America</a> has a
+		great quality of life. We happen to agree.
+	</div>
+	<div class="text-xl font-bold mb-2">Childcare</div>
+	<div class="pb-4 ">
+		Childcare Aware of Kansas (877.678.2548) <a class="text-blue-500 underline hover:text-blue-400"
+																								href="https://www.ks.childcareaware.org">www.ks.childcareaware.org</a> A
+		FREE service!!
+	</div>
+</main>
+
+<footer class="text-center bg-gray-200 container pb-8 max-w-6xl shadow-xl mx-auto pin-b">
+	<%- include('../partials/footer') %>
+</footer>
+</body>
+</html>
