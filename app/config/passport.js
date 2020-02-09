@@ -143,7 +143,7 @@ module.exports = function (passport, user, employer) {
 
   // deserialize user
   passport.deserializeUser(function (id, done) {
-    console.log('deserialzing user')
+    console.log('deserialzing user ====>')
     User.findByPk(id).then(function (user) {
       if (user) {
         console.log('logged in as ' + user.id)
@@ -155,5 +155,3 @@ module.exports = function (passport, user, employer) {
     })
   })
 }
-
-
