@@ -17,6 +17,11 @@ Description: Employer Login page. To Do: Params:
 		<h2>Sign In</h2>
 		<div class="flex justify-center self-center">
 			<div class="w-full max-w-xs">
+				<% if(message.length > 0) { %>
+					<div class="bg-red-500 text-red-100 p-4 mb-2 rounded shadow">
+						<%= message %>
+					</div>
+				<% } %>
 				<form action="signin" method="post" id="signin" name="signin"
 					class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
 					<div class="mb-4">

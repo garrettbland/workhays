@@ -16,6 +16,7 @@ var middleware = require('./middleware')
 // controllers
 var jobController = require('../app/controllers/job.controller')
 var authController = require('../app/controllers/auth.controller')
+var accountController = require('../app/controllers/account.controller')
 
 // === public routes ===
 router.get('/events', jobController.list_jobs)
@@ -53,9 +54,7 @@ router.get('/employer-list', function (req, res) {
 router.get('/employer-list/employer', function (req, res) {
   res.render('pages/employer')
 })
-router.get('/account', middleware.isLoggedIn, function (req, res) {
-  res.render('pages/account')
-})
+router.get('/account', middleware.isLoggedIn, accountController.index)
 router.get('/job-listing-archive', function (req, res) {
   res.render('pages/joblistingarchive')
 })

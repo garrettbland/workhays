@@ -102,9 +102,7 @@ module.exports = function (passport, user, employer) {
         })
           .then(function (user) {
             if (!user) {
-              return done(null, false, {
-                message: 'Email does not exist'
-              })
+              return done(null, false, req.flash('loginMessage', 'Email or Password is incorrect'))
             }
 
             if (!isValidPassword(user.password, password)) {

@@ -3,9 +3,6 @@ var moment = require('moment')
 
 exports.list_jobs = async (req, res) => {
   try {
-    // user object
-    // console.log(req.user)
-
     const jobs = await Models.job.findAll({
       include: Models.employer
     })
@@ -24,8 +21,7 @@ exports.list_jobs = async (req, res) => {
 
     res.render('pages/index', {
       title: 'Express',
-      jobs: formattedJobs,
-      user: req.user
+      jobs: formattedJobs
     })
   } catch (err) {
     console.log('Error in list_jobs')
@@ -77,7 +73,9 @@ exports.create_job = async (req, res) => {
     if (!newJob) throw 'Job not created'
 
     res.status(201)
-    res.render('pages/account')
+    // res.render('pages/account')
+    req.flash('accountMessage', 'New job created successfully')
+    res.redirect('/account')
   } catch (err) {
     // res.send(err)
     console.log('Error in create_job')
