@@ -10,8 +10,6 @@ exports.list_jobs = async (req, res) => {
       include: Models.employer
     })
 
-    console.log(jobs)
-
     if (!jobs) throw 'Jobs not found'
 
     var formattedJobs = jobs.map(function (job) {
@@ -27,7 +25,7 @@ exports.list_jobs = async (req, res) => {
     res.render('pages/index', {
       title: 'Express',
       jobs: formattedJobs,
-      user:req.user
+      user: req.user
     })
   } catch (err) {
     console.log('Error in list_jobs')
@@ -69,8 +67,6 @@ exports.create_job = async (req, res) => {
         user_id: req.user.id
       }
     })
-
-    console.log(employer)
 
     const newJob = await Models.job.create({
       title: req.body.title,
