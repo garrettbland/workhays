@@ -28,6 +28,8 @@ router.get('/info', (req, res) => res.render('pages/info'))
 router.get('/help', (req, res) => res.render('pages/help'))
 router.get('/terms', (req, res) => res.render('pages/terms'))
 router.get('/login', (req, res) => res.render('pages/login'))
+router.get('/password-reset', (req, res) => res.render('pages/passwordreset'))
+router.get('/password-update', (req, res) => res.render('pages/passwordupdate'))
 router.get('/signup', authController.signup)
 router.get('/signin', authController.signin)
 router.post(
