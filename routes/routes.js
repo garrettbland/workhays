@@ -61,14 +61,16 @@ router.get('/job-listing-archive', function (req, res) {
 router.get('/job-listing-new', middleware.isLoggedIn, function (req, res) {
   res.render('pages/joblistingnew')
 })
-router.get('/jobs/edit/:jobId', function (req, res) {
-  res.render('pages/joblistingedit')
-})
+router.get(
+  '/jobs/edit/:jobId',
+  middleware.isLoggedIn,
+  accountController.edit_job
+)
 
 // auth only routes
 // To do: add Auth lol
 router.post('/jobs', jobController.create_job)
-router.put('/jobs/:jobId', jobController.update_job)
+router.post('/jobs/edit/:jobId', jobController.update_job)
 router.delete('/jobs/:jobId', jobController.delete_job)
 
 module.exports = router

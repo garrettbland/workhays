@@ -46,3 +46,30 @@ exports.index = async (req, res) => {
     res.render('error')
   }
 }
+
+exports.edit_job = async (req, res) => {
+  try {
+    // get employer
+    const employer = await Models.employer.findOne({
+      where: {
+        user_id: req.user.id
+      }
+    })
+
+    const job = await Models.job.findOne({
+      where: {
+        id: req.params.jobId,
+        employer_id: employer.id
+      }
+    })
+
+    if (job) {
+      res.render('pages/joblistingedit', {
+        job: job.dataValues
+      })
+    } else {
+      res.status(404)
+      res.render('error')
+    }
+  } catch (err) {}
+}

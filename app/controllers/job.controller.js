@@ -86,30 +86,36 @@ exports.create_job = async (req, res) => {
 
 exports.update_job = async (req, res) => {
   try {
+    // get employer
+    const employer = await Models.employer.findOne({
+      where: {
+        user_id: req.user.id
+      }
+    })
+
     var job = {
       title: req.body.title,
-      description: req.body.description,
-      employer: req.body.employer
+      description: req.body.description
     }
 
-    const update_job = await Models.job.update(
-      {
-        job
-      },
-      {
-        where: {
-          id: req.params.jobId
-        }
+    const update_job = await Models.job.update(job, {
+      where: {
+        id: req.params.jobId,
+        employer_id: employer.id
       }
-    )
+    })
+
+    console.log('IM HERERERERE')
 
     if (!update_job) throw 'Job not updated'
 
     res.status(200)
-    res.render('pages/account', {
-      updated: true,
-      update_job
-    })
+    // res.render('pages/account', {
+    //   updated: true,
+    //   update_job
+    // })
+    req.flash('accountMessage', 'Job updated successfully')
+    res.redirect('/account')
   } catch (err) {
     // res.send(err)
     console.log('Error in update_job')
