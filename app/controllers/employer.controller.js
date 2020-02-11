@@ -14,14 +14,14 @@ exports.update_employer = async (req, res) => {
       twitter_url: req.body.twitter_url
     }
 
-    const udpate_employer = await Models.employer.update(employer, {
+    const update_employer = await Models.employer.update(employer, {
       where: {
         id: req.params.employerId,
         user_id: req.user.id
       }
     })
 
-    if (!udpate_employer) throw 'Job not updated'
+    if (!update_employer) throw 'Job not updated'
 
     res.status(200)
     // res.render('pages/account', {
