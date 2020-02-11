@@ -59,7 +59,7 @@ Description: Account information page. To Do: archive view, edit view, new listi
 			</div>
 		</div>
 		<div class="p-6 bg-white shadow-xl w-4/5 mx-auto rounded mb-4">
-			<div class="text-gray-500 font-bold">Business Settings <%= employer.id %></div>
+			<div class="text-gray-500 font-bold">Business Settings</div>
 			<form method="POST" action="/employers/edit/<%= employer.id %>" class="bg-white px-8 pt-6">
 				<div>
 					<div class="flex flex-wrap -mx-3 mb-6">
@@ -75,7 +75,7 @@ Description: Account information page. To Do: archive view, edit view, new listi
 						<div class="w-1/2 px-3">
 							<label class="block uppercase tracking-wide text-gray-800 text-xs font-bold mb-2"
 										 for="grid-business-name">
-								HR Contact Name
+								Contact Name
 							</label>
 							<input name="contact" value="<%= employer.contact %>"
 										 class="appearance-none block w-full bg-gray-200 text-gray-800 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -86,7 +86,7 @@ Description: Account information page. To Do: archive view, edit view, new listi
 						<div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
 							<label class="block uppercase tracking-wide text-gray-800 text-xs font-bold mb-2"
 										 for="grid-email">
-								HR Contact Email
+								Contact Email
 							</label>
 							<input name="email" value="<%= employer.email %>"
 										 class="appearance-none block w-full bg-gray-200 text-gray-800 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
@@ -95,7 +95,7 @@ Description: Account information page. To Do: archive view, edit view, new listi
 						<div class="w-full md:w-1/2 px-3">
 							<label class="block uppercase tracking-wide text-gray-800 text-xs font-bold mb-2"
 										 for="grid-phone">
-								HR Contanct Phone Number
+								Contact Phone Number
 							</label>
 							<input name="phone" value="<%= employer.phone %>"
 										 class="appearance-none block w-full bg-gray-200 text-gray-800 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
