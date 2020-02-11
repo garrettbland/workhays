@@ -17,6 +17,7 @@ var middleware = require('./middleware')
 var jobController = require('../app/controllers/job.controller')
 var authController = require('../app/controllers/auth.controller')
 var accountController = require('../app/controllers/account.controller')
+var employerController = require('../app/controllers/employer.controller')
 
 // === public routes ===
 router.get('/', jobController.list_jobs)
@@ -74,5 +75,6 @@ router.get(
 router.post('/jobs', jobController.create_job)
 router.post('/jobs/edit/:jobId', jobController.update_job)
 router.delete('/jobs/:jobId', jobController.delete_job)
+router.post('/employers/edit/:employerId', employerController.update_employer)
 
 module.exports = router

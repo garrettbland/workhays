@@ -24,6 +24,11 @@ module.exports = function (sequelize, Sequelize) {
         required: false
       },
 
+      contact: {
+        type: Sequelize.STRING,
+        required: false
+      },
+
       email: {
         type: Sequelize.STRING,
         required: false
@@ -74,7 +79,7 @@ module.exports = function (sequelize, Sequelize) {
     }
   )
 
-  //   Employer.sync({ alter: true })
+  // Employer.sync({ alter: true })
 
   return Employer
 }

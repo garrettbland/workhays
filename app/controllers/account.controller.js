@@ -35,7 +35,7 @@ exports.index = async (req, res) => {
     console.log(jobs)
 
     res.render('pages/account', {
-      employer: employer,
+      employer: employer.dataValues,
       jobs: formattedJobs,
       message: req.flash('accountMessage')
     })
