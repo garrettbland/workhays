@@ -1,6 +1,6 @@
 var Models = require('../models')
 
-exports.get_employers = async (req, res) => {
+exports.list_employers = async (req, res) => {
   try {
     const employers = await Models.employer.findAll()
 
@@ -21,7 +21,7 @@ exports.get_employer = async (req, res) => {
   try {
     const employer = await Models.employer.findByPk(req.params.employerId)
 
-    if (!employer) throw 'Job not found'
+    if (!employer) throw 'Employer not found'
 
     res.render('pages/employer', {
       employer: employer.dataValues
@@ -55,7 +55,7 @@ exports.update_employer = async (req, res) => {
       }
     })
 
-    if (!update_employer) throw 'Job not updated'
+    if (!update_employer) throw 'Employer not updated'
 
     res.status(200)
     // res.render('pages/account', {

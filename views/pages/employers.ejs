@@ -1,0 +1,98 @@
+<% /*
+===========================================================================
+
+Description:
+Employer listing page of website.
+
+To Do:
+
+Params:
+
+
+===========================================================================
+*/ %>
+
+<!DOCTYPE html>
+<html class="h-full" lang="en">
+<body class='flex w-full flex-col h-full'>
+<nav>
+	<%- include('../partials/navbar', { title: 'Work Hays' }) %>
+</nav>
+
+<main class="flex-1 mx-auto pt-32 container max-w-6xl p-12 bg-gray-200 shadow-xl">
+	<% /*
+===========================================================================
+
+Description:
+This is the job listings section. Contains all job listings.
+
+To Do:
+
+Params:
+- jobs : ARRAY
+
+===========================================================================
+*/ %>
+	<a href="/" class="flex w-1/4 mb-4 flex-row items-center text-blue-500 hover:text-blue-400 text-base">
+		<div><span class="mdi mdi-arrow-left"/></div>
+		<div class="ml-2">Back to All Listings</div>
+	</a>
+	<h2>Employer Listings</h2>
+	<div class="justify-between items-center flex">
+		<!--<div class="p-8">
+				<div class="flex flex-row">
+						<div class="relative mr-4" x-data="{ open: false }">
+								<button @click="open = !open"
+										class="px-2 py-1 bg-transparent text-blue-500 cursor-pointer
+								hover:bg-blue-400 focus:bg-blue-400 rounded text-sm focus:outline-none border border-blue-500 hover:border-transparent focus:text-white hover:text-white flex flex-row items-center">
+										<div>Filter by Industry</div><span class="mdi mdi-chevron-down text-lg"></span>
+								</button>
+								<ul x-show="open" x-transition:enter-start="opacity-0 scale-90"
+										x-transition:enter-end="opacity-100 scale-100" x-transition:leave="ease-in transition-slow"
+										x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-90"
+										@click.away="open = false"
+										class="bg-white shadow rounded-sm absolute mt-0 list w-48 text-sm uppercase font-medium">
+										<li>
+												<a class="block px-3 py-2 hover:bg-gray-100 rounded-t-sm" href="#">Job Type 1</a>
+										</li>
+										<li>
+												<a class="block px-3 py-2 hover:bg-gray-100" href="#">Job Type 1</a>
+										</li>
+								</ul>
+						</div>
+						<div class="relative">
+								<button
+										class="px-2 py-1 bg-transparent text-blue-500 cursor-pointer
+								hover:bg-blue-400 focus:bg-blue-400 rounded text-sm focus:outline-none border border-blue-500 hover:border-transparent focus:text-white hover:text-white flex flex-row items-center">
+										<div>Sort By Date</div><span class="mdi mdi-chevron-down text-lg"></span>
+								</button>
+						</div>
+				</div>
+		</div>-->
+	</div>
+
+
+	<% employers.forEach(function(employer) { %>
+		<div class="mt-1 mb-1 p-2 pl-4 pr-4 bg-white border-gray-200 shadow-lg mx-auto max-w-5xl rounded">
+			<div class="flex justify-between">
+				<div class="flex flex-col">
+					<div class="text-xl"><%= employer.title %></div>
+					<div class="flex flex-row italic text-gray-600 text-sm">
+						Static Shit
+					</div>
+				</div>
+				<div class="flex items-center"><a href="/employers/<%= employer.id %>"
+																					class="px-2 py-2 bg-transparent text-blue-500 cursor-pointer
+                hover:bg-blue-400 focus:bg-blue-400 rounded text-sm focus:outline-none border border-blue-500 hover:border-transparent hover:text-white">View
+						Employer</a></div>
+			</div>
+		</div>
+	<% }) %>
+
+</main>
+
+<footer class="text-center bg-gray-200 container pb-8 max-w-6xl shadow-xl mx-auto pin-b">
+	<%- include('../partials/footer') %>
+</footer>
+</body>
+</html>
