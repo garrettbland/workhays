@@ -74,7 +74,7 @@ router.get(
 // To do: add Auth lol
 router.post('/jobs', jobController.create_job)
 router.post('/jobs/edit/:jobId', jobController.update_job)
-router.delete('/jobs/:jobId', jobController.delete_job)
+router.delete('/jobs/:jobId', jobController.archive_job)
 router.post('/employers/edit/:employerId', employerController.update_employer)
 
 module.exports = router

@@ -41,13 +41,13 @@ Description: Edit job listing page. To Do: archive view, edit view, new listing 
 								<div class="mt-2">
 									<div>
 										<label class="inline-flex items-center">
-											<input type="radio" class="form-radio" name="radio" value="1" checked>
+											<input type="radio" class="form-radio" name="radio" value="full_time">
 											<span class="ml-2">Full-Time</span>
 										</label>
 									</div>
 									<div>
 										<label class="inline-flex items-center">
-											<input type="radio" class="form-radio" name="radio" value="2">
+											<input type="radio" class="form-radio" name="radio" value="part_time">
 											<span class="ml-2">Part-Time</span>
 										</label>
 									</div>
@@ -71,7 +71,7 @@ Description: Edit job listing page. To Do: archive view, edit view, new listing 
 									for="grid-city">
 									Application Link
 								</label>
-								<input
+								<input name="application_link" value="<%= job.application_link %>"
 									class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-blue-400"
 									id="grid-city" type="text" placeholder="Logo URL" />
 							</div>
