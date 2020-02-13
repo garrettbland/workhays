@@ -2,7 +2,7 @@
 ===========================================================================
 
 Description:
-This is the employer listings section. Contains all job listings.
+This is the job listings section. Contains all job listings.
 
 To Do:
 
@@ -11,10 +11,12 @@ Params:
 
 ===========================================================================
 */ %>
+<a href="/" class="flex w-1/4 mb-4 flex-row items-center text-blue-500 hover:text-blue-400 text-base">
+	<div><span class="mdi mdi-arrow-left"/></div>
+	<div class="ml-2">Back to All Listings</div>
+</a>
+<h2>Employer Listings</h2>
 <div class="justify-between items-center flex">
-	<div class="p-4">
-		<h2>Employers</h2>
-	</div>
 	<!--<div class="p-8">
 			<div class="flex flex-row">
 					<div class="relative mr-4" x-data="{ open: false }">
@@ -47,31 +49,22 @@ Params:
 	</div>-->
 </div>
 
-<div class="mt-1 mb-1 p-2 pl-4 pr-4 bg-white border-gray-200 shadow-lg mx-auto max-w-5xl rounded">
-	<div class="flex justify-between">
-		<div class="flex flex-col">
-			<div class="text-xl">Midwest Energy</div>
-			<div class="flex flex-row italic text-gray-700 text-sm">
-				<div>HR Contact: Jane Doe</div>&nbsp;&#183;&nbsp;<div>Email: janedoe@example.com</div>
+
+<% jobs.forEach(function(job) { %>
+	<div class="mt-1 mb-1 p-2 pl-4 pr-4 bg-white border-gray-200 shadow-lg mx-auto max-w-5xl rounded">
+		<div class="flex justify-between">
+			<div class="flex flex-col">
+				<div class="text-xl"><%= job.title %></div>
+				<div class="flex flex-row italic text-gray-600 text-sm">
+					<div>Employer: <%= job.employer.dataValues.id %></div>&nbsp;&#183;&nbsp;<div>Updated:
+						<%= job.updatedAt %>
+					</div>
+				</div>
 			</div>
+			<div class="flex items-center"><a href="/jobs/<%= job.id %>"
+																				class="px-2 py-2 bg-transparent text-blue-500 cursor-pointer
+                hover:bg-blue-400 focus:bg-blue-400 rounded text-sm focus:outline-none border border-blue-500 hover:border-transparent hover:text-white">View
+					Listing</a></div>
 		</div>
-		<div class="flex items-center"><a href="#"
-																			class="px-2 py-2 bg-transparent text-blue-500 cursor-pointer
-              hover:bg-blue-400 focus:bg-blue-400 rounded text-sm focus:outline-none border border-blue-500 hover:border-transparent focus:text-white hover:text-white">View
-				Employer</a></div>
 	</div>
-</div>
-<div class="mt-1 mb-1 p-2 pl-4 pr-4 bg-white border-gray-200 shadow-lg mx-auto max-w-5xl rounded">
-	<div class="flex justify-between">
-		<div class="flex flex-col">
-			<div class="text-xl">DSNWK</div>
-			<div class="flex flex-row italic text-gray-700 text-sm">
-				<div>HR Contact: Michelle Bland</div>&nbsp;&#183;&nbsp;<div>Email: michellebland@mydsnwk.com</div>
-			</div>
-		</div>
-		<div class="flex items-center"><a href="#"
-																			class="px-2 py-2 bg-transparent text-blue-500 cursor-pointer
-                hover:bg-blue-400 focus:bg-blue-400 rounded text-sm focus:outline-none border border-blue-500 hover:border-transparent focus:text-white hover:text-white">View
-				Employer</a></div>
-	</div>
-</div>
+<% }) %>
