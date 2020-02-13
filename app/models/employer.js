@@ -20,7 +20,7 @@ module.exports = function (sequelize, Sequelize) {
       },
 
       description: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT('long'),
         required: false
       },
 

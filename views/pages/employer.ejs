@@ -16,15 +16,15 @@ Description: Employer business information page. To Do: Params:
 			<div class="ml-2">Back to All Employers</div>
 		</div>
 	</a>
-	<div class="flex flex-col pt-4">
-		<h2><%= employer.title %></h2>
+	<div class="flex flex-col pt-10">
+		<div class="flex flex-row align-center"><img src="<%= employer.logo_url %>" class="flex h-10 mr-4 w-auto"/><h2><%= employer.title %></h2></div>
 		<div class="flex flex-row italic text-gray-700 text-sm">
-			<div>HR Contanct: Jane Doe</div>&nbsp;&#183;&nbsp;<div>
-				Email: janedoe@example.com
+			<div>HR Contanct: <%= employer.contact %></div>&nbsp;&#183;&nbsp;<div>
+				Email: <%= employer.email %>
 			</div>
 		</div>
 		<div class="mt-10 text-base">
-			Static
+			<%= employer.description %>
 		</div>
 	</div>
 </main>

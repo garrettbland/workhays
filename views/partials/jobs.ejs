@@ -51,9 +51,9 @@ Params:
 <div class="mt-1 mb-1 p-2 pl-4 pr-4 bg-white border-gray-200 shadow-lg mx-auto max-w-5xl rounded">
 	<div class="flex justify-between">
 		<div class="flex flex-col">
-			<div class="text-xl"><%= job.title %></div>
+			<div class="text-xl font-semibold"><%= job.title %></div>
 			<div class="flex flex-row italic text-gray-600 text-sm">
-				<div>Employer: <%= job.employer.dataValues.id %></div>&nbsp;&#183;&nbsp;<div>Updated:
+				<div>Employer: <a class="text-blue-500 hover:text-blue-400" href="/employers/<%= job.employer.id %>"><%= job.employer.title %></a></div>&nbsp;&#183;&nbsp;<div>Updated:
 					<%= job.updatedAt %>
 				</div>
 			</div>
