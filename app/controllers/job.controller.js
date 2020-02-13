@@ -67,12 +67,14 @@ exports.create_job = async (req, res) => {
     const newJob = await Models.job.create({
       title: req.body.title,
       description: req.body.description,
+      job_type: req.body.job_type,
+      application_link: req.body.application_link,
       employer_id: employer.dataValues.id
     })
 
     if (!newJob) throw 'Job not created'
 
-    res.status(201)
+    res.status(200)
     // res.render('pages/account')
     req.flash('accountMessage', 'New job created successfully')
     res.redirect('/account')
@@ -95,7 +97,9 @@ exports.update_job = async (req, res) => {
 
     var job = {
       title: req.body.title,
-      description: req.body.description
+      description: req.body.description,
+      job_type: req.body.job_type,
+      application_link: req.body.application_link
     }
 
     const update_job = await Models.job.update(job, {
@@ -104,8 +108,6 @@ exports.update_job = async (req, res) => {
         employer_id: employer.id
       }
     })
-
-    console.log('IM HERERERERE')
 
     if (!update_job) throw 'Job not updated'
 
@@ -124,26 +126,38 @@ exports.update_job = async (req, res) => {
   }
 }
 
-exports.delete_job = async (req, res) => {
+exports.archive_job = async (req, res) => {
   try {
-    const delete_job = await Models.job.update(
-      {
-        deleted: true
-      },
-      {
-        where: {
-          id: req.params.jobId
-        }
+    // get employer
+    const employer = await Models.employer.findOne({
+      where: {
+        user_id: req.user.id
       }
-    )
+    })
 
-    if (!delete_job) throw 'Job not deleted'
+    var job = {
+      status: req.params.status
+    }
 
-    res.status(201)
-    res.render('pages/account')
+    const update_job = await Models.job.update(job, {
+      where: {
+        id: req.params.jobId,
+        employer_id: employer.id
+      }
+    })
+
+    if (!update_job) throw 'Job not archived'
+
+    res.status(200)
+    // res.render('pages/account', {
+    //   updated: true,
+    //   update_job
+    // })
+    req.flash('accountMessage', 'Job archived successfully')
+    res.redirect('/account')
   } catch (err) {
     // res.send(err)
-    console.log('Error in delete_job')
+    console.log('Error in update_job')
     res.status(200)
     res.render('error')
   }

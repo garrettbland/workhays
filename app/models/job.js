@@ -25,7 +25,7 @@ module.exports = function (sequelize, Sequelize) {
       },
 
       description: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT('long'),
         required: false
       },
 
@@ -35,13 +35,8 @@ module.exports = function (sequelize, Sequelize) {
       },
 
       status: {
-        type: Sequelize.ENUM('active', 'inactive'),
+        type: Sequelize.ENUM('active', 'inactive', 'archived', 'filled'),
         defaultValue: 'active'
-      },
-
-      deleted: {
-        type: Sequelize.BOOLEAN,
-        defaultValue: false
       }
     },
     {

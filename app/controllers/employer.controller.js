@@ -1,5 +1,39 @@
 var Models = require('../models')
 
+exports.get_employers = async (req, res) => {
+  try {
+    const employers = await Models.employer.findAll()
+
+    if (!employers) throw 'Employers not found'
+
+    res.render('pages/employers', {
+      employers: employers
+    })
+  } catch (err) {
+    // res.send(err)
+    console.log('Error in get_employers')
+    res.status(200)
+    res.render('error')
+  }
+}
+
+exports.get_employer = async (req, res) => {
+  try {
+    const employer = await Models.employer.findByPk(req.params.employerId)
+
+    if (!employer) throw 'Job not found'
+
+    res.render('pages/employer', {
+      employer: employer.dataValues
+    })
+  } catch (err) {
+    // res.send(err)
+    console.log('Error in get_employer')
+    res.status(404)
+    res.render('error')
+  }
+}
+
 exports.update_employer = async (req, res) => {
   try {
     var employer = {
