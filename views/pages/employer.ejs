@@ -24,12 +24,13 @@ Description: Employer business information page. To Do: Params:
 			<div class="flex flex-row align-center">
 				<h2><%= employer.title %></h2></div>
 		<% } %>
-		<div class="flex flex-row italic text-gray-700 text-sm">
-			<div>HR Contanct: <%= employer.contact %></div>&nbsp;&#183;&nbsp;<div>
-				Email: <%= employer.email %>
+		<div class="flex flex-row italic text-gray-700 ">
+			<div><span class="font-semibold">HR Contanct:</span> <%= employer.contact %></div>&nbsp;&#183;&nbsp;
+			<div>
+				<span class="font-semibold">Email:</span> <%= employer.email %>
 			</div>
 		</div>
-		<div class="mt-10 text-base">
+		<div class="mt-8 text-base">
 			<%= employer.description %>
 		</div>
 	</div>
