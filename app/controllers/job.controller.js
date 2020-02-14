@@ -4,6 +4,9 @@ var moment = require('moment')
 exports.list_jobs = async (req, res) => {
   try {
     const jobs = await Models.job.findAll({
+      where: {
+        status: 'active'
+      },
       include: Models.employer
     })
 
@@ -69,7 +72,8 @@ exports.create_job = async (req, res) => {
       description: req.body.description,
       job_type: req.body.job_type,
       application_link: req.body.application_link,
-      employer_id: employer.dataValues.id
+      employer_id: employer.dataValues.id,
+      status: req.body.status
     })
 
     if (!newJob) throw 'Job not created'
@@ -99,7 +103,8 @@ exports.update_job = async (req, res) => {
       title: req.body.title,
       description: req.body.description,
       job_type: req.body.job_type,
-      application_link: req.body.application_link
+      application_link: req.body.application_link,
+      status: req.body.action_button = 'archived' ? 'archived' : req.body.status
     }
 
     const update_job = await Models.job.update(job, {
@@ -126,39 +131,39 @@ exports.update_job = async (req, res) => {
   }
 }
 
-exports.archive_job = async (req, res) => {
-  try {
-    // get employer
-    const employer = await Models.employer.findOne({
-      where: {
-        user_id: req.user.id
-      }
-    })
+// exports.archive_job = async (req, res) => {
+//   try {
+//     // get employer
+//     const employer = await Models.employer.findOne({
+//       where: {
+//         user_id: req.user.id
+//       }
+//     })
 
-    var job = {
-      status: req.params.status
-    }
+//     var job = {
+//       status: req.params.status
+//     }
 
-    const update_job = await Models.job.update(job, {
-      where: {
-        id: req.params.jobId,
-        employer_id: employer.id
-      }
-    })
+//     const update_job = await Models.job.update(job, {
+//       where: {
+//         id: req.params.jobId,
+//         employer_id: employer.id
+//       }
+//     })
 
-    if (!update_job) throw 'Job not archived'
+//     if (!update_job) throw 'Job not archived'
 
-    res.status(200)
-    // res.render('pages/account', {
-    //   updated: true,
-    //   update_job
-    // })
-    req.flash('accountMessage', 'Job archived successfully')
-    res.redirect('/account')
-  } catch (err) {
-    // res.send(err)
-    console.log('Error in update_job')
-    res.status(200)
-    res.render('error')
-  }
-}
+//     res.status(200)
+//     // res.render('pages/account', {
+//     //   updated: true,
+//     //   update_job
+//     // })
+//     req.flash('accountMessage', 'Job archived successfully')
+//     res.redirect('/account')
+//   } catch (err) {
+//     // res.send(err)
+//     console.log('Error in update_job')
+//     res.status(200)
+//     res.render('error')
+//   }
+// }

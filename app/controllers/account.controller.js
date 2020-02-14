@@ -1,5 +1,6 @@
 var Models = require('../models')
 var moment = require('moment')
+const { Op } = require("sequelize")
 
 exports.index = async (req, res) => {
   try {
@@ -15,7 +16,11 @@ exports.index = async (req, res) => {
     // get employers jobs
     const jobs = await Models.job.findAll({
       where: {
-        employer_id: employer.id
+        employer_id: employer.id,
+        [Op.or]: [
+          { status: 'active' },
+          { status: 'inactive' }
+        ]
       }
     })
 
@@ -72,4 +77,51 @@ exports.edit_job = async (req, res) => {
       res.render('error')
     }
   } catch (err) {}
+}
+
+exports.list_archived_jobs = async (req, res) => {
+  try {
+
+    // get employer
+    const employer = await Models.employer.findOne({
+      where: {
+        user_id: req.user.id
+      }
+    })
+
+    // get employers jobs
+    const jobs = await Models.job.findAll({
+      where: {
+        employer_id: employer.id,
+        [Op.or]: [
+          { status: 'archived' },
+          { status: 'filled' }
+        ]
+      }
+    })
+
+    if (!jobs) throw 'Jobs not found'
+
+    var formattedJobs = jobs.map(function (job) {
+      return {
+        ...job.dataValues,
+        updatedAt: moment
+          .utc(job.dataValues.updatedAt)
+          .local()
+          .format('MM/DD/YYYY, h:mm a')
+      }
+    })
+
+    console.log('======> EMPLOYER JOBS =====>')
+    console.log(jobs)
+
+    res.render('pages/joblistingarchive', {
+      jobs: formattedJobs,
+    })
+  } catch (err) {
+    console.log('Error in list_archived_jobs')
+    console.log(err)
+    res.status(404)
+    res.render('error')
+  }
 }

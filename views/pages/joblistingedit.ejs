@@ -41,13 +41,13 @@ Description: Edit job listing page. To Do: archive view, edit view, new listing 
 								<div class="mt-2">
 									<div>
 										<label class="inline-flex items-center">
-											<input type="radio" class="form-radio" name="radio" value="full_time">
+											<input type="radio" class="form-radio" name="job_type" value="full_time" <% if(job.job_type === 'full_time') { %> checked <% } %> >
 											<span class="ml-2">Full-Time</span>
 										</label>
 									</div>
 									<div>
 										<label class="inline-flex items-center">
-											<input type="radio" class="form-radio" name="radio" value="part_time">
+											<input type="radio" class="form-radio" name="job_type" value="part_time" <% if(job.job_type === 'part_time') { %> checked <% } %> >
 											<span class="ml-2">Part-Time</span>
 										</label>
 									</div>
@@ -76,12 +76,32 @@ Description: Edit job listing page. To Do: archive view, edit view, new listing 
 									id="grid-city" type="text" placeholder="Logo URL" />
 							</div>
 						</div>
+						<div class="w-full md:w-1/2 px-3">
+							<label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+								for="grid-last-name">
+								Status
+							</label>
+							<div class="mt-2">
+								<div>
+									<label class="inline-flex items-center">
+										<input type="radio" class="form-radio" name="status" value="active" <% if(job.status === 'active') { %> checked <% } %> >
+										<span class="ml-2">Active</span>
+									</label>
+								</div>
+								<div>
+									<label class="inline-flex items-center">
+										<input type="radio" class="form-radio" name="status" value="inactive" <% if(job.status === 'inactive') { %> checked <% } %> >
+										<span class="ml-2">Inactive</span>
+									</label>
+								</div>
+							</div>
+						</div>
 						<div class="flex justify-end mt-4">
-							<button type="submit" name="action" value="delete"
+							<button type="submit" name="action_button" value="archived"
 								class="bg-red-500 hover:bg-red-400 px-4 mr-3 py-2 rounded text-white focus:outline-none">
-								Delete
+								Archive
 							</button>
-							<button type="submit" name="action" value="update"
+							<button type="submit" name="action_button" value="update"
 								class="bg-green-500 hover:bg-green-400 px-4 py-2 rounded text-white focus:outline-none">
 								Update Job Listing
 							</button>

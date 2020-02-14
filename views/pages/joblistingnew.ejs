@@ -78,11 +78,27 @@ Description: New job listing page. To Do: archive view, edit view, new listing v
 									id="grid-city" type="text" placeholder="Logo URL" />
 							</div>
 						</div>
+						<div class="w-full md:w-1/2 px-3">
+							<label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+								for="grid-last-name">
+								Status
+							</label>
+							<div class="mt-2">
+								<div>
+									<label class="inline-flex items-center">
+										<input type="radio" class="form-radio" name="status" value="active" checked>
+										<span class="ml-2">Active</span>
+									</label>
+								</div>
+								<div>
+									<label class="inline-flex items-center">
+										<input type="radio" class="form-radio" name="status" value="inactive" >
+										<span class="ml-2">Inactive</span>
+									</label>
+								</div>
+							</div>
+						</div>
 						<div class="flex justify-end mt-4">
-							<button
-								class="bg-yellow-600 hover:bg-yellow-500 px-4 mr-3 py-2 rounded text-white focus:outline-none">
-								Save for Later
-							</button>
 							<button type="submit"
 								class="bg-green-500 hover:bg-green-400 px-4 py-2 rounded text-white focus:outline-none">
 								Create Job Listing

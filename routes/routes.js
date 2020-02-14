@@ -55,9 +55,7 @@ router.get("/logout", authController.logout);
 
 // === private routes ===
 router.get("/account", middleware.isLoggedIn, accountController.index);
-router.get("/job-listing-archive", function(req, res) {
-  res.render("pages/joblistingarchive");
-});
+router.get("/job-listing-archive", middleware.isLoggedIn, accountController.list_archived_jobs);
 router.get("/job-listing-new", middleware.isLoggedIn, function(req, res) {
   res.render("pages/joblistingnew");
 });
@@ -71,7 +69,7 @@ router.get(
 // To do: add Auth lol
 router.post("/jobs", jobController.create_job);
 router.post("/jobs/edit/:jobId", jobController.update_job);
-router.delete("/jobs/:jobId", jobController.archive_job);
+// router.delete("/jobs/:jobId", jobController.archive_job);
 router.post("/employers/edit/:employerId", employerController.update_employer);
 
 module.exports = router;
