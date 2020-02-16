@@ -17,10 +17,17 @@ Description: Edit job listing page. To Do: archive view, edit view, new listing 
 			</a>
 			<h2>Edit Job Listing</h2>
 		</div>
+		<% if(job.status === 'archived' || job.status === 'filled') { %>
+			<div >
+				<div>
+					This job has been <%= job.status %> and is not allowed to be modified. 
+				</div>
+			</div>
+		<% } %>
 		<div class="flex flex-col">
 			<div class="p-6 bg-white shadow-xl w-4/5 mx-auto rounded mb-4">
 				<!--<div class="text-gray-500 font-bold">Business Settings</div>-->
-				<form method="POST" action="/jobs/edit/<%= job.id %>" class="bg-white px-8 pt-6">
+				<form <%= enabled ? "method=POST" : null %> action="<%= enabled ? '/jobs/edit/'+job.id : null %>" class="bg-white px-8 pt-6">
 					<input name="employer" hidden value="Lane's Co" />
 					<div>
 						<div class="flex flex-wrap -mx-3 mb-6">
@@ -29,7 +36,7 @@ Description: Edit job listing page. To Do: archive view, edit view, new listing 
 									for="grid-first-name">
 									Job Title
 								</label>
-								<input value="<%= job.title %>" name="title"
+								<input <%= enabled ? null : 'disabled' %> value="<%= job.title %>" name="title"
 									class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
 									id="grid-first-name" type="text" />
 							</div>
@@ -41,13 +48,15 @@ Description: Edit job listing page. To Do: archive view, edit view, new listing 
 								<div class="mt-2">
 									<div>
 										<label class="inline-flex items-center">
-											<input type="radio" class="form-radio" name="job_type" value="full_time" <% if(job.job_type === 'full_time') { %> checked <% } %> >
+											<input <%= enabled ? null : 'disabled' %> type="radio" class="form-radio" name="job_type" value="full_time"
+												<% if(job.job_type === 'full_time') { %> checked <% } %>>
 											<span class="ml-2">Full-Time</span>
 										</label>
 									</div>
 									<div>
 										<label class="inline-flex items-center">
-											<input type="radio" class="form-radio" name="job_type" value="part_time" <% if(job.job_type === 'part_time') { %> checked <% } %> >
+											<input <%= enabled ? null : 'disabled' %> type="radio" class="form-radio" name="job_type" value="part_time"
+												<% if(job.job_type === 'part_time') { %> checked <% } %>>
 											<span class="ml-2">Part-Time</span>
 										</label>
 									</div>
@@ -60,7 +69,7 @@ Description: Edit job listing page. To Do: archive view, edit view, new listing 
 									for="grid-business-about">
 									Job Description
 								</label>
-								<textarea name="description"
+								<textarea <%= enabled ? null : 'disabled' %> name="description"
 									class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-blue-400"
 									id="grid-business-about" rows="20"><%= job.description %></textarea>
 							</div>
@@ -71,7 +80,7 @@ Description: Edit job listing page. To Do: archive view, edit view, new listing 
 									for="grid-city">
 									Application Link
 								</label>
-								<input name="application_link" value="<%= job.application_link %>"
+								<input <%= enabled ? null : 'disabled' %> name="application_link" value="<%= job.application_link %>"
 									class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-blue-400"
 									id="grid-city" type="text" placeholder="Logo URL" />
 							</div>
@@ -84,28 +93,32 @@ Description: Edit job listing page. To Do: archive view, edit view, new listing 
 							<div class="mt-2">
 								<div>
 									<label class="inline-flex items-center">
-										<input type="radio" class="form-radio" name="status" value="active" <% if(job.status === 'active') { %> checked <% } %> >
+										<input <%= enabled ? null : 'disabled' %> type="radio" class="form-radio" name="status" value="active"
+											<% if(job.status === 'active') { %> checked <% } %>>
 										<span class="ml-2">Active</span>
 									</label>
 								</div>
 								<div>
 									<label class="inline-flex items-center">
-										<input type="radio" class="form-radio" name="status" value="inactive" <% if(job.status === 'inactive') { %> checked <% } %> >
+										<input <%= enabled ? null : 'disabled' %> type="radio" class="form-radio" name="status" value="inactive"
+											<% if(job.status === 'inactive') { %> checked <% } %>>
 										<span class="ml-2">Inactive</span>
 									</label>
 								</div>
 							</div>
 						</div>
-						<div class="flex justify-end mt-4">
-							<button type="submit" name="action_button" value="archived"
-								class="bg-red-500 hover:bg-red-400 px-4 mr-3 py-2 rounded text-white focus:outline-none">
-								Archive
-							</button>
-							<button type="submit" name="action_button" value="update"
-								class="bg-green-500 hover:bg-green-400 px-4 py-2 rounded text-white focus:outline-none">
-								Update Job Listing
-							</button>
-						</div>
+						<% if(job.status === 'active' || job.status === 'inactive') { %>
+							<div class="flex justify-end mt-4">
+								<button type="submit" name="action_button" value="archived"
+									class="bg-red-500 hover:bg-red-400 px-4 mr-3 py-2 rounded text-white focus:outline-none">
+									Archive
+								</button>
+								<button type="submit" name="action_button" value="update"
+									class="bg-green-500 hover:bg-green-400 px-4 py-2 rounded text-white focus:outline-none">
+									Update Job Listing
+								</button>
+							</div>
+						<% } %>
 					</div>
 				</form>
 			</div>

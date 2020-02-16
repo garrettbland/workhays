@@ -68,9 +68,17 @@ exports.edit_job = async (req, res) => {
       }
     })
 
+    let enabled
+    if(job.dataValues.status === 'active' || job.dataValues.status === 'inactive') {
+      enabled = true
+    } else {
+      enabled = false
+    }
+
     if (job) {
       res.render('pages/joblistingedit', {
-        job: job.dataValues
+        job: job.dataValues,
+        enabled: enabled
       })
     } else {
       res.status(404)
