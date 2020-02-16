@@ -48,20 +48,21 @@ Params:
 </div>
 
 <% jobs.forEach(function(job) { %>
-<div class="mt-1 mb-1 p-2 pl-4 pr-4 bg-white border-gray-200 shadow-lg mx-auto max-w-5xl rounded">
-	<div class="flex justify-between">
-		<div class="flex flex-col">
-			<div class="text-xl font-semibold"><%= job.title %></div>
-			<div class="flex flex-row italic text-gray-600 text-sm">
-				<div>Employer: <a class="text-blue-500 hover:text-blue-400"
-						href="/employers/<%= job.employer.id %>?from=/&title=All%20Jobs"><%= job.employer.title %></a></div>
-				<div>Updated:<%= job.updatedAt %></div>
+	<div class="mt-1 mb-1 p-2 pl-4 pr-4 bg-white border-gray-200 shadow-lg mx-auto max-w-5xl rounded">
+		<div class="flex justify-between">
+			<div class="flex flex-col">
+				<div class="text-xl font-semibold"><%= job.title %></div>
+				<div class="flex flex-row italic text-gray-600 text-sm">
+					<div>Employer: <a class="text-blue-500 hover:text-blue-400 mr-1"
+														href="/employers/<%= job.employer.id %>?from=/&title=All%20Jobs"><%= job.employer.title %></a>
+					</div>
+					<div>Updated:<%= job.updatedAt %></div>
+				</div>
 			</div>
-		</div>
-		<div class="flex items-center"><a href="/jobs/<%= job.id %>"
-				class="px-2 py-2 bg-transparent text-blue-500 cursor-pointer
+			<div class="flex items-center"><a href="/jobs/<%= job.id %>"
+																				class="px-2 py-2 bg-transparent text-blue-500 cursor-pointer
                 hover:bg-blue-400 focus:bg-blue-400 rounded text-sm focus:outline-none border border-blue-500 hover:border-transparent hover:text-white">View
-				Listing</a></div>
+					Listing</a></div>
+		</div>
 	</div>
-</div>
 <% }) %>
