@@ -24,6 +24,7 @@ exports.get_employer = async (req, res) => {
     if (!employer) throw 'Employer not found'
 
     res.render('pages/employer', {
+      req: req,
       employer: employer.dataValues
     })
   } catch (err) {

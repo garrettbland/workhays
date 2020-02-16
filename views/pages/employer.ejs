@@ -5,39 +5,54 @@ Description: Employer business information page. To Do: Params:
 <html class="h-full" lang="en">
 
 <body class='flex w-full flex-col h-full'>
-<nav>
-	<%- include('../partials/navbar', { title: 'Work Hays' }) %>
-</nav>
+	<nav>
+		<%- include('../partials/navbar', { title: 'Work Hays' }) %>
+	</nav>
 
-<main class="flex-1 mx-auto pt-32 container max-w-6xl p-12 bg-gray-200 shadow-xl">
-	<a href="/employers/">
-		<div class="flex flex-row items-center text-blue-500 hover:text-blue-400 text-base">
-			<div><span class="mdi mdi-arrow-left"/></div>
-			<div class="ml-2">Back to All Employers</div>
-		</div>
-	</a>
-	<div class="flex flex-col pt-10">
-		<% if (employer.logo_url !== null) { %>
-			<div class="flex flex-row align-center"><img src="<%= employer.logo_url %>" class="flex h-10 mr-4 w-auto"/>
-				<h2><%= employer.title %></h2></div>
+	<main class="flex-1 mx-auto pt-32 container max-w-6xl p-12 bg-gray-200 shadow-xl">
+		<% if(req.query.from) { %>
+			<a href="<%= req.query.from %>">
+				<div class="flex flex-row items-center text-blue-500 hover:text-blue-400 text-base">
+					<div><span class="mdi mdi-arrow-left" /></div>
+					<div class="ml-2">
+						Back to <%= req.query.title %>
+					</div>
+				</div>
+			</a>
 		<% } else { %>
-			<div class="flex flex-row align-center">
-				<h2><%= employer.title %></h2></div>
+			<a href="/employers">
+					<div class="flex flex-row items-center text-blue-500 hover:text-blue-400 text-base">
+						<div><span class="mdi mdi-arrow-left" /></div>
+						<div class="ml-2">
+							Back to all employers
+						</div>
+					</div>
+				</a>
 		<% } %>
-		<div class="flex flex-row italic text-gray-700 text-sm">
-			<div>HR Contanct: <%= employer.contact %></div>&nbsp;&#183;&nbsp;<div>
-				Email: <%= employer.email %>
+		<div class="flex flex-col pt-10">
+			<% if (employer.logo_url !== null) { %>
+			<div class="flex flex-row align-center"><img src="<%= employer.logo_url %>" class="flex h-10 mr-4 w-auto" />
+				<h2><%= employer.title %></h2>
+			</div>
+			<% } else { %>
+			<div class="flex flex-row align-center">
+				<h2><%= employer.title %></h2>
+			</div>
+			<% } %>
+			<div class="flex flex-row italic text-gray-700 text-sm">
+				<div>HR Contanct: <%= employer.contact %></div>&nbsp;&#183;&nbsp;<div>
+					Email: <%= employer.email %>
+				</div>
+			</div>
+			<div class="mt-10 text-base">
+				<%= employer.description %>
 			</div>
 		</div>
-		<div class="mt-10 text-base">
-			<%= employer.description %>
-		</div>
-	</div>
-</main>
+	</main>
 
-<footer class="text-center bg-gray-200 container pb-8 max-w-6xl shadow-xl mx-auto pin-b">
-	<%- include('../partials/footer') %>
-</footer>
+	<footer class="text-center bg-gray-200 container pb-8 max-w-6xl shadow-xl mx-auto pin-b">
+		<%- include('../partials/footer') %>
+	</footer>
 </body>
 
 </html>
