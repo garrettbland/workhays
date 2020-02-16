@@ -31,6 +31,16 @@ module.exports = function (sequelize, Sequelize) {
         allowNull: false
       },
 
+      password_reset_token: {
+        type: Sequelize.STRING,
+        required: false
+      },
+
+      password_reset_token_expires: {
+        type: Sequelize.DATE,
+        required: false
+      },
+
       status: {
         type: Sequelize.ENUM('pending', 'verified'),
         defaultValue: 'pending'

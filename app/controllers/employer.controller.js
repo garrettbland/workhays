@@ -1,5 +1,3 @@
-var Models = require('../models')
-
 exports.list_employers = async (req, res) => {
   try {
     const employers = await Models.employer.findAll()
