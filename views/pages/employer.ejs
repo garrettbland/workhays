@@ -30,15 +30,15 @@ Description: Employer business information page. To Do: Params:
 				</a>
 		<% } %>
 		<div class="flex flex-col pt-10">
-			<% if (employer.logo_url !== null) { %>
-			<div class="flex flex-row align-center"><img src="<%= employer.logo_url %>" class="flex h-10 mr-4 w-auto" />
+			<%= employer.logo_url %>
+			<div class="flex flex-row items-center">
+				<% if(employer.logo_url) { %>
+					<img src="<%= employer.logo_url %>" class="flex h-10 mr-4 w-auto" />
+				<% } else { %>
+					<span class="mdi mdi-briefcase-outline text-5xl text-blue-500"></span>
+				<% } %>
 				<h2><%= employer.title %></h2>
 			</div>
-			<% } else { %>
-			<div class="flex flex-row align-center">
-				<h2><%= employer.title %></h2>
-			</div>
-			<% } %>
 			<div class="flex flex-row italic text-gray-700 text-sm">
 				<div class="mr-4"><span class="font-semibold">HR Contanct:</span> <%= employer.contact %></div><div>
 						<span class="font-semibold">Email:</span> <%= employer.email %>
