@@ -1,3 +1,5 @@
+var Models = require('../models')
+
 exports.list_employers = async (req, res) => {
   try {
     const employers = await Models.employer.findAll()
@@ -10,6 +12,7 @@ exports.list_employers = async (req, res) => {
   } catch (err) {
     // res.send(err)
     console.log('Error in get_employers')
+    console.log(err)
     res.status(200)
     res.render('error')
   }

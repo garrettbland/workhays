@@ -14,12 +14,10 @@ Params:
 <head>
 	<title><%= title %></title>
 	<% if(process.env.NODE_ENV === 'production') { %>
-		<link rel='stylesheet' href='/stylesheets/style.min.css'/>
+	<link rel='stylesheet' href='/stylesheets/style.min.css' />
 	<% } else { %>
-		<link rel='stylesheet' href='/stylesheets/style.css'/>
+	<link rel='stylesheet' href='/stylesheets/style.css' />
 	<% } %>
-	<script src="/js/alpine-polyfill.min.js"></script>
-	<script src="/js/alpine-proxy-polyfill.min.js"></script>
-	<script src="/js/alpine.min.js"></script>
+	<script src="/js/alpine.js"></script>
 	<link rel="stylesheet" href="//cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
 </head>
