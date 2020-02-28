@@ -21,7 +21,7 @@ Params:
 	</nav>
 
 	<main class="flex-1 mx-auto pt-32 container max-w-6xl p-12 bg-gray-200 shadow-xl">
-		<%- include('../partials/jobs', { jobs: jobs }) %>
+		<%- include('../partials/jobs', { jobs, count, pages, current_page, moment }) %>
 	</main>
 
 	<footer class="text-center bg-gray-200 container pb-8 max-w-6xl shadow-xl mx-auto pin-b">

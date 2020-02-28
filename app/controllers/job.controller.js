@@ -3,28 +3,33 @@ var moment = require('moment')
 
 exports.list_jobs = async (req, res) => {
   try {
-    const jobs = await Models.job.findAll({
+    // total results limit
+    const job_limit = 1
+
+    const page = parseInt(req.query.page) - 1 || 0
+
+    console.log(`job limit => ${job_limit}`)
+
+    const jobs = await Models.job.findAndCountAll({
       where: {
         status: 'active'
       },
+      limit: job_limit,
+      offset: parseInt(page * job_limit),
       include: Models.employer
     })
 
     if (!jobs) throw 'Jobs not found'
 
-    var formattedJobs = jobs.map(function (job) {
-      return {
-        ...job.dataValues,
-        updatedAt: moment
-          .utc(job.dataValues.updatedAt)
-          .local()
-          .format('MM/DD/YYYY, h:mm a')
-      }
-    })
+    console.log(jobs)
 
     res.render('pages/index', {
       title: 'Express',
-      jobs: formattedJobs
+      jobs: jobs.rows,
+      count: jobs.count,
+      pages: jobs.count / job_limit,
+      current_page: page + 1,
+      moment: moment
     })
   } catch (err) {
     console.log('Error in list_jobs')
@@ -104,7 +109,9 @@ exports.update_job = async (req, res) => {
       description: req.body.description,
       job_type: req.body.job_type,
       application_link: req.body.application_link,
-      status: req.body.action_button = 'update' ? req.body.status : 'archived'
+      status: (req.body.action_button = 'update'
+        ? req.body.status
+        : 'archived')
     }
 
     const update_job = await Models.job.update(job, {
