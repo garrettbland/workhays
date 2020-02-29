@@ -27,7 +27,7 @@ exports.list_jobs = async (req, res) => {
       title: 'Express',
       jobs: jobs.rows,
       count: jobs.count,
-      pages: jobs.count / job_limit,
+      pages: Math.ceil(jobs.count / job_limit),
       current_page: page + 1,
       moment: moment
     })
