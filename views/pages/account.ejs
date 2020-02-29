@@ -167,34 +167,39 @@ Description: Account information page. To Do: archive view, edit view, new listi
 	<div class="p-6 bg-white shadow-xl w-4/5 mx-auto rounded mb-4">
 		<div class="text-gray-500 font-bold">Account Settings</div>
 		<div class="bg-white px-8 pt-6">
-				<f class="flex flex-wrap -mx-3 mb-2">
-					<div class="flex flex-col justify-center w-full md:w-1/2 px-3 mb-6 md:mb-0">
-						<label class="block uppercase tracking-wide text-gray-800 text-xs font-bold mb-2"
-									 for="grid-zip">Password Reset
-						</label>
-						<a href="/password-reset">
-							<div class="border-2 text-center hover:border-blue-400 border-blue-500 bg-blue-500 hover:bg-blue-400 px-4 py-2 rounded text-white focus:outline-none">
-								Click Here to Reset Password
-							</div>
-						</a>
-					</div>
-					<form method="POST" action="/account/change_email" class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-						<label class="block uppercase tracking-wide text-gray-800 text-xs font-bold mb-2"
-									 for="grid-zip">
-							Update Email Address
-						</label>
-						<input
-							name="user_email" class="appearance-none block w-full bg-gray-200 text-gray-800 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-blue-400"
-							id="grid-zip" type="text" placeholder="<%= user.email %>"/>
-							<div class="flex justify-end mt-4">
-								<button class="bg-green-500 hover:bg-green-400 px-4 py-2 rounded text-white focus:outline-none">
-									Update Email Address
-								</button>
-							</div>
-					</form>
+			<div class="flex flex-wrap -mx-3 mb-2">
+				<div class="flex flex-col w-full md:w-1/2 px-3 mb-6 md:mb-0">
+					<label class="block uppercase tracking-wide text-gray-800 text-xs font-bold mb-2"
+								 for="grid-zip">Password Reset
+					</label>
+					<a href="/password-reset">
+						<div
+							class="border-2 text-center hover:border-blue-400 border-blue-500 bg-blue-500 hover:bg-blue-400 px-4 py-2 rounded text-white focus:outline-none">
+							Click Here to Reset Password
+						</div>
+					</a>
 				</div>
+				<form method="POST" action="/account/change_email" class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+					<label class="block uppercase tracking-wide text-gray-800 text-xs font-bold mb-2"
+								 for="grid-zip">
+						Update Email Address
+					</label>
+					<input
+						name="user_email"
+						class="appearance-none block w-full bg-gray-200 text-gray-800 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-blue-400"
+						id="grid-zip" type="text" placeholder="<%= user.email %>"/>
+					<div class="flex justify-end mt-4">
+						<button class="bg-green-500 hover:bg-green-400 px-4 py-2 rounded text-white focus:outline-none">
+							Update Email Address
+						</button>
+					</div>
+				</form>
+			</div>
 		</div>
+	</div>
 </main>
+
+
 
 <footer class="text-center bg-gray-200 container pb-8 max-w-6xl shadow-xl mx-auto pin-b">
 	<%- include('../partials/footer') %>
