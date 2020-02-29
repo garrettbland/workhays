@@ -21,7 +21,7 @@ Description: Employer Inquiry page to request access to site. To Do: Params:
 			<div class="mb-8 text-base">
 				To contact Work Hays, please fill out the information below and we will respond as soon as possible. Thank you! -Work Hays Support
 			</div>
-			<form id="" name="" method="post" action=""
+			<form method="POST" action="/contact"
 						class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
 				<div>
 					<div class="flex flex-wrap -mx-3 mb-6">
@@ -35,7 +35,7 @@ Description: Employer Inquiry page to request access to site. To Do: Params:
 							<input
 								class="text appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-blue-400"
 								id="username"
-								name="first_name"
+								name="first"
 								type="text"
 								placeholder="Jane"
 							/>
@@ -50,7 +50,7 @@ Description: Employer Inquiry page to request access to site. To Do: Params:
 							<input
 								class="text appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-blue-400"
 								id="username"
-								name="last_name"
+								name="last"
 								type="text"
 								placeholder="Doe"
 							/>
@@ -82,7 +82,7 @@ Description: Employer Inquiry page to request access to site. To Do: Params:
 							<input
 								class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-blue-400"
 								id="password"
-								name="phone-number"
+								name="phone"
 								type="phone-number"
 								placeholder="(785) 867-5309"
 							/>
@@ -94,9 +94,10 @@ Description: Employer Inquiry page to request access to site. To Do: Params:
 								class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
 								for="grid-inquiry"
 							>
-								Inquiry
+								Message
 							</label>
 							<textarea
+								name="message"
 								class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-blue-400"
 								id="grid-contact-inquiry"
 								rows="3"

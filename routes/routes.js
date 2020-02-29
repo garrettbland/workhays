@@ -18,11 +18,13 @@ var jobController = require('../app/controllers/job.controller')
 var authController = require('../app/controllers/auth.controller')
 var accountController = require('../app/controllers/account.controller')
 var employerController = require('../app/controllers/employer.controller')
+var contactController = require('../app/controllers/contact.controller')
 
 // === public routes ===
 router.get('/', jobController.list_jobs)
 router.get('/jobs/:jobId', jobController.get_job)
 router.get('/contact', (req, res) => res.render('pages/contact'))
+router.post('/contact', contactController.contact_form)
 router.get('/events', (req, res) => res.render('pages/events'))
 router.get('/privacy', (req, res) => res.render('pages/privacy'))
 router.get('/employers', employerController.list_employers)
