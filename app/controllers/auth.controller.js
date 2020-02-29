@@ -166,3 +166,44 @@ exports.change_password = async (req, res) => {
     res.render('error')
   }
 }
+
+exports.change_email = async (req, res) => {
+  try {
+    const user = await Models.user.findOne({
+      where: {
+        email: req.body.user_email
+      }
+    })
+
+    if (user) {
+      req.flash('accountMessage', 'Email is already in use')
+      res.redirect('/account')
+    }
+
+    console.log('changing email! =====>')
+    console.log(req.body.user_email)
+
+    let updated_fields = {
+      email: req.body.user_email
+    }
+
+    const updated_user = await Models.user.update(updated_fields, {
+      where: {
+        id: req.user.id
+      }
+    })
+
+    if (!updated_user) {
+      req.flash('accountMessage', 'Email not updated')
+      res.redirect('/account')
+    }
+
+    req.flash('accountMessage', 'Email updated successfully')
+    res.redirect('/account')
+  } catch (err) {
+    console.log('Error in change email')
+    console.log(err)
+    res.status(404)
+    res.render('error')
+  }
+}
