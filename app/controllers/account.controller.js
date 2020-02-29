@@ -37,7 +37,6 @@ exports.index = async (req, res) => {
     })
 
     console.log('======> EMPLOYER JOBS =====>')
-    console.log(jobs)
 
     res.render('pages/account', {
       employer: employer.dataValues,
