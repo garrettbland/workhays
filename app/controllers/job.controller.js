@@ -4,7 +4,7 @@ var moment = require('moment')
 exports.list_jobs = async (req, res) => {
   try {
     // total results limit
-    const job_limit = 1
+    const job_limit = 10
 
     const page = parseInt(req.query.page) - 1 || 0
 
@@ -109,9 +109,7 @@ exports.update_job = async (req, res) => {
       description: req.body.description,
       job_type: req.body.job_type,
       application_link: req.body.application_link,
-      status: (req.body.action_button = 'update'
-        ? req.body.status
-        : 'archived')
+      status: (req.body.action_button = 'update' ? req.body.status : 'archived')
     }
 
     const update_job = await Models.job.update(job, {
