@@ -71,22 +71,40 @@ Params:
 		</div>-->
 	</div>
 
-
 	<% employers.forEach(function(employer) { %>
-		<div class="mt-1 mb-1 p-2 pl-4 pr-4 bg-white border-gray-200 shadow-lg mx-auto max-w-5xl rounded">
-			<div class="flex justify-between">
-				<div class="flex flex-col">
-					<div class="text-xl"><%= employer.title %></div>
-					<div class="flex flex-row italic text-gray-600 text-sm">
-						Static Shit
+		<% if(employer.title) { %>
+			<div class="mt-1 mb-1 p-2 pl-4 pr-4 bg-white border-gray-200 shadow-lg mx-auto max-w-5xl rounded">
+				<div class="flex justify-between items-center">
+					<div class="flex flex-col">
+						<div class="text-xl font-semibold"><%= employer.title %></div>
+						<div class="flex flex-row">
+							<div class="flex items-center">
+								<% if(employer.contact.length > 1) { %>
+									<div class="flex items-center"><i class="mdi mdi-account-tie mr-1 text-xl text-gray-400"></i><span
+											class="mr-4"><%= employer.contact %></span></div>
+								<% } %>
+								<% if(employer.phone.length > 1) { %>
+									<div class="flex items-center"><i class="mdi mdi-phone-classic mr-1 text-xl text-gray-400"></i><span
+											class="mr-4"><%= employer.phone %></span>
+									</div>
+								<% } %>
+								<% if(employer.email.length > 1) { %>
+									<div class="flex items-center"><i
+											class="mdi mdi-email mr-1 text-xl text-gray-400"></i><%= employer.email %>
+									</div>
+								<% } %>
+							</div>
+						</div>
 					</div>
-				</div>
-				<div class="flex items-center"><a href="/employers/<%= employer.id %>"
-																					class="px-2 py-2 bg-transparent text-blue-500 cursor-pointer
+					<div class="flex items-center"><a href="/employers/<%= employer.id %>"
+																						class="px-2 py-2 bg-transparent text-blue-500 cursor-pointer
                 hover:bg-blue-400 focus:bg-blue-400 rounded text-sm focus:outline-none border border-blue-500 hover:border-transparent hover:text-white">View
-						Employer</a></div>
+							Employer</a></div>
+				</div>
 			</div>
-		</div>
+		<% } else { %>
+			<span></span>
+		<% } %>
 	<% }) %>
 
 </main>
