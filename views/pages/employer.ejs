@@ -39,12 +39,25 @@ Description: Employer business information page. To Do: Params:
 				<h2><%= employer.title %></h2>
 			</div>
 			<div class="flex flex-row italic text-gray-700 text-sm">
-				<div class="mr-4"><span class="font-semibold">HR Contanct:</span> <%= employer.contact %></div><div>
-						<span class="font-semibold">Email:</span> <%= employer.email %>
+				<div class="flex items-center">
+					<% if(employer.contact.length > 1) { %>
+						<div class="flex items-center"><i class="mdi mdi-account-tie mr-1 text-xl text-gray-500"></i><span
+								class="mr-4"><%= employer.contact %></span></div>
+					<% } %>
+					<% if(employer.phone.length > 1) { %>
+						<div class="flex items-center"><i class="mdi mdi-phone-classic mr-1 text-xl text-gray-500"></i><span
+								class="mr-4"><%= employer.phone %></span>
+						</div>
+					<% } %>
+					<% if(employer.email.length > 1) { %>
+						<div class="flex items-center"><i
+								class="mdi mdi-email mr-1 text-xl text-gray-500"></i><%= employer.email %>
+						</div>
+					<% } %>
 				</div>
 			</div>
 			<div class="mt-10 text-base">
-				<%= employer.description %>
+				<p><%- employer.description %></p>
 			</div>
 		</div>
 	</main>
