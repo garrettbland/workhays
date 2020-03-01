@@ -5,92 +5,142 @@ Description: Edit job listing page. To Do: archive view, edit view, new listing 
 <html class="h-full" lang="en">
 
 <body class="flex w-full flex-col h-full">
-	<nav>
-		<%- include('../partials/navbar', { title: 'Work Hays' }) %>
-	</nav>
+<nav>
+	<%- include('../partials/navbar', { title: 'Work Hays' }) %>
+</nav>
 
-	<main class="flex-1 mx-auto pt-32 container max-w-6xl p-12 bg-gray-200 shadow-xl">
-		<div class="p-4">
-			<a href="/account" class="flex flex-row w-1/4 items-center text-blue-500 hover:text-blue-400 text-base">
-				<div><span class="mdi mdi-arrow-left" /></div>
-				<div class="ml-2">Back to Account Settings</div>
-			</a>
-			<h2>Edit Job Listing</h2>
-		</div>
-		<% if(job.status === 'archived' || job.status === 'filled') { %>
-			<div >
-				<div>
-					This job has been <%= job.status %> and is not allowed to be modified. 
-				</div>
+<main class="flex-1 mx-auto pt-32 container max-w-6xl p-12 bg-gray-200 shadow-xl">
+	<div class="p-4">
+		<a href="/account" class="flex flex-row w-1/4 items-center text-blue-500 hover:text-blue-400 text-base">
+			<div><span class="mdi mdi-arrow-left"/></div>
+			<div class="ml-2">Back to Account Settings</div>
+		</a>
+		<h2>Edit Job Listing</h2>
+	</div>
+	<% if(job.status === 'archived' || job.status === 'filled') { %>
+		<div>
+			<div>
+				This job has been <%= job.status %> and is not allowed to be modified.
 			</div>
-		<% } %>
-		<div class="flex flex-col">
-			<div class="p-6 bg-white shadow-xl w-4/5 mx-auto rounded mb-4">
-				<!--<div class="text-gray-500 font-bold">Business Settings</div>-->
-				<form <%= enabled ? "method=POST" : null %> action="<%= enabled ? '/jobs/edit/'+job.id : null %>" class="bg-white px-8 pt-6">
-					<input name="employer" hidden value="Lane's Co" />
-					<div>
-						<div class="flex flex-wrap -mx-3 mb-6">
-							<div class="w-full md:w-3/4 px-3 mb-6 md:mb-0">
-								<label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-									for="grid-first-name">
-									Job Title
-								</label>
-								<input <%= enabled ? null : 'disabled' %> value="<%= job.title %>" name="title"
-									class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-									id="grid-first-name" type="text" />
-							</div>
-							<div class="w-full md:w-1/4 px-3">
-								<label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-									for="grid-last-name">
-									Full-Time or Part-Time
-								</label>
-								<div class="mt-2">
-									<div>
-										<label class="inline-flex items-center">
-											<input <%= enabled ? null : 'disabled' %> type="radio" class="form-radio" name="job_type" value="full_time"
-												<% if(job.job_type === 'full_time') { %> checked <% } %>>
-											<span class="ml-2">Full-Time</span>
-										</label>
-									</div>
-									<div>
-										<label class="inline-flex items-center">
-											<input <%= enabled ? null : 'disabled' %> type="radio" class="form-radio" name="job_type" value="part_time"
-												<% if(job.job_type === 'part_time') { %> checked <% } %>>
-											<span class="ml-2">Part-Time</span>
-										</label>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="flex flex-wrap -mx-3 mb-6">
-							<div class="w-full px-3">
-								<label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-									for="grid-business-about">
-									Job Description
-								</label>
-								<textarea <%= enabled ? null : 'disabled' %> name="description"
-									class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-blue-400"
-									id="grid-business-about" rows="20"><%= job.description %></textarea>
-							</div>
-						</div>
-						<div class="flex flex-wrap -mx-3 mb-2">
-							<div class="w-full px-3 mb-6 md:mb-0">
-								<label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-									for="grid-city">
-									Application Link
-								</label>
-								<input <%= enabled ? null : 'disabled' %> name="application_link" value="<%= job.application_link %>"
-									class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-blue-400"
-									id="grid-city" type="text" placeholder="Logo URL" />
-							</div>
+		</div>
+	<% } %>
+	<div class="flex flex-col">
+		<div class="p-6 bg-white shadow-xl w-4/5 mx-auto rounded mb-4">
+			<!--<div class="text-gray-500 font-bold">Business Settings</div>-->
+			<form <%= enabled ? "method=POST" : null %> action="<%= enabled ? '/jobs/edit/' + job.id : null %>"
+																									class="bg-white px-8 pt-6">
+				<input name="employer" hidden value="Lane's Co"/>
+				<div>
+					<div class="flex flex-wrap -mx-3 mb-6">
+						<div class="w-full md:w-3/4 px-3 mb-6 md:mb-0">
+							<label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+										 for="grid-first-name">
+								Job Title
+							</label>
+							<input <%= enabled ? null : 'disabled' %> value="<%= job.title %>" name="title"
+																												class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+																												id="grid-first-name" type="text"/>
 						</div>
 						<div class="w-full md:w-1/4 px-3">
 							<label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-								for="grid-last-name">
-								Status
+										 for="grid-last-name">
+								Full-Time or Part-Time
 							</label>
 							<div class="mt-2">
+								<div>
+									<label class="inline-flex items-center">
+										<input <%= enabled ? null : 'disabled' %> type="radio" class="form-radio" name="job_type"
+																															value="full_time"
+										<% if(job.job_type === 'full_time') { %> checked
+											<% } %>
+										>
+										<span class="ml-2">Full-Time</span>
+									</label>
+								</div>
+								<div>
+									<label class="inline-flex items-center">
+										<input <%= enabled ? null : 'disabled' %> type="radio" class="form-radio" name="job_type"
+																															value="part_time"
+										<% if(job.job_type === 'part_time') { %> checked
+											<% } %>
+										>
+										<span class="ml-2">Part-Time</span>
+									</label>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="flex flex-wrap -mx-3 mb-6">
+						<div class="w-full px-3">
+							<label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+										 for="grid-business-about">
+								Job Description
+							</label>
+							<textarea <%= enabled ? null : 'disabled' %> name="description"
+																													 class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-blue-400"
+																													 id="grid-business-about"
+																													 rows="20"><%= job.description %></textarea>
+						</div>
+					</div>
+					<div class="flex flex-wrap -mx-3 mb-2">
+						<div class="w-full md:w-3/4 px-3 mb-6 md:mb-0">
+							<label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+										 for="grid-city">
+								Application Link
+							</label>
+							<input <%= enabled ? null : 'disabled' %> name="application_link" value="<%= job.application_link %>"
+																												class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-blue-400"
+																												id="grid-city" type="text" placeholder="Logo URL"/>
+						</div>
+						<div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+							<label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+										 for="grid-city">
+								Status
+							</label>
+							<div>
+								<div x-init="value = <%= job.status === 'active' ? true : false %>"
+										 x-data="{ value: null, toggle() { this.value = !this.value } }"
+										 class="flex items-center flex-row">
+									<input name="status" hidden x-model="value ? 'active' : 'inactive'"/>
+									<div>
+										<span
+											:class="{ 'bg-gray-200': !value, 'bg-green-500': value }"
+											class="relative inline-block flex-no-shrink h-8 w-16 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:shadow-outline"
+											role="checkbox" tabindex="0" @click="toggle()" @keydown.space.prevent="toggle()"
+											:aria-checked="value.toString()">
+										<span aria-hidden="true" :class="{ 'translate-x-8': value, 'translate-x-0': !value }"
+													class="relative inline-block h-7 w-7 rounded-full bg-white shadow transform transition ease-in-out duration-200">
+											<span
+												:class="{ 'opacity-0 ease-out duration-100': value, 'opacity-100 ease-in duration-200': !value }"
+												class="absolute inset-0 h-full w-full flex items-center justify-center transition-opacity">
+												<svg class="h-6 w-6 text-gray-400" fill="none" viewBox="0 0 12 12">
+													<path d="M4 8l2-2m0 0l2-2M6 6L4 4m2 2l2 2" stroke="currentColor" stroke-width="2"
+																stroke-linecap="round"
+																stroke-linejoin="round"/>
+												</svg>
+											</span>
+											<span
+												:class="{ 'opacity-100 ease-in duration-200': value, 'opacity-0 ease-out duration-100': !value }"
+												class="absolute inset-0 h-full w-full flex items-center justify-center transition-opacity">
+												<svg class="h-6 w-6 text-green-500" fill="currentColor" viewBox="0 0 12 12">
+													<path
+														d="M3.707 5.293a1 1 0 00-1.414 1.414l1.414-1.414zM5 8l-.707.707a1 1 0 001.414 0L5 8zm4.707-3.293a1 1 0 00-1.414-1.414l1.414 1.414zm-7.414 2l2 2 1.414-1.414-2-2-1.414 1.414zm3.414 2l4-4-1.414-1.414-4 4 1.414 1.414z"/>
+												</svg>
+											</span>
+										</span>
+										</span>
+									</div>
+									<div>
+										<div x-show="value === true" class="ml-4 transition text-sm leading-5 text-green-500 font-semibold">
+											Active
+										</div>
+										<div x-show="value === false" class="ml-4 transition text-sm leading-5 text-gray-400 font-semibold">
+											Inactive
+										</div>
+									</div>
+								</div>
+							</div>
+							<!--<div class="mt-2">
 								<div>
 									<label class="inline-flex items-center">
 										<input <%= enabled ? null : 'disabled' %> type="radio" class="form-radio" name="status" value="active"
@@ -105,29 +155,30 @@ Description: Edit job listing page. To Do: archive view, edit view, new listing 
 										<span class="ml-2">Inactive</span>
 									</label>
 								</div>
-							</div>
+							</div>-->
 						</div>
-						<% if(job.status === 'active' || job.status === 'inactive') { %>
-							<div class="flex justify-end mt-4">
-								<button type="submit" name="action_button" value="archived"
-									class="bg-red-500 hover:bg-red-400 px-4 mr-3 py-2 rounded text-white focus:outline-none">
-									Archive
-								</button>
-								<button type="submit" name="action_button" value="update"
-									class="bg-green-500 hover:bg-green-400 px-4 py-2 rounded text-white focus:outline-none">
-									Update Job Listing
-								</button>
-							</div>
-						<% } %>
 					</div>
-				</form>
-			</div>
+					<% if(job.status === 'active' || job.status === 'inactive') { %>
+						<div class="flex justify-end mt-4">
+							<button type="submit" name="action_button" value="archived"
+											class="bg-red-500 hover:bg-red-400 px-4 mr-3 py-2 rounded text-white focus:outline-none">
+								Archive
+							</button>
+							<button type="submit" name="action_button" value="update"
+											class="bg-green-500 hover:bg-green-400 px-4 py-2 rounded text-white focus:outline-none">
+								Update Job Listing
+							</button>
+						</div>
+					<% } %>
+				</div>
+			</form>
 		</div>
-	</main>
+	</div>
+</main>
 
-	<footer class="text-center bg-gray-200 container pb-8 max-w-6xl shadow-xl mx-auto pin-b">
-		<%- include('../partials/footer') %>
-	</footer>
+<footer class="text-center bg-gray-200 container pb-8 max-w-6xl shadow-xl mx-auto pin-b">
+	<%- include('../partials/footer') %>
+</footer>
 </body>
 
 </html>
