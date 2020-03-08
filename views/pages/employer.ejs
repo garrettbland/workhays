@@ -57,34 +57,7 @@ Description: Employer business information page. To Do: Params:
 				</div>
 			</div>
 			<div class="mt-10 text-base leading-regular">
-
-				<% var description = JSON.parse(employer.description) %>
-
-				<% description.blocks.forEach(function(block) { %>
-
-					<% if(block.type === 'header') { %>
-						<h2><%= block.data.text %></h2>
-					<% } else if (block.type === 'paragraph') { %>
-						<p><%- block.data.text %></p>
-					<% } else if (block.type === 'list') { %>
-						<% if (block.data.style === 'ordered') { %>
-							<ol>
-								<% block.data.items.forEach(function(item,index) { %>
-									<li><%- item %></li>
-								<% }) %>
-							</ol>
-						<% } else { %>
-							<ul>
-								<% block.data.items.forEach(function(item) { %>
-									<li><%- item %></li>
-								<% }) %>
-							</ul>
-						<% } %>	
-					<% } else { %>
-						<p><%- block.data.text %></p>
-					<% } %>
-
-				<% }) %>
+				<p><%- employer.description %></p>
 			</div>
 		</div>
 	</main>

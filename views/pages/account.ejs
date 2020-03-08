@@ -70,7 +70,7 @@ Description: Account information page. To Do: archive view, edit view, new listi
 			</div>
 			<div class="text-gray-500 font-bold text-2xl">Business Settings</div>
 			<div>
-				<form onsubmit="saveDataAndSubmit();" method="POST" action="/employers/edit/<%= employer.id %>" class="bg-white pt-6">
+				<form method="POST" action="/employers/edit/<%= employer.id %>" class="bg-white pt-6">
 					<div>
 						<div class="flex flex-wrap -mx-3 mb-6">
 							<div class="w-1/2 px-3">
@@ -119,9 +119,9 @@ Description: Account information page. To Do: archive view, edit view, new listi
 									About Business
 								</label>
 								<div class="shadow rounded p-4">
-									<div id="businessdescription"></div>
+									<input value="<%= employer.description %>" id="description_input" type="hidden" name="description">
+  									<trix-editor input="description_input"></trix-editor>
 								</div>
-								<input hidden id="description_input" name="description"/>
 							</div>
 						</div>
 						<div class="flex flex-wrap -mx-3 mb-2">
@@ -208,40 +208,6 @@ Description: Account information page. To Do: archive view, edit view, new listi
 			</div>
 		</div>
 </main>
-
-
-<script>
-	const editor = new EditorJS({ 
-	  /** 
-	   * Id of Element that should contain the Editor 
-	   */ 
-	  holder: 'businessdescription', 
-	  placeholder: 'Describe your business',
-	  data: <%- employer.description %>,
-	  tools: {
-		header: Header,
-		list: List
-	},
-	})
-
-
-	function saveDataAndSubmit() {
-
-		var description = document.getElementById('description_input')
-
-		editor.save().then((outputData) => {
-			console.log('Article data: ', outputData)
-			description.value = JSON.stringify(outputData)
-			return true
-		}).catch((error) => {
-			console.log('Saving failed: ', error)
-			window.alert('Error, save failed')
-		});
-	}
-
-
-
-</script>
 
 	
 <footer class="text-center bg-gray-200 container pb-8 max-w-6xl shadow-xl mx-auto pin-b">
