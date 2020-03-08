@@ -12,10 +12,6 @@ require('dotenv').config()
 
 var app = express()
 
-// Parse incoming requests data (https://github.com/expressjs/body-parser)
-// app.use(bodyParser.json())
-// app.use(bodyParser.json({ limit: '10mb', extended: true }))
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
@@ -27,11 +23,11 @@ app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 
 // For Passport
-app.use(
-  session({ secret: 'garretts secret', resave: true, saveUninitialized: true })
-) // session secret
+// session secret
+app.use(session({ secret: 'w0rkH@ys!2020', resave: true, saveUninitialized: true }))
 app.use(passport.initialize())
-app.use(passport.session()) // persistent login sessions
+// persistent login sessions
+app.use(passport.session())
 app.use(flash())
 
 // Models
@@ -59,12 +55,6 @@ models.sequelize
   .catch(function (err) {
     console.log(err, 'Something went wrong with the Database Update!')
   })
-
-// catch 404 and forward to error handler
-app.use(function (req, res, next) {
-  res.status(404)
-  res.render('error')
-})
 
 // start server and listen for requests. Default to port 4000 for development
 const port = process.env.PORT || 3000

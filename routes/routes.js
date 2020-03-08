@@ -105,4 +105,9 @@ router.get('/emailtest', function (req, res) {
   })
 })
 
+// catch 404 and forward to error handler
+router.get("*", (req,res) => {
+  res.status(404).render('error')
+})
+
 module.exports = router
