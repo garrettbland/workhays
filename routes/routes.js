@@ -92,9 +92,6 @@ router.get(
   middleware.isLoggedIn,
   accountController.edit_job
 )
-
-// auth only routes
-// To do: add Auth lol
 router.post('/jobs', jobController.create_job)
 router.post('/jobs/edit/:jobId', jobController.update_job)
 router.post(
@@ -102,25 +99,7 @@ router.post(
   middleware.isLoggedIn,
   authController.change_email
 )
-// router.delete("/jobs/:jobId", jobController.archive_job);
 router.post('/employers/edit/:employerId', employerController.update_employer)
-
-router.get('/emailtest', function (req, res) {
-  var api_key = '0b6a3b5c0b9b37bc188e42609d3de538-9ce9335e-5d0ed33c'
-  var domain = 'mg.workhays.com'
-  var mailgun = require('mailgun-js')({ apiKey: api_key, domain: domain })
-
-  var data = {
-    from: 'Work Hays <support@workhays.com>',
-    to: 'lanepatterson32@gmail.com',
-    subject: 'Hello',
-    text: 'Testing some Mailgun awesomeness!'
-  }
-
-  mailgun.messages().send(data, function (error, body) {
-    console.log(body)
-  })
-})
 
 // catch 404 and forward to error handler
 router.get("*", (req,res) => {
