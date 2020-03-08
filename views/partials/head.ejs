@@ -11,15 +11,13 @@ Params:
 ===========================================================================
 */ %>
 
-<head>
-	<title><%= title %></title>
-	<% if(process.env.NODE_ENV === 'production') { %>
+<title><%= title %></title>
+<% if(process.env.NODE_ENV === 'production') { %>
 	<link rel='stylesheet' href='/stylesheets/style.min.css' />
-	<% } else { %>
+<% } else { %>
 	<link rel='stylesheet' href='/stylesheets/style.css' />
-	<% } %>
-	<script src="/js/alpine.js"></script>
-	<link rel="stylesheet" type="text/css" href="/stylesheets/trix.css">
-  	<script type="text/javascript" src="/js/trix.js"></script>
-	<link rel="stylesheet" href="//cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
-</head>
+<% } %>
+<script src="/js/alpine.js"></script>
+<link rel="stylesheet" type="text/css" href="/stylesheets/trix.css">
+<script type="text/javascript" src="/js/trix.js"></script>
+<link rel="stylesheet" href="//cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">

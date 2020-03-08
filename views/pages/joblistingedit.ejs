@@ -1,13 +1,7 @@
 <% /* ===========================================================================
 Description: Edit job listing page. To Do: archive view, edit view, new listing view Params:
 =========================================================================== */ %>
-<!DOCTYPE html>
-<html class="h-full" lang="en">
-
-<body class="flex w-full flex-col h-full">
-<nav>
-	<%- include('../partials/navbar', { title: 'Work Hays' }) %>
-</nav>
+<%- include('../partials/page_start', {title: 'Edit'}) %>
 
 <main class="flex-1 mx-auto pt-32 container max-w-6xl p-12 bg-gray-200 shadow-xl">
 	<div class="p-4">
@@ -182,9 +176,4 @@ Description: Edit job listing page. To Do: archive view, edit view, new listing 
 	</div>
 </main>
 
-<footer class="text-center bg-gray-200 container pb-8 max-w-6xl shadow-xl mx-auto pin-b">
-	<%- include('../partials/footer') %>
-</footer>
-</body>
-
-</html>
+<%- include('../partials/page_end') %>
