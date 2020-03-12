@@ -14,14 +14,26 @@ Params:
 
 <%- include('../partials/page_start', {title: 'Work Hays'}) %>
 
-<div class="max-w-6xl mx-auto py-12">
+<div class="py-12">
 	<div class="mb-8 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
-		<div class="text-2xl">
+		<div class="text-2xl font-bold">
 			Current Job Openings
 		</div>
-		<div>
+		<div class="text-gray-500 leading-5 md:leading-3">
 			Browse current job openings in Hays, KS and surrounding areas.
 		</div>
+	</div>
+	<div class="mb-2 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
+		<p class="leading-5 text-gray-400 text-xs font-medium">
+			Page
+			<span class="font-bold">
+				<%= current_page %>
+			</span>
+			of
+			<span class="font-bold">
+				<%= pages %>
+			</span>
+		  </p>
 	</div>
 	<div class="lg:px-8 max-w-4xl mx-auto">
 		<div class="bg-white shadow overflow-hidden sm:rounded-md">
@@ -29,37 +41,31 @@ Params:
 				
 				<% jobs.forEach(function(job) { %>
 					<li>
-						<a href="/jobs/<%= job.id %>" class="block hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition duration-150 ease-in-out">
+						<a href="/jobs/<%= job.id %>" class="block hover:bg-indigo-500 focus:outline-none focus:bg-indigo-600 transition duration-150 ease-in-out group border-b border-gray-200">
 						  <div class="px-4 py-4 sm:px-6">
 							<div class="flex items-center justify-between">
-							  <div class="text-sm leading-5 font-medium text-indigo-600 truncate">
+							  <div class="text-sm leading-4 font-bold text-indigo-600 truncate group-hover:text-white">
 								<%= job.title %>
 							  </div>
-							  <div class="ml-2 flex-shrink-0 flex">
-								<span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-								  <%= job.job_type === 'full_time' ? 'Full Time' : 'Part Time' %>
-								</span>
-							  </div>
 							</div>
-							<div class="mt-2 sm:flex sm:justify-between">
+							<div class="mt-2 sm:flex sm:justify-between items-center">
 							  <div class="sm:flex">
-								<div class="mr-6 flex items-center text-sm leading-5 text-gray-500">
-								  <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
-									<path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"/>
-								  </svg>
-								  <%= job.employer.title %>
+								<div class="mr-6 flex items-center text-sm leading-3 text-gray-500 mb-1 md:mb-0">
+								  <svg class="flex-shrink-0 mr-1.5 h-4 w-4 text-gray-400 group-hover:text-white" viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+								  <span class="group-hover:text-white antialiased">
+									<%= job.employer.title %>
+								  </span>
 								</div>
-							  </div>
-							  <div class="mt-2 flex items-center text-sm leading-5 text-gray-500 sm:mt-0">
-								<svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
-								  <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/>
-								</svg>
-								<span>
-								  <time datetime="2020-01-07"><%= moment
-									.utc(job.updatedAt)
-									.local()
-									.format('MM/DD/YYYY') %></time>
-								</span>
+								<div class="mr-6 flex items-center text-sm leading-3 text-gray-500 antialiased">
+									<svg class="flex-shrink-0 mr-1.5 h-4 w-4 text-gray-400 group-hover:text-white" viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+									<span class="group-hover:text-white">
+										Updated 
+										<time datetime="2020-01-07"><%= moment
+										  .utc(job.updatedAt)
+										  .local()
+										  .format('MM/DD/YYYY') %></time>
+									</span>
+								</div>
 							  </div>
 							</div>
 						  </div>
@@ -68,13 +74,17 @@ Params:
 				<% }) %>
 			</ul>
 
-			<div class="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
+			<div class="bg-white px-4 py-3 flex items-center justify-between sm:px-6">
 				<div class="hidden sm:block">
 					<p class="text-sm leading-5 text-gray-700">
 						Page
-						<span class="font-bold">1</span>
+						<span class="font-bold">
+							<%= current_page %>
+						</span>
 						of
-						<span class="font-bold"><%= pages %></span>
+						<span class="font-bold">
+							<%= pages %>
+						</span>
 					  </p>
 				</div>
 				<div class="flex-1 flex justify-between sm:justify-end">
