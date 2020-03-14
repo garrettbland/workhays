@@ -12,7 +12,49 @@ Params:
 ===========================================================================
 */ %>
 
-<div class="w-full flex fixed z-10 bg-white justify-between items-center p-2 border-b-2 shadow-md">
+<div class="w-full bg-white">
+	<div class="max-w-4xl mx-auto flex justify-between items-center py-3">
+		<a href="/" class="text-lg">
+			<span class="font-light text-gray-600">Work</span><span class="font-bold">hays</span>
+		</a>
+		<div>
+			<ul class="flex flex-row itesm-center">
+				<li>
+					<a href="/" class="p-2 hover:bg-gray-200 transition ease-in-out duration-150 rounded <%= activeUrl === '' ? 'text-blue-500' : 'text-gray-900' %>">
+						Jobs
+					</a>
+				</li>
+				<li>
+					<a href="/employers" class="p-2 hover:bg-gray-200 transition ease-in-out duration-150 rounded <%= activeUrl === 'employers' ? 'text-blue-500' : 'text-gray-900' %>">
+						Employers
+					</a>
+				</li>
+				<li>
+					<a href="/about" class="p-2 hover:bg-gray-200 transition ease-in-out duration-150 rounded <%= activeUrl === 'about' ? 'text-blue-500' : 'text-gray-900' %>">
+						About
+					</a>
+				</li>
+				<li>
+					<a href="/contact" class="p-2 hover:bg-gray-200 transition ease-in-out duration-150 rounded <%= activeUrl === 'contact' ? 'text-blue-500' : 'text-gray-900' %>">
+						Contact
+					</a>
+				</li>
+				<li>
+					<a href="/signup" class="p-2 hover:bg-gray-200 transition ease-in-out duration-150 rounded <%= activeUrl === 'signup' ? 'text-blue-500' : 'text-gray-900' %>">
+						Sign Up
+					</a>
+				</li>
+				<li>
+					<a href="/signin" class="p-2 hover:bg-gray-200 transition ease-in-out duration-150 rounded <%= activeUrl === 'signin' ? 'text-blue-500' : 'text-gray-900' %>">
+						Sign In
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="w-full flex z-10 bg-white justify-between items-center p-2 border-b-2 shadow-md">
 	<a href="/">
 		<div class="flex flex-row items-center">
 			<div class="mr-2"><span class="mdi mdi-briefcase-outline text-5xl text-blue-500"></span></div>

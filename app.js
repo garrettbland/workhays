@@ -36,9 +36,10 @@ var models = require('./app/models')
 // load passport strategies
 require('./app/config/passport.js')(passport, models.user, models.employer)
 
-// add currentUser to all routes
+// add currentUser and active url to each request
 app.use(function (req, res, next) {
   res.locals.user = req.user
+  res.locals.activeUrl = req.path.split('/')[1] // [0] will be empty since routes start with '/'
   console.log('get current user ====>')
   next()
 })
