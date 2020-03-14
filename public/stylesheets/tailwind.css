@@ -24,3 +24,7 @@ h2 {
 h3 {
     @apply text-2xl text-black font-bold;
 }
+
+.bg-overlay-500 {
+    background: rgba(0,0,0,0.5)
+}

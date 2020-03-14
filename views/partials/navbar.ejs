@@ -12,13 +12,75 @@ Params:
 ===========================================================================
 */ %>
 
-<div class="w-full bg-white">
-	<div class="max-w-4xl mx-auto flex justify-between items-center py-3">
+<div x-data="menu()" class="w-full bg-white">
+	<div class="max-w-4xl mx-auto flex justify-between items-center py-3 px-3 lg:px-0">
+
+		<!-- logo -->
 		<a href="/" class="text-lg">
 			<span class="font-light text-gray-600">Work</span><span class="font-bold">hays</span>
 		</a>
-		<div>
-			<ul class="flex flex-row itesm-center">
+
+		<!-- mobile menu button-->
+		<div class="block lg:hidden">
+			<button x-on:click="open()" class="flex items-center">
+				<span class="mr-2">
+					Menu
+				</span> 
+				<svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+			</button>
+		</div>
+
+		<!-- mobile menu -->
+		<div x-show.transition.in.opacity.scale.100.duration.300.out.scale.100.opacity.duration.400="show" class="h-screen w-screen bg-overlay-500 fixed top-0 left-0 z-40">
+			<div x-show.transition.in.duration.100ms.origin.top.right.opacity.scale.85.out.duration.200ms.origin.bottom.left.opacity.scale.95="show" class="bg-white rounded shadow-lg m-3 overflow-x-scroll p-3">
+				<div class="flex justify-between items-center mb-4">
+					<!-- logo -->
+					<a href="/" class="text-lg">
+						<span class="font-light text-gray-600">Work</span><span class="font-bold">hays</span>
+					</a>
+					<!-- close x -->
+					<button x-on:click="close()">
+						<svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+					</button>
+				</div>
+				<ul class="flex flex-col">
+					<li>
+						<a href="/" class="p-2 hover:bg-gray-200 transition ease-in-out duration-150 rounded <%= activeUrl === '' ? 'text-blue-500' : 'text-gray-900' %>">
+							Jobs
+						</a>
+					</li>
+					<li>
+						<a href="/employers" class="p-2 hover:bg-gray-200 transition ease-in-out duration-150 rounded <%= activeUrl === 'employers' ? 'text-blue-500' : 'text-gray-900' %>">
+							Employers
+						</a>
+					</li>
+					<li>
+						<a href="/about" class="p-2 hover:bg-gray-200 transition ease-in-out duration-150 rounded <%= activeUrl === 'about' ? 'text-blue-500' : 'text-gray-900' %>">
+							About
+						</a>
+					</li>
+					<li>
+						<a href="/contact" class="p-2 hover:bg-gray-200 transition ease-in-out duration-150 rounded <%= activeUrl === 'contact' ? 'text-blue-500' : 'text-gray-900' %>">
+							Contact
+						</a>
+					</li>
+					<li>
+						<a href="/signup" class="p-2 hover:bg-gray-200 transition ease-in-out duration-150 rounded <%= activeUrl === 'signup' ? 'text-blue-500' : 'text-gray-900' %>">
+							Sign Up
+						</a>
+					</li>
+					<li>
+						<a href="/signin" class="p-2 hover:bg-gray-200 transition ease-in-out duration-150 rounded <%= activeUrl === 'signin' ? 'text-blue-500' : 'text-gray-900' %>">
+							Sign In
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<!-- menu -->
+		<div class="hidden lg:block">
+			<ul class="flex flex-row items-center">
 				<li>
 					<a href="/" class="p-2 hover:bg-gray-200 transition ease-in-out duration-150 rounded <%= activeUrl === '' ? 'text-blue-500' : 'text-gray-900' %>">
 						Jobs
@@ -53,6 +115,36 @@ Params:
 		</div>
 	</div>
 </div>
+
+<script>
+	function menu() {
+		return {
+			show: false,
+			open: function () {
+				this.show = true
+			},
+			close: function () {
+				this.show = false
+			}
+		}
+	}
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <div class="w-full flex z-10 bg-white justify-between items-center p-2 border-b-2 shadow-md">
 	<a href="/">
