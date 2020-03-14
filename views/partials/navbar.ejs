@@ -22,7 +22,7 @@ Params:
 
 		<!-- mobile menu button-->
 		<div class="block lg:hidden">
-			<button x-on:click="open()" class="flex items-center">
+			<button x-on:click="open('showMobileMenu')" class="flex items-center">
 				<span class="mr-2">
 					Menu
 				</span> 
@@ -31,21 +31,21 @@ Params:
 		</div>
 
 		<!-- mobile menu -->
-		<div x-show.transition.in.opacity.scale.100.duration.300.out.scale.100.opacity.duration.400="show" class="h-screen w-screen bg-overlay-500 fixed top-0 left-0 z-40">
-			<div x-show.transition.in.duration.100ms.origin.top.right.opacity.scale.85.out.duration.200ms.origin.bottom.left.opacity.scale.95="show" class="bg-white rounded shadow-lg m-3 overflow-x-scroll p-3">
+		<div x-show.transition.in.opacity.scale.100.duration.300.out.scale.100.opacity.duration.400="showMobileMenu" class="h-screen w-screen bg-overlay-500 fixed top-0 left-0 z-40">
+			<div x-show.transition="showMobileMenu" class="bg-white rounded shadow-lg m-3 overflow-x-scroll p-3">
 				<div class="flex justify-between items-center mb-4">
 					<!-- logo -->
 					<a href="/" class="text-lg">
 						<span class="font-light text-gray-600">Work</span><span class="font-bold">hays</span>
 					</a>
 					<!-- close x -->
-					<button x-on:click="close()">
+					<button x-on:click="close('showMobileMenu')">
 						<svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
 					</button>
 				</div>
 				<ul class="flex flex-col">
 					<li>
-						<a href="/" class="p-2 hover:bg-gray-200 transition ease-in-out duration-150 rounded <%= activeUrl === '' ? 'text-blue-500' : 'text-gray-900' %>">
+						<a href="/" class="px-2 hover:bg-gray-200 transition ease-in-out duration-150 rounded <%= activeUrl === '' ? 'text-blue-500' : 'text-gray-900' %>">
 							Jobs
 						</a>
 					</li>
@@ -78,108 +78,62 @@ Params:
 			</div>
 		</div>
 
-		<!-- menu -->
+		<!-- desktop menu -->
 		<div class="hidden lg:block">
 			<ul class="flex flex-row items-center">
 				<li>
-					<a href="/" class="p-2 hover:bg-gray-200 transition ease-in-out duration-150 rounded <%= activeUrl === '' ? 'text-blue-500' : 'text-gray-900' %>">
+					<a href="/" class="py-2 px-3 hover:bg-gray-200 transition ease-in-out duration-150 rounded <%= activeUrl === '' ? 'text-blue-500' : 'text-gray-900' %>">
 						Jobs
 					</a>
 				</li>
 				<li>
-					<a href="/employers" class="p-2 hover:bg-gray-200 transition ease-in-out duration-150 rounded <%= activeUrl === 'employers' ? 'text-blue-500' : 'text-gray-900' %>">
+					<a href="/employers" class="py-2 px-3 hover:bg-gray-200 transition ease-in-out duration-150 rounded <%= activeUrl === 'employers' ? 'text-blue-500' : 'text-gray-900' %>">
 						Employers
 					</a>
 				</li>
 				<li>
-					<a href="/about" class="p-2 hover:bg-gray-200 transition ease-in-out duration-150 rounded <%= activeUrl === 'about' ? 'text-blue-500' : 'text-gray-900' %>">
+					<a href="/about" class="py-2 px-3 hover:bg-gray-200 transition ease-in-out duration-150 rounded <%= activeUrl === 'about' ? 'text-blue-500' : 'text-gray-900' %>">
 						About
 					</a>
 				</li>
 				<li>
-					<a href="/contact" class="p-2 hover:bg-gray-200 transition ease-in-out duration-150 rounded <%= activeUrl === 'contact' ? 'text-blue-500' : 'text-gray-900' %>">
+					<a href="/contact" class="py-2 px-3 hover:bg-gray-200 transition ease-in-out duration-150 rounded <%= activeUrl === 'contact' ? 'text-blue-500' : 'text-gray-900' %>">
 						Contact
 					</a>
 				</li>
-				<li>
-					<a href="/signup" class="p-2 hover:bg-gray-200 transition ease-in-out duration-150 rounded <%= activeUrl === 'signup' ? 'text-blue-500' : 'text-gray-900' %>">
-						Sign Up
-					</a>
-				</li>
-				<li>
-					<a href="/signin" class="p-2 hover:bg-gray-200 transition ease-in-out duration-150 rounded <%= activeUrl === 'signin' ? 'text-blue-500' : 'text-gray-900' %>">
-						Sign In
-					</a>
-				</li>
-			</ul>
-		</div>
-	</div>
-</div>
-
-<script>
-	function menu() {
-		return {
-			show: false,
-			open: function () {
-				this.show = true
-			},
-			close: function () {
-				this.show = false
-			}
-		}
-	}
-</script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="w-full flex z-10 bg-white justify-between items-center p-2 border-b-2 shadow-md">
-	<a href="/">
-		<div class="flex flex-row items-center">
-			<div class="mr-2"><span class="mdi mdi-briefcase-outline text-5xl text-blue-500"></span></div>
-			<h2><span class="font-light text-gray-600">WORK</span><span class="font-bold">hays</span></h2></div>
-	</a>
-	<div class="flex flex-row justify-center items-center">
-		<a title="Home" href="/"
-			 class="hover:text-blue-400 text-blue-500 focus:outline-none mr-4 text-lg">Home</a>
-		<a title="Employers" href="/employers"
-			 class="hover:text-blue-400 text-blue-500 focus:outline-none mr-4 text-lg">Employers</a>
-		<a title="Events" href="/events"
-			 class="hover:text-blue-400 text-blue-500 focus:outline-none mr-4 text-lg">Events
-		</a>
-		<a title="Information" href="/info"
-			 class="hover:text-blue-400 text-blue-500 focus:outline-none mr-4 text-lg">Info
-		</a>
-		<a title="Help" href="/help"
-			 class="hover:text-blue-400 text-blue-500 focus:outline-none mr-4 text-lg">Help
-		</a>
-		<a title="Contact" href="/contact"
-			 class="hover:text-blue-400 text-blue-500 focus:outline-none mr-4 text-lg">Contact
-		</a>
-		<% if (user) { %>
-			<div>
-				<div class="flex flex-row">
-					<div class="relative mr-4" x-data="{ open: false }">
-						<button @click="open = !open"
-										class="focus:outline-none flex flex-row items-center">
-							<span class="mdi mdi-account-circle text-4xl text-blue-500 hover:text-blue-400"></span>
+				<% if (user) { %>
+					<li class="relative">
+						<button x-on:click="open('showAccountDropdown')" class="py-0 px-3 transition ease-in-out duration-150 flex flex-row items-center hover:text-blue-500">
+							<span class="mr-1">
+								My Account
+							</span>
+							<svg x-bind:class="{ 'rotate-180' : showAccountDropdown }" class="transform transition duration-150 ease-in-out w-4 h-4" viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" ><polyline points="6 9 12 15 18 9"></polyline></svg>
 						</button>
-						<ul x-show="open"
-								@click.away="open = false"
-								class="w-32 bg-white shadow-lg border rounded absolute right-0">
+						<div x-show.transition.origin.top.right="showAccountDropdown" x-on:click.away="close('showAccountDropdown')" @keydown.escape="close('showAccountDropdown')" class="bg-white shadow-lg border rounded absolute right-0 mt-2">
+							<div class="rounded-md bg-white shadow-xs">
+								<div class="px-4 py-3">
+								  <p class="text-sm leading-5">
+									Signed in as
+								  </p>
+								  <p class="text-sm leading-5 font-medium text-gray-900">
+									<%= user.email %>
+								  </p>
+								</div>
+								<div class="border-t border-gray-100"></div>
+								<div class="py-1">
+								  <a href="/account" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900">Account settings</a>
+								  <a href="/job-listing-new" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900">New Job Listing</a>
+								</div>
+								<div class="border-t border-gray-100"></div>
+								<div class="py-1">
+									<a href="/logout" class="block w-full text-left px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900">
+										Logout
+									  </a>
+								</div>
+							  </div>
+						</div>
+						<!-- <ul x-show.transition.origin.top.right="showAccountDropdown" x-on:click.away="close('showAccountDropdown')"
+								class="w-48 bg-white shadow-lg border rounded absolute right-0 mt-2">
 							<li class="px-2 py-1">
 								<span class="text-lg text-blue-500 focus:outline-none">
 									Hi, <%= user.first_name %>
@@ -200,21 +154,37 @@ Params:
 									Sign Out
 								</li>
 							</a>
-						</ul>
-					</div>
-				</div>
-			</div>
-		<% } else { %>
-			<a href="/signup">
-				<button class="mr-2 bg-blue-500 px-4 py-2 rounded hover:bg-blue-400 text-white focus:outline-none text-lg">Sign
-					Up
-				</button>
-			</a>
-			<a href="/signin">
-				<button class="bg-green-500 px-4 py-2 rounded hover:bg-green-400 text-white focus:outline-none text-lg">Sign In
-				</button>
-			</a>
-		<% } %>
+						</ul> -->
+					</li>
+				<% } else { %>
+					<li>
+						<a href="/signup" class="py-2 px-3 hover:bg-gray-200 transition ease-in-out duration-150 rounded <%= activeUrl === 'signup' ? 'text-blue-500' : 'text-gray-900' %>">
+							Sign Up
+						</a>
+					</li>
+					<li>
+						<a href="/signin" class="py-2 px-3 hover:bg-gray-200 transition ease-in-out duration-150 rounded <%= activeUrl === 'signin' ? 'text-blue-500' : 'text-gray-900' %>">
+							Sign In
+						</a>
+					</li>
+				<% } %>
+			</ul>
+		</div>
 	</div>
-
 </div>
+
+<script>
+	function menu() {
+		return {
+			showMobileMenu: false,
+			showAccountDropdown: false,
+			open: function (key) {
+				this[key] = true
+			},
+			close: function (key) {
+				this[key] = false
+			},
+
+		}
+	}
+</script>
