@@ -12,7 +12,7 @@ Params:
 ===========================================================================
 */ %>
 
-<div x-data="menu()" class="w-full bg-white border-b border-gray-300">
+<div x-data="menu()" class="w-full bg-white border-b border-gray-300 fixed top-0 left-0 z-40">
 	<div class="max-w-4xl mx-auto flex justify-between items-center py-3 px-3 lg:px-0">
 
 		<!-- logo -->
@@ -103,32 +103,32 @@ Params:
 		<div class="hidden lg:block">
 			<ul class="flex flex-row items-center">
 				<li>
-					<a href="/" class="py-2 px-3 hover:bg-gray-200 transition ease-in-out duration-150 rounded <%= activeUrl === '' ? 'text-blue-500' : 'text-gray-900' %>">
+					<a href="/" class="py-2 px-3 hover:bg-gray-200 transition ease-in-out duration-75 rounded <%= activeUrl === '' ? 'text-blue-500' : 'text-gray-900' %>">
 						Jobs
 					</a>
 				</li>
 				<li>
-					<a href="/employers" class="py-2 px-3 hover:bg-gray-200 transition ease-in-out duration-150 rounded <%= activeUrl === 'employers' ? 'text-blue-500' : 'text-gray-900' %>">
+					<a href="/employers" class="py-2 px-3 hover:bg-gray-200 transition ease-in-out duration-75 rounded <%= activeUrl === 'employers' ? 'text-blue-500' : 'text-gray-900' %>">
 						Employers
 					</a>
 				</li>
 				<li>
-					<a href="/about" class="py-2 px-3 hover:bg-gray-200 transition ease-in-out duration-150 rounded <%= activeUrl === 'about' ? 'text-blue-500' : 'text-gray-900' %>">
+					<a href="/about" class="py-2 px-3 hover:bg-gray-200 transition ease-in-out duration-75 rounded <%= activeUrl === 'about' ? 'text-blue-500' : 'text-gray-900' %>">
 						About
 					</a>
 				</li>
 				<li>
-					<a href="/contact" class="py-2 px-3 hover:bg-gray-200 transition ease-in-out duration-150 rounded <%= activeUrl === 'contact' ? 'text-blue-500' : 'text-gray-900' %>">
+					<a href="/contact" class="py-2 px-3 hover:bg-gray-200 transition ease-in-out duration-75 rounded <%= activeUrl === 'contact' ? 'text-blue-500' : 'text-gray-900' %>">
 						Contact
 					</a>
 				</li>
 				<% if (user) { %>
 					<li class="relative">
-						<button x-on:click="open('showAccountDropdown')" class="py-0 px-3 transition ease-in-out duration-150 flex flex-row items-center hover:text-blue-500">
+						<button x-on:click="open('showAccountDropdown')" class="py-0 px-3 transition ease-in-out duration-75 flex flex-row items-center hover:text-blue-500">
 							<span class="mr-1">
 								My Account
 							</span>
-							<svg x-bind:class="{ 'rotate-180' : showAccountDropdown }" class="transform transition duration-150 ease-in-out w-4 h-4" viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" ><polyline points="6 9 12 15 18 9"></polyline></svg>
+							<svg x-bind:class="{ 'rotate-180' : showAccountDropdown }" class="transform transition duration-75 ease-in-out w-4 h-4" viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" ><polyline points="6 9 12 15 18 9"></polyline></svg>
 						</button>
 						<div x-show.transition.origin.top.right="showAccountDropdown" x-on:click.away="close('showAccountDropdown')" @keydown.escape="close('showAccountDropdown')" class="bg-white shadow-lg border rounded absolute right-0 mt-2">
 							<div class="rounded-md bg-white shadow-xs">
@@ -179,12 +179,12 @@ Params:
 					</li>
 				<% } else { %>
 					<li>
-						<a href="/signup" class="py-2 px-3 hover:bg-gray-200 transition ease-in-out duration-150 rounded <%= activeUrl === 'signup' ? 'text-blue-500' : 'text-gray-900' %>">
+						<a href="/signup" class="py-2 px-3 hover:bg-gray-200 transition ease-in-out duration-75 rounded <%= activeUrl === 'signup' ? 'text-blue-500' : 'text-gray-900' %>">
 							Sign Up
 						</a>
 					</li>
 					<li>
-						<a href="/signin" class="py-2 px-3 hover:bg-gray-200 transition ease-in-out duration-150 rounded <%= activeUrl === 'signin' ? 'text-blue-500' : 'text-gray-900' %>">
+						<a href="/signin" class="py-2 px-3 hover:bg-gray-200 transition ease-in-out duration-75 rounded <%= activeUrl === 'signin' ? 'text-blue-500' : 'text-gray-900' %>">
 							Sign In
 						</a>
 					</li>

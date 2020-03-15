@@ -15,7 +15,7 @@ Params:
 <%- include('../partials/page_start', {title: 'Work Hays'}) %>
 
 <div class="max-w-4xl mx-auto">
-	<div class="mt-12 px-3 lg:px-0 pb-6">
+	<div class="mt-24 px-3 lg:px-0 pb-6">
 		<div class="text-xl font-bold leading-6">
 			💼 Current Job Openings
 		</div>
@@ -29,7 +29,7 @@ Params:
 			<ul>
 				<% jobs.forEach(function(job,index) { %>
 					<li>
-						<a href="/jobs/<%= job.id %>" class="flex flex-row justify-between items-center px-3 py-3 lg:py-2 border-gray-200 hover:bg-gray-100 hover:cursor transition ease-in-out duration-150 group <%= index !== 0 ? 'border-t' : null%>">
+						<a href="/jobs/<%= job.id %>" class="flex flex-row justify-between items-center px-3 py-3 lg:py-2 border-gray-200 hover:bg-gray-100 hover:cursor transition ease-in-out duration-75 group <%= index !== 0 ? 'border-t' : null%>">
 							<div class="flex-1">
 								<div class="font-bold text-black truncate">
 									<%= job.title %>
@@ -47,7 +47,7 @@ Params:
 								</div>
 							</div>
 							<div class="flex justify-end items-center">
-								<div class="transition ease-in-out duration-150 text-white group-hover:text-gray-600 text-sm mr-2 hidden lg:block">
+								<div class="transition ease-in-out duration-75 text-white group-hover:text-gray-600 text-sm mr-2 hidden lg:block">
 									View Details
 								</div>
 								<svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><polyline points="9 18 15 12 9 6"></polyline></svg>
@@ -66,8 +66,11 @@ Params:
 		<div class="antialiased">
 			Sign up for our weekly email letting you know about the latest job openings.
 		</div>
-		<div class="mt-4 max-w-sm">
-			<input class="w-full rounded border border-gray-200 px-3 py-2 bg-gray-50 focus:bg-white focus:border-blue-500 transition ease-in-out duration-150" placeholder="Your Email" />
+		<div class="mt-4 w-full md:max-w-lg flex items-center flex-wrap">
+			<input class="mr-0 lg:mr-3 mb-3 lg:mb-0 w-full lg:w-2/3 rounded border border-gray-200 px-3 py-2 bg-gray-50 focus:bg-white focus:border-blue-500 transition ease-in-out duration-150" placeholder="Your Email" />
+			<button class="w-full lg:w-auto bg-blue-500 text-white hover:bg-blue-600 transition duration-75 ease-in-out rounded px-6 py-2 border border-blue-500 hover:border-blue-600">
+				Sign Up
+			</button>
 		</div>
 	</div>
 </div>
