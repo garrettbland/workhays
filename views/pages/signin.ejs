@@ -4,8 +4,15 @@ Description: Employer Login page. To Do: Params:
 <%- include('../partials/page_start', {title:'Sign In'}) %>
 
 <div class="max-w-4xl mx-auto my-24">
+
+	<% if(message.length > 0) { %>
+		<div class="mb-4 bg-red-500 text-white p-3 rounded shadow-md w-full mx-3 sm:max-w-sm mx-auto">
+			<%= message %>
+		</div>
+	<% } %>
+
 	<div class="bg-white rounded-none md:rounded shadow-md w-full sm:max-w-sm mx-auto overflow-hidden">
-		<div class="bg-white border-b border-gray-200 p-3">
+		<div class="border-b border-gray-200 p-3">
 			<div class="text-xl font-bold leading-6">
 				🔐 Sign In
 			</div>
