@@ -41,7 +41,9 @@ exports.list_jobs = async (req, res) => {
 
 exports.get_job = async (req, res) => {
   try {
-    const job = await Models.job.findByPk(req.params.jobId)
+    const job = await Models.job.findByPk(req.params.jobId, {
+      include: Models.employer
+    })
 
     if (!job) throw 'Job not found'
 

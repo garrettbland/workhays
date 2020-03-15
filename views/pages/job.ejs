@@ -13,19 +13,19 @@ Params:
 */ %>
 <%- include('../partials/page_start', {title:job.title}) %>
 
-	<main class="flex-1 mx-auto pt-32 container max-w-6xl p-12 bg-gray-200 shadow-xl">
-		<a href="/" class="flex w-1/4 flex-row items-center text-blue-500 hover:text-blue-400 text-base">
-			<div><span class="mdi mdi-arrow-left" /></div>
-			<div class="ml-2">Back to All Listings</div>
-		</a>
-		<div class="flex flex-col pt-4">
-			<h2><%= job.title %></h2>
-			<div class="flex flex-row italic text-gray-700 text-sm">
-				<div>Employer: <%= job.employer %></div>&nbsp;&#183;&nbsp;<div>
-					Posted: <%= job.updatedAt %></div>
-			</div>
-			<div class="mt-10 text-base"><p><%- job.description %></p></div>
+<div class="max-w-4xl mx-auto my-24 px-3 lg:px-0">
+	<a href="/" class="flex w-1/4 flex-row items-center text-blue-500 hover:text-blue-400 text-base">
+		<div><span class="mdi mdi-arrow-left" /></div>
+		<div class="ml-2">Back to All Listings</div>
+	</a>
+	<div class="flex flex-col pt-4">
+		<h2><%= job.title %></h2>
+		<div class="flex flex-row italic text-gray-700 text-sm">
+			<div>Employer: <%= job.employer.dataValues.title %></div>&nbsp;&#183;&nbsp;<div>
+				Posted: <%= job.updatedAt %></div>
 		</div>
-	</main>
+		<div class="mt-10 text-base"><p><%- job.description %></p></div>
+	</div>
+</div>
 
-	<%- include('../partials/page_end') %>
+<%- include('../partials/page_end') %>
