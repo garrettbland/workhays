@@ -32,7 +32,7 @@ Params:
 				<% jobs.forEach(function(job,index) { %>
 					<li>
 						<a href="/jobs/<%= job.id %>" class="bg-white flex flex-row justify-between items-center px-3 py-3 lg:py-2 lg:mb-2 border-gray-200 hover:cursor transition ease-in-out duration-75 group lg:rounded lg:shadow-md z-30 <%= index !== 0 ? 'border-t lg:border-none' : null%>">
-							<div class="flex-1">
+							<div class="flex-1 overflow-hidden">
 								<div class="font-bold text-black truncate lg:text-lg group-hover:text-blue-500 group-hover:underline">
 									<%= job.title %>
 								</div>
