@@ -59,6 +59,41 @@ Params:
 				<% }) %>
 			</ul>
 		</div>
+		<div class="flex justify-between mt-4 px-3 md:px-0 items-center">
+			<div>
+				<p class="text-sm leading-5 text-gray-700">
+					Page
+					<span class="font-bold">
+						<%= current_page %>
+					</span>
+					of
+					<span class="font-bold">
+						<%= pages %>
+					</span>
+				  </p>
+			</div>
+			<div>
+				<% if(current_page <= pages && current_page !== 1) { %>
+					<a href="/?page=<%= current_page - 1 %>" class="relative inline-flex items-center px-3 py-2 border border-gray-300 text-sm leading-5 font-medium rounded text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150">
+						Previous
+					</a>
+				<% } else { %>
+					<button disabled class="relative inline-flex items-center px-3 py-2 border border-gray-300 text-sm leading-5 font-medium rounded text-gray-700 bg-white focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150 cursor-not-allowed opacity-50">
+						Previous
+					</button>
+				<% } %>
+	
+				<% if(current_page < pages) { %>
+					<a href="/?page=<%= current_page + 1 %>" class="ml-3 relative inline-flex items-center px-3 py-2 border border-gray-300 text-sm leading-5 font-medium rounded text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150">
+						Next
+					  </a>
+				<% } else { %>
+					<button disabled class="ml-3 relative inline-flex items-center px-3 py-2 border border-gray-300 text-sm leading-5 font-medium rounded text-gray-700 bg-white focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150 cursor-not-allowed opacity-50">
+						Next
+					</button>
+				<% } %>
+			</div>
+		</div>
 	</div>
 </div>
 

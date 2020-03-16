@@ -50,11 +50,8 @@ exports.get_job = async (req, res) => {
     res.render('pages/job', {
       job: {
         ...job.dataValues,
-        updatedAt: moment
-          .utc(job.dataValues.updatedAt)
-          .local()
-          .format('MM/DD/YYYY, h:mm a')
-      }
+      },
+      moment: moment
     })
   } catch (err) {
     // res.send(err)
