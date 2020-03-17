@@ -22,7 +22,7 @@ Params:
 
 		<!-- mobile menu button-->
 		<div class="block lg:hidden">
-			<button x-on:click="open('showMobileMenu')" class="flex items-center">
+			<button x-on:click="open('showMobileMenu')" class="flex items-center focus:outline-none">
 				<span class="mr-2">
 					Menu
 				</span> 
@@ -39,7 +39,7 @@ Params:
 						<span class="font-light text-gray-600">Work</span><span class="font-bold">hays</span>
 					</a>
 					<!-- close x -->
-					<button x-on:click="close('showMobileMenu')">
+					<button x-on:click="close('showMobileMenu')" class="focus:outline-none">
 						<svg class="text-red-500" viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" ><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
 					</button>
 				</div>
@@ -124,7 +124,7 @@ Params:
 				</li>
 				<% if (user) { %>
 					<li class="relative">
-						<button x-on:click="open('showAccountDropdown')" class="py-0 px-3 transition ease-in-out duration-75 flex flex-row items-center hover:text-blue-500">
+						<button x-on:click="open('showAccountDropdown')" class="py-0 px-3 transition ease-in-out duration-75 flex flex-row items-center hover:text-blue-500 focus:outline-none">
 							<span class="mr-1">
 								My Account
 							</span>
