@@ -4,13 +4,13 @@
 /* purgecss end ignore */
 
 @tailwind utilities;
-@import "../fonts/inter.css";
+@import './fonts/inter.css';
+@import './style/trix.css';
 /** custom css goes below **/
-
 
 html {
     font-family: 'Inter', sans-serif;
-    color: #2D3748;
+    color: #2d3748;
 }
 
 h1 {
@@ -26,5 +26,5 @@ h3 {
 }
 
 .bg-overlay-500 {
-    background: rgba(0,0,0,0.5)
+    background: rgba(0, 0, 0, 0.5);
 }

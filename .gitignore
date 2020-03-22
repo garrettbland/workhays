@@ -12,8 +12,7 @@ yarn.lock
 .DS_Store
 
 # styles
-public/stylesheets/style.min.css
-public/stylesheets/style.css
+public/dist
 
 # misc
 .idea
