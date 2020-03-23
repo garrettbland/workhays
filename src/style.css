@@ -28,3 +28,7 @@ h3 {
 .bg-overlay-500 {
     background: rgba(0, 0, 0, 0.5);
 }
+
+.feather {
+    stroke-width: 1.4;
+}
