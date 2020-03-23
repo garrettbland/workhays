@@ -2,6 +2,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 var ProgressBarPlugin = require('progress-bar-webpack-plugin')
 const TerserJSPlugin = require('terser-webpack-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+const fs = require('fs')
 
 const purgecss = require('@fullhuman/postcss-purgecss')({
     // Specify the paths to all of the template files in your project
@@ -11,6 +12,11 @@ const purgecss = require('@fullhuman/postcss-purgecss')({
     defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || [],
 })
 
+// get version from version file
+let rawdata = fs.readFileSync('./version.json')
+let versionFile = JSON.parse(rawdata)
+let version = versionFile.version
+
 var config = {
     context: __dirname + '/src', // `__dirname` is root of project and `/src` is source
     entry: {
@@ -18,7 +24,7 @@ var config = {
     },
     output: {
         path: __dirname + '/public/dist', // `/dist` is the destination
-        filename: 'bundle.js', // bundle created by webpack it will contain all our app logic. we will link to this .js file from our html page.
+        filename: `bundle.${version}.js`, // bundle created by webpack it will contain all our app logic. we will link to this .js file from our html page.
     },
     optimization: {
         minimize: process.env.NODE_ENV === 'production' ? true : false,
@@ -71,7 +77,7 @@ var config = {
     plugins: [
         new ProgressBarPlugin(),
         new MiniCssExtractPlugin({
-            filename: 'app.css',
+            filename: `app.${version}.css`,
         }),
     ],
 }

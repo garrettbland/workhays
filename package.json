@@ -1,10 +1,12 @@
 {
     "name": "workhays",
-    "version": "0.0.0",
+    "version": "0.0.1",
     "private": true,
     "scripts": {
-        "dev": "webpack --mode development && nodemon app.js",
-        "prod": "export NODE_ENV=production && webpack --mode production && nodemon app.js"
+        "remove:dist": "rm -rf public/dist",
+        "set:version": "node ./app/config/version.js",
+        "dev": "npm run set:version && npm run remove:dist && webpack --mode development && nodemon app.js",
+        "prod": "npm run set:version && npm run remove:dist && export NODE_ENV=production && webpack --mode production && nodemon app.js"
     },
     "dependencies": {
         "bcrypt-nodejs": "0.0.3",
