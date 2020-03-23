@@ -16,6 +16,7 @@
         "ejs": "^3.0.1",
         "express": "~4.16.1",
         "express-session": "^1.17.0",
+        "feather-icons": "^4.26.0",
         "http-errors": "~1.6.3",
         "mailgun-js": "^0.22.0",
         "moment": "^2.24.0",

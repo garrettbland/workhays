@@ -5,9 +5,9 @@
 
 @tailwind utilities;
 @import './fonts/inter.css';
-@import './style/trix.css';
-/** custom css goes below **/
+@import '../node_modules/trix/dist/trix.css';
 
+/** custom css goes below **/
 html {
     font-family: 'Inter', sans-serif;
     color: #2d3748;
