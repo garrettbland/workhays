@@ -8,21 +8,9 @@
 @import '../node_modules/trix/dist/trix.css';
 
 /** custom css goes below **/
-html {
+body {
     font-family: 'Inter', sans-serif;
     color: #2d3748;
-}
-
-h1 {
-    @apply text-4xl text-black font-bold;
-}
-
-h2 {
-    @apply text-3xl text-black font-bold;
-}
-
-h3 {
-    @apply text-2xl text-black font-bold;
 }
 
 .bg-overlay-500 {
