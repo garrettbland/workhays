@@ -16,3 +16,6 @@ public/dist
 
 # misc
 .idea
+
+# build version
+version.json
