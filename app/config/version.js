@@ -16,5 +16,5 @@ const version = Date.now()
 // create new version json file
 fs.writeFile('./version.json', '{"version":"' + version + '"}', err => {
     if (err) throw err
-    console.log('New version ==> (' + version + ') ')
+    console.log('New build version ==> (' + version + ') ')
 })
