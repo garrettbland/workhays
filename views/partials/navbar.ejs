@@ -1,11 +1,8 @@
-<div
-    x-data="menu()"
+<div x-data="menu()"
     class="w-full fixed top-0 left-0 z-40"
     style="background-image: linear-gradient( 90deg, rgba(107,52,255,1) 16.5%, rgba(51,159,247,1) 81% );"
 >
-    <div
-        class="max-w-4xl mx-auto flex justify-between items-center p-4 lg:px-0"
-    >
+    <div class="max-w-4xl mx-auto flex justify-between items-center p-4 lg:px-0">
         <!-- logo -->
         <a href="/" class="text-lg text-white">
             <span class="font-light">Work</span
@@ -134,7 +131,7 @@
                 <li>
                     <a
                         href="/"
-                        class="py-2 px-3 hover:bg-white transition ease-in-out duration-75 rounded <%= activeUrl === '' ? 'bg-white text-blue-500' : activeUrl === 'jobs' ? 'bg-white text-blue-500' : 'text-white' %>"
+                        class="py-2 px-3 hover:bg-white hover:shadow hover:text-blue-500 transition ease-in-out duration-75 mr-2 rounded <%= activeUrl === '' ? 'bg-white text-blue-500 shadow' : activeUrl === 'jobs' ? 'bg-white text-blue-500 shadow' : 'text-white' %>"
                     >
                         Jobs
                     </a>
@@ -142,7 +139,7 @@
                 <li>
                     <a
                         href="/employers"
-                        class="py-2 px-3 hover:bg-gray-200 transition ease-in-out duration-75 rounded <%= activeUrl === 'employers' ? 'text-blue-500' : 'text-white' %>"
+                        class="py-2 px-3 hover:bg-white hover:shadow hover:text-blue-500 transition ease-in-out duration-75 mr-2 rounded <%= activeUrl === 'employers' ? 'bg-white text-blue-500 shadow' : 'text-white' %>"
                     >
                         Employers
                     </a>
@@ -150,7 +147,7 @@
                 <li>
                     <a
                         href="/about"
-                        class="py-2 px-3 hover:bg-gray-200 transition ease-in-out duration-75 rounded <%= activeUrl === 'about' ? 'text-blue-500' : 'text-white' %>"
+                        class="py-2 px-3 hover:bg-white hover:shadow hover:text-blue-500 transition ease-in-out duration-75 mr-2 rounded <%= activeUrl === 'about' ? 'bg-white text-blue-500 shadow' : 'text-white' %>"
                     >
                         About
                     </a>
@@ -158,7 +155,7 @@
                 <li>
                     <a
                         href="/contact"
-                        class="py-2 px-3 hover:bg-gray-200 transition ease-in-out duration-75 rounded <%= activeUrl === 'contact' ? 'text-blue-500' : 'text-white' %>"
+                        class="py-2 px-3 hover:bg-white hover:shadow hover:text-blue-500 transition ease-in-out duration-75 mr-2 rounded <%= activeUrl === 'contact' ? 'bg-white text-blue-500 shadow' : 'text-white' %>"
                     >
                         Contact
                     </a>
@@ -233,7 +230,7 @@
                 <li>
                     <a
                         href="/signup"
-                        class="py-2 px-3 hover:bg-gray-200 transition ease-in-out duration-75 rounded <%= activeUrl === 'signup' ? 'text-blue-500' : 'text-white' %>"
+                        class="py-2 px-3 hover:bg-white hover:shadow hover:text-blue-500 transition ease-in-out duration-75 mr-2 rounded <%= activeUrl === 'signup' ? 'bg-white text-blue-500 shadow' : 'text-white' %>"
                     >
                         Sign Up
                     </a>
@@ -241,7 +238,7 @@
                 <li>
                     <a
                         href="/signin"
-                        class="py-2 px-3 hover:bg-gray-200 transition ease-in-out duration-75 rounded <%= activeUrl === 'signin' ? 'text-blue-500' : 'text-white' %>"
+                        class="py-2 px-3 hover:bg-white hover:shadow hover:text-blue-500 transition ease-in-out duration-75 mr-2 rounded <%= activeUrl === 'signin' ? 'bg-white text-blue-500 shadow' : 'text-white' %>"
                     >
                         Sign In
                     </a>
