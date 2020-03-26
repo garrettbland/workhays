@@ -1,0 +1,101 @@
+<div
+x-show.transition.in.opacity.scale.100.duration.300.out.scale.100.opacity.duration.400="showMobileMenu"
+class="h-screen w-screen bg-overlay-500 fixed top-0 left-0 z-40 lg:hidden p-3"
+>
+<div
+    x-show.transition="showMobileMenu"
+    class="bg-white rounded shadow-lg m-3 overflow-x-scroll max-w-lg mx-auto"
+>
+    <div class="flex justify-between items-center p-4 mb-3">
+        <!-- logo -->
+        <a href="/" class="text-lg">
+            <span class="font-light text-gray-600">Work</span
+            ><span class="font-bold">hays</span>
+        </a>
+        <!-- close x -->
+        <button
+            x-on:click="close('showMobileMenu')"
+            class="focus:outline-none"
+        >
+            <i data-feather="x" class="text-red-500"></i>
+        </button>
+    </div>
+    <ul class="flex flex-col mb-3">
+        <li class="px-3">
+            <a
+                href="/"
+                class="flex justify-between items-center block py-3 px-3 rounded-lg hover:bg-gray-100 mb-1 <%= activeUrl === '' ? 'text-blue-500 bg-gray-100' : activeUrl === 'jobs' ? 'text-blue-500 bg-gray-100' : null%>"
+            >
+                Jobs
+                <i data-feather="chevron-right" class=""></i>
+            </a>
+        </li>
+        <li class="px-3">
+            <a
+                href="/employers"
+                class="flex justify-between items-center block py-3 px-3 rounded-lg hover:bg-gray-100 mb-1 <%= activeUrl === 'employers' ? 'text-blue-500 bg-gray-100' : null %>"
+            >
+                Employers
+                <i data-feather="chevron-right" class=""></i>
+            </a>
+        </li>
+        <li class="px-3">
+            <a
+                href="/about"
+                class="flex justify-between items-center block py-3 px-3 rounded-lg hover:bg-gray-100 mb-1 <%= activeUrl === 'about' ? 'text-blue-500 bg-gray-100' : null %>"
+            >
+                About
+                <i data-feather="chevron-right" class=""></i>
+            </a>
+        </li>
+        <li class="px-3">
+            <a
+                href="/contact"
+                class="flex justify-between items-center block py-3 px-3 rounded-lg hover:bg-gray-100 mb-1<%= activeUrl === 'contact' ? 'text-blue-500 bg-gray-100' : null %>"
+            >
+                Contact
+                <i data-feather="chevron-right" class=""></i>
+            </a>
+        </li>
+        <% if (user) { %>
+        <li class="px-3">
+            <a
+                href="/account"
+                class="flex justify-between items-center block py-3 px-3 rounded-lg hover:bg-gray-100 mb-1 <%= activeUrl === 'account' ? 'text-blue-500 bg-gray-100' : null %>"
+            >
+                My Account
+                <i data-feather="chevron-right" class=""></i>
+            </a>
+        </li>
+        <li class="px-3">
+            <a
+                href="/logout"
+                class="flex justify-between items-center block py-3 px-3 rounded-lg hover:bg-gray-100 mb-1"
+            >
+                Logout
+                <i data-feather="lock" class=""></i>
+            </a>
+        </li>
+        <% } else { %>
+        <li class="px-3">
+            <a
+                href="/signup"
+                class="flex justify-between items-center block py-3 px-3 rounded-lg hover:bg-gray-100 mb-1 <%= activeUrl === 'signup' ? 'text-blue-500 bg-gray-100' : null %>"
+            >
+                Sign Up
+                <i data-feather="chevron-right" class=""></i>
+            </a>
+        </li>
+        <li class="px-3">
+            <a
+                href="/signin"
+                class="flex justify-between items-center block py-3 px-3 rounded-lg hover:bg-gray-100 mb-1 <%= activeUrl === 'signin' ? 'text-blue-500 bg-gray-100' : null %>"
+            >
+                Sign In
+                <i data-feather="chevron-right" class=""></i>
+            </a>
+        </li>
+        <% }%>
+    </ul>
+</div>
+</div>
