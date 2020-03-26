@@ -1,17 +1,30 @@
-<% /*
-===========================================================================
-Description: Employer listing page of website. To Do: Params:
-=========================================================================== */
-%> <%- include('../partials/page_start', {title:'Employers'}) %>
+<%- include('../partials/page_start', {title:'Employers', description: 'Browse all of the currently registered employers with Work Hays and contact information.'}) %>
 
-<div class="max-w-4xl mx-auto">
-    <div class="mt-24 px-3 lg:px-0 pb-6">
-        <div class="text-xl font-bold leading-6">
-            📋 Employer Listings
-        </div>
-        <div class="antialiased">
-            Browse all of the currently registered employers with Work Hays.
-        </div>
+<div class="max-w-4xl mx-auto px-4 lg:px-0">
+        <div class="bg-white shadow-md rounded -mt-8 overflow-hidden">
+            <ul>
+                <% employers.forEach(function(employer,index) { %>
+                    <li class="<%= index === 0 ? 'border-t-none' : 'border-t-2' %> border-gray-100 hover:bg-gray-50 hover:text-blue-600 transform transition ease-in-out duration-75 group">
+                        <a href="/employers/<%= employer.id %>" class="block w-full p-4 flex justify-between items-center">
+                            <div class="w-4/5 transform transition ease-in-out duration-150 group-hover:translate-x-1">
+                                <div class="text-xs text-gray-500 leading-none">
+                                    <%= employer.title %>
+                                </div>
+                                <div class="font-bold truncate">
+                                    <%= employer.title %>
+                                </div>
+                            </div>
+                            <div class="flex flex-1 items-center justify-end">
+                                <span class="text-sm antialiased mr-2 hidden md:inline-block">
+                                    
+                                </span>
+                                <i data-feather="arrow-right" class=""></i>
+                            </div>
+                        </a>
+                    </li>
+                <% }) %>
+            </ul>
+        </ul>
     </div>
 </div>
 
