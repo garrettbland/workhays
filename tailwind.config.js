@@ -1,6 +1,10 @@
 module.exports = {
   theme: {
-    extend: {}
+    extend: {
+      spacing: {
+        '0.1': '0.1rem'
+      }
+    }
   },
   variants: {
     translate: ['responsive', 'hover', 'focus', 'active', 'group-hover'],

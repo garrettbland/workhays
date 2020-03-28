@@ -45,7 +45,7 @@
             <% if(current_page <= pages && current_page !== 1) { %>
             <a
                 href="/?page=<%= current_page - 1 %>"
-                class="relative inline-flex items-center px-3 py-2 text-sm font-medium rounded text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-500 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150 shadow"
+                class="relative inline-flex items-center px-3 py-2 text-sm font-medium rounded text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-500 active:bg-gray-100 active:text-gray-700 transition transform ease-in-out duration-150 shadow hover:-translate-y-0.1"
             >
                 Previous
             </a>
@@ -60,7 +60,7 @@
             <% if(current_page < pages) { %>
             <a
                 href="/?page=<%= current_page + 1 %>"
-                class="ml-3 relative inline-flex items-center px-3 py-2 text-sm font-medium rounded text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-500 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150 shadow"
+                class="ml-3 relative inline-flex items-center px-3 py-2 text-sm font-medium rounded text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-500 active:bg-gray-100 active:text-gray-700 transition transform ease-in-out duration-150 shadow hover:-translate-y-0.1"
             >
                 Next
             </a>
@@ -89,7 +89,7 @@
 
             <input placeholder="Your email" class="mr-0 lg:mr-3 mb-3 lg:mb-0 w-full lg:w-2/3 rounded px-3 py-2 shadow focus:outline-none focus:shadow-outline-blue" />
 
-            <button class="w-full lg:w-auto px-3 py-2 text-sm font-medium rounded text-white bg-green-400 focus:outline-none focus:shadow-outline-blue transition ease-in-out duration-150 shadow border border-green-400 transition transform duration-75 ease-in-out hover:-translate-y-1">
+            <button class="w-full lg:w-auto px-3 py-2 text-sm font-medium rounded text-white bg-green-400 focus:outline-none focus:shadow-outline-blue transition ease-in-out duration-150 shadow border border-green-400 transition transform duration-75 ease-in-out hover:-translate-y-0.1">
                 Sign Up
             </button>
 
