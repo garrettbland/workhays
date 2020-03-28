@@ -9,7 +9,10 @@ const purgecss = require('@fullhuman/postcss-purgecss')({
     content: ['./views/**/*.ejs'],
 
     // Include any special characters you're using in this regular expression
-    defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || [],
+    defaultExtractor: content => content.match(/[\w-/.:]+(?<!:)/g) || [],
+
+    // previous tailwind
+    // defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || [],
 })
 
 // get version from version file
