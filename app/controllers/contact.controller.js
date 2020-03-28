@@ -5,7 +5,7 @@ var config = require(path.join(__dirname, '..', 'config', 'config.json'))[env]
 exports.contact_form = async (req, res) => {
     try {
 
-        if (!req.body.first || !req.body.last || !req.body.email || !req.body.phone || !req.body.message) {
+        if (!req.body.first || !req.body.last || !req.body.email || !req.body.message) {
             throw 'All fields must be completed'
         }
 
@@ -34,13 +34,13 @@ exports.contact_form = async (req, res) => {
             console.log(body)
           })
         
-        res.status(200)
-        res.redirect('/')
+        // res.sendStatus(200)
+        res.redirect('/contact?success=true')
         
         
     } catch (err) {
         console.log(err)
-        res.send(404)
-        res.render('error')
+        //res.sendStatus(200)
+        res.redirect('/contact?error=true')
     }
 }
