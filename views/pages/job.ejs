@@ -1,141 +1,109 @@
-<%- include('../partials/page_start', {title:job.title}) %>
+<%- include('../partials/page_start', {title:job.title, description: `Posted ${moment.utc(job.createdAt).local().format('ll')}. Apply for this position at ${job.employer.title} today or contact ${job.employer.contact} for more information.`, paddingBottm: 'pb-20'}) %>
 
-<div class="max-w-4xl mx-auto my-24">
-    <div class="mb-6 px-3 lg:px-0">
-        <a
-            href="/"
-            class="flex items-center text-blue-500 hover:underline text-base"
-        >
-            <div>
-                <i data-feather="arrow-left" class="w-4 h-4"></i>
-            </div>
-            <div class="ml-2">Back to All Listings</div>
-        </a>
-    </div>
-
-    <div
-        class="bg-white rounded-none md:rounded shadow-md w-full overflow-hidden"
-    >
-        <div
-            class="border-b border-gray-200 p-3 flex flex-wrap justify-between items-center"
-        >
-            <div class="w-full md:w-4/5">
-                <div class="text-xl font-bold leading-6">
-                    <%= job.title %>
-                </div>
-                <div class="antialiased mb-3 md:mb-2">
-                    Posted <%= moment.utc(job.createdAt).local().format('ll') %>
-                </div>
-                <div class="flex items-center flex-row flex-wrap">
-                    <% if (job.application_link) { %>
-                    <a
-                        href="<%= job.application_link %>"
-                        target="_blank"
-                        class="flex items-center flex-row justify-center w-full md:w-auto bg-blue-500 text-white hover:bg-blue-600 transition duration-75 ease-in-out rounded px-4 py-2 md:py-1 md:text-sm border border-blue-500 hover:border-blue-600 text-center text-sm md:mr-3 mb-3 md:mb-0"
-                    >
-                        <span>
-                            <i
-                                data-feather="external-link"
-                                class="w-4 h-4 mr-1"
-                            ></i>
-                        </span>
+<div class="max-w-4xl mx-auto px-4 lg:px-0">
+    <div class="-mt-8">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <% if (job.application_link) { %>
+                <a href="<%= job.application_link %>" target="_blank" class="bg-white shadow rounded p-4 overflow-hidden flex flex-row justify-between items-center transition transform ease-in-out duration-150 hover:-translate-y-0.1 group">
+                    <span class="font-medium text-gray-700 group-hover:underline truncate">
                         Apply Online
-                    </a>
-                    <% } %> <% if (job.employer.dataValues.phone) { %>
-                    <a
-                        href="tel:<%= job.employer.dataValues.phone %>"
-                        class="flex items-center flex-row justify-center w-full md:w-auto text-blue-500 hover:bg-blue-500 transition duration-75 ease-in-out rounded px-4 py-2 md:py-1 md:text-sm border border-blue-500 hover:border-blue-500 text-center hover:text-white text-sm md:mr-3 mb-3 md:mb-0"
-                    >
-                        <span>
-                            <i data-feather="phone" class="w-4 h-4 mr-1"></i>
-                        </span>
-                        <span class="flex md:hidden">
-                            Call
-                        </span>
-                        <span class="hidden md:flex">
-                            <%= job.employer.dataValues.phone %>
-                        </span>
-                    </a>
-                    <% } %> <% if (job.employer.dataValues.email) { %>
-                    <a
-                        href="mailto:<%= job.employer.dataValues.email %>"
-                        class="flex items-center flex-row justify-center w-full md:w-auto text-blue-500 hover:bg-blue-500 transition duration-75 ease-in-out rounded px-4 py-2 md:py-1 md:text-sm border border-blue-500 hover:border-blue-500 text-center hover:text-white text-sm md:mr-3 mb-3 md:mb-0"
-                    >
-                        <span>
-                            <i data-feather="mail" class="w-4 h-4 mr-1"></i>
-                        </span>
-                        <span class="flex md:hidden">
-                            Email
-                        </span>
-                        <span class="hidden md:flex">
-                            <%= job.employer.dataValues.email %>
-                        </span>
-                    </a>
-                    <% } %>
-                    <a
-                        href="/employers/<%= job.employer.dataValues.id %>"
-                        class="flex items-center flex-row justify-center w-full md:w-auto text-blue-500 hover:bg-blue-500 transition duration-75 ease-in-out rounded px-4 py-2 md:py-1 md:text-sm border border-blue-500 hover:border-blue-500 text-center hover:text-white text-sm md:mr-3 mb-3 md:mb-0"
-                    >
-                        View Employer
-                        <span>
-                            <i
-                                data-feather="arrow-right"
-                                class="w-4 h-4 ml-1"
-                            ></i>
-                        </span>
-                    </a>
-                </div>
-            </div>
-            <!-- <div class="w-full md:w-1/5 flex justify-end my-6 md:my-0">
-				<a href="#" class="w-full lg:w-auto bg-blue-500 text-white hover:bg-blue-600 transition duration-75 ease-in-out rounded px-6 py-2 border border-blue-500 hover:border-blue-600 text-center">
-					Apply Online
-				</a>
-			</div> -->
+                    </span>
+                    <i data-feather="external-link" class="w-6 h-6 text-indigo-500"></i>
+                </a>
+            <% } %>
+            <% if (job.employer.dataValues.phone) { %>
+                <a href="tel:<%= job.employer.dataValues.phone %>" target="_blank" class="bg-white shadow rounded p-4 overflow-hidden flex flex-row justify-between items-center transition transform ease-in-out duration-150 hover:-translate-y-0.1 group">
+                    <span class="font-medium text-gray-700 group-hover:underline truncate">
+                        <%= job.employer.dataValues.phone %>
+                    </span>
+                    <i data-feather="phone" class="w-6 h-6 text-indigo-500"></i>
+                </a>
+            <% } %>
+
+            <% if (job.employer.dataValues.email) { %>
+                <a href="mailto:<%= job.employer.dataValues.email %>" target="_blank" class="bg-white shadow rounded p-4 overflow-hidden flex flex-row justify-between items-center transition transform ease-in-out duration-150 hover:-translate-y-0.1 group">
+                    <span class="font-medium text-gray-700 group-hover:underline truncate">
+                        <%= job.employer.dataValues.email %>
+                    </span>
+                    <i data-feather="mail" class="w-6 h-6 text-indigo-500"></i>
+                </a>
+            <% } %>
+
+            <a href="/employers/<%= job.employer.dataValues.id %>" target="_blank" class="bg-white shadow rounded p-4 overflow-hidden flex flex-row justify-between items-center transition transform ease-in-out duration-150 hover:-translate-y-0.1 group">
+                <span class="font-medium text-gray-700 group-hover:underline truncate">
+                    View Employer
+                </span>
+                <i data-feather="arrow-right" class="w-6 h-6 text-indigo-500"></i>
+            </a>
+
         </div>
-        <div class="p-3">
-            <div class="flex flex-wrap w-full">
-                <div class="w-full lg:w-1/2 mb-5">
-                    <div class="text-sm leading-5 font-medium text-gray-500">
+    </div>
+</div>
+
+<div class="max-w-4xl mx-auto px-4 lg:px-0 my-8">
+    <div class="grid grid-cols-1 md:grid-cols-6 gap-4">
+        <div class="col-span-1 md:col-span-4 md:pr-4 mb-12 md:mb-0">
+            <label class="text-sm text-gray-500">
+                Description
+            </label>
+            <div class="leading-7 text-gray-900 antialiased">
+                <%- job.description %>
+            </div>
+        </div>
+        <div class="col-span-1 md:col-span-2">
+            <div class="p-4 bg-white rounded shadow">
+                <div class="mb-6">
+                    <label class="text-sm text-gray-500">
                         Position Title
-                    </div>
-                    <div class="mt-1 text-sm leading-5 text-gray-900">
+                    </label>
+                    <div class="text-sm text-gray-900">
                         <%= job.title %>
                     </div>
                 </div>
-                <div class="w-full lg:w-1/2 mb-5">
-                    <div class="text-sm leading-5 font-medium text-gray-500">
-                        Full time / Part Time
-                    </div>
-                    <div class="mt-1 text-sm leading-5 text-gray-900">
+                <div class="mb-6">
+                    <label class="text-sm text-gray-500">
+                        Full Time / Part Time
+                    </label>
+                    <div class="text-sm text-gray-900">
                         <% if(job.job_type === 'full_time') { %>
-                        <span>Full Time</span>
-                        <% } else { %>
-                        <span>Part Time</span>
+                            <span>Full Time</span>
+                            <% } else { %>
+                            <span>Part Time</span>
                         <% } %>
                     </div>
                 </div>
-                <div class="w-full lg:w-1/2 mb-5">
-                    <div class="text-sm leading-5 font-medium text-gray-500">
+                <div class="mb-6">
+                    <label class="text-sm text-gray-500">
                         Employer
-                    </div>
-                    <div class="mt-1 text-sm leading-5 text-gray-900">
-                        <%= job.employer.dataValues.title %>
+                    </label>
+                    <div class="mt-1 text-sm text-gray-900">
+                        <a class="text-blue-600 hover:underline" href="/employers/<%= job.employer.dataValues.id %>">
+                            <%= job.employer.dataValues.title %>
+                        </a>
                     </div>
                 </div>
-                <div class="w-full lg:w-1/2 mb-5">
-                    <div class="text-sm leading-5 font-medium text-gray-500">
+                <div class="mb-6">
+                    <label class="text-sm text-gray-500">
                         Employer Contact
-                    </div>
-                    <div class="mt-1 text-sm leading-5 text-gray-900">
+                    </label>
+                    <div class="mt-1 text-sm text-gray-900">
                         <%= job.employer.dataValues.contact %>
                     </div>
                 </div>
-                <div class="w-full">
-                    <div class="text-sm leading-5 font-medium text-gray-500">
-                        Description
+                <div class="mb-6">
+                    <label class="text-sm text-gray-500">
+                        Created On
+                    </label>
+                    <div class="mt-1 text-sm text-gray-900">
+                        <%= moment.utc(job.createdAt).local().format('ll') %>
                     </div>
-                    <div class="mt-1 text-base leading-6 text-gray-900">
-                        <%- job.description %>
+                </div>
+                <div class="">
+                    <label class="text-sm text-gray-500">
+                        Last Updated
+                    </label>
+                    <div class="mt-1 text-sm leading-5 text-gray-900">
+                        <%= moment.utc(job.updatedAt).local().format('ll') %>
                     </div>
                 </div>
             </div>
