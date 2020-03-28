@@ -2,12 +2,32 @@ var Models = require('../models')
 
 exports.list_employers = async (req, res) => {
   try {
-    const employers = await Models.employer.findAll()
+
+    // total results limit
+    const employer_limit = 10
+
+    const page = parseInt(req.query.page) - 1 || 0
+
+    console.log(`employer limit => ${employer_limit}`)
+
+    const employers = await Models.employer.findAndCountAll({
+      where: {},
+      order: [
+        ['title', 'ASC']
+      ],
+      limit: employer_limit,
+      offset: parseInt(page * employer_limit)
+    })
+
+    // const employers = await Models.employer.findAll()
 
     if (!employers) throw 'Employers not found'
 
     res.render('pages/employers', {
-      employers: employers
+      employers: employers.rows,
+      count: employers.count,
+      pages: Math.ceil(employers.count / employer_limit),
+      current_page: page + 1,
     })
   } catch (err) {
     // res.send(err)

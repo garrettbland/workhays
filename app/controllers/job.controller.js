@@ -3,6 +3,7 @@ var moment = require('moment')
 
 exports.list_jobs = async (req, res) => {
   try {
+
     // total results limit
     const job_limit = 10
 
@@ -14,6 +15,9 @@ exports.list_jobs = async (req, res) => {
       where: {
         status: 'active'
       },
+      order: [
+        ['createdAt', 'DESC']
+      ],
       limit: job_limit,
       offset: parseInt(page * job_limit),
       include: Models.employer
