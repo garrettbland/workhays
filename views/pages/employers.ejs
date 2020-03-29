@@ -5,7 +5,7 @@
             <ul>
                 <% employers.forEach(function(employer,index) { %>
                     <% if(employer.title) { %>
-                        <li class="<%= index === 0 ? 'border-t-none' : 'border-t-2' %> border-gray-100 hover:bg-gray-50 hover:text-blue-600 transform transition ease-in-out duration-75 group">
+                        <li class="<%= index === 0 ? 'border-t-none' : 'border-t-2' %> border-gray-100 hover:bg-gray-50 transform transition ease-in-out duration-75 group">
                             <a href="/employers/<%= employer.id %>" class="block w-full p-4 flex justify-between items-center">
                                 <div class="w-8 h-8 bg-gray-300 bg-center bg-cover rounded-full shadow mr-2 items-center justify-center text-center flex text-sm font-bold text-white" 
                                 style="<%= employer.logo_url !== '' ? `background-image:url('${employer.logo_url}')` : 'background-image: linear-gradient( 90deg, rgba(107,52,255,1) 16.5%, rgba(51,159,247,1) 81% );'%>">
@@ -15,7 +15,7 @@
                                     <div class="text-xs text-gray-500 leading-none">
                                         <%= employer.contact %>
                                     </div>
-                                    <div class="font-bold truncate">
+                                    <div class="font-bold truncate group-hover:underline">
                                         <%= employer.title %>
                                     </div>
                                 </div>
