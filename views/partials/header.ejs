@@ -5,8 +5,8 @@
     style="background-image: linear-gradient( 90deg,  rgba(107,52,255,1) 16.5%, rgba(51,159,247,1) 81% );"
 >
     <div class="max-w-4xl mx-auto pt-20 <%= paddingBottom ? paddingBottom : 'pb-14' %> px-4 lg:px-0">
-        <% if (req.query.from_jobs_page) { %>
-            <a href="/?page=<%= req.query.from_jobs_page %>">
+        <% if (req.query.from) { %>
+            <a href="<%= req.query.from %>">
                 <div class="relative inline-flex items-center px-3 py-2 text-sm font-medium rounded bg-white transition transform ease-in-out duration-150 shadow hover:-translate-y-0.1 mb-4" style="background: linear-gradient(90deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.2) 100%);">
                     <i data-feather="arrow-left" class=""></i> 
                     Back
