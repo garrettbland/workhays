@@ -13,8 +13,12 @@ exports.create_subscriber = async (req, res) => {
         if (!validateEmail(req.body.email)) throw 'Not a valid email address'
         
         // email is valid
-        console.log('create email subscriber')
-        console.log(req.body.email)
+        const newSubscriber = await Models.subscriber.create({
+            email: req.body.email,
+        })
+
+        if (!newSubscriber) throw 'Valid email address but somewhen went wrong creating subscriber'
+
         res.status(200).send({
             type: 'success',
             message: 'successfully subscribed'

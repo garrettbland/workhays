@@ -5,7 +5,7 @@
         <ul>
             <% jobs.forEach(function(job,index) { %>
                 <li class="<%= index === 0 ? 'border-t-none' : 'border-t-2' %> border-gray-100 hover:bg-gray-50 transform transition ease-in-out duration-75 group">
-                    <a href="/jobs/<%= job.id %>" class="block w-full p-4 flex justify-between items-center">
+                    <a href="/jobs/<%= job.id %>?from_jobs_page=<%= current_page %>" class="block w-full p-4 flex justify-between items-center">
                         <div class="w-4/5 transform transition ease-in-out duration-150 group-hover:translate-x-1">
                             <div class="text-xs text-gray-500 leading-none">
                                 <%= job.employer.title %>

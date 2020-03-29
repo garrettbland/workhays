@@ -12,7 +12,7 @@
                 </a>
             <% } %>
             <% if (job.employer.dataValues.phone) { %>
-                <a href="tel:<%= job.employer.dataValues.phone %>" target="_blank" class="bg-white shadow rounded p-4 overflow-hidden flex flex-row justify-between items-center transition transform ease-in-out duration-150 hover:-translate-y-0.1 group">
+                <a href="tel:<%= job.employer.dataValues.phone %>" class="bg-white shadow rounded p-4 overflow-hidden flex flex-row justify-between items-center transition transform ease-in-out duration-150 hover:-translate-y-0.1 group">
                     <span class="font-medium text-gray-700 group-hover:underline truncate">
                         <%= job.employer.dataValues.phone %>
                     </span>
@@ -21,7 +21,7 @@
             <% } %>
 
             <% if (job.employer.dataValues.email) { %>
-                <a href="mailto:<%= job.employer.dataValues.email %>" target="_blank" class="bg-white shadow rounded p-4 overflow-hidden flex flex-row justify-between items-center transition transform ease-in-out duration-150 hover:-translate-y-0.1 group">
+                <a href="mailto:<%= job.employer.dataValues.email %>" class="bg-white shadow rounded p-4 overflow-hidden flex flex-row justify-between items-center transition transform ease-in-out duration-150 hover:-translate-y-0.1 group">
                     <span class="font-medium text-gray-700 group-hover:underline truncate">
                         <%= job.employer.dataValues.email %>
                     </span>
@@ -29,7 +29,7 @@
                 </a>
             <% } %>
 
-            <a href="/employers/<%= job.employer.dataValues.id %>" target="_blank" class="bg-white shadow rounded p-4 overflow-hidden flex flex-row justify-between items-center transition transform ease-in-out duration-150 hover:-translate-y-0.1 group">
+            <a href="/employers/<%= job.employer.dataValues.id %>" class="bg-white shadow rounded p-4 overflow-hidden flex flex-row justify-between items-center transition transform ease-in-out duration-150 hover:-translate-y-0.1 group">
                 <span class="font-medium text-gray-700 group-hover:underline truncate">
                     View Employer
                 </span>
