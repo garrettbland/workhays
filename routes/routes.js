@@ -29,6 +29,7 @@ var authController = require('../app/controllers/auth.controller')
 var accountController = require('../app/controllers/account.controller')
 var employerController = require('../app/controllers/employer.controller')
 var contactController = require('../app/controllers/contact.controller')
+var subscriberController = require('../app/controllers/subscriber.controller')
 
 /*
 
@@ -105,5 +106,14 @@ router.post('/employers/edit/:employerId', employerController.update_employer)
 router.get("*", (req,res) => {
   res.status(404).render('error')
 })
+
+
+/*
+
+API Routes
+
+*/
+
+router.post('/api/subscribe', subscriberController.create_subscriber)
 
 module.exports = router
