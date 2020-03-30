@@ -29,7 +29,7 @@
                 </a>
             <% } %>
 
-            <a href="/employers/<%= job.employer.dataValues.id %>" class="bg-white shadow rounded p-4 overflow-hidden flex flex-row justify-between items-center transition transform ease-in-out duration-150 hover:-translate-y-0.1 group">
+            <a href="/employers/<%= job.employer.dataValues.id %>?from=<%= req.originalUrl %>" class="bg-white shadow rounded p-4 overflow-hidden flex flex-row justify-between items-center transition transform ease-in-out duration-150 hover:-translate-y-0.1 group">
                 <span class="font-medium text-gray-700 group-hover:underline truncate">
                     View Employer
                 </span>
@@ -77,7 +77,7 @@
                         Employer
                     </label>
                     <div class="mt-1 text-sm text-gray-900">
-                        <a class="text-blue-600 hover:underline" href="/employers/<%= job.employer.dataValues.id %>">
+                        <a class="text-blue-600 hover:underline" href="/employers/<%= job.employer.dataValues.id %>?from=<%= req.originalUrl %>">
                             <%= job.employer.dataValues.title %>
                         </a>
                     </div>
