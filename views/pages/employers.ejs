@@ -48,7 +48,7 @@
             <div>
                 <% if(current_page <= pages && current_page !== 1) { %>
                 <a
-                    href="/?page=<%= current_page - 1 %>"
+                    href="/employers?page=<%= current_page - 1 %>"
                     class="relative inline-flex items-center px-3 py-2 text-sm font-medium rounded text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-500 active:bg-gray-100 active:text-gray-700 transition transform ease-in-out duration-150 shadow hover:-translate-y-0.1"
                 >
                     Previous
@@ -63,7 +63,7 @@
                 <% } %> 
                 <% if(current_page < pages) { %>
                 <a
-                    href="/?page=<%= current_page + 1 %>"
+                    href="/employers?page=<%= current_page + 1 %>"
                     class="ml-3 relative inline-flex items-center px-3 py-2 text-sm font-medium rounded text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-500 active:bg-gray-100 active:text-gray-700 transition transform ease-in-out duration-150 shadow hover:-translate-y-0.1"
                 >
                     Next

@@ -4,7 +4,7 @@ exports.list_employers = async (req, res) => {
   try {
 
     // total results limit
-    const employer_limit = 10
+    const employer_limit = 20
 
     const page = parseInt(req.query.page) - 1 || 0
 
