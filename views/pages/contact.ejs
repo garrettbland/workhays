@@ -33,6 +33,20 @@ Description: Employer Inquiry page to request access to site. To Do: Params:
 		</div>
 	</div>
 
+	<div x-show="showErrorEmailMessage" class="mb-8 p-4 bg-red-500 rounded shadow text-white flex items-center mx-4 md:mx-0" style="display:none;">
+		<div class="mr-4 ">
+			<i data-feather="alert-circle" class="w-5 h-5"></i>
+		</div>
+		<div>
+			<p class="font-bold leading-5">
+				Error
+			</p>
+			<p class="text-base leading-tight">
+				Please provide a valid email address
+			</p>
+		</div>
+	</div>
+
 	<form x-on:submit="return validateForm()" method="post" action="/contact">
 		<div class="grid grid-cols-1 md:grid-cols-2 gap-4 px-4 md:px-0">
 			<div>
@@ -82,18 +96,30 @@ Description: Employer Inquiry page to request access to site. To Do: Params:
 		return {
 			showSuccessMessage: false,
 			showErrorMessage: false,
+			showErrorEmailMessage: false,
 			form: {
 				first: '',
 				last: '',
 				email: '',
 				message: ''
 			},
+			validateEmail: function (email) {
+                var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                return re.test(email);
+            },
 			validateForm: function () {
 
 				var fields = this.form
 				if(fields.first !== '' && fields.last !== '' && fields.email !== '' && fields.message !== '') {
-					return true
+					if(this.validateEmail(fields.email)){
+						return true
+					} else {
+						this.showErrorEmailMessage = true
+						this.showErrorMessage = false
+						return false
+					}
 				} else {
+					this.showErrorEmailMessage = false
 					this.showErrorMessage = true
 					return false
 				}
