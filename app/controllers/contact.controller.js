@@ -6,6 +6,14 @@ var config = require(path.join(__dirname, '..', 'config', 'config.json'))[env]
 exports.contact_form = async (req, res) => {
     try {
 
+        // honey pot - check if hidden honey pot checkbox equals something other than 0
+        if (req.body.contact_me_by_phone_only) {
+            // the hidden field was checked, treat as spambot
+            // Eventually might want to log the spam IP and block it, for now just throw an error
+            console.log('honey pot field was filled ===>')
+            throw 'Something went wrong'
+        }
+
         if (!req.body.first || !req.body.last || !req.body.email || !req.body.message) {
             throw 'All fields must be completed'
         }
@@ -49,7 +57,8 @@ exports.contact_form = async (req, res) => {
                 </ul>
             </p>`
           }
-      
+          
+        // send the email
           mailgun.messages().send(data, function (error, body) {
             console.log(body)
           })
