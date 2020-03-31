@@ -1,117 +1,64 @@
-<%- include('../partials/page_start', {title: employer.title}) %>
+<%- include('../partials/page_start', {title: employer.title, description: `Learn more about ${employer.title }, visit their website, or contact them today.`}) %>
 
-<div class="max-w-4xl mx-auto my-24">
-    <div class="mb-6 px-3 lg:px-0">
-        <a
-            href="/employers"
-            class="flex items-center text-blue-500 hover:underline text-base"
-        >
-            <div>
-                <i data-feather="arrow-left" class="w-4 h-4"></i>
+<div class="max-w-4xl mx-auto px-4 lg:px-0">
+    <div class="grid grid-cols-1 md:grid-cols-6 gap-4">
+        <div class="col-span-1 md:col-span-4 md:pr-4 mb-12 md:mb-0 order-3 md:order-1">
+            <div class="w-48 h-48 bg-white bg-center bg-cover rounded-full shadow border-2 border-white items-center justify-center text-center flex mt-8 mx-auto md:ml-0 md:-mt-8 mb-8" style="background-image:url('<%= employer.logo_url %>')">
             </div>
-            <div class="ml-2">Back to Employers</div>
-        </a>
-    </div>
-
-    <div
-        class="bg-white rounded-none md:rounded shadow-md w-full overflow-hidden"
-    >
-        <div
-            class="p-4 bg-cover h-32 bg-center bg-no-repeat"
-            style="background-image: url('https://images.unsplash.com/photo-1562178240-396a314759b2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80')"
-        >
-            <div
-                class="w-24 h-24 rounded-full shadow-md overflow-full bg-gray-100 bg-cover bg-center bg-repeat-none"
-                style="background-image: url('https://www.logodesignlove.com/images/monograms/tesla-symbol.jpg')"
-            ></div>
+            <label class="text-sm text-gray-500">
+                About
+            </label>
+            <div class="leading-7 text-gray-900 antialiased">
+                <%- employer.description %>
+            </div>
         </div>
-        <div
-            class="border-b border-gray-200 p-3 flex flex-wrap justify-between items-center"
-        >
-            <div class="w-full md:w-4/5">
-                <div class="text-xl font-bold leading-6">
-                    <%= employer.title %>
+        <div class="col-span-1 md:col-span-2 -mt-8 order-1 md:order-3">
+            <div class="p-4 bg-white rounded shadow">
+                <div class="">
+                    <label class="text-sm text-gray-500">
+                        Employer Contact
+                    </label>
+                    <div class="text-sm text-gray-900">
+                        <%= employer.contact %>
+                    </div>
                 </div>
-                <div class="antialiased mb-3 md:mb-2">
-                    Employer Contact: <%= employer.contact %>
-                </div>
-                <div class="flex items-center flex-row flex-wrap">
-                    <% if (employer.phone) { %>
-                    <a
-                        href="tel:<%= employer.phone %>"
-                        class="flex items-center flex-row justify-center w-full md:w-auto text-blue-500 hover:bg-blue-500 transition duration-75 ease-in-out rounded px-3 py-2 md:py-1 md:text-sm border border-blue-500 hover:border-blue-500 text-center hover:text-white text-sm md:mr-3 mb-3 md:mb-0"
-                    >
-                        <span>
-                            <i data-feather="phone" class="w-4 h-4 mr-1"></i>
-                        </span>
-                        <span class="flex md:hidden">
-                            Call
-                        </span>
-                        <span class="hidden md:flex">
+                <% if (employer.phone) { %>
+                <div class="mt-6">
+                    <label class="text-sm text-gray-500">
+                        Phone
+                    </label>
+                    <div class="text-sm text-gray-900">
+                        <a href="tel:<%= employer.phone %>" class="text-blue-600 hover:underline">
                             <%= employer.phone %>
-                        </span>
-                    </a>
-                    <% } %> <% if (employer.email) { %>
-                    <a
-                        href="mailto:<%= employer.email %>"
-                        class="flex items-center flex-row justify-center w-full md:w-auto text-blue-500 hover:bg-blue-500 transition duration-75 ease-in-out rounded px-3 py-2 md:py-1 md:text-sm border border-blue-500 hover:border-blue-500 text-center hover:text-white text-sm md:mr-3 mb-3 md:mb-0"
-                    >
-                        <span>
-                            <i data-feather="mail" class="w-4 h-4 mr-1"></i>
-                        </span>
-                        <span class="flex md:hidden">
+                        </a>
+                    </div>
+                </div>
+                <% } %>
+                <% if (employer.email) { %>
+                    <div class="mt-6">
+                        <label class="text-sm text-gray-500">
                             Email
-                        </span>
-                        <span class="hidden md:flex">
-                            <%= employer.email %>
-                        </span>
-                    </a>
-                    <% } %> <% if (employer.website_url) { %>
-                    <a
-                        target="_blank"
-                        href="<%= employer.website_url %>"
-                        class="flex items-center flex-row justify-center w-full md:w-auto text-blue-500 hover:bg-blue-500 transition duration-75 ease-in-out rounded px-4 py-2 md:py-1 md:text-sm border border-blue-500 hover:border-blue-500 text-center hover:text-white text-sm md:mr-3 mb-3 md:mb-0"
-                    >
-                        <span>
-                            <svg
-                                class="w-4 h-4 mr-1"
-                                viewBox="0 0 24 24"
-                                width="24"
-                                height="24"
-                                stroke="currentColor"
-                                stroke-width="1.4"
-                                fill="none"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                            >
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <line x1="2" y1="12" x2="22" y2="12"></line>
-                                <path
-                                    d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
-                                ></path>
-                            </svg>
-                        </span>
-                        <span class="flex md:hidden">
-                            Visit Website
-                        </span>
-                        <span class="hidden md:flex">
-                            <%= employer.website_url %>
-                        </span>
-                    </a>
-                    <% } %>
-                </div>
-            </div>
-        </div>
-        <div class="p-3">
-            <div class="flex flex-wrap w-full">
-                <div class="w-full">
-                    <div class="text-sm leading-5 font-medium text-gray-500">
-                        About Us
+                        </label>
+                        <div class="text-sm text-gray-900">
+                            <a href="mailto:<%= employer.email %>" class="text-blue-600 hover:underline">
+                                <%= employer.email %>
+                            </a>
+                        </div>
                     </div>
-                    <div class="mt-1 text-base leading-6 text-gray-900">
-                        <p><%- employer.description %></p>
+                <% }%>
+                
+                <% if (employer.website_url) { %>
+                    <div class="mt-6">
+                        <label class="text-sm text-gray-500">
+                            Website
+                        </label>
+                        <div class="text-sm text-gray-900 truncate">
+                            <a href="<%= employer.website_url %>" target="_blank" class="text-blue-600 hover:underline">
+                                <%= employer.website_url %>
+                            </a>
+                        </div>
                     </div>
-                </div>
+                <% }%>
             </div>
         </div>
     </div>
