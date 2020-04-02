@@ -53,7 +53,7 @@ router.route('/signin')
   .get(authController.signin)
   .post(passport.authenticate('local-signin', {
     successRedirect: '/account',
-    failureRedirect: '/signin'
+    failureRedirect: '/signin',
   }))
 router.route('/signup')
   .get(authController.signup)

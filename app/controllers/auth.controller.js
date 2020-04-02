@@ -7,7 +7,7 @@ var bCrypt = require('bcrypt-nodejs')
 
 exports.signup = function (req, res) {
     res.render('pages/signup', {
-        message: req.flash('loginMessage'),
+        message: req.flash('error'),
     })
 }
 

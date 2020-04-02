@@ -30,12 +30,13 @@ module.exports = function (passport, user, employer) {
                 }).then(function (user) {
                     if (user) {
                         console.log('email is already taken')
+                        
                         return done(
                             null,
                             false,
                             req.flash(
-                                'loginMessage',
-                                'This email is already in use'
+                                'error',
+                                'Email is already in use'
                             )
                         )
                     } else {
