@@ -19,7 +19,7 @@ exports.signin = function (req, res) {
 
 exports.logout = function (req, res) {
     req.session.destroy(function (err) {
-        res.redirect('/')
+        res.redirect('/signin')
     })
 }
 
@@ -76,7 +76,7 @@ exports.password_reset = async (req, res) => {
         res.status(200)
         req.flash(
             'message',
-            'An email has been sent to your account with instructions'
+            'An email has been sent to your email account with instructions'
         )
         res.redirect('/password-reset')
     } catch (err) {
@@ -156,8 +156,7 @@ exports.change_password = async (req, res) => {
 
         if (updated_user) {
             res.status(200)
-            req.flash('loginMessage', 'Password updated successfully')
-            res.redirect('/signin')
+            res.redirect('/signin?password_update=true')
         }
     } catch (err) {
         console.log(err.message)

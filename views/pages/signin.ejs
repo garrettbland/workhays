@@ -1,9 +1,9 @@
 <%- include('../partials/page_start', {title:'Sign In', description: 'Sign in to Work Hays to manage your job openings.'}) %>
 
-<div x-data="signin()" class="max-w-2xl mx-auto mt-8">
+<div x-data="signin()" x-init="searchUrlParameters" class="max-w-2xl mx-auto mt-8">
 
 	<div class="leading-7 text-gray-900 antialiased mb-8 px-4 md:px-0">
-		Dont't have an account? <a href="/signup" class="text-blue-500 hover:underline">Click here</a> to sign up as an employer.
+		Don't have an account? <a href="/signup" class="text-blue-500 hover:underline">Click here</a> to sign up as an employer.
 	</div>
 
 	<% if(message.length > 0) { %>
@@ -50,6 +50,20 @@
 		</div>
 	</div>
 
+	<div x-show="showPasswordUpdatedMessage" class="mb-8 p-4 bg-green-400 rounded shadow text-white flex items-center mx-4 md:mx-0" style="display:none;">
+		<div class="mr-4 ">
+			<i data-feather="alert-circle" class="w-5 h-5"></i>
+		</div>
+		<div>
+			<p class="font-bold leading-5">
+				Success
+			</p>
+			<p class="text-base leading-tight">
+				Your password has been updated.
+			</p>
+		</div>
+	</div>
+
 	<form x-on:submit="return validateForm()" method="post" action="/signin">
 		<div class="grid grid-cols-1 md:grid-cols-2 gap-4 px-4 md:px-0">
 			<div>
@@ -86,6 +100,7 @@
 			showSuccessMessage: false,
 			showErrorMessage: false,
 			showErrorEmailMessage: false,
+			showPasswordUpdatedMessage: false,
 			form: {
 				email: '',
 				password: ''
@@ -111,6 +126,15 @@
 					return false
 				}
 
+			},
+			searchUrlParameters: function () {
+				var url = new URL(window.location.href)
+				var successMessage = url.searchParams.get("password_update")
+
+				// if success
+				if(successMessage) {
+					this.showPasswordUpdatedMessage = true
+				}
 			}
 		}
 	}
