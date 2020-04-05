@@ -35,7 +35,7 @@ exports.index = async (req, res) => {
 
         console.log('======> EMPLOYER JOBS =====>')
 
-        res.render('pages/private/account', {
+        res.render('pages/private/dashboard', {
             employer: employer.dataValues,
             jobs: formattedJobs,
             message: req.flash('accountMessage'),
@@ -44,6 +44,75 @@ exports.index = async (req, res) => {
         console.log('Error in list_jobs')
         console.log(err)
         res.status(404)
+        res.render('error')
+    }
+}
+
+exports.jobs = async (req, res) => {
+    try {
+
+        // get jobs
+
+        // get employer
+        const employer = await Models.employer.findOne({
+            where: {
+                user_id: req.user.id,
+            },
+        })
+
+        // get employers jobs
+        const jobs = await Models.job.findAll({
+            where: {
+                employer_id: employer.id,
+                [Op.or]: [{ status: 'active' }, { status: 'inactive' }],
+            },
+            order: [
+                ['createdAt', 'DESC']
+            ],
+        })
+
+        if (!jobs) throw 'Jobs not found'
+
+        res.render('pages/private/jobs', {
+            jobs: jobs
+        })
+
+
+    } catch (err) {
+        console.log(err)
+        res.render('error')
+    }
+}
+
+exports.business = async (req, res) => {
+    try {
+
+        // get employer
+        const employer = await Models.employer.findOne({
+            where: {
+                user_id: req.user.id,
+            },
+        })
+
+        res.render('pages/private/business', {
+            employer: employer.dataValues
+        })
+
+    } catch (err) {
+        console.log(err)
+        res.render('error')
+    }
+}
+
+exports.profile = async (req, res) => {
+    try {
+
+        res.render('pages/private/profile', {
+            
+        })
+
+    } catch (err) {
+        console.log(err)
         res.render('error')
     }
 }

@@ -1,4 +1,16 @@
-<%- include('../../partials/page_start', {title: 'Account'}) %>
+<%- include('../../partials/page_start', {title: 'Dashboard', description: 'Manage job openings, business settings, and more.'}) %>
+
+<div class="max-w-4xl mx-auto mt-12">
+	<div class="grid grid-cols-1 md:grid-cols-8 gap-4">
+		<%- include('../../partials/admin_sidebar') %>
+		<div class="col-span-1 md:col-span-6 bg-blue-500">
+			Content
+		</div>
+	</div>
+</div>
+
+
+
 
 <main class="flex-1 mx-auto pt-32 container max-w-6xl p-12 bg-gray-200 shadow-xl">
 	<a href="/" class="flex w-1/4 mb-4 flex-row items-center text-blue-500 hover:text-blue-400 text-base">

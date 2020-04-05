@@ -176,7 +176,7 @@ exports.change_email = async (req, res) => {
 
         if (user) {
             req.flash('accountMessage', 'Email is already in use')
-            res.redirect('/account')
+            res.redirect('/admin/dashboard')
         }
 
         console.log('changing email! =====>')
@@ -194,11 +194,11 @@ exports.change_email = async (req, res) => {
 
         if (!updated_user) {
             req.flash('accountMessage', 'Email not updated')
-            res.redirect('/account')
+            res.redirect('/admin/dashboard')
         }
 
         req.flash('accountMessage', 'Email updated successfully')
-        res.redirect('/account')
+        res.redirect('/admin/dashboard')
     } catch (err) {
         console.log('Error in change email')
         console.log(err)

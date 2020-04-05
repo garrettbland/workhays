@@ -51,13 +51,13 @@ router.get('/login', (req, res) => res.render('pages/public/login'))
 router.route('/signin')
   .get(authController.signin)
   .post(passport.authenticate('local-signin', {
-    successRedirect: '/account',
+    successRedirect: '/admin/dashboard',
     failureRedirect: '/signin',
   }))
 router.route('/signup')
   .get(authController.signup)
   .post(passport.authenticate('local-signup', {
-    successRedirect: '/account',
+    successRedirect: '/admin/dashboard',
     failureRedirect: '/signup'
   }))
 router.route('/password-reset')
@@ -78,7 +78,11 @@ router.get('/logout', authController.logout)
 Private Routes
 
 */
-router.get('/account', middleware.isLoggedIn, accountController.index)
+router.get('/admin/dashboard', middleware.isLoggedIn, accountController.index)
+router.get('/admin/jobs', middleware.isLoggedIn, accountController.jobs)
+router.get('/admin/business', middleware.isLoggedIn, accountController.business)
+router.get('/admin/profile', middleware.isLoggedIn, accountController.profile)
+
 router.get(
   '/job-listing-archive',
   middleware.isLoggedIn,

@@ -60,10 +60,10 @@ class="h-screen w-screen bg-overlay-500 fixed top-0 left-0 z-40 lg:hidden p-3" s
         <% if (user) { %>
         <li class="px-3">
             <a
-                href="/account"
-                class="flex justify-between items-center block py-3 px-3 rounded-lg hover:bg-gray-100 mb-1 <%= activeUrl === 'account' ? 'text-blue-500 bg-gray-100' : null %>"
+                href="/admin/dashboard"
+                class="flex justify-between items-center block py-3 px-3 rounded-lg hover:bg-gray-100 mb-1 <%= activeUrl === 'admin' ? 'text-blue-500 bg-gray-100' : null %>"
             >
-                My Account
+                Account
                 <i data-feather="chevron-right" class=""></i>
             </a>
         </li>
