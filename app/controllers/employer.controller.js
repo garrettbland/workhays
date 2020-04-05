@@ -23,7 +23,7 @@ exports.list_employers = async (req, res) => {
 
     if (!employers) throw 'Employers not found'
 
-    res.render('pages/employers', {
+    res.render('pages/public/employers', {
       employers: employers.rows,
       count: employers.count,
       pages: Math.ceil(employers.count / employer_limit),
@@ -44,7 +44,7 @@ exports.get_employer = async (req, res) => {
 
     if (!employer) throw 'Employer not found'
 
-    res.render('pages/employer', {
+    res.render('pages/public/employer', {
       req: req,
       employer: employer.dataValues
     })

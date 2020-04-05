@@ -39,16 +39,15 @@ Public Routes
 router.get('/', jobController.list_jobs)
 router.get('/jobs/:jobId', jobController.get_job)
 router.route('/contact')
-  .get((req, res) => res.render('pages/contact'))
+  .get((req, res) => res.render('pages/public/contact'))
   .post(contactController.contact_form)
-router.get('/events', (req, res) => res.render('pages/events'))
-router.get('/privacy', (req, res) => res.render('pages/privacy'))
+router.get('/privacy', (req, res) => res.render('pages/public/privacy'))
 router.get('/employers', employerController.list_employers)
 router.get('/employers/:employerId', employerController.get_employer)
-router.get('/about', (req, res) => res.render('pages/about'))
-router.get('/help', (req, res) => res.render('pages/help'))
-router.get('/terms', (req, res) => res.render('pages/terms'))
-router.get('/login', (req, res) => res.render('pages/login'))
+router.get('/about', (req, res) => res.render('pages/public/about'))
+router.get('/help', (req, res) => res.render('pages/public/help'))
+router.get('/terms', (req, res) => res.render('pages/public/terms'))
+router.get('/login', (req, res) => res.render('pages/public/login'))
 router.route('/signin')
   .get(authController.signin)
   .post(passport.authenticate('local-signin', {
@@ -63,7 +62,7 @@ router.route('/signup')
   }))
 router.route('/password-reset')
   .get((req, res) => {
-    res.render('pages/passwordreset', {
+    res.render('pages/public/passwordreset', {
       message: req.flash('message')
     })
   })
@@ -86,7 +85,7 @@ router.get(
   accountController.list_archived_jobs
 )
 router.get('/job-listing-new', middleware.isLoggedIn, function (req, res) {
-  res.render('pages/joblistingnew')
+  res.render('pages/private/joblistingnew')
 })
 router.get(
   '/jobs/edit/:jobId',

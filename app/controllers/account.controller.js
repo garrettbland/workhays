@@ -35,7 +35,7 @@ exports.index = async (req, res) => {
 
         console.log('======> EMPLOYER JOBS =====>')
 
-        res.render('pages/account', {
+        res.render('pages/private/account', {
             employer: employer.dataValues,
             jobs: formattedJobs,
             message: req.flash('accountMessage'),
@@ -75,7 +75,7 @@ exports.edit_job = async (req, res) => {
         }
 
         if (job) {
-            res.render('pages/joblistingedit', {
+            res.render('pages/private/joblistingedit', {
                 job: job.dataValues,
                 enabled: enabled,
             })
@@ -118,7 +118,7 @@ exports.list_archived_jobs = async (req, res) => {
         console.log('======> EMPLOYER JOBS =====>')
         console.log(jobs)
 
-        res.render('pages/joblistingarchive', {
+        res.render('pages/private/joblistingarchive', {
             jobs: formattedJobs,
         })
     } catch (err) {

@@ -1,13 +1,9 @@
-<%- include('../partials/page_start', {title: 'Sign Up', description: 'Register today as an employer to post job openings and contact information to Work Hays.'}) %>
+<%- include('../../partials/page_start', {title:'Sign In', description: 'Sign in to Work Hays to manage your job openings.'}) %>
 
-<div x-data="signup()" class="max-w-2xl mx-auto mt-8">
-
-	<div class="leading-7 text-gray-900 antialiased mb-8 px-4 md:px-0">
-		Please fill out the following form and submit to request account access. Once submitted, we will review your information and get your new account verified. If you have questions, please <a class="text-blue-500 hover:underline" href="/contact">contact us</a>.
-	</div>
+<div x-data="signin()" x-init="searchUrlParameters" class="max-w-2xl mx-auto mt-8">
 
 	<div class="leading-7 text-gray-900 antialiased mb-8 px-4 md:px-0">
-		Already have an account? <a href="/signin" class="text-blue-500 hover:underline">Click here</a> to sign in.
+		Don't have an account? <a href="/signup" class="text-blue-500 hover:underline">Click here</a> to sign up as an employer.
 	</div>
 
 	<% if(message.length > 0) { %>
@@ -54,30 +50,31 @@
 		</div>
 	</div>
 
-	<form x-on:submit="return validateForm()" method="post" action="/signup">
-		<input type="checkbox" name="contact_me_by_email_only" value="1" style="display:none !important" tabindex="-1" autocomplete="off">
+	<div x-show="showPasswordUpdatedMessage" class="mb-8 p-4 bg-green-400 rounded shadow text-white flex items-center mx-4 md:mx-0" style="display:none;">
+		<div class="mr-4 ">
+			<i data-feather="alert-circle" class="w-5 h-5"></i>
+		</div>
+		<div>
+			<p class="font-bold leading-5">
+				Success
+			</p>
+			<p class="text-base leading-tight">
+				Your password has been updated.
+			</p>
+		</div>
+	</div>
+
+	<form x-on:submit="return validateForm()" method="post" action="/signin">
 		<div class="grid grid-cols-1 md:grid-cols-2 gap-4 px-4 md:px-0">
-			<div>
-				<label class="text-sm text-gray-600 mb-2">
-					* First Name
-				</label>
-				<input name="first_name" x-model="form.first" class="mr-0 mb-3 w-full rounded px-3 py-2 shadow focus:outline-none focus:shadow-outline-blue" type="text" placeholder="Jane" />
-			</div>
-			<div>
-				<label class="text-sm text-gray-600 mb-2">
-					* Last Name
-				</label>
-				<input name="last_name" x-model="form.last" class="mr-0 mb-3 w-full rounded px-3 py-2 shadow focus:outline-none focus:shadow-outline-blue" type="text" placeholder="Doe" />
-			</div>
 			<div>
 				<label class="text-sm text-gray-600 mb-2">
 					* Email Address
 				</label>
-				<input name="email" x-model="form.email" class="mr-0 mb-2 w-full rounded px-3 py-2 shadow focus:outline-none focus:shadow-outline-blue" type="email" placeholder="jane@example.com" />
+				<input name="email" x-model="form.email" class="mr-0 mb-3 w-full rounded px-3 py-2 shadow focus:outline-none focus:shadow-outline-blue" type="email" placeholder="jane@example.com" />
 			</div>
 			<div>
 				<label class="text-sm text-gray-600 mb-2">
-					Password
+					* Password
 				</label>
 				<input name="password" x-model="form.password" class="mr-0 mb-2 w-full rounded px-3 py-2 shadow focus:outline-none focus:shadow-outline-blue" type="password" placeholder="********" />
 			</div>
@@ -86,23 +83,25 @@
 					(*) denotes a required field
 				</p>
 				<button class="w-full lg:w-auto px-3 py-2 text-sm font-medium rounded text-white bg-blue-500 focus:outline-none focus:shadow-outline-blue transition ease-in-out duration-150 shadow border border-blue-500 transition transform duration-75 ease-in-out hover:-translate-y-0.1">
-					Create Account
+					Sign In
 				</button>
-			</div>
+				<a href="/password-reset" class="block md:inline-block text-center text-blue-500 hover:underline text-sm ml-0 md:ml-4 mt-4 md:mt-0">
+					Forgot your password?
+				</a>
+			</button>
 		</div>
 	</form>
 
 </div>
 
 <script>
-	function signup() {
+	function signin() {
 		return {
 			showSuccessMessage: false,
 			showErrorMessage: false,
 			showErrorEmailMessage: false,
+			showPasswordUpdatedMessage: false,
 			form: {
-				first: '',
-				last: '',
 				email: '',
 				password: ''
 			},
@@ -127,9 +126,18 @@
 					return false
 				}
 
+			},
+			searchUrlParameters: function () {
+				var url = new URL(window.location.href)
+				var successMessage = url.searchParams.get("password_update")
+
+				// if success
+				if(successMessage) {
+					this.showPasswordUpdatedMessage = true
+				}
 			}
 		}
 	}
 </script>
 
-<%- include('../partials/page_end') %>
+<%- include('../../partials/page_end') %>

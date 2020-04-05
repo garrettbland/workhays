@@ -6,13 +6,13 @@ const uuidv1 = require('uuid/v1')
 var bCrypt = require('bcrypt-nodejs')
 
 exports.signup = function (req, res) {
-    res.render('pages/signup', {
+    res.render('pages/public/signup', {
         message: req.flash('error'),
     })
 }
 
 exports.signin = function (req, res) {
-    res.render('pages/signin', {
+    res.render('pages/public/signin', {
         message: req.flash('loginMessage'),
     })
 }
@@ -109,7 +109,7 @@ exports.password_update = async (req, res) => {
         if (now < expires) {
             console.log('user can reset password ===>')
             res.status(200)
-            res.render('pages/passwordupdate', {
+            res.render('pages/public/passwordupdate', {
                 token: req.query.token,
             })
         } else {

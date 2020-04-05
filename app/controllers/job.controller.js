@@ -27,8 +27,7 @@ exports.list_jobs = async (req, res) => {
 
     console.log(jobs)
 
-    res.render('pages/index', {
-      title: 'Express',
+    res.render('pages/public/index', {
       jobs: jobs.rows,
       count: jobs.count,
       pages: Math.ceil(jobs.count / job_limit),
@@ -51,7 +50,7 @@ exports.get_job = async (req, res) => {
 
     if (!job) throw 'Job not found'
 
-    res.render('pages/job', {
+    res.render('pages/public/job', {
       job: {
         ...job.dataValues,
       },
