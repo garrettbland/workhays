@@ -47,6 +47,7 @@ app.use(function (req, res, next) {
     res.locals.APP_VERSION = version
     res.locals.user = req.user
     res.locals.activeUrl = req.path.split('/')[1] // [0] will be empty since routes start with '/'
+    res.locals.adminPage = req.path.split('/')[1] + req.path.split('/')[2]
     res.locals.req = req
     console.log('get current user ====>')
     next()

@@ -1,22 +1,26 @@
-<div class="col-span-1 md:col-span-2 bg-red-200">
+<div class="col-span-1 md:col-span-2 px-4 md:px-0">
     <ul class="flex flex-col">
         <li>
-            <a href="/admin/dashboard">
-                Dashboard
+            <a href="/admin/dashboard" class="flex items-center hover:bg-gray-200 rounded p-2 block <%= req.path === '/admin/dashboard' ? 'text-blue-500 bg-gray-100' : 'text-gray-700' %>">
+                <i data-feather="home" class="w-4 h-4 mr-2"></i>
+                Dashboard 
             </a>
         </li>
         <li>
-            <a href="/admin/jobs">
+            <a href="/admin/jobs" class="flex items-center hover:bg-gray-200 rounded p-2 block <%= req.path === '/admin/jobs' ? 'text-blue-500 bg-gray-100' : 'text-gray-700' %>">
+                <i data-feather="briefcase" class="w-4 h-4 mr-2"></i>
                 Jobs
             </a>
         </li>
         <li>
-            <a href="/admin/business">
-                Business
+            <a href="/admin/business" class="flex items-center hover:bg-gray-200 rounded p-2 block <%= req.path === '/admin/business' ? 'text-blue-500 bg-gray-100' : 'text-gray-700' %>">
+                <i data-feather="map-pin" class="w-4 h-4 mr-2"></i>
+                Business Page
             </a>
         </li>
         <li>
-            <a href="/admin/profile">
+            <a href="/admin/profile" class="flex items-center hover:bg-gray-200 rounded p-2 block <%= req.path === '/admin/profile' ? 'text-blue-500 bg-gray-100' : 'text-gray-700' %>">
+                <i data-feather="user" class="w-4 h-4 mr-2"></i>
                 Profile
             </a>
         </li>

@@ -14,7 +14,14 @@ exports.index = async (req, res) => {
         })
 
         // get employers jobs
-        const jobs = await Models.job.findAll({
+        // const jobs = await Models.job.findAll({
+        //     where: {
+        //         employer_id: employer.id,
+        //         [Op.or]: [{ status: 'active' }, { status: 'inactive' }],
+        //     },
+        // })
+
+        const jobs = await Models.job.count({
             where: {
                 employer_id: employer.id,
                 [Op.or]: [{ status: 'active' }, { status: 'inactive' }],
@@ -23,21 +30,22 @@ exports.index = async (req, res) => {
 
         if (!jobs) throw 'Jobs not found'
 
-        var formattedJobs = jobs.map(function (job) {
-            return {
-                ...job.dataValues,
-                updatedAt: moment
-                    .utc(job.dataValues.updatedAt)
-                    .local()
-                    .format('MM/DD/YYYY, h:mm a'),
-            }
-        })
+        console.log(jobs)
 
-        console.log('======> EMPLOYER JOBS =====>')
+        // var formattedJobs = jobs.map(function (job) {
+        //     return {
+        //         ...job.dataValues,
+        //         updatedAt: moment
+        //             .utc(job.dataValues.updatedAt)
+        //             .local()
+        //             .format('MM/DD/YYYY, h:mm a'),
+        //     }
+        // })
+
+        // console.log('======> EMPLOYER JOBS =====>')
 
         res.render('pages/private/dashboard', {
-            employer: employer.dataValues,
-            jobs: formattedJobs,
+            totalJobs: jobs,
             message: req.flash('accountMessage'),
         })
     } catch (err) {
