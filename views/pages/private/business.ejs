@@ -1,116 +1,105 @@
 <%- include('../../partials/page_start', {title: 'Business', description: 'Manage your business profile. Update contact info, logo, and more.'}) %>
 
+<style>
+trix-toolbar [data-trix-attribute='quote'],
+trix-toolbar [data-trix-attribute='code'],
+trix-toolbar [data-trix-button-group='file-tools'] {
+  display: none;
+}
+</style>
+
 <div class="max-w-4xl mx-auto mt-12">
 	<div class="grid grid-cols-1 md:grid-cols-8 gap-4">
 		<%- include('../../partials/admin_sidebar') %>
-		<div class="col-span-1 md:col-span-6 bg-blue-500">
+		<div class="col-span-1 md:col-span-6">
 			<!-- content -->
-			<div>
-				<div>
-					<form method="POST" action="/employers/edit/<%= employer.id %>" class="bg-white pt-6">
-						<div>
-							<div class="flex flex-wrap -mx-3 mb-6">
-								<div class="w-1/2 px-3">
-									<label class="block uppercase tracking-wide text-gray-800 text-xs font-bold mb-2"
-												 for="grid-business-name">
-										Business Name
-									</label>
-									<input name="title" value="<%= employer.title %>"
-												 class="appearance-none block w-full bg-gray-200 text-gray-800 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-blue-400"
-												 id="grid-business-name" type="text" placeholder="Acme Corp."/>
-								</div>
-								<div class="w-1/2 px-3">
-									<label class="block uppercase tracking-wide text-gray-800 text-xs font-bold mb-2"
-												 for="grid-business-name">
-										Contact Name
-									</label>
-									<input name="contact" value="<%= employer.contact %>"
-												 class="appearance-none block w-full bg-gray-200 text-gray-800 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-blue-400"
-												 id="grid-business-name" type="text" placeholder="Jane Doe"/>
-								</div>
-							</div>
-							<div class="flex flex-wrap -mx-3 mb-6">
-								<div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-									<label class="block uppercase tracking-wide text-gray-800 text-xs font-bold mb-2"
-												 for="grid-email">
-										Contact Email
-									</label>
-									<input name="email" value="<%= employer.email %>"
-												 class="appearance-none block w-full bg-gray-200 text-gray-800 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-												 id="grid-email" type="text" placeholder="janedoe@example.com"/>
-								</div>
-								<div class="w-full md:w-1/2 px-3">
-									<label class="block uppercase tracking-wide text-gray-800 text-xs font-bold mb-2"
-												 for="grid-phone">
-										Contact Phone Number
-									</label>
-									<input name="phone" value="<%= employer.phone %>"
-												 class="appearance-none block w-full bg-gray-200 text-gray-800 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-blue-400"
-												 id="grid-phone" type="text" placeholder="785-867-5309"/>
-								</div>
-							</div>
-							<div class="flex flex-wrap -mx-3 mb-6">
-								<div class="w-full px-3">
-									<label class="block uppercase tracking-wide text-gray-800 text-xs font-bold mb-2"
-												 for="grid-business-about">
-										About Business
-									</label>
-									<div class="shadow rounded p-4">
-										<input value="<%= employer.description %>" id="description_input" type="hidden" name="description">
-										  <trix-editor input="description_input"></trix-editor>
-									</div>
-								</div>
-							</div>
-							<div class="flex flex-wrap -mx-3 mb-2">
-								<div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-									<label class="block uppercase tracking-wide text-gray-800 text-xs font-bold mb-2"
-												 for="grid-city">
-										Logo URL
-									</label>
-									<input name="logo_url" value="<%= employer.logo_url %>"
-												 class="appearance-none block w-full bg-gray-200 text-gray-800 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-blue-400"
-												 id="grid-city" type="text" placeholder="Logo URL"/>
-								</div>
-								<div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-									<label class="block uppercase tracking-wide text-gray-800 text-xs font-bold mb-2"
-												 for="grid-zip">
-										Website URL
-									</label>
-									<input name="website_url" value="<%= employer.website_url %>"
-												 class="appearance-none block w-full bg-gray-200 text-gray-800 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-blue-400"
-												 id="grid-zip" type="text" placeholder="www.example.com"/>
-								</div>
-							</div>
-							<div class="flex flex-wrap -mx-3 mb-2">
-								<div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-									<label class="block uppercase tracking-wide text-gray-800 text-xs font-bold mb-2"
-												 for="grid-city">
-										Facebook Page URL
-									</label>
-									<input name="facebook_url" value="<%= employer.facebook_url %>"
-												 class="appearance-none block w-full bg-gray-200 text-gray-800 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-blue-400"
-												 id="grid-city" type="text" placeholder="www.facebook.com/username"/>
-								</div>
-								<div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-									<label class="block uppercase tracking-wide text-gray-800 text-xs font-bold mb-2"
-												 for="grid-zip">
-										Twitter Page URL
-									</label>
-									<input name="twitter_url" value="<%= employer.twitter_url %>"
-												 class="appearance-none block w-full bg-gray-200 text-gray-800 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-blue-400"
-												 id="grid-zip" type="text" placeholder="www.twitter.com/username"/>
-								</div>
-							</div>
-							<div class="flex justify-end mt-4">
-								<button
-								class="bg-green-500 hover:bg-green-400 px-4 py-2 rounded text-white focus:outline-none">
-								Save Business Changes
-							</button>
-							</div>
-						</div>
-					</form>
+			<form method="POST" action="/employers/edit/<%= employer.id %>">
+			<div class="flex flex-wrap justify-between items-center mb-4 px-4 md:px-0">
+				<div class="w-full md:w-2/3 mb-3 md:mb-0">
+					<div class="text-lg font-semibold">
+						Business Profile
+					</div>
+					<div class="antialiased text-sm">
+						Manage your public business page information. Some fields are required
+						to post jobs.
+					</div>
+				</div>
+				<div class="w-full md:w-auto">
+					<button type="submit" class="block px-3 py-2 text-center text-sm font-medium rounded text-white bg-blue-500 focus:outline-none focus:shadow-outline-blue transition ease-in-out duration-150 shadow border border-blue-500 transition transform duration-75 ease-in-out hover:-translate-y-0.1">
+						Save Changes
+					</button>
 				</div>
 			</div>
+			<div class="grid grid-cols-1 md:grid-cols-4 gap-4 px-4 lg:px-0">
+				<div class="col-span-2">
+					<label class="text-sm text-gray-600 mb-2">
+						* Business Name
+					</label>
+					<input name="title" value="<%= employer.title %>" class="mr-0 mb-3 w-full rounded px-3 py-2 shadow focus:outline-none focus:shadow-outline-blue" type="text" placeholder="Acme Inc." />
+				</div>
+				<div class="col-span-2">
+					<label class="text-sm text-gray-600 mb-2">
+						* Contact Name
+					</label>
+					<input name="contact" value="<%= employer.contact %>" class="mr-0 mb-3 w-full rounded px-3 py-2 shadow focus:outline-none focus:shadow-outline-blue" type="text" placeholder="Jane Doe" />
+				</div>
+				<div class='col-span-2'>
+					<label class="text-sm text-gray-600 mb-2">
+						* Contact Email
+					</label>
+					<input name="email" value="<%= employer.email %>" class="mr-0 mb-3 w-full rounded px-3 py-2 shadow focus:outline-none focus:shadow-outline-blue" type="text" placeholder="jane@acme.com" />
+				</div>
+				<div class="col-span-2">
+					<label class="text-sm text-gray-600 mb-2">
+						* Contact Phone Number
+					</label>
+					<input name="phone" value="<%= employer.phone %>" class="mr-0 mb-3 w-full rounded px-3 py-2 shadow focus:outline-none focus:shadow-outline-blue" type="text" placeholder="567-234-4551" />
+				</div>
+				<div class="col-span-1 md:col-span-4">
+					<label class="text-sm text-gray-600 mb-2">
+						* About Business
+					</label>
+					<input value="<%= employer.description %>" id="description_input" type="hidden" name="description">
+					<trix-editor input="description_input" class="bg-white border-none shadow rounded focus:shadow-outline-blue px-3 py-2" placeholder="Brag about your business. Let people know what it is your company or business does."></trix-editor>
+				</div>
+
+				<!-- non required fields -->
+				<div class="col-span-2">
+					<label class="text-sm text-gray-600 mb-2">
+						Logo URL
+					</label>
+					<input name="logo_url" value="<%= employer.logo_url %>" class="mr-0 mb-3 w-full rounded px-3 py-2 shadow focus:outline-none focus:shadow-outline-blue" type="text" placeholder="https://yourwebsite.com/logo.jpg" />
+				</div>
+				<div class="col-span-2">
+					<label class="text-sm text-gray-600 mb-2">
+						Website URL
+					</label>
+					<input name="website_url" value="<%= employer.website_url %>" class="mr-0 mb-3 w-full rounded px-3 py-2 shadow focus:outline-none focus:shadow-outline-blue" type="text" placeholder="https://yourwebsite.com" />
+				</div>
+				<div class='col-span-2'>
+					<label class="text-sm text-gray-600 mb-2">
+						Facebook Page URL
+					</label>
+					<input name="facebook_url" value="<%= employer.facebook_url %>" class="mr-0 mb-3 w-full rounded px-3 py-2 shadow focus:outline-none focus:shadow-outline-blue" type="text" placeholder="https://facebook.com/yourpage" />
+				</div>
+				<div class="col-span-2">
+					<label class="text-sm text-gray-600 mb-2">
+						Twitter Page URL
+					</label>
+					<input name="twitter_url" value="<%= employer.twitter_url %>" class="mr-0 mb-3 w-full rounded px-3 py-2 shadow focus:outline-none focus:shadow-outline-blue" type="text" placeholder="https://twitter.com/yourpage" />
+				</div>
+			</div>
+			<div class="flex flex-wrap justify-between items-center mb-4 px-4 md:px-0">
+				<div class="w-full md:w-2/3 mb-3 md:mb-0">
+					
+				</div>
+				<div class="w-full md:w-auto">
+					<button type="submit" class="block px-3 py-2 text-center text-sm font-medium rounded text-white bg-blue-500 focus:outline-none focus:shadow-outline-blue transition ease-in-out duration-150 shadow border border-blue-500 transition transform duration-75 ease-in-out hover:-translate-y-0.1">
+						Save Changes
+					</button>
+				</div>
+			</div>
+			</form>
 		</div>
 	</div>
 </div>

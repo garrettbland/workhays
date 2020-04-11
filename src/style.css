@@ -56,3 +56,11 @@ body {
   -o-animation: rotating 2s linear infinite;
   animation: rotating 2s linear infinite;
 }
+
+trix-toolbar .trix-button-group {
+  @apply bg-white rounded shadow border-none overflow-hidden
+}
+
+trix-editor a {
+  @apply text-blue-500 underline
+}
