@@ -5,10 +5,10 @@
 		<%- include('../../partials/admin_sidebar') %>
 		<div class="col-span-1 md:col-span-6">
 			<div class="grid grid-cols-1 sm:grid-cols-4 lg:grid-cols-3 gap-4">
-				<div class="col-span-1 sm:col-span-2 lg:col-span-1 bg-white rounded shadow">
-					<div class="flex flex-col p-4">
+				<div class="col-span-1 sm:col-span-2 lg:col-span-1">
+					<div class="flex flex-col p-4 bg-white rounded shadow">
 						<div class="text-center font-bold text-xl leading-tight">
-							<%= totalJobs %>
+							<%= activeJobs %>
 						</div>
 						<div class="text-center text-gray-600 text-sm mb-3">
 							Active Jobs
@@ -20,10 +20,10 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-span-1 sm:col-span-2 lg:col-span-1 bg-white rounded shadow">
-					<div class="flex flex-col p-4">
+				<div class="col-span-1 sm:col-span-2 lg:col-span-1">
+					<div class="flex flex-col p-4 bg-white rounded shadow">
 						<div class="text-center font-bold text-xl leading-tight">
-							2
+							<%= expiredJobs %>
 						</div>
 						<div class="text-center text-gray-600 text-sm mb-3">
 							Expired Jobs
@@ -35,19 +35,28 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-span-1 sm:col-span-2 lg:col-span-1 bg-white rounded shadow">
-					<div class="flex flex-col p-4">
-						<div class="flex justify-center">
-							<i data-feather="check-circle" class="w-7 h-7 text-green-400"></i>
-						</div>
-						<div class="text-center text-gray-600 text-sm mt-3">
-							Business Setup Complete. Potential employees are now able to reach you.
-						</div>
-						<div>
-							<!-- <a href="/admin/jobs" class="block px-3 py-2 text-center text-sm font-medium rounded text-white bg-blue-500 focus:outline-none focus:shadow-outline-blue transition ease-in-out duration-150 shadow border border-blue-500 transition transform duration-75 ease-in-out hover:-translate-y-0.1">
-								Update Business
-							</a> -->
-						</div>
+				<div class="col-span-1 sm:col-span-2 lg:col-span-1">
+					<div class="flex flex-col p-4 bg-white rounded shadow">
+						<% if (employerSetup) { %>
+							<div class="flex justify-center">
+								<i data-feather="check-circle" class="w-7 h-7 text-green-400"></i>
+							</div>
+							<div class="text-center text-gray-600 text-sm mt-3">
+								Business Setup Complete. You are now able to post and manage jobs.
+							</div>
+						<% } else { %>
+							<div class="flex justify-center">
+								<i data-feather="alert-circle" class="w-7 h-7 text-red-600"></i>
+							</div>
+							<div class="text-center text-gray-600 text-sm mb-4">
+								Incomplete business profile. Update your business to post jobs.
+							</div>
+							<div>
+								<a href="/admin/business" class="block px-3 py-2 text-center text-sm font-medium rounded text-white bg-blue-500 focus:outline-none focus:shadow-outline-blue transition ease-in-out duration-150 shadow border border-blue-500 transition transform duration-75 ease-in-out hover:-translate-y-0.1">
+									My Business
+								</a>
+							</div>
+						<% } %>
 					</div>
 				</div>
 			</div>

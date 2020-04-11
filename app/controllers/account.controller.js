@@ -21,31 +21,58 @@ exports.index = async (req, res) => {
         //     },
         // })
 
-        const jobs = await Models.job.count({
+        const jobs = await Models.job.findAll({
             where: {
-                employer_id: employer.id,
-                [Op.or]: [{ status: 'active' }, { status: 'inactive' }],
+                employer_id: employer.id
             },
         })
 
         if (!jobs) throw 'Jobs not found'
 
-        console.log(jobs)
 
-        // var formattedJobs = jobs.map(function (job) {
-        //     return {
-        //         ...job.dataValues,
-        //         updatedAt: moment
-        //             .utc(job.dataValues.updatedAt)
-        //             .local()
-        //             .format('MM/DD/YYYY, h:mm a'),
-        //     }
-        // })
+        var TWO_WEEKS_OLD = moment.tz(moment(),"America/Chicago").subtract(14, 'days').endOf('day')
+        
+        var totalActiveJobs = jobs.filter(function (job) {
+            var jobCreatedAt = moment.tz(job.createdAt, "America/Chicago").utc()
+            if (job.status === 'active') {
 
-        // console.log('======> EMPLOYER JOBS =====>')
+                if (jobCreatedAt >= TWO_WEEKS_OLD) {
+                    return job
+                } else {
+                    return null
+                }
+            } else {
+                return null
+            }
+        })
+
+        var totalExpiredJobs = jobs.filter(function (job) {
+            var jobCreatedAt = moment.tz(job.createdAt, "America/Chicago").utc()
+            if (job.status === 'active') {
+
+                if (jobCreatedAt <= TWO_WEEKS_OLD) {
+                    return job
+                } else {
+                    return null
+                }
+            } else {
+                return null
+            }
+        })
+
+        var checkIfEmployerSetup = function (employer) {
+
+            if (!employer.title || !employer.contact || !employer.description || !employer.email || !employer.phone) {
+                return false
+            } else {
+                return true
+            }
+        }
 
         res.render('pages/private/dashboard', {
-            totalJobs: jobs,
+            activeJobs: totalActiveJobs.length,
+            expiredJobs: totalExpiredJobs.length,
+            employerSetup: checkIfEmployerSetup(employer.dataValues),
             message: req.flash('accountMessage'),
         })
     } catch (err) {
@@ -72,7 +99,7 @@ exports.jobs = async (req, res) => {
         const jobs = await Models.job.findAll({
             where: {
                 employer_id: employer.id,
-                [Op.or]: [{ status: 'active' }, { status: 'inactive' }],
+                [Op.or]: [{ status: 'active' }, { status: 'inactive' }, { status: 'archived'}],
             },
             order: [
                 ['createdAt', 'DESC']
@@ -81,8 +108,37 @@ exports.jobs = async (req, res) => {
 
         if (!jobs) throw 'Jobs not found'
 
+        var buildStatus = function (job) {
+            // expiration is 2 weeks. Check if createdAt is older than two week, set expired instead of inactive for more verbose messages for users
+
+            var TWO_WEEKS_OLD = moment.tz(moment(),"America/Chicago").subtract(14, 'days').endOf('day')
+            var jobCreatedAt = moment.tz(job.createdAt, "America/Chicago").utc()
+            
+            console.log('created at ==> ' + moment.tz(job.createdAt,"America/Chicago").utc())
+            console.log('two weeks ago ==> ' + TWO_WEEKS_OLD)
+
+            if (job.status === 'active') {
+                if (jobCreatedAt <= TWO_WEEKS_OLD) {
+                    return 'expired'
+                } else {
+                    return 'active'
+                }
+            } else {
+                return 'inactive'
+            }
+
+        }
+
+        var formattedJobs = jobs.map(function (job) {
+            return {
+                ...job.dataValues,
+                formattedStatus: buildStatus(job.dataValues)
+            }
+        })
+
         res.render('pages/private/jobs', {
-            jobs: jobs
+            jobs: formattedJobs,
+            moment: moment
         })
 
 

@@ -3,211 +3,94 @@
 <div class="max-w-4xl mx-auto mt-12">
 	<div class="grid grid-cols-1 md:grid-cols-8 gap-4">
 		<%- include('../../partials/admin_sidebar') %>
-		<div class="col-span-1 md:col-span-6 bg-blue-500">
-			Content
+		<div class="col-span-1 md:col-span-6">
+			<!-- content -->
+			<div>
+				<div class="flex flex-wrap justify-between items-center mb-4 px-4 md:px-0">
+					<div class="w-full md:w-2/3 mb-3 md:mb-0">
+						<div class="text-lg font-semibold">
+							Jobs
+						</div>
+						<div class="antialiased text-sm">
+							Manage your current active and expired job postings.
+						</div>
+					</div>
+					<div class="w-full md:w-auto">
+						<a href="/admin/jobs" class="block px-3 py-2 text-center text-sm font-medium rounded text-white bg-blue-500 focus:outline-none focus:shadow-outline-blue transition ease-in-out duration-150 shadow border border-blue-500 transition transform duration-75 ease-in-out hover:-translate-y-0.1">
+							Create New
+						</a>
+					</div>
+				</div>
+				<div class="bg-white shadow rounded overflow-hidden mb-12">
+					<ul>
+						<% jobs.forEach(function(job,index) { %>
+							<% if(job.status === 'active' || job.status === 'inactive') { %>
+							<li class="<%= index === 0 ? 'border-t-none' : 'border-t-2' %> border-gray-100 hover:bg-gray-50 transform transition ease-in-out duration-75 group">
+								<a href="/jobs/<%= job.id %>?from=<%= req.originalUrl %>" class="block w-full p-4 flex justify-between items-center">
+									<div class="w-4/5 transform transition ease-in-out duration-150 group-hover:translate-x-1">
+										<div class="text-sm truncate group-hover:underline group-hover:text-blue-500">
+											<%= job.title %>
+										</div>
+									</div>
+									<div class="flex flex-1 items-center justify-end">
+										<span class="text-gray-400 uppercase tracking-wide font-bold text-xs mr-3">
+											<%= job.formattedStatus %>
+										</span>
+										<% if (job.formattedStatus === 'active') { %>
+											<svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-green-500"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+										<% } %>
+										<% if (job.formattedStatus === 'expired') { %>
+											<svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-orange-400"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+										<% } %>
+										<% if (job.formattedStatus === 'inactive') { %>
+											<svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-red-600"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+										<% } %>
+										
+									</div>
+								</a>
+							</li>
+							<% } %>
+						<% }) %>
+					</ul>
+				</div>
+
+				<div class="flex flex-wrap justify-between items-center mb-4 px-4 md:px-0">
+					<div class="w-full mb-3 md:mb-0">
+						<div class="text-lg font-semibold">
+							Archived Jobs
+						</div>
+						<div class="antialiased text-sm">
+							View your archived and past job openings. Archived jobs are not allowed
+							to be updated or deleted. You can create a new job based off an archived position details.
+						</div>
+					</div>
+				</div>
+				<div class="bg-white shadow rounded overflow-hidden mb-12">
+					<ul>
+						<% jobs.forEach(function(job,index) { %>
+							<% if(job.status === 'archived') { %>
+							<li class="<%= index === 0 ? 'border-t-none' : 'border-t-2' %> border-gray-100 hover:bg-gray-50 transform transition ease-in-out duration-75 group">
+								<a href="/jobs/<%= job.id %>?from=<%= req.originalUrl %>" class="block w-full p-4 flex justify-between items-center">
+									<div class="w-4/5 transform transition ease-in-out duration-150 group-hover:translate-x-1">
+										<div class="text-sm truncate group-hover:underline group-hover:text-blue-500">
+											<%= job.title %> <%= index %>
+										</div>
+									</div>
+									<div class="flex flex-1 items-center justify-end">
+										<span class="text-gray-400 uppercase tracking-wide font-bold text-xs mr-3">
+											<%= job.status %>
+										</span>
+										<svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-blue-400"><polyline points="21 8 21 21 3 21 3 8"></polyline><rect x="1" y="3" width="22" height="5"></rect><line x1="10" y1="12" x2="14" y2="12"></line></svg>
+									</div>
+								</a>
+							</li>
+							<% } %>
+						<% }) %>
+					</ul>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
-
-<main class="flex-1 mx-auto pt-32 container max-w-6xl p-12 bg-gray-200 shadow-xl">
-	<a href="/" class="flex w-1/4 mb-4 flex-row items-center text-blue-500 hover:text-blue-400 text-base">
-		<div><span class="mdi mdi-arrow-left"/></div>
-		<div class="ml-2">Back to All Listings</div>
-	</a>
-	<div class="flex flex-col">
-		<% if(message.length > 0) { %>
-			<div class="bg-green-500 text-green-100 p-4 mb-2 rounded shadow">
-				<%= message %>
-			</div>
-		<% } %>
-		<div class="p-6 bg-white shadow-xl w-4/5 mx-auto rounded mb-4">
-			<div class="px-8 mt-3">
-				<div class="text-gray-500 font-bold text-2xl">Job Listings</div>
-				<% jobs.forEach(function(job) { %>
-				<div>
-					<div class="mt-1 mb-1 p-2 pl-2 pr-4 bg-white border-gray-400 border mx-auto max-w-5xl rounded">
-						<div class="flex justify-between">
-							<div class="flex flex-row items-center">
-								<div class="pr-2">
-									<% if(job.status === 'active') { %><span
-										class="inline-flex items-center px-2.5 py-0.5 w-16 justify-center rounded-full text-xs font-medium leading-4 bg-gray-200 text-green-400">Active</span>
-									<% } %>
-									<% if(job.status === 'inactive') { %><span
-										class="inline-flex items-center px-2.5 py-0.5 w-16 justify-centert rounded-full text-xs font-medium leading-4 bg-gray-200 text-orange-400">Inactive</span>
-									<% } %>
-								</div>
-								<div class="flex flex-col">
-									<div class="text-lg font-semibold"><%= job.title %></div>
-									<div class="flex flex-row italic text-gray-600 text-sm">
-										<div><%= job.updatedAt %></div>
-									</div>
-								</div>
-							</div>
-							<div class="flex items-center">
-								<a href="/jobs/<%= job.id %>" target="_blank"
-									 class="px-2 mr-2 py-2 bg-transparent text-blue-500 cursor-pointer hover:bg-blue-400 rounded text-sm focus:outline-none border border-blue-500 hover:border-transparent hover:text-white">View
-									Listing</a>
-								<a href="/jobs/edit/<%= job.id %>"
-									 class="px-2 py-2 bg-transparent text-blue-500 cursor-pointer hover:bg-blue-400 focus:bg-blue-400 rounded text-sm focus:outline-none border border-blue-500 hover:border-transparent hover:text-white">Edit
-									Listing</a>
-							</div>
-						</div>
-					</div>
-					<% }) %>
-				</div>
-				<div class="mt-3">
-					<div class="flex justify-end mt-4">
-							<a href="/job-listing-archive"
-								 class="bg-red-500 hover:bg-red-400 mr-4 px-4 py-2 rounded text-white focus:outline-none">
-								View Archived Listings
-							</a>
-						<a href="/job-listing-new"
-							 class="bg-green-500 hover:bg-green-400 px-4 py-2 rounded text-white focus:outline-none">
-							New Job Listing
-						</a>
-					</div>
-				</div>
-			</div>
-			<div class="text-gray-500 font-bold text-2xl">Business Settings</div>
-			<div>
-				<form method="POST" action="/employers/edit/<%= employer.id %>" class="bg-white pt-6">
-					<div>
-						<div class="flex flex-wrap -mx-3 mb-6">
-							<div class="w-1/2 px-3">
-								<label class="block uppercase tracking-wide text-gray-800 text-xs font-bold mb-2"
-											 for="grid-business-name">
-									Business Name
-								</label>
-								<input name="title" value="<%= employer.title %>"
-											 class="appearance-none block w-full bg-gray-200 text-gray-800 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-blue-400"
-											 id="grid-business-name" type="text" placeholder="Acme Corp."/>
-							</div>
-							<div class="w-1/2 px-3">
-								<label class="block uppercase tracking-wide text-gray-800 text-xs font-bold mb-2"
-											 for="grid-business-name">
-									Contact Name
-								</label>
-								<input name="contact" value="<%= employer.contact %>"
-											 class="appearance-none block w-full bg-gray-200 text-gray-800 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-blue-400"
-											 id="grid-business-name" type="text" placeholder="Jane Doe"/>
-							</div>
-						</div>
-						<div class="flex flex-wrap -mx-3 mb-6">
-							<div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-								<label class="block uppercase tracking-wide text-gray-800 text-xs font-bold mb-2"
-											 for="grid-email">
-									Contact Email
-								</label>
-								<input name="email" value="<%= employer.email %>"
-											 class="appearance-none block w-full bg-gray-200 text-gray-800 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-											 id="grid-email" type="text" placeholder="janedoe@example.com"/>
-							</div>
-							<div class="w-full md:w-1/2 px-3">
-								<label class="block uppercase tracking-wide text-gray-800 text-xs font-bold mb-2"
-											 for="grid-phone">
-									Contact Phone Number
-								</label>
-								<input name="phone" value="<%= employer.phone %>"
-											 class="appearance-none block w-full bg-gray-200 text-gray-800 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-blue-400"
-											 id="grid-phone" type="text" placeholder="785-867-5309"/>
-							</div>
-						</div>
-						<div class="flex flex-wrap -mx-3 mb-6">
-							<div class="w-full px-3">
-								<label class="block uppercase tracking-wide text-gray-800 text-xs font-bold mb-2"
-											 for="grid-business-about">
-									About Business
-								</label>
-								<div class="shadow rounded p-4">
-									<input value="<%= employer.description %>" id="description_input" type="hidden" name="description">
-  									<trix-editor input="description_input"></trix-editor>
-								</div>
-							</div>
-						</div>
-						<div class="flex flex-wrap -mx-3 mb-2">
-							<div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-								<label class="block uppercase tracking-wide text-gray-800 text-xs font-bold mb-2"
-											 for="grid-city">
-									Logo URL
-								</label>
-								<input name="logo_url" value="<%= employer.logo_url %>"
-											 class="appearance-none block w-full bg-gray-200 text-gray-800 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-blue-400"
-											 id="grid-city" type="text" placeholder="Logo URL"/>
-							</div>
-							<div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-								<label class="block uppercase tracking-wide text-gray-800 text-xs font-bold mb-2"
-											 for="grid-zip">
-									Website URL
-								</label>
-								<input name="website_url" value="<%= employer.website_url %>"
-											 class="appearance-none block w-full bg-gray-200 text-gray-800 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-blue-400"
-											 id="grid-zip" type="text" placeholder="www.example.com"/>
-							</div>
-						</div>
-						<div class="flex flex-wrap -mx-3 mb-2">
-							<div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-								<label class="block uppercase tracking-wide text-gray-800 text-xs font-bold mb-2"
-											 for="grid-city">
-									Facebook Page URL
-								</label>
-								<input name="facebook_url" value="<%= employer.facebook_url %>"
-											 class="appearance-none block w-full bg-gray-200 text-gray-800 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-blue-400"
-											 id="grid-city" type="text" placeholder="www.facebook.com/username"/>
-							</div>
-							<div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-								<label class="block uppercase tracking-wide text-gray-800 text-xs font-bold mb-2"
-											 for="grid-zip">
-									Twitter Page URL
-								</label>
-								<input name="twitter_url" value="<%= employer.twitter_url %>"
-											 class="appearance-none block w-full bg-gray-200 text-gray-800 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-blue-400"
-											 id="grid-zip" type="text" placeholder="www.twitter.com/username"/>
-							</div>
-						</div>
-						<div class="flex justify-end mt-4">
-							<button
-							class="bg-green-500 hover:bg-green-400 px-4 py-2 rounded text-white focus:outline-none">
-							Save Business Changes
-						</button>
-						</div>
-					</div>
-				</form>
-			</div>
-		</div>
-		<div>
-			<div class="text-gray-500 font-bold text-2xl">Account Settings</div>
-			<div class="bg-white pt-6">
-				<div class="flex flex-wrap -mx-3 mb-2">
-					<div class="flex flex-col w-full md:w-1/2 px-3 mb-6 md:mb-0">
-						<label class="block uppercase tracking-wide text-gray-800 text-xs font-bold mb-2"
-									 for="grid-zip">Password Reset
-						</label>
-						<a href="/password-reset">
-							<div
-								class="border-2 text-center hover:border-blue-400 border-blue-500 bg-blue-500 hover:bg-blue-400 px-4 py-2 rounded text-white focus:outline-none">
-								Click Here to Reset Password
-							</div>
-						</a>
-					</div>
-					<form method="POST" action="/account/change_email" class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-						<label class="block uppercase tracking-wide text-gray-800 text-xs font-bold mb-2"
-									 for="grid-zip">
-							Update Email Address
-						</label>
-						<input
-							name="user_email"
-							class="appearance-none block w-full bg-gray-200 text-gray-800 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-blue-400"
-							id="grid-zip" type="text" placeholder="<%= user.email %>"/>
-						<div class="flex justify-end mt-4">
-							<button class="bg-green-500 hover:bg-green-400 px-4 py-2 rounded text-white focus:outline-none">
-								Update Email Address
-							</button>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-</main>
-
 
 <%- include('../../partials/page_end') %>
