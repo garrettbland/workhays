@@ -27,7 +27,7 @@
 							<% if(job.status === 'active' || job.status === 'inactive') { %>
 							<li class="<%= index === 0 ? 'border-t-none' : 'border-t-2' %> border-gray-100 hover:bg-gray-50 transform transition ease-in-out duration-75 group">
 								<a href="/admin/jobs/<%= job.id %>?from=<%= req.originalUrl %>" class="block w-full p-4 flex justify-between items-center">
-									<div class="w-4/5 transform transition ease-in-out duration-150 group-hover:translate-x-1">
+									<div class="w-2/3 md:w-4/5 transform transition ease-in-out duration-150 group-hover:translate-x-1">
 										<div class="text-sm truncate group-hover:underline group-hover:text-blue-500">
 											<%= job.title %>
 										</div>
@@ -71,7 +71,7 @@
 							<% if(job.status === 'archived') { %>
 							<li class="<%= index === 0 ? 'border-t-none' : 'border-t-2' %> border-gray-100 hover:bg-gray-50 transform transition ease-in-out duration-75 group">
 								<a href="/admin/jobs/<%= job.id %>?from=<%= req.originalUrl %>" class="block w-full p-4 flex justify-between items-center">
-									<div class="w-4/5 transform transition ease-in-out duration-150 group-hover:translate-x-1">
+									<div class="w-2/3 md:w-4/5 transform transition ease-in-out duration-150 group-hover:translate-x-1">
 										<div class="text-sm truncate group-hover:underline group-hover:text-blue-500">
 											<%= job.title %> <%= index %>
 										</div>
