@@ -64,6 +64,10 @@ exports.get_job = async (req, res) => {
   }
 }
 
+exports.new_job = (req, res) => {
+  res.render('pages/private/joblistingnew')
+}
+
 exports.create_job = async (req, res) => {
   try {
     console.log('find employer by user_id of' + req.user.id)

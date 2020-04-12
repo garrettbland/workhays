@@ -82,6 +82,8 @@ router.get('/admin/dashboard', middleware.isLoggedIn, accountController.index)
 router.get('/admin/jobs', middleware.isLoggedIn, accountController.jobs)
 router.get('/admin/business', middleware.isLoggedIn, accountController.business)
 router.get('/admin/profile', middleware.isLoggedIn, accountController.profile)
+router.get('/admin/jobs/new', middleware.isLoggedIn, jobController.new_job)
+router.get('/admin/jobs/:jobId', middleware.isLoggedIn, accountController.edit_job)
 
 router.get(
   '/job-listing-archive',
