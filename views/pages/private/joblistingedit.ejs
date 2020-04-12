@@ -100,8 +100,11 @@
 					<div class="w-full md:w-2/3 mb-3 md:mb-0">
 						
 					</div>
-					<div class="w-full md:w-auto">
-						<button type="submit" name="action_button" value="update" class="block px-3 py-2 text-center text-sm font-medium rounded text-white bg-blue-500 focus:outline-none focus:shadow-outline-blue transition ease-in-out duration-150 shadow border border-blue-500 transition transform duration-75 ease-in-out hover:-translate-y-0.1">
+					<div class="w-full flex items-center justify-between">
+						<button x-on:click="isArchiving = true" type="submit" name="action_button" value="archive" class="flex items-center inline-block px-3 py-2 text-center text-sm font-medium rounded bg-gray-200 text-gray-600 focus:outline-none focus:shadow-outline-blue transition ease-in-out duration-150 shadow border border-gray-200 transition transform duration-75 ease-in-out hover:-translate-y-0.1">
+							<i data-feather="archive" class="w-4 h-4 mr-2"></i> Archive Job
+						</button>
+						<button x-on:click="isArchiving = false" type="submit" name="action_button" value="update" class="block px-3 py-2 text-center text-sm font-medium rounded text-white bg-blue-500 focus:outline-none focus:shadow-outline-blue transition ease-in-out duration-150 shadow border border-blue-500 transition transform duration-75 ease-in-out hover:-translate-y-0.1">
 							Save Changes
 						</button>
 					</div>
@@ -117,6 +120,7 @@
 		return {
 			isActive: false, 
 			showErrorMessage: false,
+			isArchiving: false,
 			checkEmptyFields: function () {
 				// required fields
 				var title = document.getElementById('job_title').value
@@ -134,13 +138,26 @@
 			validateForm: function () {
 				this.showErrorMessage = false
 
-				// required fields
-				var title = document.getElementById('job_title').value
-				var description = document.getElementById('description_input').value
+				// check if user is trying to archive first and warn
+				// TO-DO : probably make a nice modal?
+				if(this.isArchiving) {
+					var alertMessage = "Are you sure you wish to archive this job? This cannot be reversed, but you will be able to view job details for future use."
 
-				if(title === '' || description === '') {
-					this.showErrorMessage = true
-					return false
+					var confirmArchive = window.confirm(alertMessage)
+
+					if(!confirmArchive) {
+						return false
+					}
+
+				} else {
+					// required fields
+					var title = document.getElementById('job_title').value
+					var description = document.getElementById('description_input').value
+
+					if(title === '' || description === '') {
+						this.showErrorMessage = true
+						return false
+					}
 				}
 			},
 			toggle: function () { 
