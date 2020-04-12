@@ -3,45 +3,46 @@
 <div class="max-w-4xl mx-auto mt-12">
 	<div class="grid grid-cols-1 md:grid-cols-8 gap-4">
 		<%- include('../../partials/admin_sidebar') %>
-		<div class="col-span-1 md:col-span-6 bg-blue-500">
+		<div class="col-span-1 md:col-span-6">
+			<!-- content -->
 			<div>
-				<main class="flex-1 mx-auto pt-32 container max-w-6xl p-12 bg-gray-200 shadow-xl">
-
-					<div>
-						<div class="text-gray-500 font-bold text-2xl">Account Settings</div>
-						<div class="bg-white pt-6">
-							<div class="flex flex-wrap -mx-3 mb-2">
-								<div class="flex flex-col w-full md:w-1/2 px-3 mb-6 md:mb-0">
-									<label class="block uppercase tracking-wide text-gray-800 text-xs font-bold mb-2"
-												 for="grid-zip">Password Reset
-									</label>
-									<a href="/password-reset">
-										<div
-											class="border-2 text-center hover:border-blue-400 border-blue-500 bg-blue-500 hover:bg-blue-400 px-4 py-2 rounded text-white focus:outline-none">
-											Click Here to Reset Password
-										</div>
-									</a>
-								</div>
-								<form method="POST" action="/account/change_email" class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-									<label class="block uppercase tracking-wide text-gray-800 text-xs font-bold mb-2"
-												 for="grid-zip">
-										Update Email Address
-									</label>
-									<input
-										name="user_email"
-										class="appearance-none block w-full bg-gray-200 text-gray-800 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-blue-400"
-										id="grid-zip" type="text" placeholder="<%= user.email %>"/>
-									<div class="flex justify-end mt-4">
-										<button class="bg-green-500 hover:bg-green-400 px-4 py-2 rounded text-white focus:outline-none">
-											Update Email Address
-										</button>
-									</div>
-								</form>
-							</div>
+				<div class="mb-4 px-4 md:px-0">
+					<div class="text-lg font-semibold">
+						Update Email
+					</div>
+					<div class="antialiased text-sm">
+						Update your email below. Please make sure you have access to this new
+						email for future password resets, notifications, and more. This email is not public and only used to login.
+					</div>
+				</div>
+				<div class="px-4 md:px-0 mb-12">
+					<form method="POST" action="/account/change_email">
+						<div class="flex flex-col mb-2">
+							<label class="text-sm text-gray-600 mb-2">
+								* Account Email
+							</label>
+							<input name="user_email" placeholder="you@email.com" value="<%= user.email %>" class="mr-0 mb-3 w-full md:w-1/2 rounded px-3 py-2 shadow focus:outline-none focus:shadow-outline-blue" type="email" />
+						</div>
+						<button type="submit" class="px-3 py-2 text-center text-sm font-medium rounded text-white bg-blue-500 focus:outline-none focus:shadow-outline-blue transition ease-in-out duration-150 shadow border border-blue-500 transition transform duration-75 ease-in-out hover:-translate-y-0.1">
+							Update Email
+						</button>
+					</form>
+				</div>
+				<div class="mb-4 px-4 md:px-0">
+					<div class="mb-4">
+						<div class="text-lg font-semibold">
+							Password Reset
+						</div>
+						<div class="antialiased text-sm">
+							Click below to send a password reset email
 						</div>
 					</div>
-			</main>
-			
+					<div>
+						<a href="/password-reset" class="inline-block px-3 py-2 text-center text-sm font-medium rounded text-white bg-green-400 focus:outline-none focus:shadow-outline-blue transition ease-in-out duration-150 shadow border border-green-400 transition transform duration-75 ease-in-out hover:-translate-y-0.1">
+							Reset Password
+						</a>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
