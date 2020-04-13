@@ -121,20 +121,6 @@
 			isActive: false, 
 			showErrorMessage: false,
 			isArchiving: false,
-			checkEmptyFields: function () {
-				// required fields
-				var title = document.getElementById('job_title').value
-				var description = document.getElementById('description_input').value
-
-				console.log(title)
-
-				if(title !== '' && description !== '') {
-					return true
-				} else {
-					this.showErrorMessage = true
-					return false
-				}
-			},
 			validateForm: function () {
 				this.showErrorMessage = false
 
