@@ -5,20 +5,20 @@ var config = require(path.join(__dirname, '..', 'config', 'config.json'))[env]
 const uuidv1 = require('uuid/v1')
 var bCrypt = require('bcrypt-nodejs')
 
-exports.signup = function (req, res) {
+exports.signup = function(req, res) {
     res.render('pages/public/signup', {
         message: req.flash('error'),
     })
 }
 
-exports.signin = function (req, res) {
+exports.signin = function(req, res) {
     res.render('pages/public/signin', {
         message: req.flash('loginMessage'),
     })
 }
 
-exports.logout = function (req, res) {
-    req.session.destroy(function (err) {
+exports.logout = function(req, res) {
+    req.session.destroy(function(err) {
         res.redirect('/signin')
     })
 }
@@ -69,7 +69,7 @@ exports.password_reset = async (req, res) => {
             text: `Click here to reset your password. http://localhost:3000/password-update?token=${random_token}. This will expire in 24 hours`,
         }
 
-        mailgun.messages().send(data, function (error, body) {
+        mailgun.messages().send(data, function(error, body) {
             console.log(body)
         })
 
@@ -134,7 +134,7 @@ exports.change_password = async (req, res) => {
 
         if (!user) throw 'User not found'
 
-        var generateHash = function (password) {
+        var generateHash = function(password) {
             return bCrypt.hashSync(password, bCrypt.genSaltSync(8), null)
         }
 
@@ -194,11 +194,11 @@ exports.change_email = async (req, res) => {
 
         if (!updated_user) {
             req.flash('accountMessage', 'Email not updated')
-            res.redirect('/admin/dashboard')
+            res.redirect('/admin/profile')
         }
 
         req.flash('accountMessage', 'Email updated successfully')
-        res.redirect('/admin/dashboard')
+        res.redirect('/admin/profile')
     } catch (err) {
         console.log('Error in change email')
         console.log(err)
