@@ -12,9 +12,7 @@ exports.signup = function(req, res) {
 }
 
 exports.signin = function(req, res) {
-    res.render('pages/public/signin', {
-        message: req.flash('loginMessage'),
-    })
+    res.render('pages/public/signin')
 }
 
 exports.logout = function(req, res) {
@@ -75,7 +73,7 @@ exports.password_reset = async (req, res) => {
 
         res.status(200)
         req.flash(
-            'message',
+            'success',
             'An email has been sent to your email account with instructions'
         )
         res.redirect('/password-reset')

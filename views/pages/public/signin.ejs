@@ -6,6 +6,22 @@
 		Don't have an account? <a href="/signup" class="text-blue-500 hover:underline">Click here</a> to sign up as an employer.
 	</div>
 
+	<% if(flashMessages.success) { %>
+		<div class="mb-8 p-4 bg-green-400 rounded shadow text-white flex items-center mx-4 md:mx-0">
+			<div class="mr-4 ">
+				<i data-feather="alert-circle" class="w-5 h-5"></i>
+			</div>
+			<div>
+				<p class="font-bold leading-5">
+					Success
+				</p>
+				<p class="text-base leading-tight">
+					<%= flashMessages.success %>
+				</p>
+			</div>
+		</div>
+	<% } %>
+
 	<% if(flashMessages.error) { %>
 		<div class="mb-8 p-4 bg-red-500 rounded shadow text-white flex items-center mx-4 md:mx-0">
 			<div class="mr-4 ">
@@ -16,7 +32,7 @@
 					Error
 				</p>
 				<p class="text-base leading-tight">
-					<%= message %>
+					<%= flashMessages.error %>
 				</p>
 			</div>
 		</div>
@@ -31,7 +47,7 @@
 				Error
 			</p>
 			<p class="text-base leading-tight">
-				Something went wrong. Make sure all required fields are complete and accurate.
+				Make sure all required fields are complete and accurate.
 			</p>
 		</div>
 	</div>

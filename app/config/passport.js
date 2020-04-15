@@ -1,6 +1,6 @@
 var bCrypt = require('bcrypt-nodejs')
 
-module.exports = function (passport, user, employer) {
+module.exports = function(passport, user, employer) {
     var User = user
     var Employer = employer
 
@@ -14,8 +14,8 @@ module.exports = function (passport, user, employer) {
                 passwordField: 'password',
                 passReqToCallback: true,
             },
-            function (req, email, password, done) {
-                var generateHash = function (password) {
+            function(req, email, password, done) {
+                var generateHash = function(password) {
                     return bCrypt.hashSync(
                         password,
                         bCrypt.genSaltSync(8),
@@ -27,17 +27,14 @@ module.exports = function (passport, user, employer) {
                     where: {
                         email: email,
                     },
-                }).then(function (user) {
+                }).then(function(user) {
                     if (user) {
                         console.log('email is already taken')
-                        
+
                         return done(
                             null,
                             false,
-                            req.flash(
-                                'error',
-                                'Email is already in use'
-                            )
+                            req.flash('error', 'Email is already in use')
                         )
                     } else {
                         var userPassword = generateHash(password)
@@ -49,7 +46,7 @@ module.exports = function (passport, user, employer) {
                             last_name: req.body.last_name,
                         }
 
-                        User.create(data).then(function (newUser) {
+                        User.create(data).then(function(newUser) {
                             if (!newUser) {
                                 return done(null, false)
                             }
@@ -60,7 +57,7 @@ module.exports = function (passport, user, employer) {
                                 // new user is created, now create new employer with user id as owner
                                 Employer.create({
                                     user_id: newUser.id,
-                                }).then(function (newEmployer) {
+                                }).then(function(newEmployer) {
                                     if (!newEmployer) {
                                         console.log(
                                             'could not create new employer'
@@ -98,10 +95,10 @@ module.exports = function (passport, user, employer) {
                 passReqToCallback: true, // allows us to pass back the entire request to the callback
             },
 
-            function (req, email, password, done) {
+            function(req, email, password, done) {
                 var User = user
 
-                var isValidPassword = function (userpass, password) {
+                var isValidPassword = function(userpass, password) {
                     return bCrypt.compareSync(password, userpass)
                 }
 
@@ -110,13 +107,13 @@ module.exports = function (passport, user, employer) {
                         email: email,
                     },
                 })
-                    .then(function (user) {
+                    .then(function(user) {
                         if (!user) {
                             return done(
                                 null,
                                 false,
                                 req.flash(
-                                    'loginMessage',
+                                    'error',
                                     'Email or Password is incorrect'
                                 )
                             )
@@ -127,7 +124,7 @@ module.exports = function (passport, user, employer) {
                                 null,
                                 false,
                                 req.flash(
-                                    'loginMessage',
+                                    'error',
                                     'Email or Password is incorrect'
                                 )
                             )
@@ -136,14 +133,14 @@ module.exports = function (passport, user, employer) {
                         var userinfo = user.get()
                         return done(null, userinfo)
                     })
-                    .catch(function (err) {
+                    .catch(function(err) {
                         console.log('Error:', err)
 
                         return done(
                             null,
                             false,
                             req.flash(
-                                'loginMessage',
+                                'error',
                                 'Something went wrong with your login on our end.'
                             )
                         )
@@ -153,16 +150,16 @@ module.exports = function (passport, user, employer) {
     )
 
     // serialize
-    passport.serializeUser(function (user, done) {
+    passport.serializeUser(function(user, done) {
         console.log('serializing user')
         console.log(user)
         done(null, user.id)
     })
 
     // deserialize user
-    passport.deserializeUser(function (id, done) {
+    passport.deserializeUser(function(id, done) {
         console.log('deserialzing user ====>')
-        User.findByPk(id).then(function (user) {
+        User.findByPk(id).then(function(user) {
             if (user) {
                 console.log('logged in as ' + user.id)
                 done(null, user.get())
