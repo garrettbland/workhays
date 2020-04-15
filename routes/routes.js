@@ -91,20 +91,12 @@ router.get('/admin/jobs', middleware.isLoggedIn, accountController.jobs)
 router.get('/admin/business', middleware.isLoggedIn, accountController.business)
 router.get('/admin/profile', middleware.isLoggedIn, accountController.profile)
 router.get('/admin/jobs/new', middleware.isLoggedIn, jobController.new_job)
-router.get(
-    '/admin/jobs/:jobId',
-    middleware.isLoggedIn,
-    accountController.edit_job
-)
+router.get('/admin/jobs/:jobId', middleware.isLoggedIn, jobController.edit_job)
 
 router.get('/job-listing-new', middleware.isLoggedIn, function(req, res) {
     res.render('pages/private/joblistingnew')
 })
-router.get(
-    '/jobs/edit/:jobId',
-    middleware.isLoggedIn,
-    accountController.edit_job
-)
+
 router.post('/jobs', jobController.create_job)
 router.post('/jobs/edit/:jobId', jobController.update_job)
 router.post(

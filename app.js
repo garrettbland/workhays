@@ -43,12 +43,13 @@ var models = require('./app/models')
 require('./app/config/passport.js')(passport, models.user, models.employer)
 
 // add currentUser and active url to each request && set version
-app.use(function (req, res, next) {
+app.use(function(req, res, next) {
     res.locals.APP_VERSION = version
     res.locals.user = req.user
     res.locals.activeUrl = req.path.split('/')[1] // [0] will be empty since routes start with '/'
     res.locals.adminPage = req.path.split('/')[1] + req.path.split('/')[2]
     res.locals.req = req
+    res.locals.flashMessages = req.flash()
     console.log('get current user ====>')
     next()
 })
@@ -59,10 +60,10 @@ app.use('/', require('./routes/routes'))
 // Sync Database
 models.sequelize
     .sync()
-    .then(function () {
+    .then(function() {
         console.log('Nice! Database looks fine')
     })
-    .catch(function (err) {
+    .catch(function(err) {
         console.log(err, 'Something went wrong with the Database Update!')
     })
 

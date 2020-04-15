@@ -175,8 +175,7 @@ exports.change_email = async (req, res) => {
         })
 
         if (user) {
-            req.flash('accountMessage', 'Email is already in use')
-            res.redirect('/admin/dashboard')
+            throw 'Email is already in use. Please try again with a different email.'
         }
 
         console.log('changing email! =====>')
@@ -193,16 +192,16 @@ exports.change_email = async (req, res) => {
         })
 
         if (!updated_user) {
-            req.flash('accountMessage', 'Email not updated')
+            req.flash('error', 'Email not updated. Please try again.')
             res.redirect('/admin/profile')
         }
 
-        req.flash('accountMessage', 'Email updated successfully')
+        req.flash('success', 'Profile updated successfully')
         res.redirect('/admin/profile')
     } catch (err) {
+        req.flash('error', err)
         console.log('Error in change email')
         console.log(err)
-        res.status(404)
-        res.render('error')
+        res.redirect('/admin/profile')
     }
 }

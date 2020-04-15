@@ -88,10 +88,14 @@ exports.create_job = async (req, res) => {
 
         res.status(200)
         // res.render('pages/account')
-        req.flash('accountMessage', 'New job created successfully')
+        req.flash('success', 'New job created successfully')
         res.redirect('/admin/jobs')
     } catch (err) {
         // res.send(err)
+        req.flash(
+            'error',
+            'Something went wrong creating job, please try again.'
+        )
         console.log('Error in create_job')
         res.status(200)
         res.render('error')
@@ -134,18 +138,57 @@ exports.update_job = async (req, res) => {
         // })
 
         if (req.body.action_button === 'update') {
-            req.flash('accountMessage', 'Job updated successfully')
+            req.flash('success', 'Job updated successfully')
             res.redirect(
                 '/admin/jobs/' + req.params.jobId + '?from=/admin/jobs'
             )
         } else {
-            req.flash('accountMessage', 'Job archived successfully')
+            req.flash('success', 'Job archived successfully')
             res.redirect('/admin/jobs')
         }
     } catch (err) {
         // res.send(err)
+        req.flash('error', 'Something went wrong, please try again.')
         console.log('Error in update_job')
         res.status(200)
         res.render('error')
     }
+}
+
+exports.edit_job = async (req, res) => {
+    try {
+        // get employer
+        const employer = await Models.employer.findOne({
+            where: {
+                user_id: req.user.id,
+            },
+        })
+
+        const job = await Models.job.findOne({
+            where: {
+                id: req.params.jobId,
+                employer_id: employer.id,
+            },
+        })
+
+        let enabled
+        if (
+            job.dataValues.status === 'active' ||
+            job.dataValues.status === 'inactive'
+        ) {
+            enabled = true
+        } else {
+            enabled = false
+        }
+
+        if (job) {
+            res.render('pages/private/job', {
+                job: job.dataValues,
+                enabled: enabled,
+            })
+        } else {
+            res.status(404)
+            res.render('error')
+        }
+    } catch (err) {}
 }

@@ -81,10 +81,11 @@ exports.update_employer = async (req, res) => {
         //   updated: true,
         //   update_job
         // })
-        req.flash('accountMessage', 'Employer updated successfully')
+        req.flash('success', 'Employer updated successfully')
         res.redirect('/admin/business')
     } catch (err) {
         // res.send(err)
+        req.flash('error', 'Something went wrong, please try again.')
         console.log('Error in update_employer')
         res.status(200)
         res.render('error')
