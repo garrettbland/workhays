@@ -23,19 +23,20 @@ exports.index = async (req, res) => {
 
         const jobs = await Models.job.findAll({
             where: {
-                employer_id: employer.id
+                employer_id: employer.id,
             },
         })
 
         if (!jobs) throw 'Jobs not found'
 
+        var TWO_WEEKS_OLD = moment
+            .tz(moment(), 'America/Chicago')
+            .subtract(14, 'days')
+            .endOf('day')
 
-        var TWO_WEEKS_OLD = moment.tz(moment(),"America/Chicago").subtract(14, 'days').endOf('day')
-        
-        var totalActiveJobs = jobs.filter(function (job) {
-            var jobCreatedAt = moment.tz(job.createdAt, "America/Chicago").utc()
+        var totalActiveJobs = jobs.filter(function(job) {
+            var jobCreatedAt = moment.tz(job.createdAt, 'America/Chicago').utc()
             if (job.status === 'active') {
-
                 if (jobCreatedAt >= TWO_WEEKS_OLD) {
                     return job
                 } else {
@@ -46,10 +47,9 @@ exports.index = async (req, res) => {
             }
         })
 
-        var totalExpiredJobs = jobs.filter(function (job) {
-            var jobCreatedAt = moment.tz(job.createdAt, "America/Chicago").utc()
+        var totalExpiredJobs = jobs.filter(function(job) {
+            var jobCreatedAt = moment.tz(job.createdAt, 'America/Chicago').utc()
             if (job.status === 'active') {
-
                 if (jobCreatedAt <= TWO_WEEKS_OLD) {
                     return job
                 } else {
@@ -60,9 +60,14 @@ exports.index = async (req, res) => {
             }
         })
 
-        var checkIfEmployerSetup = function (employer) {
-
-            if (!employer.title || !employer.contact || !employer.description || !employer.email || !employer.phone) {
+        var checkIfEmployerSetup = function(employer) {
+            if (
+                !employer.title ||
+                !employer.contact ||
+                !employer.description ||
+                !employer.email ||
+                !employer.phone
+            ) {
                 return false
             } else {
                 return true
@@ -85,7 +90,6 @@ exports.index = async (req, res) => {
 
 exports.jobs = async (req, res) => {
     try {
-
         // get jobs
 
         // get employer
@@ -99,22 +103,30 @@ exports.jobs = async (req, res) => {
         const jobs = await Models.job.findAll({
             where: {
                 employer_id: employer.id,
-                [Op.or]: [{ status: 'active' }, { status: 'inactive' }, { status: 'archived'}],
+                [Op.or]: [
+                    { status: 'active' },
+                    { status: 'inactive' },
+                    { status: 'archived' },
+                ],
             },
-            order: [
-                ['createdAt', 'DESC']
-            ],
+            order: [['createdAt', 'DESC']],
         })
 
         if (!jobs) throw 'Jobs not found'
 
-        var buildStatus = function (job) {
+        var buildStatus = function(job) {
             // expiration is 2 weeks. Check if createdAt is older than two week, set expired instead of inactive for more verbose messages for users
 
-            var TWO_WEEKS_OLD = moment.tz(moment(),"America/Chicago").subtract(14, 'days').endOf('day')
-            var jobCreatedAt = moment.tz(job.createdAt, "America/Chicago").utc()
-            
-            console.log('created at ==> ' + moment.tz(job.createdAt,"America/Chicago").utc())
+            var TWO_WEEKS_OLD = moment
+                .tz(moment(), 'America/Chicago')
+                .subtract(14, 'days')
+                .endOf('day')
+            var jobCreatedAt = moment.tz(job.createdAt, 'America/Chicago').utc()
+
+            console.log(
+                'created at ==> ' +
+                    moment.tz(job.createdAt, 'America/Chicago').utc()
+            )
             console.log('two weeks ago ==> ' + TWO_WEEKS_OLD)
 
             if (job.status === 'active') {
@@ -126,22 +138,19 @@ exports.jobs = async (req, res) => {
             } else {
                 return 'inactive'
             }
-
         }
 
-        var formattedJobs = jobs.map(function (job) {
+        var formattedJobs = jobs.map(function(job) {
             return {
                 ...job.dataValues,
-                formattedStatus: buildStatus(job.dataValues)
+                formattedStatus: buildStatus(job.dataValues),
             }
         })
 
         res.render('pages/private/jobs', {
             jobs: formattedJobs,
-            moment: moment
+            moment: moment,
         })
-
-
     } catch (err) {
         console.log(err)
         res.render('error')
@@ -150,7 +159,6 @@ exports.jobs = async (req, res) => {
 
 exports.business = async (req, res) => {
     try {
-
         // get employer
         const employer = await Models.employer.findOne({
             where: {
@@ -159,9 +167,8 @@ exports.business = async (req, res) => {
         })
 
         res.render('pages/private/business', {
-            employer: employer.dataValues
+            employer: employer.dataValues,
         })
-
     } catch (err) {
         console.log(err)
         res.render('error')
@@ -170,11 +177,7 @@ exports.business = async (req, res) => {
 
 exports.profile = async (req, res) => {
     try {
-
-        res.render('pages/private/profile', {
-            
-        })
-
+        res.render('pages/private/profile', {})
     } catch (err) {
         console.log(err)
         res.render('error')
@@ -208,7 +211,7 @@ exports.edit_job = async (req, res) => {
         }
 
         if (job) {
-            res.render('pages/private/joblistingedit', {
+            res.render('pages/private/job', {
                 job: job.dataValues,
                 enabled: enabled,
             })
@@ -217,47 +220,4 @@ exports.edit_job = async (req, res) => {
             res.render('error')
         }
     } catch (err) {}
-}
-
-exports.list_archived_jobs = async (req, res) => {
-    try {
-        // get employer
-        const employer = await Models.employer.findOne({
-            where: {
-                user_id: req.user.id,
-            },
-        })
-
-        // get employers jobs
-        const jobs = await Models.job.findAll({
-            where: {
-                employer_id: employer.id,
-                [Op.or]: [{ status: 'archived' }, { status: 'filled' }],
-            },
-        })
-
-        if (!jobs) throw 'Jobs not found'
-
-        var formattedJobs = jobs.map(function (job) {
-            return {
-                ...job.dataValues,
-                updatedAt: moment
-                    .utc(job.dataValues.updatedAt)
-                    .local()
-                    .format('MM/DD/YYYY, h:mm a'),
-            }
-        })
-
-        console.log('======> EMPLOYER JOBS =====>')
-        console.log(jobs)
-
-        res.render('pages/private/joblistingarchive', {
-            jobs: formattedJobs,
-        })
-    } catch (err) {
-        console.log('Error in list_archived_jobs')
-        console.log(err)
-        res.status(404)
-        res.render('error')
-    }
 }

@@ -62,7 +62,7 @@ exports.get_job = async (req, res) => {
 }
 
 exports.new_job = (req, res) => {
-    res.render('pages/private/joblistingnew')
+    res.render('pages/private/new_job')
 }
 
 exports.create_job = async (req, res) => {
@@ -133,12 +133,14 @@ exports.update_job = async (req, res) => {
         //   update_job
         // })
 
-        if(req.body.action_button === 'update') {
-          req.flash('accountMessage', 'Job updated successfully')
-          res.redirect('/admin/jobs/' + req.params.jobId + '?from=/admin/jobs')
+        if (req.body.action_button === 'update') {
+            req.flash('accountMessage', 'Job updated successfully')
+            res.redirect(
+                '/admin/jobs/' + req.params.jobId + '?from=/admin/jobs'
+            )
         } else {
-          req.flash('accountMessage', 'Job archived successfully')
-          res.redirect('/admin/jobs')
+            req.flash('accountMessage', 'Job archived successfully')
+            res.redirect('/admin/jobs')
         }
     } catch (err) {
         // res.send(err)
