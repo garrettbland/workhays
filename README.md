@@ -89,6 +89,11 @@ kill ${pid}
 
 #### Garretts notes
 
+-- start pm2 
+```
+pm2 start npm --name "workhays" -- start
+```
+
 Creating table with auto timestamps
 
 ```
