@@ -99,6 +99,7 @@ router.get('/job-listing-new', middleware.isLoggedIn, function(req, res) {
 
 router.post('/jobs', jobController.create_job)
 router.post('/jobs/edit/:jobId', jobController.update_job)
+router.post('/jobs/renew/:jobId', jobController.renew_job)
 router.post(
     '/account/change_email',
     middleware.isLoggedIn,

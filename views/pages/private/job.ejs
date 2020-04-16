@@ -14,6 +14,28 @@
 		<div x-data="editJob()" x-init="isActive = <%= job.status === 'active' ? true : false %>" class="col-span-1 md:col-span-6">
 			<!-- content -->
 
+			<% if(job.status !== 'archived') { %>
+				<% if (job.renewed < moment.tz(moment(), 'America/Chicago').subtract(14, 'days').endOf('day')){ %>
+					<form method="POST" action="/jobs/renew/<%= job.id %>">
+						<div class="mb-8 p-4 bg-orange-100 text-orange-900 shadow rounded flex justify-between items-center">
+							<div>
+								<div class="text-lg font-medium">
+									Job Expired
+								</div>
+								<div class="text-sm">
+									This job posting has expired. Renew now for an additional 2 weeks.
+								</div>
+							</div>
+							<div>
+								<button type="submit" class="block px-3 py-2 text-center text-sm font-medium rounded text-white bg-orange-500 focus:outline-none focus:shadow-outline-orange transition ease-in-out duration-150 shadow border border-orange-500 transition transform duration-75 ease-in-out hover:-translate-y-0.1">
+									Renew
+								</button>
+							</div>
+						</div>
+					</form>
+				<% } %>
+			<% } %>
+
 			<div x-show="showErrorMessage" class="mb-8 p-4 bg-red-500 rounded shadow text-white flex items-center mx-4 lg:mx-0" style="display:none;">
 				<div class="mr-4">
 					<i data-feather="alert-circle" class="w-5 h-5"></i>
@@ -38,7 +60,7 @@
 							Edit Job
 						</div>
 						<div class="antialiased text-sm">
-							Update details or renew your job listing.
+							Update details or renew your job listing. This listing will expire on <%= moment.tz(job.renewed, 'America/Chicago').add(14, 'days').endOf('day').format('LL') %>
 						</div>
 					<% } else { %>
 						<div class="text-lg font-semibold">

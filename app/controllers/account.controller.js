@@ -35,7 +35,7 @@ exports.index = async (req, res) => {
             .endOf('day')
 
         var totalActiveJobs = jobs.filter(function(job) {
-            var jobCreatedAt = moment.tz(job.createdAt, 'America/Chicago').utc()
+            var jobCreatedAt = moment.tz(job.renewed, 'America/Chicago').utc()
             if (job.status === 'active') {
                 if (jobCreatedAt >= TWO_WEEKS_OLD) {
                     return job
@@ -48,9 +48,9 @@ exports.index = async (req, res) => {
         })
 
         var totalExpiredJobs = jobs.filter(function(job) {
-            var jobCreatedAt = moment.tz(job.createdAt, 'America/Chicago').utc()
+            var jobRenewed = moment.tz(job.renewed, 'America/Chicago').utc()
             if (job.status === 'active') {
-                if (jobCreatedAt <= TWO_WEEKS_OLD) {
+                if (jobRenewed <= TWO_WEEKS_OLD) {
                     return job
                 } else {
                     return null
@@ -114,29 +114,15 @@ exports.jobs = async (req, res) => {
 
         if (!jobs) throw 'Jobs not found'
 
-        var buildStatus = function(job) {
-            // expiration is 2 weeks. Check if createdAt is older than two week, set expired instead of inactive for more verbose messages for users
-
-            var TWO_WEEKS_OLD = moment
-                .tz(moment(), 'America/Chicago')
-                .subtract(14, 'days')
-                .endOf('day')
-            var jobCreatedAt = moment.tz(job.createdAt, 'America/Chicago').utc()
-
-            console.log(
-                'created at ==> ' +
-                    moment.tz(job.createdAt, 'America/Chicago').utc()
-            )
-            console.log('two weeks ago ==> ' + TWO_WEEKS_OLD)
-
-            if (job.status === 'active') {
-                if (jobCreatedAt <= TWO_WEEKS_OLD) {
-                    return 'expired'
-                } else {
-                    return 'active'
-                }
+        var buildStatus = function (job) {
+            if (job.status === 'archived') {
+                return null
             } else {
-                return 'inactive'
+                if (job.renewed > moment.tz(moment(), 'America/Chicago').subtract(14, 'days').endOf('day')) {
+                    return 'active'
+                } else {
+                    return 'expired'
+                }
             }
         }
 
@@ -149,6 +135,7 @@ exports.jobs = async (req, res) => {
 
         res.render('pages/private/jobs', {
             jobs: formattedJobs,
+            employer: employer,
             moment: moment,
         })
     } catch (err) {

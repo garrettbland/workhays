@@ -34,6 +34,12 @@ module.exports = function (sequelize, Sequelize) {
         required: false
       },
 
+      renewed: {
+        type: Sequelize.DATE,
+        allowNull: false,
+        defaultValue: Sequelize.NOW
+      },
+
       status: {
         type: Sequelize.ENUM('active', 'inactive', 'archived'),
         defaultValue: 'active'

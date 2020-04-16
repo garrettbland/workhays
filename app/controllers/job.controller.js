@@ -14,7 +14,7 @@ exports.list_jobs = async (req, res) => {
         const jobs = await Models.job.findAndCountAll({
             where: {
                 status: 'active',
-                created_at: {
+                renewed: {
                     [Op.gt]: moment.tz(moment(), 'America/Chicago').subtract(14, 'days').endOf('day')
                 }
             },
@@ -125,6 +125,44 @@ exports.create_job = async (req, res) => {
     }
 }
 
+exports.renew_job = async (req, res) => {
+    try {
+        // get employer
+        const employer = await Models.employer.findOne({
+            where: {
+                user_id: req.user.id,
+            },
+        })
+
+        var job = {
+            renewed: moment.tz(moment(), 'America/Chicago').utc()
+        }
+
+        const renew_job = await Models.job.update(job, {
+            where: {
+                id: req.params.jobId,
+                employer_id: employer.id,
+            },
+        })
+
+        if (!renew_job) throw 'Job not renewed'
+
+        req.flash('success', 'Job successfully renewed')
+        res.redirect(
+            '/admin/jobs/' + req.params.jobId + '?from=/admin/jobs'
+        )
+
+
+    } catch (err) {
+        console.log(err)
+        // res.send(err)
+        req.flash('error', 'Something went wrong renewing your job, please try again.')
+        console.log('Error in renew_job')
+        res.status(200)
+        res.redirect('/admin/jobs')
+    }
+}
+
 exports.update_job = async (req, res) => {
     try {
         // get employer
@@ -174,7 +212,7 @@ exports.update_job = async (req, res) => {
         req.flash('error', 'Something went wrong, please try again.')
         console.log('Error in update_job')
         res.status(200)
-        res.render('error')
+        res.redirect('/admin/jobs')
     }
 }
 
@@ -207,6 +245,7 @@ exports.edit_job = async (req, res) => {
         if (job) {
             res.render('pages/private/job', {
                 job: job.dataValues,
+                moment: moment,
                 enabled: enabled,
             })
         } else {
