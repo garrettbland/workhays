@@ -3,6 +3,7 @@
     "version": "0.0.1",
     "private": true,
     "scripts": {
+        "start": "npm run prod",
         "remove:dist": "rm -rf public/dist",
         "set:version": "node ./app/config/version.js",
         "dev": "npm run set:version && npm run remove:dist && webpack --mode development && nodemon app.js",
