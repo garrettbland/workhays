@@ -1,5 +1,6 @@
 var Models = require('../models')
 var moment = require('moment')
+const { Op } = require("sequelize");
 
 exports.list_jobs = async (req, res) => {
     try {
@@ -13,6 +14,9 @@ exports.list_jobs = async (req, res) => {
         const jobs = await Models.job.findAndCountAll({
             where: {
                 status: 'active',
+                created_at: {
+                    [Op.gt]: moment.tz(moment(), 'America/Chicago').subtract(14, 'days').endOf('day')
+                }
             },
             order: [['createdAt', 'DESC']],
             limit: job_limit,
@@ -24,6 +28,25 @@ exports.list_jobs = async (req, res) => {
 
         console.log(jobs)
 
+        // var buildStatus = function(job) {
+        //     // expiration is 2 weeks. Check if createdAt is older than two week, set expired instead of inactive for more verbose messages for users
+
+        //     var TWO_WEEKS_OLD = moment
+        //         .tz(moment(), 'America/Chicago')
+        //         .subtract(14, 'days')
+        //         .endOf('day')
+        //     var jobCreatedAt = moment.tz(job.createdAt, 'America/Chicago').utc()
+
+        //     if (jobCreatedAt > TWO_WEEKS_OLD) {
+        //         return job
+        //     }
+
+        // }
+
+        // var formattedJobs = jobs.rows.map(function (job) {
+        //     return buildStatus(job)
+        // })
+        
         res.render('pages/public/index', {
             jobs: jobs.rows,
             count: jobs.count,
