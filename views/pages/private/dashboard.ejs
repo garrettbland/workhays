@@ -5,6 +5,24 @@
 		<%- include('../../partials/admin_sidebar') %>
 		<div class="col-span-1 md:col-span-6">
 			<div class="grid grid-cols-1 sm:grid-cols-4 lg:grid-cols-3 gap-4">
+				<% if(user.status === 'pending') { %>
+					<div class="col-span-3 rounded shadow p-4 flex flex-col bg-white">
+						<div class="text-lg mb-2">
+							Status: <span class="font-bold text-orange-500">Pending</span>
+						</div>
+						<div class="text-gray-700">
+							<p class="mb-3">
+								Thank you for signing up with Work Hays. Your account request will be 
+								reviewed and we may reach out to verify your identity. Once verified, 
+								you will be able to post jobs. This may take up to 2 days.
+							</p>
+							<p>
+								While you wait, please take a few minutes to add your employer details. <a href="/admin/business" class="underline hover:text-gray-900">Click here to manage your business.</a>
+							</p>
+						</div>
+					</div>
+				<% } %>
+				<% if(user.status === 'verified') { %>
 				<div class="col-span-1 sm:col-span-2 lg:col-span-1">
 					<div class="flex flex-col p-4 bg-white rounded shadow">
 						<div class="text-center font-bold text-xl leading-tight">
@@ -59,6 +77,7 @@
 						<% } %>
 					</div>
 				</div>
+			<% } %>
 			</div>
 		</div>
 	</div>
