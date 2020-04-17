@@ -64,7 +64,6 @@ exports.index = async (req, res) => {
             if (
                 !employer.title ||
                 !employer.contact ||
-                !employer.description ||
                 !employer.email ||
                 !employer.phone
             ) {

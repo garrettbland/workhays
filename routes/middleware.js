@@ -4,4 +4,9 @@ exports.isLoggedIn = (req, res, next) => {
   res.redirect('/signin')
 }
 
+exports.isUserVerified = (req, res, next) => {
+  if (res.locals.user.status === 'verified') return next()
+
+  res.redirect('/admin/dashboard')
+}
 // res.locals.user = req.user
