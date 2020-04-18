@@ -86,26 +86,27 @@ router.get('/logout', authController.logout)
 Private Routes
 
 */
-router.get('/admin/dashboard', middleware.isLoggedIn, accountController.index)
-router.get('/admin/jobs', middleware.isLoggedIn, accountController.jobs)
-router.get('/admin/business', middleware.isLoggedIn, accountController.business)
-router.get('/admin/profile', middleware.isLoggedIn, accountController.profile)
-router.get('/admin/jobs/new', middleware.isLoggedIn, middleware.isUserVerified, jobController.new_job)
-router.get('/admin/jobs/:jobId', middleware.isLoggedIn, middleware.isUserVerified, jobController.edit_job)
+router.get('/admin/dashboard', middleware.isLoggedIn, middleware.isLocked, accountController.index)
+router.get('/admin/jobs', middleware.isLoggedIn, middleware.isLocked, accountController.jobs)
+router.get('/admin/business', middleware.isLoggedIn, middleware.isLocked, accountController.business)
+router.get('/admin/profile', middleware.isLoggedIn, middleware.isLocked, accountController.profile)
+router.get('/admin/jobs/new', middleware.isLoggedIn, middleware.isLocked, middleware.isUserVerified, jobController.new_job)
+router.get('/admin/jobs/:jobId', middleware.isLoggedIn, middleware.isLocked, middleware.isUserVerified, jobController.edit_job)
 
-router.get('/job-listing-new', middleware.isLoggedIn, middleware.isUserVerified, function(req, res) {
+router.get('/job-listing-new', middleware.isLoggedIn, middleware.isLocked, middleware.isUserVerified, function(req, res) {
     res.render('pages/private/joblistingnew')
 })
 
-router.post('/jobs', middleware.isLoggedIn, middleware.isUserVerified, jobController.create_job)
-router.post('/jobs/edit/:jobId', middleware.isLoggedIn, middleware.isUserVerified, jobController.update_job)
-router.post('/jobs/renew/:jobId', middleware.isLoggedIn, middleware.isUserVerified, jobController.renew_job)
+router.post('/jobs', middleware.isLoggedIn, middleware.isLocked, middleware.isUserVerified, jobController.create_job)
+router.post('/jobs/edit/:jobId', middleware.isLoggedIn, middleware.isLocked, middleware.isUserVerified, jobController.update_job)
+router.post('/jobs/renew/:jobId', middleware.isLoggedIn, middleware.isLocked, middleware.isUserVerified, jobController.renew_job)
 router.post(
     '/account/change_email',
     middleware.isLoggedIn,
+    middleware.isLocked,
     authController.change_email
 )
-router.post('/employers/edit/:employerId', middleware.isLoggedIn, employerController.update_employer)
+router.post('/employers/edit/:employerId', middleware.isLoggedIn,middleware.isLocked, employerController.update_employer)
 
 // catch 404 and forward to error handler
 router.get('*', (req, res) => {

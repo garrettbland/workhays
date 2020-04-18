@@ -38,6 +38,20 @@
 		</div>
 	<% } %>
 
+	<div x-show="showLockedMessage" class="mb-8 p-4 bg-red-500 rounded shadow text-white flex items-center mx-4 md:mx-0" style="display:none;">
+		<div class="mr-4 ">
+			<i data-feather="alert-circle" class="w-5 h-5"></i>
+		</div>
+		<div>
+			<p class="font-bold leading-5">
+				Locked
+			</p>
+			<p class="text-base leading-tight">
+				Your account has been locked. Please <a href="/contact" class="underline">contact us</a> to continue use of your account.
+			</p>
+		</div>
+	</div>
+
 	<div x-show="showErrorMessage" class="mb-8 p-4 bg-red-500 rounded shadow text-white flex items-center mx-4 md:mx-0" style="display:none;">
 		<div class="mr-4 ">
 			<i data-feather="alert-circle" class="w-5 h-5"></i>
@@ -117,6 +131,7 @@
 			showErrorMessage: false,
 			showErrorEmailMessage: false,
 			showPasswordUpdatedMessage: false,
+			showLockedMessage: false,
 			form: {
 				email: '',
 				password: ''
@@ -146,6 +161,12 @@
 			searchUrlParameters: function () {
 				var url = new URL(window.location.href)
 				var successMessage = url.searchParams.get("password_update")
+				var lockedMessage = url.searchParams.get("locked")
+
+				// if account locked
+				if(lockedMessage) {
+					this.showLockedMessage = true
+				}
 
 				// if success
 				if(successMessage) {

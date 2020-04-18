@@ -42,7 +42,7 @@ module.exports = function (sequelize, Sequelize) {
       },
 
       status: {
-        type: Sequelize.ENUM('pending', 'verified'),
+        type: Sequelize.ENUM('pending', 'verified', 'locked'),
         defaultValue: 'pending'
       },
 
