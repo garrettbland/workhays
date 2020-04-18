@@ -60,7 +60,7 @@ module.exports = function (sequelize, Sequelize) {
     }
   )
 
-  User.sync({ alter: true })
+  // User.sync({ alter: true })
 
   return User
 }
