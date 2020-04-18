@@ -64,7 +64,7 @@ exports.password_reset = async (req, res) => {
             from: 'Work Hays <support@workhays.com>',
             to: req.body.email,
             subject: 'Password Reset',
-            text: `Click here to reset your password. ${process.NODE_ENV === 'production' ? 'https://workhays.com' : 'http://localhost:3000'}/password-update?token=${random_token}. This will expire in 24 hours`,
+            text: `Click here to reset your password. ${process.env.NODE_ENV === 'production' ? 'https://workhays.com' : 'http://localhost:3000'}/password-update?token=${random_token}. This will expire in 24 hours`,
         }
 
         mailgun.messages().send(data, function(error, body) {
@@ -80,6 +80,11 @@ exports.password_reset = async (req, res) => {
     } catch (err) {
         console.log('Error in password_reset =====>')
         console.log(err)
+        req.flash(
+            'error',
+            'Something went wrong. Please try again.'
+        )
+        res.redirect('/password-reset')
         res.status(200)
         res.render('error')
     }
