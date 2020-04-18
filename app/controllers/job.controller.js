@@ -18,7 +18,7 @@ exports.list_jobs = async (req, res) => {
                     [Op.gt]: moment.tz(moment(), 'America/Chicago').subtract(14, 'days').endOf('day')
                 }
             },
-            order: [['createdAt', 'DESC']],
+            order: [['renewed', 'DESC']],
             limit: job_limit,
             offset: parseInt(page * job_limit),
             include: Models.employer,
