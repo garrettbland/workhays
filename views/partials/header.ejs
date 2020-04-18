@@ -1,10 +1,16 @@
 <% var title,description,message %> <% var paddingBottom %>
+
+<% var images = ['https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80','https://images.unsplash.com/photo-1556742393-d75f468bfcb0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80'] %>
+
+
+
 <div
-    class="text-white"
-    style="background-image: linear-gradient( 90deg,  rgba(107,52,255,1) 16.5%, rgba(51,159,247,1) 81% );"
+    class="text-white bg-center"
+    style="background-image: linear-gradient( 90deg,  rgba(107,52,255,1) 16.5%, rgba(51,159,247,0.5) 81% ),url(<%= images[Math.floor(Math.random() * images.length)] %>);"
 >
+<%- include('./navbar.ejs') %> 
     <div
-        class="max-w-4xl mx-auto pt-20 <%= paddingBottom ? paddingBottom : 'pb-14' %> px-4 lg:px-0"
+        class="max-w-4xl mx-auto pt-14 <%= paddingBottom ? paddingBottom : 'pb-14' %> px-4 lg:px-0"
     >
         <% if (req.query.from) { %>
         <a href="<%= req.query.from %>">
@@ -22,8 +28,8 @@
         >
             <%= title %>
         </h1>
-        <p class="text-lg text-white opacity-75">
-            <%= description %>
+        <p class="text-lg text-white">
+            <%- description %>
         </p>
     </div>
 </div>
