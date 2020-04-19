@@ -32,3 +32,32 @@ exports.get_users = async (req, res) => {
         res.status(404).render('error')
     }
 }
+
+exports.update_user = async (req, res) => {
+    try {
+
+        const user_obj = {
+            first_name: req.body.first_name,
+            last_name: req.body.last_name,
+            email: req.body.email, 
+            status: req.body.status,
+            role: req.body.role
+        }
+
+        const update_user = await Models.user.update(user_obj, {
+            where: {
+                id: req.params.userId,
+            },
+        })
+
+        if (!update_user) throw 'Update failed'
+
+        res.status(200).json({
+            code: 1,
+        })
+
+    } catch (err) {
+        console.log(err)
+        res.status(404).render('error')
+    }
+}

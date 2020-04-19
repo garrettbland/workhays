@@ -1,6 +1,15 @@
 /* purgecss start ignore */
 @tailwind base;
 @tailwind components;
+
+trix-toolbar .trix-button-group {
+  @apply bg-white rounded shadow border-none overflow-hidden
+}
+
+trix-editor a {
+  @apply text-blue-500 underline
+}
+
 /* purgecss end ignore */
 
 @tailwind utilities;
@@ -55,12 +64,4 @@ body {
   -ms-animation: rotating 2s linear infinite;
   -o-animation: rotating 2s linear infinite;
   animation: rotating 2s linear infinite;
-}
-
-trix-toolbar .trix-button-group {
-  @apply bg-white rounded shadow border-none overflow-hidden
-}
-
-trix-editor a {
-  @apply text-blue-500 underline
 }

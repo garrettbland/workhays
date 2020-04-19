@@ -126,6 +126,7 @@ API Routes
 
 router.post('/api/subscribe', subscriberController.create_subscriber)
 router.get('/api/users', middleware.isLoggedIn, middleware.isAdmin, adminController.get_users)
+router.put('/api/users/:userId', middleware.isLoggedIn, middleware.isAdmin, adminController.update_user)
 
 // catch 404 and forward to error handler
 router.get('*', (req, res) => {

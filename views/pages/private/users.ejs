@@ -20,31 +20,39 @@
                     <template x-if="currentlySelectedUser">
                         <div>
                             <div>
-                                First: <input x-bind:value="currentlySelectedUser.first_name" class="bg-white p-1 ml-1 border border-gray-200"></input>
+                                First: <input x-model:value="currentlySelectedUser.first_name" class="bg-white p-1 ml-1 border border-gray-200"></input>
                             </div>
                             <div>
-                                Last: <input x-bind:value="currentlySelectedUser.last_name" class="bg-white p-1 ml-1 border border-gray-200"></input>
+                                Last: <input x-model:value="currentlySelectedUser.last_name" class="bg-white p-1 ml-1 border border-gray-200"></input>
                             </div>
                             <div>
-                                Email: <input x-bind:value="currentlySelectedUser.email" class="bg-white p-1 ml-1 border border-gray-200"></input>
+                                Email: <input x-model:value="currentlySelectedUser.email" class="bg-white p-1 ml-1 border border-gray-200"></input>
                             </div>
                             <div>
                                 Role: 
-                                <select>
-                                    <option x-bind:selected="currentlySelectedUser.role === 'admin'">Admin</option>
-                                    <option x-bind:selected="currentlySelectedUser.role === 'employer'">Employer</option>
+                                <select x-model="currentlySelectedUser.role">
+                                    <option value="admin" x-bind:selected="currentlySelectedUser.role === 'admin'">Admin</option>
+                                    <option value="employer" x-bind:selected="currentlySelectedUser.role === 'employer'">Employer</option>
                                 </select>
                             </div>
                             <div>
                                 Status:
-                                <select>
-                                    <option x-bind:selected="currentlySelectedUser.status === 'pending'">Pending</option>
-                                    <option x-bind:selected="currentlySelectedUser.status === 'verified'">Verified</option>
-                                    <option x-bind:selected="currentlySelectedUser.status === 'locked'">Locked</option>
+                                <select x-model="currentlySelectedUser.status">
+                                    <option value="pending" x-bind:selected="currentlySelectedUser.status === 'pending'">Pending</option>
+                                    <option value="verified" x-bind:selected="currentlySelectedUser.status === 'verified'">Verified</option>
+                                    <option value="locked" x-bind:selected="currentlySelectedUser.status === 'locked'">Locked</option>
                                 </select>
                             </div>
                             <div>
                                 Employer: <span x-text="currentlySelectedUser.employer.title"></span>
+                            </div>
+                            <div>
+                                <div x-show="isUpdating">
+                                    Saving changes...
+                                </div>
+                                <button x-on:click="saveChanges(currentlySelectedUser)">
+                                    Update User
+                                </button>
                             </div>
                         </div>
                     </template>
@@ -96,6 +104,7 @@
             users: [],
             isPopupVisible: false,
             currentlySelectedUser: null,
+            isUpdating: false,
             showPopup: function(user) {
                 this.currentlySelectedUser = user
                 this.isPopupVisible = true
@@ -113,9 +122,27 @@
                     _this.users = data.data
                 })
             },
+            saveChanges: function(user) {
+                var _this = this;
+                this.isUpdating = true
+                this.updateUser(user).then((data) => {
+                    window.alert('update successful')
+                    _this.isUpdating = false
+                })
+            },
             fetchUsers: async function() {
                 const users = await fetch('/api/users')
                 return users.json()
+            },
+            updateUser: async function(user) {
+                 const update = await fetch('/api/users/'+user.id, {
+                     method: 'PUT',
+                     headers: {
+                        'Content-type': 'application/json; charset=UTF-8'
+                        },
+                     body: JSON.stringify(user)
+                 })
+                 return update.json()
             }
         }
     }
