@@ -3,14 +3,22 @@ x-show.transition.in.opacity.scale.100.duration.300.out.scale.100.opacity.durati
 class="h-screen w-screen bg-overlay-500 fixed top-0 left-0 z-40 lg:hidden p-3" style="display:none;"
 >
 <div
-    x-show.transition="showMobileMenu"
+    x-on:click.away="close('showMobileMenu')"
+    x-show="showMobileMenu"
+    x-transition:enter="transition ease-out duration-300"
+    x-transition:enter-start="opacity-0 transform -translate-y-6"
+    x-transition:enter-end="opacity-100"
+    x-transition:leave="transition ease-in duration-300"
+    x-transition:leave-start="opacity-100"
+    x-transition:leave-end="opacity-0 transform -translate-y-6"
     class="bg-white rounded shadow-lg m-3 overflow-x-scroll max-w-lg mx-auto"
 >
     <div class="flex justify-between items-center p-4 mb-3">
         <!-- logo -->
-        <a href="/" class="text-lg">
-            <span class="font-light text-gray-600">Work</span
-            ><span class="font-bold">hays</span>
+        <a href="/" class="text-lg text-gray-900 flex items-center">
+            <img class="h-auto w-6 mr-3" src="/images/work-mobile.svg" />
+            <span class="font-light">Work</span
+            ><span class="font-bold">Hays</span>
         </a>
         <!-- close x -->
         <button
@@ -72,8 +80,8 @@ class="h-screen w-screen bg-overlay-500 fixed top-0 left-0 z-40 lg:hidden p-3" s
                 href="/logout"
                 class="flex justify-between items-center block py-3 px-3 rounded-lg hover:bg-gray-100 mb-1"
             >
-                Logout
-                <i data-feather="lock" class=""></i>
+                Sign Out
+                <i data-feather="chevron-right" class=""></i>
             </a>
         </li>
         <% } else { %>

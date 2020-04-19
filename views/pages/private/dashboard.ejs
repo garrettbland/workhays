@@ -23,6 +23,7 @@
 					</div>
 				<% } %>
 				<% if(user.status === 'verified') { %>
+					<% if (employerSetup) { %>
 				<div class="col-span-1 sm:col-span-2 lg:col-span-1">
 					<div class="flex flex-col p-4 bg-white rounded shadow">
 						<div class="text-center font-bold text-xl leading-tight">
@@ -31,10 +32,12 @@
 						<div class="text-center text-gray-600 text-sm mb-3">
 							Active Jobs
 						</div>
-						<div >
+						<div>
+							
 							<a href="/admin/jobs/new?from=<%= req.originalUrl %>" class="block px-3 py-2 text-center text-sm font-medium rounded text-white bg-green-400 focus:outline-none focus:shadow-outline-green transition ease-in-out duration-150 shadow border border-green-400 transition transform duration-75 ease-in-out hover:-translate-y-0.1">
 								Create New Job
 							</a>
+						
 						</div>
 					</div>
 				</div>
@@ -46,13 +49,16 @@
 						<div class="text-center text-gray-600 text-sm mb-3">
 							Expired Jobs
 						</div>
-						<div >
+						<div>
+							
 							<a href="/admin/jobs" class="block px-3 py-2 text-center text-sm font-medium rounded text-white bg-blue-500 focus:outline-none focus:shadow-outline-blue transition ease-in-out duration-150 shadow border border-blue-500 transition transform duration-75 ease-in-out hover:-translate-y-0.1">
 								Manage Jobs
 							</a>
+				
 						</div>
 					</div>
 				</div>
+			<% } %>
 				<div class="col-span-1 sm:col-span-2 lg:col-span-1">
 					<div class="flex flex-col p-4 bg-white rounded shadow">
 						<% if (employerSetup) { %>
