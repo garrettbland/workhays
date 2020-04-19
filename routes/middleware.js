@@ -20,4 +20,12 @@ exports.isUserVerified = (req, res, next) => {
 
   res.redirect('/admin/dashboard')
 }
+
+exports.isAdmin = (req, res, next) => {
+  if (res.locals.user.role === 'admin') {
+    return next()
+  }
+
+  res.redirect('/404')
+}
 // res.locals.user = req.user

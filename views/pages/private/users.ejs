@@ -1,0 +1,124 @@
+<%- include('../../partials/page_start', {title: 'Users', description: 'Manage user accounts'}) %>
+
+<div class="max-w-4xl mx-auto mt-12">
+	<div class="grid grid-cols-1 md:grid-cols-8 gap-4">
+		<%- include('../../partials/admin_sidebar') %>
+		<div x-data="adminusers()" x-init="getUsers" class="col-span-1 md:col-span-6">
+            <!-- content -->
+            
+            <!-- popup -->
+            <div x-show="isPopupVisible" class="fixed z-30 top-0 left-0 w-screen h-screen overflow-y-scroll" style="background-color: rgba(0,0,0,0.5);display:none;">
+                <div x-on:click.away="closePopup()" class="max-w-5xl w-full bg-white p-4 my-12 mx-auto">
+                    <div class="flex justify-between">
+                        <div>
+                            Details
+                        </div>
+                        <div x-on:click="closePopup()">
+                            Close X
+                        </div>
+                    </div>
+                    <template x-if="currentlySelectedUser">
+                        <div>
+                            <div>
+                                First: <input x-bind:value="currentlySelectedUser.first_name" class="bg-white p-1 ml-1 border border-gray-200"></input>
+                            </div>
+                            <div>
+                                Last: <input x-bind:value="currentlySelectedUser.last_name" class="bg-white p-1 ml-1 border border-gray-200"></input>
+                            </div>
+                            <div>
+                                Email: <input x-bind:value="currentlySelectedUser.email" class="bg-white p-1 ml-1 border border-gray-200"></input>
+                            </div>
+                            <div>
+                                Role: 
+                                <select>
+                                    <option x-bind:selected="currentlySelectedUser.role === 'admin'">Admin</option>
+                                    <option x-bind:selected="currentlySelectedUser.role === 'employer'">Employer</option>
+                                </select>
+                            </div>
+                            <div>
+                                Status:
+                                <select>
+                                    <option x-bind:selected="currentlySelectedUser.status === 'pending'">Pending</option>
+                                    <option x-bind:selected="currentlySelectedUser.status === 'verified'">Verified</option>
+                                    <option x-bind:selected="currentlySelectedUser.status === 'locked'">Locked</option>
+                                </select>
+                            </div>
+                            <div>
+                                Employer: <span x-text="currentlySelectedUser.employer.title"></span>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+            </div>
+
+            <div class="flex flex-wrap">
+                <template x-if="user_meta">
+                    <div class="w-full">
+                        Total Users:<span x-text="user_meta.count"></span>
+                    </div>
+                </template>
+                <div class="w-full flex uppercase text-xs text-gray-600">
+                    <div class="w-1/3">
+                        Name
+                    </div>
+                    <div class="w-1/3">
+                        Email
+                    </div>
+                    <div class="w-1/3">
+                        Employer
+                    </div>
+                </div>
+                <template x-for="user in users" :key="user">
+                    <div x-on:click="showPopup(user)" class="w-full flex justify-between text-gray-800 border-b hover:bg-white cursor-pointer">
+                        <div x-text="user.first_name +' '+ user.last_name" class="w-1/3 truncate">
+                            
+                        </div>
+                        <div x-text="user.email" class="w-1/3 truncate">
+                            
+                        </div>
+                        <div x-text="user.employer.title" class="w-1/3 truncate">
+                            
+                        </div>
+                    </div>
+                </template>
+            </div>
+            
+            <!-- content end-->
+		</div>
+	</div>
+</div>
+
+<script>
+    function adminusers() {
+        return {
+            loading: false,
+            user_meta: null,
+            users: [],
+            isPopupVisible: false,
+            currentlySelectedUser: null,
+            showPopup: function(user) {
+                this.currentlySelectedUser = user
+                this.isPopupVisible = true
+            },
+            closePopup: function() {
+                this.currentlySelectedUser = null
+                this.isPopupVisible = false
+            },
+            getUsers: function() {
+                var _this = this;
+                this.loading = true
+                this.fetchUsers().then((data) => {
+                    _this.loading = false
+                    _this.user_meta = data.meta
+                    _this.users = data.data
+                })
+            },
+            fetchUsers: async function() {
+                const users = await fetch('/api/users')
+                return users.json()
+            }
+        }
+    }
+</script>
+
+<%- include('../../partials/page_end') %>

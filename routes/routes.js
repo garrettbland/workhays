@@ -30,6 +30,7 @@ var accountController = require('../app/controllers/account.controller')
 var employerController = require('../app/controllers/employer.controller')
 var contactController = require('../app/controllers/contact.controller')
 var subscriberController = require('../app/controllers/subscriber.controller')
+var adminController = require('../app/controllers/admin.controller')
 
 /*
 
@@ -106,11 +107,15 @@ router.post(
     middleware.isLocked,
     authController.change_email
 )
-router.post('/employers/edit/:employerId', middleware.isLoggedIn,middleware.isLocked, employerController.update_employer)
+router.post('/employers/edit/:employerId', middleware.isLoggedIn, middleware.isLocked, employerController.update_employer)
 
-// catch 404 and forward to error handler
-router.get('*', (req, res) => {
-    res.status(404).render('error')
+/*
+
+Admin Routes
+
+*/
+router.get('/admin/users', middleware.isLoggedIn, middleware.isLocked, middleware.isUserVerified, middleware.isAdmin, function (req, res) {
+    res.render('pages/private/users')
 })
 
 /*
@@ -120,5 +125,11 @@ API Routes
 */
 
 router.post('/api/subscribe', subscriberController.create_subscriber)
+router.get('/api/users', middleware.isLoggedIn, middleware.isAdmin, adminController.get_users)
+
+// catch 404 and forward to error handler
+router.get('*', (req, res) => {
+    res.status(404).render('error')
+})
 
 module.exports = router

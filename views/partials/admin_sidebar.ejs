@@ -26,5 +26,13 @@
                 Profile
             </a>
         </li>
+        <% if(user.role === 'admin') { %>
+            <li>
+                <a href="/admin/users" class="flex items-center hover:bg-gray-200 rounded p-2 block <%= req.path === '/admin/users' ? 'text-blue-500 bg-gray-100' : 'text-gray-700' %>">
+                    <i data-feather="users" class="w-4 h-4 mr-2"></i>
+                    Users
+                </a>
+            </li>
+        <% } %>
     </ul>
 </div>
