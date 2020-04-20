@@ -16,6 +16,9 @@ let version = versionFile.version
 
 var app = express()
 
+// attached appRoot to global object for root directory for file uploads
+// global.appRoot = path.resolve(__dirname);
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')

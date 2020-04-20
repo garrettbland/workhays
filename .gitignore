@@ -19,3 +19,6 @@ public/dist
 
 # build version
 version.json
+
+# uploads
+public/uploads/employers/*

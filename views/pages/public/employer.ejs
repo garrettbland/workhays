@@ -4,7 +4,7 @@
     <div class="grid grid-cols-1 md:grid-cols-6 gap-4">
         <div class="col-span-1 md:col-span-4 md:pr-4 mb-12 md:mb-0 order-3 md:order-1 <%= employer.logo_url ? null : 'pt-4'%>">
             <% if (employer.logo_url) { %>
-                <div class="w-48 h-48 bg-white bg-center bg-cover rounded-full shadow border-4 border-white items-center justify-center text-center flex mt-8 mx-auto md:ml-0 md:-mt-8 mb-8" style="background-image:url('<%= employer.logo_url %>')">
+                <div class="w-48 h-48 bg-white bg-center bg-cover rounded-full shadow border-4 border-white items-center justify-center text-center flex mt-8 mx-auto md:ml-0 md:-mt-8 mb-8" style="background-image:url('<%= employer.logo_url.replace('public/','/') %>')">
                 </div>
             <% } %>
             <label class="text-sm text-gray-500">
