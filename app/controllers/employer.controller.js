@@ -9,8 +9,6 @@ exports.list_employers = async (req, res) => {
 
         const page = parseInt(req.query.page) - 1 || 0
 
-        console.log(`employer limit => ${employer_limit}`)
-
         const employers = await Models.employer.findAndCountAll({
             where: {},
             order: [['title', 'ASC']],
