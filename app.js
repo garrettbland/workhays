@@ -62,12 +62,12 @@ app.use('/', require('./routes/routes'))
 
 // Sync Database
 models.sequelize
-    .sync()
+    .authenticate()
     .then(function() {
         console.log('Nice! Database looks fine')
     })
     .catch(function(err) {
-        console.log(err, 'Something went wrong with the Database Update!')
+        console.log(err, 'Something went wrong when connecting to database')
     })
 
 // start server and listen for requests. Default to port 4000 for development

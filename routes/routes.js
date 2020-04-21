@@ -31,6 +31,7 @@ var employerController = require('../app/controllers/employer.controller')
 var contactController = require('../app/controllers/contact.controller')
 var subscriberController = require('../app/controllers/subscriber.controller')
 var adminController = require('../app/controllers/admin.controller')
+var sitemapController = require('../app/controllers/sitemap.controller')
 
 /*
 
@@ -81,6 +82,7 @@ router
     .get(authController.password_update)
     .post(authController.change_password)
 router.get('/logout', authController.logout)
+router.get('/sitemap.xml', sitemapController.generateSitemap)
 
 /*
 
