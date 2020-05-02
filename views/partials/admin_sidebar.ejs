@@ -27,10 +27,25 @@
             </a>
         </li>
         <% if(user.role === 'admin') { %>
+            <div class="mt-8">
+                ADMIN LINKS
+            </div>
             <li>
-                <a href="/admin/users" class="flex items-center hover:bg-gray-200 rounded p-2 block <%= req.path === '/admin/users' ? 'text-blue-500 bg-gray-100' : 'text-gray-700' %>">
+                <a href="/admin/admin_users" class="flex items-center hover:bg-gray-200 rounded p-2 block <%= req.path === '/admin/admin_users' ? 'text-blue-500 bg-gray-100' : 'text-gray-700' %>">
                     <i data-feather="users" class="w-4 h-4 mr-2"></i>
                     Users
+                </a>
+            </li>
+            <li>
+                <a href="/admin/admin_employers" class="flex items-center hover:bg-gray-200 rounded p-2 block <%= req.path === '/admin/admin_employers' ? 'text-blue-500 bg-gray-100' : 'text-gray-700' %>">
+                    <i data-feather="users" class="w-4 h-4 mr-2"></i>
+                    Employers
+                </a>
+            </li>
+            <li>
+                <a href="/admin/admin_jobs" class="flex items-center hover:bg-gray-200 rounded p-2 block <%= req.path === '/admin/admin_jobs' ? 'text-blue-500 bg-gray-100' : 'text-gray-700' %>">
+                    <i data-feather="users" class="w-4 h-4 mr-2"></i>
+                    Jobs
                 </a>
             </li>
         <% } %>

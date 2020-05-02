@@ -1,0 +1,246 @@
+<%- include('../../partials/page_start', {title: 'Admin Employers', description: 'Manage employer accounts'}) %>
+
+<div class="max-w-4xl mx-auto mt-12">
+	<div class="grid grid-cols-1 md:grid-cols-8 gap-4">
+		<%- include('../../partials/admin_sidebar') %>
+		<div x-data="admindata()" x-init="getData" class="col-span-1 md:col-span-6">
+            <!-- content -->
+            
+            <!-- popup -->
+            <div x-show="isPopupVisible" class="fixed z-30 top-0 left-0 w-screen h-screen overflow-y-scroll" style="background-color: rgba(0,0,0,0.5);display:none;">
+                <div x-on:click.away="closePopup()" class="max-w-5xl w-full bg-white p-4 my-12 mx-auto">
+                    <div class="flex justify-between">
+                        <div>
+                            Details
+                        </div>
+                        <div x-on:click="closePopup()">
+                            Close X
+                        </div>
+                    </div>
+                    <template x-if="currentlySelectedItem">
+                        <div>
+                            <div>
+                                User Id: <input x-model:value="currentlySelectedItem.user_id" class="bg-white p-1 ml-1 border border-gray-200"></input>
+                            </div>
+                            <div>
+                                Title: <input x-model:value="currentlySelectedItem.title" class="bg-white p-1 ml-1 border border-gray-200"></input>
+                            </div>
+                            <div>
+                                Description: <input x-model:value="currentlySelectedItem.description" class="bg-white p-1 ml-1 border border-gray-200"></input>
+                            </div>
+                            <div>
+                                Contact: <input x-model:value="currentlySelectedItem.contact" class="bg-white p-1 ml-1 border border-gray-200"></input>
+                            </div>
+                            <div>
+                                Email: <input x-model:value="currentlySelectedItem.email" class="bg-white p-1 ml-1 border border-gray-200"></input>
+                            </div>
+                            <div>
+                                Phone: <input x-model:value="currentlySelectedItem.phone" class="bg-white p-1 ml-1 border border-gray-200"></input>
+                            </div>
+                            <div>
+                                Website URL: <input x-model:value="currentlySelectedItem.website_url" class="bg-white p-1 ml-1 border border-gray-200"></input>
+                            </div>
+                            <div>
+                                Facebook URL: <input x-model:value="currentlySelectedItem.facebook_url" class="bg-white p-1 ml-1 border border-gray-200"></input>
+                            </div>
+                            <div>
+                                Twitter URL: <input x-model:value="currentlySelectedItem.twitter_url" class="bg-white p-1 ml-1 border border-gray-200"></input>
+                            </div>
+                            <div>
+                                Instagram URL: <input x-model:value="currentlySelectedItem.instagram_url" class="bg-white p-1 ml-1 border border-gray-200"></input>
+                            </div>
+                            <div>
+                                Youtube URL: <input x-model:value="currentlySelectedItem.youtube_url" class="bg-white p-1 ml-1 border border-gray-200"></input>
+                            </div>
+                            <div>
+                                <div x-show="isUpdating">
+                                    Saving changes...
+                                </div>
+                                <button x-on:click="saveChanges(currentlySelectedItem)">
+                                    Update Item
+                                </button>
+                            </div>
+                        </div>
+                    </template>
+
+                    <template x-if="createNewItem">
+                        <div>
+                            <div>
+                                User Id: <input x-model:value="newItem.user_id" class="bg-white p-1 ml-1 border border-gray-200"></input>
+                            </div>
+                            <div>
+                                Title: <input x-model:value="newItem.title" class="bg-white p-1 ml-1 border border-gray-200"></input>
+                            </div>
+                            <div>
+                                Description: <input x-model:value="newItem.description" class="bg-white p-1 ml-1 border border-gray-200"></input>
+                            </div>
+                            <div>
+                                Contact: <input x-model:value="newItem.contact" class="bg-white p-1 ml-1 border border-gray-200"></input>
+                            </div>
+                            <div>
+                                Email: <input x-model:value="newItem.email" class="bg-white p-1 ml-1 border border-gray-200"></input>
+                            </div>
+                            <div>
+                                Phone: <input x-model:value="newItem.phone" class="bg-white p-1 ml-1 border border-gray-200"></input>
+                            </div>
+                            <div>
+                                Website URL: <input x-model:value="newItem.website_url" class="bg-white p-1 ml-1 border border-gray-200"></input>
+                            </div>
+                            <div>
+                                Facebook URL: <input x-model:value="newItem.facebook_url" class="bg-white p-1 ml-1 border border-gray-200"></input>
+                            </div>
+                            <div>
+                                Twitter URL: <input x-model:value="newItem.twitter_url" class="bg-white p-1 ml-1 border border-gray-200"></input>
+                            </div>
+                            <div>
+                                Instagram URL: <input x-model:value="newItem.instagram_url" class="bg-white p-1 ml-1 border border-gray-200"></input>
+                            </div>
+                            <div>
+                                Youtube URL: <input x-model:value="newItem.youtube_url" class="bg-white p-1 ml-1 border border-gray-200"></input>
+                            </div>
+                            <div>
+                                <div x-show="isUpdating">
+                                    Saving changes...
+                                </div>
+                                <button x-on:click="createNew(newItem)">
+                                    Create Item
+                                </button>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+            </div>
+
+            <div class="flex flex-wrap">
+                <template x-if="data_meta">
+                    <div class="w-full">
+                        Total Employers:<span x-text="data_meta.count"></span>
+                    </div>
+                    <button class="bg-green-400 shadow" x-on:click="buildNew">
+                       + Create Employer 
+                    </button>
+                </template>
+                <div class="w-full flex uppercase text-xs text-gray-600">
+                    <div class="w-1/3">
+                        Title
+                    </div>
+                    <div class="w-1/3">
+                        Email
+                    </div>
+                    <div class="w-1/3">
+                        Employer ID
+                    </div>
+                </div>
+                <template x-for="item in items" :key="item">
+                    <div x-on:click="showPopup(item)" x-bind:class="getRowClass(item.user_id)" class="w-full flex justify-between text-gray-800 border-b hover:bg-white cursor-pointer">
+                        <div x-text="item.title" class="w-1/3 truncate">
+                            
+                        </div>
+                        <div x-text="item.email" class="w-1/3 truncate">
+                            
+                        </div>
+                        <div x-text="item.user_id" class="w-1/3 truncate">
+                            
+                        </div>
+                    </div>
+                </template>
+            </div>
+            
+            <!-- content end-->
+		</div>
+	</div>
+</div>
+
+<script>
+    function admindata() {
+        return {
+            createNewItem: false,
+            newItem: {
+                user_id: 'unclaimed'
+            },
+            loading: false,
+            data_meta: null,
+            items: [],
+            isPopupVisible: false,
+            currentlySelectedItem: null,
+            isUpdating: false,
+            buildNew: function() {
+                this.createNewItem = true
+                this.isPopupVisible = true
+            },
+            showPopup: function(item) {
+                this.currentlySelectedItem = item
+                this.isPopupVisible = true
+            },
+            closePopup: function() {
+                this.currentlySelectedItem = null
+                this.isPopupVisible = false
+                this.createNewItem = false
+            },
+            getRowClass: function (user_id) {
+                if(user_id === 'unclaimed') {
+                    return 'bg-orange-400'
+                } else {
+                    return 'bg-white'
+                }
+            },
+            getData: function() {
+                var _this = this;
+                this.loading = true
+                this.fetchData().then((data) => {
+                    console.log(data)
+                    _this.loading = false
+                    _this.data_meta = data.meta
+                    _this.items = data.data
+                })
+            },
+            saveChanges: function(item) {
+                var _this = this;
+                this.isUpdating = true
+                this.updateItem(item).then((data) => {
+                    window.alert('update successful')
+                    _this.isUpdating = false
+                })
+            },
+            createNew: function(item) {
+                var _this = this;
+                this.isUpdating = true
+                this.createItem(item).then((data) => {
+                    window.alert('created successfully')
+                    _this.isUpdating = false
+                    _this.createNewItem = false
+                    _this.isPopupVisible = false
+                    _this.newItem = {
+                        user_id: 'unclaimed'
+                    }
+                })
+            },
+            fetchData: async function() {
+                const data = await fetch('/api/employers')
+                return data.json()
+            },
+            createItem: async function(item) {
+                const update = await fetch('/api/employers', {
+                     method: 'POST',
+                     headers: {
+                        'Content-type': 'application/json; charset=UTF-8'
+                        },
+                     body: JSON.stringify(item)
+                 })
+                 return update.json()
+            },
+            updateItem: async function(item) {
+                 const update = await fetch('/api/employers/'+item.id, {
+                     method: 'PUT',
+                     headers: {
+                        'Content-type': 'application/json; charset=UTF-8'
+                        },
+                     body: JSON.stringify(item)
+                 })
+                 return update.json()
+            }
+        }
+    }
+</script>
+
+<%- include('../../partials/page_end') %>

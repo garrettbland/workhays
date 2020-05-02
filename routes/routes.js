@@ -119,8 +119,16 @@ router.post('/employers/edit/:employerId', middleware.isLoggedIn, middleware.isL
 Admin Routes
 
 */
-router.get('/admin/users', middleware.isLoggedIn, middleware.isLocked, middleware.isUserVerified, middleware.isAdmin, function (req, res) {
-    res.render('pages/private/users')
+router.get('/admin/admin_users', middleware.isLoggedIn, middleware.isLocked, middleware.isUserVerified, middleware.isAdmin, function (req, res) {
+    res.render('pages/private/admin_users')
+})
+
+router.get('/admin/admin_employers', middleware.isLoggedIn, middleware.isLocked, middleware.isUserVerified, middleware.isAdmin, function (req, res) {
+    res.render('pages/private/admin_employers')
+})
+
+router.get('/admin/admin_jobs', middleware.isLoggedIn, middleware.isLocked, middleware.isUserVerified, middleware.isAdmin, function (req, res) {
+    res.render('pages/private/admin_jobs')
 })
 
 /*
@@ -132,6 +140,10 @@ API Routes
 router.post('/api/subscribe', subscriberController.create_subscriber)
 router.get('/api/users', middleware.isLoggedIn, middleware.isAdmin, adminController.get_users)
 router.put('/api/users/:userId', middleware.isLoggedIn, middleware.isAdmin, adminController.update_user)
+
+router.post('/api/employers', middleware.isLoggedIn, middleware.isAdmin, adminController.create_employer)
+router.get('/api/employers', middleware.isLoggedIn, middleware.isAdmin, adminController.get_employers)
+router.put('/api/employers/:employerId', middleware.isLoggedIn, middleware.isAdmin, adminController.update_employer)
 
 // catch 404 and forward to error handler
 router.get('*', (req, res) => {
