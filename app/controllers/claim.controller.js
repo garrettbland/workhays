@@ -45,7 +45,7 @@ exports.get_unclaimed_employer = async (req, res) => {
             limit: 1
         })
 
-        if (!employer) throw 'Employer not found'
+        if (!employer[0]) throw 'Employer not found'
 
         console.log(employer)
 

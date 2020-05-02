@@ -16,14 +16,28 @@
         </div>
         <div class="col-span-1 md:col-span-2 -mt-8 order-1 md:order-3">
             <div class="p-4 bg-white rounded shadow">
-                <div class="">
-                    <label class="text-sm text-gray-500">
-                        Employer Contact
-                    </label>
-                    <div class="text-sm text-gray-900">
-                        <%= employer.contact %>
+                <% if (employer.user_id === 'unclaimed') { %>
+                    <div class="mb-6">
+                        <div class="">
+                            <label class="text-sm text-gray-500">
+                                Is this your business?
+                            </label>
+                            <div class="text-sm text-gray-900">
+                                <a class="text-blue-600 hover:underline" href="/claim/<%= employer.id %>">Click here to claim</a>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                <% } %>
+                <% if (employer.contact) {%>
+                    <div class="">
+                        <label class="text-sm text-gray-500">
+                            Employer Contact
+                        </label>
+                        <div class="text-sm text-gray-900">
+                            <%= employer.contact %>
+                        </div>
+                    </div>
+                <% } %>
                 <% if (employer.phone) { %>
                 <div class="mt-6">
                     <label class="text-sm text-gray-500">
