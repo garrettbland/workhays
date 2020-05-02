@@ -1,8 +1,8 @@
-<%- include('../../partials/page_start', {title: 'Claim this employer', description: "Click 'claim this employer' below to apply for ownership of this employer and positions listed."}) %>
+<%- include('../../partials/page_start', {title: 'Claim this business', description: "Complete the form below to apply for ownership of this business and positions listed."}) %>
 
 <div x-data="signup()" class="max-w-2xl mx-auto mt-8">
 	<div class="text-lg font-bold pb-2 px-4 md:px-0">
-		Verify employer to claim
+		Request to claim business
     </div>
     <div class="text-sm py-8 px-4 md:px-0">
         <div>
@@ -12,10 +12,6 @@
 	<div class="leading-7 text-gray-900 antialiased mb-8 px-4 md:px-0">
 		Please fill out the following form to request to claim this business. Once submitted, we will review your information and get your new account verified. Once verified, you will have access to all current jobs listed. If you have questions, please <a class="text-blue-500 hover:underline" href="/contact">contact us</a>.
     </div>
-
-	<div class="leading-7 text-gray-900 antialiased mb-8 px-4 md:px-0">
-		Already have an account? <a href="/signin" class="text-blue-500 hover:underline">Click here</a> to sign in.
-	</div>
 
 	<% if(flashMessages.success) { %>
 		<div class="mb-8 p-4 bg-green-400 rounded shadow text-white flex items-center mx-4 md:mx-0">
