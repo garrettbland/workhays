@@ -39,12 +39,24 @@ module.exports = function(passport, user, employer) {
                     } else {
                         var userPassword = generateHash(password)
 
-                        var data = {
-                            email: email,
-                            password: userPassword,
-                            first_name: req.body.first_name,
-                            last_name: req.body.last_name,
+                        if (req.body.employer_id_claim_request) {
+                            var data = {
+                                email: email,
+                                password: userPassword,
+                                first_name: req.body.first_name,
+                                last_name: req.body.last_name,
+                                employer_id_claim_request: req.body.employer_id_claim_request
+                            }
+                        } else {
+                            var data = {
+                                email: email,
+                                password: userPassword,
+                                first_name: req.body.first_name,
+                                last_name: req.body.last_name,
+                            }
                         }
+                        
+
 
                         User.create(data).then(function(newUser) {
                             if (!newUser) {
