@@ -1,9 +1,9 @@
-<%- include('../../partials/page_start', {title: 'Admin Jobs', description: 'Manage jobs'}) %>
+<%- include('../../partials/page_start', {title: 'Admin Employers', description: 'Manage employer accounts'}) %>
 
 <div class="max-w-4xl mx-auto mt-12">
 	<div class="grid grid-cols-1 md:grid-cols-8 gap-4">
 		<%- include('../../partials/admin_sidebar') %>
-		<div x-data="adminusers()" x-init="getUsers" class="col-span-1 md:col-span-6">
+		<div x-data="admindata()" x-init="getData" class="col-span-1 md:col-span-6">
             <!-- content -->
             
             <!-- popup -->
@@ -17,41 +17,100 @@
                             Close X
                         </div>
                     </div>
-                    <template x-if="currentlySelectedUser">
+                    <template x-if="currentlySelectedItem">
                         <div>
                             <div>
-                                First: <input x-model:value="currentlySelectedUser.first_name" class="bg-white p-1 ml-1 border border-gray-200"></input>
+                                Job Id: <span x-html="currentlySelectedItem.id"></span>
                             </div>
                             <div>
-                                Last: <input x-model:value="currentlySelectedUser.last_name" class="bg-white p-1 ml-1 border border-gray-200"></input>
-                            </div>
-                            <div>
-                                Email: <input x-model:value="currentlySelectedUser.email" class="bg-white p-1 ml-1 border border-gray-200"></input>
-                            </div>
-                            <div>
-                                Role: 
-                                <select x-model="currentlySelectedUser.role">
-                                    <option value="admin" x-bind:selected="currentlySelectedUser.role === 'admin'">Admin</option>
-                                    <option value="employer" x-bind:selected="currentlySelectedUser.role === 'employer'">Employer</option>
+                                Employer: 
+                                <select x-model="currentlySelectedItem.employer_id">
+                                    <template x-for="employer in employers">
+                                        <option x-bind:selected="currentlySelectedItem.employer_id === employer.id" x-bind:value="employer.id" x-text="employer.title"></option>
+                                    </template>
                                 </select>
                             </div>
                             <div>
-                                Status:
-                                <select x-model="currentlySelectedUser.status">
-                                    <option value="pending" x-bind:selected="currentlySelectedUser.status === 'pending'">Pending</option>
-                                    <option value="verified" x-bind:selected="currentlySelectedUser.status === 'verified'">Verified</option>
-                                    <option value="locked" x-bind:selected="currentlySelectedUser.status === 'locked'">Locked</option>
+                                Title: <input x-model:value="currentlySelectedItem.title" class="bg-white p-1 ml-1 border border-gray-200"></input>
+                            </div>
+
+                            <div>
+                                Job Type: <select x-model="currentlySelectedItem.job_type">
+                                    <option value="full_time" x-bind:selected="currentlySelectedItem.job_type === 'full_time'">Full Time</option>
+                                    <option value="part_time" x-bind:selected="currentlySelectedItem.job_type === 'part_time'">Part Time</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                Description: <input x-model:value="currentlySelectedItem.description" class="bg-white p-1 ml-1 border border-gray-200"></input>
+                            </div>
+
+                            <div>
+                                Application Link: <input x-model:value="currentlySelectedItem.application_link" class="bg-white p-1 ml-1 border border-gray-200"></input>
+                            </div>
+
+                            <div>
+                                Status: <select x-model="currentlySelectedItem.status">
+                                    <option value="active" x-bind:selected="currentlySelectedItem.status === 'active'">Active</option>
+                                    <option value="inactive" x-bind:selected="currentlySelectedItem.status === 'inactive'">Inactive</option>
+                                    <option value="archived" x-bind:selected="currentlySelectedItem.status === 'archived'">Archived</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <div x-show="isUpdating">
+                                    Saving changes...
+                                </div>
+                                <button x-on:click="saveChanges(currentlySelectedItem)">
+                                    Update Item
+                                </button>
+                            </div>
+                        </div>
+                    </template>
+
+                    <template x-if="createNewItem">
+                        <div>
+                            <div>
+                                Employer: 
+                                <select x-model="newItem.employer_id">
+                                    <option selected>Select an employer</option>
+                                    <template x-for="employer in employers">
+                                        <option x-bind:value="employer.id" x-text="employer.title"></option>
+                                    </template>
                                 </select>
                             </div>
                             <div>
-                                Employer: <span x-text="currentlySelectedUser.employer.title"></span>
+                                Title: <input x-model:value="newItem.title" class="bg-white p-1 ml-1 border border-gray-200"></input>
+                            </div>
+
+                            <div>
+                                Job Type: <select x-model="newItem.job_type">
+                                    <option value="full_time" >Full Time</option>
+                                    <option value="part_time">Part Time</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                Description: <input x-model:value="newItem.description" class="bg-white p-1 ml-1 border border-gray-200"></input>
+                            </div>
+
+                            <div>
+                                Application Link: <input x-model:value="newItem.application_link" class="bg-white p-1 ml-1 border border-gray-200"></input>
+                            </div>
+
+                            <div>
+                                Status: <select x-model="newItem.status">
+                                    <option default value="active">Active</option>
+                                    <option value="inactive">Inactive</option>
+                                    <option value="archived">Archived</option>
+                                </select>
                             </div>
                             <div>
                                 <div x-show="isUpdating">
                                     Saving changes...
                                 </div>
-                                <button x-on:click="saveChanges(currentlySelectedUser)">
-                                    Update User
+                                <button x-show="newItem.employer_id" x-on:click="createNew(newItem)">
+                                    Create Item
                                 </button>
                             </div>
                         </div>
@@ -60,31 +119,34 @@
             </div>
 
             <div class="flex flex-wrap">
-                <template x-if="user_meta">
+                <template x-if="data_meta">
                     <div class="w-full">
-                        Total Users:<span x-text="user_meta.count"></span>
+                        Total Jobs:<span x-text="data_meta.count"></span>
                     </div>
+                    <button class="bg-green-400 shadow" x-on:click="buildNew">
+                       + Create Job 
+                    </button>
                 </template>
                 <div class="w-full flex uppercase text-xs text-gray-600">
                     <div class="w-1/3">
-                        Name
+                        Title
                     </div>
                     <div class="w-1/3">
-                        Email
+                        Job Type
                     </div>
                     <div class="w-1/3">
-                        Employer
+                        Status
                     </div>
                 </div>
-                <template x-for="user in users" :key="user">
-                    <div x-on:click="showPopup(user)" x-bind:class="getRowClass(user.status)" class="w-full flex justify-between text-gray-800 border-b hover:bg-white cursor-pointer">
-                        <div x-text="user.first_name +' '+ user.last_name" class="w-1/3 truncate">
+                <template x-for="item in items" :key="item">
+                    <div x-on:click="showPopup(item)" class="w-full flex justify-between text-gray-800 border-b hover:bg-white cursor-pointer">
+                        <div x-text="item.title" class="w-1/3 truncate">
                             
                         </div>
-                        <div x-text="user.email" class="w-1/3 truncate">
+                        <div x-text="item.job_type" class="w-1/3 truncate">
                             
                         </div>
-                        <div x-text="user.employer.title" class="w-1/3 truncate">
+                        <div x-text="item.status" class="w-1/3 truncate">
                             
                         </div>
                     </div>
@@ -97,55 +159,96 @@
 </div>
 
 <script>
-    function adminusers() {
+    function admindata() {
         return {
+            createNewItem: false,
+            newItem: {},
             loading: false,
-            user_meta: null,
-            users: [],
+            data_meta: null,
+            items: [],
             isPopupVisible: false,
-            currentlySelectedUser: null,
+            currentlySelectedItem: null,
             isUpdating: false,
-            showPopup: function(user) {
-                this.currentlySelectedUser = user
+            employers: [],
+            buildNew: function() {
+                this.createNewItem = true
+                this.isPopupVisible = true
+            },
+            showPopup: function(item) {
+                this.currentlySelectedItem = item
                 this.isPopupVisible = true
             },
             closePopup: function() {
-                this.currentlySelectedUser = null
+                this.currentlySelectedItem = null
                 this.isPopupVisible = false
+                this.createNewItem = false
             },
-            getRowClass: (status) => {
-                if(status === 'pending') return 'bg-orange-400'
-                if(status === 'verified') return 'bg-white'
-                if(status === 'locked') return 'bg-red-500'
+            getRowClass: function (user_id) {
+                if(user_id === 'unclaimed') {
+                    return 'bg-orange-400'
+                } else {
+                    return 'bg-white'
+                }
             },
-            getUsers: function() {
+            getData: function() {
                 var _this = this;
                 this.loading = true
-                this.fetchUsers().then((data) => {
+                this.fetchData().then((data) => {
+                    console.log(data)
                     _this.loading = false
-                    _this.user_meta = data.meta
-                    _this.users = data.data
+                    _this.data_meta = data.meta
+                    _this.items = data.data
                 })
+
+                this.fetchEmployers().then(data => {
+                    _this.employers = data.data
+                })
+
             },
-            saveChanges: function(user) {
+            saveChanges: function(item) {
                 var _this = this;
                 this.isUpdating = true
-                this.updateUser(user).then((data) => {
+                this.updateItem(item).then((data) => {
                     window.alert('update successful')
                     _this.isUpdating = false
                 })
             },
-            fetchUsers: async function() {
-                const users = await fetch('/api/users')
-                return users.json()
+            createNew: function(item) {
+                var _this = this;
+                this.isUpdating = true
+                this.createItem(item).then((data) => {
+                    window.alert('created successfully')
+                    _this.isUpdating = false
+                    _this.createNewItem = false
+                    _this.isPopupVisible = false
+                    _this.newItem = {}
+                })
             },
-            updateUser: async function(user) {
-                 const update = await fetch('/api/users/'+user.id, {
+            fetchEmployers: async function () {
+                const data = await fetch('/api/employers')
+                return data.json()
+            },
+            fetchData: async function() {
+                const data = await fetch('/api/jobs')
+                return data.json()
+            },
+            createItem: async function(item) {
+                const update = await fetch('/api/jobs', {
+                     method: 'POST',
+                     headers: {
+                        'Content-type': 'application/json; charset=UTF-8'
+                        },
+                     body: JSON.stringify(item)
+                 })
+                 return update.json()
+            },
+            updateItem: async function(item) {
+                 const update = await fetch('/api/jobs/'+item.id, {
                      method: 'PUT',
                      headers: {
                         'Content-type': 'application/json; charset=UTF-8'
                         },
-                     body: JSON.stringify(user)
+                     body: JSON.stringify(item)
                  })
                  return update.json()
             }

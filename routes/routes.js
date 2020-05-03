@@ -145,6 +145,10 @@ router.post('/api/employers', middleware.isLoggedIn, middleware.isAdmin, adminCo
 router.get('/api/employers', middleware.isLoggedIn, middleware.isAdmin, adminController.get_employers)
 router.put('/api/employers/:employerId', middleware.isLoggedIn, middleware.isAdmin, adminController.update_employer)
 
+router.post('/api/jobs', middleware.isLoggedIn, middleware.isAdmin, adminController.create_job)
+router.get('/api/jobs', middleware.isLoggedIn, middleware.isAdmin, adminController.get_jobs)
+router.put('/api/jobs/:jobId', middleware.isLoggedIn, middleware.isAdmin, adminController.update_job)
+
 // catch 404 and forward to error handler
 router.get('*', (req, res) => {
     res.status(404).render('error')

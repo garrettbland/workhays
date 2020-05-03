@@ -155,3 +155,96 @@ exports.update_employer = async (req, res) => {
         })
     }
 }
+
+/**
+ * Jobs API
+ */
+
+exports.create_job = async (req, res) => {
+    try {
+
+        let body = req.body
+
+        let new_job = await Models.job.create(body)
+
+        if (!new_job) throw 'New job not created'
+        
+        res.status(201).json({
+            data: new_job
+        })
+
+
+    } catch (err) {
+        res.status(500).json({
+            error: 500,
+            message: err
+        })
+    }
+}
+
+exports.get_jobs = async (req, res) => {
+    try {
+
+        // defaults
+        const limit = req.query.limit || 100
+        const page = parseInt(req.query.page) - 1 || 0
+        
+
+        // get users
+        const jobs = await Models.job.findAndCountAll({
+            order: [['title', 'DESC']],
+            limit: limit,
+            offset: parseInt(page * limit),
+        })
+
+        res.status(200).json({
+            meta: {
+                limit: limit,
+                count: jobs.count,
+                pages: Math.ceil(jobs.count / limit),
+                current_page: page + 1,
+            },
+            data: jobs.rows
+        })
+
+    } catch (err) {
+        console.log(err)
+        res.status(500).json({
+            error: 500,
+            message: err
+        })
+    }
+}
+
+exports.update_job = async (req, res) => {
+    try {
+
+        const job_obj = {
+            title: req.body.title,
+            job_type: req.body.job_type,
+            description: req.body.description,
+            application_link: req.body.application_link,
+            status: req.body.status,
+            employer_id: req.body.employer_id,
+        }
+
+        const update_job = await Models.job.update(job_obj, {
+            where: {
+                id: req.params.jobId,
+            },
+        })
+
+        if (!update_job) throw 'Update failed'
+
+        res.status(200).json({
+            code: 1,
+        })
+
+    } catch (err) {
+        console.log(err)
+        res.status(500).json({
+            error: 500,
+            message: err
+        })
+    }
+}
