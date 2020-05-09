@@ -80,7 +80,7 @@ module.exports = function(sequelize, Sequelize) {
         }
     )
 
-    Employer.sync({ alter: true })
+    // Employer.sync({ alter: true })
 
     return Employer
 }
