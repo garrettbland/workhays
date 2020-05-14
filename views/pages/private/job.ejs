@@ -6,6 +6,24 @@
 	trix-toolbar [data-trix-button-group='file-tools'] {
 	  display: none;
 	}
+
+	button.trix-button.trix-button--icon.trix-button--icon-increase-nesting-level {
+    display: none;
+}
+
+button.trix-button.trix-button--icon.trix-button--icon-decrease-nesting-level {
+    display: none;
+}
+
+#description_input_trix ul {
+    list-style-type: disc;
+    list-style-position: inside;
+}
+
+#description_input_trix ol {
+    list-style-type: decimal;
+    list-style-position: inside;
+}
 </style>
 
 <div class="max-w-4xl mx-auto mt-12">
@@ -90,11 +108,11 @@
 							<div :class="{ 'bg-gray-200': !isActive, 'bg-green-400': isActive }" class="relative inline-block flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:shadow-outline" role="checkbox" tabindex="0" @click="toggle()" @keydown.space.prevent="toggle()" :aria-checked="isActive.toString()">
 								<input name="status" hidden x-model="isActive ? 'active' : 'inactive'"/>
 								<span aria-hidden="true" :class="{ 'translate-x-5': isActive, 'translate-x-0': !isActive }" class="inline-block h-5 w-5 rounded-full bg-white shadow transform transition ease-in-out duration-200">
-	
+
 								</span>
 							</div>
 							<div x-text="isActive ? 'active' : 'inactive'" class="ml-2 font-semibold uppercase text-xs tracking-wide text-gray-600">
-								
+
 							</div>
 						</div>
 						<% } %>
@@ -126,7 +144,7 @@
 						</label>
 						<% if(job.status !== 'archived') { %>
 						<input value="<%= job.description %>" type="hidden" name="description" id="description_input">
-						<trix-editor input="description_input" class="bg-white border-none shadow rounded focus:shadow-outline-blue px-3 py-2" placeholder="Describe the job position opening with as much or little detail as desired."></trix-editor>
+						<trix-editor id="description_input_trix" input="description_input" class="bg-white border-none shadow rounded focus:shadow-outline-blue px-3 py-2" placeholder="Describe the job position opening with as much or little detail as desired."></trix-editor>
 						<% } else { %>
 							<div class="bg-white border-none shadow rounded focus:shadow-outline-blue px-3 py-2" style="min-height:4rem;">
 								<%- job.description %>
@@ -142,7 +160,7 @@
 				</div>
 				<div class="flex flex-wrap justify-between items-center mt-4 px-4 lg:px-0">
 					<div class="w-full md:w-2/3 mb-3 md:mb-0">
-						
+
 					</div>
 					<div class="w-full flex items-center justify-between">
 						<% if(job.status !== 'archived') { %>
@@ -156,7 +174,7 @@
 								Save Changes
 							</button>
 						<% } %>
-					
+
 					</div>
 				</div>
 			<% if(job.status !== 'archived') { %>
@@ -170,7 +188,7 @@
 <script>
 	function editJob () {
 		return {
-			isActive: false, 
+			isActive: false,
 			showErrorMessage: false,
 			isArchiving: false,
 			validateForm: function () {
@@ -198,8 +216,8 @@
 					}
 				}
 			},
-			toggle: function () { 
-				this.isActive = !this.isActive 
+			toggle: function () {
+				this.isActive = !this.isActive
 			}
 		}
 	}

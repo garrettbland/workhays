@@ -1,5 +1,25 @@
 <%- include('../../partials/page_start', {title: employer.title, description: `Learn more about ${employer.title }, visit their website, or contact them today.`}) %>
 
+<style>
+    button.trix-button.trix-button--icon.trix-button--icon-increase-nesting-level {
+        display: none;
+    }
+
+    button.trix-button.trix-button--icon.trix-button--icon-decrease-nesting-level {
+        display: none;
+    }
+
+    #description_input_trix ul {
+        list-style-type: disc;
+        list-style-position: inside;
+    }
+
+    #description_input_trix ol {
+        list-style-type: decimal;
+        list-style-position: inside;
+    }
+</style>
+
 <div class="max-w-4xl mx-auto px-4 lg:px-0">
     <div class="grid grid-cols-1 md:grid-cols-6 gap-4">
         <div class="col-span-1 md:col-span-4 md:pr-4 mb-12 md:mb-0 order-3 md:order-1 <%= employer.logo_url ? null : 'pt-4'%>">
@@ -10,7 +30,7 @@
             <label class="text-sm text-gray-500">
                 About
             </label>
-            <div class="leading-7 text-gray-900 antialiased">
+            <div id="description_input_trix" class="leading-7 text-gray-900 antialiased">
                 <%- employer.description %>
             </div>
         </div>
@@ -62,7 +82,7 @@
                         </div>
                     </div>
                 <% }%>
-                
+
                 <% if (employer.website_url) { %>
                     <div class="mt-6">
                         <label class="text-sm text-gray-500">

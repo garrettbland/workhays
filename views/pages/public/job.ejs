@@ -1,5 +1,25 @@
 <%- include('../../partials/page_start', {title:job.title, description: `Posted ${moment.utc(job.createdAt).local().format('ll')}. Apply for this position with ${job.employer.title} today or contact ${job.employer.contact} for more information.`, paddingBottm: 'pb-20'}) %>
 
+<style>
+    button.trix-button.trix-button--icon.trix-button--icon-increase-nesting-level {
+    display: none;
+}
+
+button.trix-button.trix-button--icon.trix-button--icon-decrease-nesting-level {
+    display: none;
+}
+
+#description_input_trix ul {
+    list-style-type: disc;
+    list-style-position: inside;
+}
+
+#description_input_trix ol {
+    list-style-type: decimal;
+    list-style-position: inside;
+}
+</style>
+
 <div class="max-w-4xl mx-auto px-4 lg:px-0">
     <div class="-mt-8">
         <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
@@ -46,7 +66,7 @@
             <label class="text-sm text-gray-500">
                 Description
             </label>
-            <div class="leading-7 text-gray-900 antialiased">
+            <div id="description_input_trix" class="leading-7 text-gray-900 antialiased">
                 <%- job.description %>
             </div>
         </div>
