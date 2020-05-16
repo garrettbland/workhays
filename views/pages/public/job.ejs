@@ -71,6 +71,16 @@ button.trix-button.trix-button--icon.trix-button--icon-decrease-nesting-level {
             </div>
         </div>
         <div class="col-span-1 md:col-span-2">
+            <div class="grid grid-cols-2 gap-2 mb-2">
+                <a href="https://www.facebook.com/sharer.php?u=https%3A%2F%2Fworkhays.com<%= req.path %>" class="py-1 flex flex-row items-center rounded bg-blue-500 hover:bg-blue-600">
+                    <i data-feather="facebook" class="w-5 h-5 text-white ml-1"></i>
+                    <span class="ml-1 text-sm text-white">Share</span>
+                </a>
+                <a href="mailto:?subject=Check%20out%20this%20job%20opening%20from%20<%= job.employer.title %>&body=https%3A%2F%2Fworkhays.com<%= req.path %>" class="py-1 flex flex-row items-center rounded bg-green-400 hover:bg-green-500">
+                    <i data-feather="send" class="w-5 h-5 text-white ml-1"></i>
+                    <span class="ml-1 text-sm text-white">Email</span>
+                </a>
+            </div>
             <div class="p-4 bg-white rounded shadow">
                 <div class="mb-6">
                     <label class="text-sm text-gray-500">
