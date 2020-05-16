@@ -1,4 +1,4 @@
-<%- include('../../partials/page_start',{title: 'Current Job Openings', description: 'Browse current job openings in Hays, KS and surrounding communities. Are you an employer? Post your jobs for free, <a class="underline hover:opacity-100" href="/signup">click here to sign up!</a>',paddingBottom:'pb-32'}) %>
+<%- include('../../partials/page_start',{title: 'Current Job Openings', description: 'Browse current job openings in Hays, KS and surrounding communities. Are you an employer? Post your jobs for free, <a class="underline hover:opacity-100" href="/signup">click here to sign up!</a>',paddingBottom:'pb-32', meta: 'Browse current job openings in Hays, KS and surrounding communities. Post your job openings for free and generate more qualified job canidates.' }) %>
 
 <div class="max-w-4xl mx-auto px-4 lg:px-0">
     <div class="bg-white shadow rounded -mt-8 overflow-hidden">
@@ -56,7 +56,7 @@
             >
                 Previous
             </div>
-            <% } %> 
+            <% } %>
             <% if(current_page < pages) { %>
             <a
                 href="/?page=<%= current_page + 1 %>"

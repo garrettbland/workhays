@@ -1,4 +1,4 @@
-<%- include('../../partials/page_start', {title:job.title, description: `Posted ${moment.utc(job.createdAt).local().format('ll')}. Apply for this position with ${job.employer.title} today or contact ${job.employer.contact} for more information.`, paddingBottm: 'pb-20'}) %>
+<%- include('../../partials/page_start', {title:job.title, description: `Apply for the position, ${job.title}, with ${job.employer.title} today or contact ${job.employer.contact} for more information. Posted ${moment.utc(job.createdAt).local().format('ll')}.`, companyTitle: job.employer.title,paddingBottm: 'pb-20',metaImage: job.employer.logo_url ? job.employer.logo_url.replace('public','https://workhays.com') : null}) %>
 
 <style>
     button.trix-button.trix-button--icon.trix-button--icon-increase-nesting-level {

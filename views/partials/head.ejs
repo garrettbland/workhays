@@ -1,13 +1,27 @@
-<% var title,description %>
+<% var title,description,meta,companyTitle,metaImage %>
 <head>
-    <title><%= title %> | Work Hays</title>
-    <meta name="description" content="<%= description %>">
+    <title><%= title %> | <%= companyTitle ? companyTitle : 'Work Hays' %></title>
+    <meta name="description" content="<%= meta ? meta : description %>">
     <meta name="keywords" content="careers, jobs, hays, ks">
     <meta name="robots" content="index, follow">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="language" content="English">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/dist/app.<%= APP_VERSION %>.css" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://workhays.com<%= req.path %>">
+    <meta property="og:title" content="<%= title %> | <%= companyTitle ? companyTitle : 'Work Hays' %>">
+    <meta property="og:description" content="<%= meta ? meta : description %>">
+    <meta property="og:image" content="<%= metaImage ? metaImage : 'https://workhays.com/images/work-hays-banner.png' %>">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="<%= metaImage ? metaImage : 'https://workhays.com/images/work-hays-banner.png' %>">
+    <meta property="twitter:url" content="https://workhays.com<%= req.path %>">
+    <meta property="twitter:title" content="<%= title %> | <%= companyTitle ? companyTitle : 'Work Hays' %>">
+    <meta property="twitter:description" content="<%= meta ? meta : description %>">
+    <meta property="twitter:image" content="<%= metaImage ? metaImage : 'https://workhays.com/images/work-hays-banner.png' %>">
 
     <!-- favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">

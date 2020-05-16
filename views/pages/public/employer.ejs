@@ -1,4 +1,4 @@
-<%- include('../../partials/page_start', {title: employer.title, description: `Learn more about ${employer.title }, visit their website, or contact them today.`}) %>
+<%- include('../../partials/page_start', {title: employer.title, description: `Learn more about ${employer.title }, visit their website, or contact them today.`,metaImage: employer.logo_url ? employer.logo_url.replace('public','https://workhays.com') : null}) %>
 
 <style>
     button.trix-button.trix-button--icon.trix-button--icon-increase-nesting-level {
