@@ -1,61 +1,89 @@
-<%- include('../../partials/page_start', {title:job.title, description: `Apply for the position, ${job.title}, with ${job.employer.title} today or contact ${job.employer.contact} for more information. Posted ${moment.utc(job.createdAt).local().format('ll')}.`, companyTitle: job.employer.title,paddingBottm: 'pb-20',metaImage: job.employer.logo_url ? job.employer.logo_url.replace('public','https://workhays.com') : null}) %>
+<%- include('../../partials/page_start', {title:job.title, description: `Apply
+for the position, ${job.title}, with ${job.employer.title} today or contact
+${job.employer.contact} for more information. Posted
+${moment.utc(job.createdAt).local().format('ll')}.`, companyTitle:
+job.employer.title,paddingBottm: 'pb-20',metaImage: job.employer.logo_url ?
+job.employer.logo_url.replace('public','https://workhays.com') : null}) %>
 
 <style>
     button.trix-button.trix-button--icon.trix-button--icon-increase-nesting-level {
-    display: none;
-}
+        display: none;
+    }
 
-button.trix-button.trix-button--icon.trix-button--icon-decrease-nesting-level {
-    display: none;
-}
+    button.trix-button.trix-button--icon.trix-button--icon-decrease-nesting-level {
+        display: none;
+    }
 
-#description_input_trix ul {
-    list-style-type: disc;
-    list-style-position: inside;
-}
+    #description_input_trix ul {
+        list-style-type: disc;
+        list-style-position: inside;
+    }
 
-#description_input_trix ol {
-    list-style-type: decimal;
-    list-style-position: inside;
-}
+    #description_input_trix ol {
+        list-style-type: decimal;
+        list-style-position: inside;
+    }
 </style>
 
 <div class="max-w-4xl mx-auto px-4 lg:px-0">
     <div class="-mt-8">
         <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
             <% if (job.application_link) { %>
-                <a href="<%= job.application_link %>" target="_blank" class="bg-white shadow rounded p-4 overflow-hidden flex flex-row justify-between items-center transition transform ease-in-out duration-150 hover:-translate-y-0.1 group">
-                    <span class="font-medium text-gray-700 group-hover:underline truncate">
-                        Apply Online
-                    </span>
-                    <i data-feather="external-link" class="w-6 h-6 text-indigo-500"></i>
-                </a>
-            <% } %>
-            <% if (job.employer.dataValues.phone) { %>
-                <a href="tel:<%= job.employer.dataValues.phone %>" class="bg-white shadow rounded p-4 overflow-hidden flex flex-row justify-between items-center transition transform ease-in-out duration-150 hover:-translate-y-0.1 group">
-                    <span class="font-medium text-gray-700 group-hover:underline truncate">
-                        <%= job.employer.dataValues.phone %>
-                    </span>
-                    <i data-feather="phone" class="w-6 h-6 text-indigo-500"></i>
-                </a>
+            <a
+                href="<%= job.application_link %>"
+                target="_blank"
+                class="bg-white shadow rounded p-4 overflow-hidden flex flex-row justify-between items-center transition transform ease-in-out duration-150 hover:-translate-y-0.1 group"
+            >
+                <span
+                    class="font-medium text-gray-700 group-hover:underline truncate"
+                >
+                    Apply Online
+                </span>
+                <i
+                    data-feather="external-link"
+                    class="w-6 h-6 text-indigo-500"
+                ></i>
+            </a>
+            <% } %> <% if (job.employer.dataValues.phone) { %>
+            <a
+                href="tel:<%= job.employer.dataValues.phone %>"
+                class="bg-white shadow rounded p-4 overflow-hidden flex flex-row justify-between items-center transition transform ease-in-out duration-150 hover:-translate-y-0.1 group"
+            >
+                <span
+                    class="font-medium text-gray-700 group-hover:underline truncate"
+                >
+                    <%= job.employer.dataValues.phone %>
+                </span>
+                <i data-feather="phone" class="w-6 h-6 text-indigo-500"></i>
+            </a>
+            <% } %> <% if (job.employer.dataValues.email) { %>
+            <a
+                href="mailto:<%= job.employer.dataValues.email %>"
+                class="bg-white shadow rounded p-4 overflow-hidden flex flex-row justify-between items-center transition transform ease-in-out duration-150 hover:-translate-y-0.1 group"
+            >
+                <span
+                    class="font-medium text-gray-700 group-hover:underline truncate"
+                >
+                    <%= job.employer.dataValues.email %>
+                </span>
+                <i data-feather="mail" class="w-6 h-6 text-indigo-500"></i>
+            </a>
             <% } %>
 
-            <% if (job.employer.dataValues.email) { %>
-                <a href="mailto:<%= job.employer.dataValues.email %>" class="bg-white shadow rounded p-4 overflow-hidden flex flex-row justify-between items-center transition transform ease-in-out duration-150 hover:-translate-y-0.1 group">
-                    <span class="font-medium text-gray-700 group-hover:underline truncate">
-                        <%= job.employer.dataValues.email %>
-                    </span>
-                    <i data-feather="mail" class="w-6 h-6 text-indigo-500"></i>
-                </a>
-            <% } %>
-
-            <a href="/employers/<%= job.employer.dataValues.id %>?from=<%= req.originalUrl %>" class="bg-white shadow rounded p-4 overflow-hidden flex flex-row justify-between items-center transition transform ease-in-out duration-150 hover:-translate-y-0.1 group">
-                <span class="font-medium text-gray-700 group-hover:underline truncate">
+            <a
+                href="/employers/<%= job.employer.dataValues.id %>?from=<%= req.originalUrl %>"
+                class="bg-white shadow rounded p-4 overflow-hidden flex flex-row justify-between items-center transition transform ease-in-out duration-150 hover:-translate-y-0.1 group"
+            >
+                <span
+                    class="font-medium text-gray-700 group-hover:underline truncate"
+                >
                     View Employer
                 </span>
-                <i data-feather="arrow-right" class="w-6 h-6 text-indigo-500"></i>
+                <i
+                    data-feather="arrow-right"
+                    class="w-6 h-6 text-indigo-500"
+                ></i>
             </a>
-
         </div>
     </div>
 </div>
@@ -66,17 +94,29 @@ button.trix-button.trix-button--icon.trix-button--icon-decrease-nesting-level {
             <label class="text-sm text-gray-500">
                 Description
             </label>
-            <div id="description_input_trix" class="leading-7 text-gray-900 antialiased">
+            <div
+                id="description_input_trix"
+                class="leading-7 text-gray-900 antialiased"
+            >
                 <%- job.description %>
             </div>
         </div>
         <div class="col-span-1 md:col-span-2">
             <div class="grid grid-cols-2 gap-2 mb-2">
-                <a href="https://www.facebook.com/sharer.php?u=https%3A%2F%2Fworkhays.com<%= req.path %>" class="py-1 flex flex-row items-center rounded bg-blue-500 hover:bg-blue-600">
-                    <i data-feather="facebook" class="w-5 h-5 text-white ml-1"></i>
+                <a
+                    href="https://www.facebook.com/sharer.php?u=https%3A%2F%2Fworkhays.com<%= req.path %>"
+                    class="py-2 flex flex-row items-center rounded bg-blue-500 hover:bg-blue-600"
+                >
+                    <i
+                        data-feather="facebook"
+                        class="w-5 h-5 text-white ml-1"
+                    ></i>
                     <span class="ml-1 text-sm text-white">Share</span>
                 </a>
-                <a href="mailto:?subject=Check%20out%20this%20job%20opening%20from%20<%= job.employer.title %>&body=https%3A%2F%2Fworkhays.com<%= req.path %>" class="py-1 flex flex-row items-center rounded bg-green-400 hover:bg-green-500">
+                <a
+                    href="mailto:?subject=Check%20out%20this%20job%20opening%20from%20<%= job.employer.title %>&body=https%3A%2F%2Fworkhays.com<%= req.path %>"
+                    class="py-2 flex flex-row items-center rounded bg-green-400 hover:bg-green-500"
+                >
                     <i data-feather="send" class="w-5 h-5 text-white ml-1"></i>
                     <span class="ml-1 text-sm text-white">Email</span>
                 </a>
@@ -96,9 +136,9 @@ button.trix-button.trix-button--icon.trix-button--icon-decrease-nesting-level {
                     </label>
                     <div class="text-sm text-gray-900">
                         <% if(job.job_type === 'full_time') { %>
-                            <span>Full Time</span>
-                            <% } else { %>
-                            <span>Part Time</span>
+                        <span>Full Time</span>
+                        <% } else { %>
+                        <span>Part Time</span>
                         <% } %>
                     </div>
                 </div>
@@ -107,7 +147,10 @@ button.trix-button.trix-button--icon.trix-button--icon-decrease-nesting-level {
                         Employer
                     </label>
                     <div class="mt-1 text-sm text-gray-900">
-                        <a class="text-blue-600 hover:underline" href="/employers/<%= job.employer.dataValues.id %>?from=<%= req.originalUrl %>">
+                        <a
+                            class="text-blue-600 hover:underline"
+                            href="/employers/<%= job.employer.dataValues.id %>?from=<%= req.originalUrl %>"
+                        >
                             <%= job.employer.dataValues.title %>
                         </a>
                     </div>
