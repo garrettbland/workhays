@@ -92,44 +92,126 @@ router.get('/claim/:employerId', claimController.get_unclaimed_employer)
 Private Routes
 
 */
-router.get('/admin/dashboard', middleware.isLoggedIn, middleware.isLocked, accountController.index)
-router.get('/admin/jobs', middleware.isLoggedIn, middleware.isLocked, accountController.jobs)
-router.get('/admin/business', middleware.isLoggedIn, middleware.isLocked, accountController.business)
-router.get('/admin/profile', middleware.isLoggedIn, middleware.isLocked, accountController.profile)
-router.get('/admin/jobs/new', middleware.isLoggedIn, middleware.isLocked, middleware.isUserVerified, jobController.new_job)
-router.get('/admin/jobs/:jobId', middleware.isLoggedIn, middleware.isLocked, middleware.isUserVerified, jobController.edit_job)
+router.get(
+    '/admin/dashboard',
+    middleware.isLoggedIn,
+    middleware.isLocked,
+    accountController.index
+)
+router.get(
+    '/admin/jobs',
+    middleware.isLoggedIn,
+    middleware.isLocked,
+    accountController.jobs
+)
+router.get(
+    '/admin/business',
+    middleware.isLoggedIn,
+    middleware.isLocked,
+    accountController.business
+)
+router.get(
+    '/admin/profile',
+    middleware.isLoggedIn,
+    middleware.isLocked,
+    accountController.profile
+)
+router.get(
+    '/admin/jobs/new',
+    middleware.isLoggedIn,
+    middleware.isLocked,
+    middleware.isUserVerified,
+    jobController.new_job
+)
+router.get(
+    '/admin/jobs/:jobId',
+    middleware.isLoggedIn,
+    middleware.isLocked,
+    middleware.isUserVerified,
+    jobController.edit_job
+)
 
-router.get('/job-listing-new', middleware.isLoggedIn, middleware.isLocked, middleware.isUserVerified, function(req, res) {
-    res.render('pages/private/joblistingnew')
-})
+router.get(
+    '/job-listing-new',
+    middleware.isLoggedIn,
+    middleware.isLocked,
+    middleware.isUserVerified,
+    function(req, res) {
+        res.render('pages/private/joblistingnew')
+    }
+)
 
-router.post('/jobs', middleware.isLoggedIn, middleware.isLocked, middleware.isUserVerified, jobController.create_job)
-router.post('/jobs/edit/:jobId', middleware.isLoggedIn, middleware.isLocked, middleware.isUserVerified, jobController.update_job)
-router.post('/jobs/renew/:jobId', middleware.isLoggedIn, middleware.isLocked, middleware.isUserVerified, jobController.renew_job)
+router.post(
+    '/jobs',
+    middleware.isLoggedIn,
+    middleware.isLocked,
+    middleware.isUserVerified,
+    jobController.create_job
+)
+router.post(
+    '/jobs/edit/:jobId',
+    middleware.isLoggedIn,
+    middleware.isLocked,
+    middleware.isUserVerified,
+    jobController.update_job
+)
+router.post(
+    '/jobs/renew/:jobId',
+    middleware.isLoggedIn,
+    middleware.isLocked,
+    middleware.isUserVerified,
+    jobController.renew_job
+)
 router.post(
     '/account/change_email',
     middleware.isLoggedIn,
     middleware.isLocked,
     authController.change_email
 )
-router.post('/employers/edit/:employerId', middleware.isLoggedIn, middleware.isLocked, employerController.update_employer)
+router.post(
+    '/employers/edit/:employerId',
+    middleware.isLoggedIn,
+    middleware.isLocked,
+    employerController.update_employer
+)
 
 /*
 
 Admin Routes
 
 */
-router.get('/admin/admin_users', middleware.isLoggedIn, middleware.isLocked, middleware.isUserVerified, middleware.isAdmin, function (req, res) {
-    res.render('pages/private/admin_users')
-})
+router.get(
+    '/admin/admin_users',
+    middleware.isLoggedIn,
+    middleware.isLocked,
+    middleware.isUserVerified,
+    middleware.isAdmin,
+    function(req, res) {
+        res.render('pages/private/admin_users')
+    }
+)
 
-router.get('/admin/admin_employers', middleware.isLoggedIn, middleware.isLocked, middleware.isUserVerified, middleware.isAdmin, function (req, res) {
-    res.render('pages/private/admin_employers')
-})
+router.get(
+    '/admin/admin_employers',
+    middleware.isLoggedIn,
+    middleware.isLocked,
+    middleware.isUserVerified,
+    middleware.isAdmin,
+    function(req, res) {
+        res.render('pages/private/admin_employers')
+    }
+)
 
-router.get('/admin/admin_jobs', middleware.isLoggedIn, middleware.isLocked, middleware.isUserVerified, middleware.isAdmin, function (req, res) {
-    res.render('pages/private/admin_jobs')
-})
+router.get(
+    '/admin/admin_jobs',
+    middleware.isLoggedIn,
+    middleware.isLocked,
+    middleware.isUserVerified,
+    middleware.isAdmin,
+    function(req, res) {
+        res.render('pages/private/admin_jobs')
+    }
+)
 
 /*
 
@@ -138,16 +220,66 @@ API Routes
 */
 
 router.post('/api/subscribe', subscriberController.create_subscriber)
-router.get('/api/users', middleware.isLoggedIn, middleware.isAdmin, adminController.get_users)
-router.put('/api/users/:userId', middleware.isLoggedIn, middleware.isAdmin, adminController.update_user)
+router.get(
+    '/api/users',
+    middleware.isLoggedIn,
+    middleware.isAdmin,
+    adminController.get_users
+)
+router.put(
+    '/api/users/:userId',
+    middleware.isLoggedIn,
+    middleware.isAdmin,
+    adminController.update_user
+)
 
-router.post('/api/employers', middleware.isLoggedIn, middleware.isAdmin, adminController.create_employer)
-router.get('/api/employers', middleware.isLoggedIn, middleware.isAdmin, adminController.get_employers)
-router.put('/api/employers/:employerId', middleware.isLoggedIn, middleware.isAdmin, adminController.update_employer)
+router.post(
+    '/api/employers',
+    middleware.isLoggedIn,
+    middleware.isAdmin,
+    adminController.create_employer
+)
+router.get(
+    '/api/employers',
+    middleware.isLoggedIn,
+    middleware.isAdmin,
+    adminController.get_employers
+)
+router.put(
+    '/api/employers/:employerId',
+    middleware.isLoggedIn,
+    middleware.isAdmin,
+    adminController.update_employer
+)
 
-router.post('/api/jobs', middleware.isLoggedIn, middleware.isAdmin, adminController.create_job)
-router.get('/api/jobs', middleware.isLoggedIn, middleware.isAdmin, adminController.get_jobs)
-router.put('/api/jobs/:jobId', middleware.isLoggedIn, middleware.isAdmin, adminController.update_job)
+router.post(
+    '/api/jobs',
+    middleware.isLoggedIn,
+    middleware.isAdmin,
+    adminController.create_job
+)
+router.get(
+    '/api/jobs',
+    middleware.isLoggedIn,
+    middleware.isAdmin,
+    adminController.get_jobs
+)
+router.put(
+    '/api/jobs/:jobId',
+    middleware.isLoggedIn,
+    middleware.isAdmin,
+    adminController.update_job
+)
+
+router.get(
+    '/api/send_expiration_alert',
+    middleware.verifyApiKey,
+    (req, res) => {
+        res.status(200).json({
+            message: 'do email alert stuff',
+        })
+    }
+)
 
 // catch 404 and forward to error handler
 router.get('*', (req, res) => {
