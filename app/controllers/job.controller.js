@@ -1,6 +1,6 @@
 var Models = require('../models')
-var moment = require('moment')
-const { Op } = require("sequelize");
+var moment = require('moment-timezone')
+const { Op } = require('sequelize')
 
 exports.list_jobs = async (req, res) => {
     try {
@@ -15,8 +15,11 @@ exports.list_jobs = async (req, res) => {
             where: {
                 status: 'active',
                 renewed: {
-                    [Op.gt]: moment.tz(moment(), 'America/Chicago').subtract(14, 'days').endOf('day')
-                }
+                    [Op.gt]: moment
+                        .tz(moment(), 'America/Chicago')
+                        .subtract(14, 'days')
+                        .endOf('day'),
+                },
             },
             order: [['renewed', 'DESC']],
             limit: job_limit,
@@ -46,7 +49,7 @@ exports.list_jobs = async (req, res) => {
         // var formattedJobs = jobs.rows.map(function (job) {
         //     return buildStatus(job)
         // })
-        
+
         res.render('pages/public/index', {
             jobs: jobs.rows,
             count: jobs.count,
@@ -135,7 +138,7 @@ exports.renew_job = async (req, res) => {
         })
 
         var job = {
-            renewed: moment.tz(moment(), 'America/Chicago').utc()
+            renewed: moment.tz(moment(), 'America/Chicago').utc(),
         }
 
         const renew_job = await Models.job.update(job, {
@@ -148,15 +151,14 @@ exports.renew_job = async (req, res) => {
         if (!renew_job) throw 'Job not renewed'
 
         req.flash('success', 'Job successfully renewed')
-        res.redirect(
-            '/admin/jobs/' + req.params.jobId + '?from=/admin/jobs'
-        )
-
-
+        res.redirect('/admin/jobs/' + req.params.jobId + '?from=/admin/jobs')
     } catch (err) {
         console.log(err)
         // res.send(err)
-        req.flash('error', 'Something went wrong renewing your job, please try again.')
+        req.flash(
+            'error',
+            'Something went wrong renewing your job, please try again.'
+        )
         console.log('Error in renew_job')
         res.status(200)
         res.redirect('/admin/jobs')

@@ -274,11 +274,7 @@ router.put(
 router.get(
     '/api/send_expiration_alert',
     middleware.verifyApiKey,
-    (req, res) => {
-        res.status(200).json({
-            message: 'do email alert stuff',
-        })
-    }
+    adminController.sendExpiredEmail
 )
 
 // catch 404 and forward to error handler

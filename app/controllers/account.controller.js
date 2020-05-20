@@ -1,5 +1,5 @@
 var Models = require('../models')
-var moment = require('moment')
+var moment = require('moment-timezone')
 const { Op } = require('sequelize')
 
 exports.index = async (req, res) => {
@@ -113,11 +113,17 @@ exports.jobs = async (req, res) => {
 
         if (!jobs) throw 'Jobs not found'
 
-        var buildStatus = function (job) {
+        var buildStatus = function(job) {
             if (job.status === 'archived') {
                 return null
             } else {
-                if (job.renewed > moment.tz(moment(), 'America/Chicago').subtract(14, 'days').endOf('day')) {
+                if (
+                    job.renewed >
+                    moment
+                        .tz(moment(), 'America/Chicago')
+                        .subtract(14, 'days')
+                        .endOf('day')
+                ) {
                     return 'active'
                 } else {
                     return 'expired'

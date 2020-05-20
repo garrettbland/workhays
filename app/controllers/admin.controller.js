@@ -1,7 +1,7 @@
 var Models = require('../models')
 var path = require('path')
 var env = process.env.NODE_ENV || 'development'
-var moment = require('moment')
+var moment = require('moment-timezone')
 const { Op } = require('sequelize')
 var config = require(path.join(__dirname, '..', 'config', 'config.json'))[env]
 
@@ -262,6 +262,122 @@ exports.update_job = async (req, res) => {
         res.status(200).json({
             code: 1,
         })
+    } catch (err) {
+        console.log(err)
+        res.status(500).json({
+            error: 500,
+            message: err,
+        })
+    }
+}
+
+/**
+ * Sends email reminder that job has expired
+ */
+
+exports.sendExpiredEmail = async (req, res) => {
+    try {
+        var api_key = config.mailgun_api_key
+        var domain = 'mg.workhays.com'
+        var mailgun = require('mailgun-js')({
+            apiKey: api_key,
+            domain: domain,
+        })
+
+        /**
+         * My thought process on how to make this work...
+         */
+        // example renewed date -> 5-8-2020
+        // api is ran on -> 5-19-2020
+        // api gets date 14 days ago -> 5-5-2020
+        // api fetches posts between begennings of 5-5-2020 and end of 5-5-2020
+
+        //moment.tz(moment(), 'America/Chicago').subtract(14, 'days').endOf('day')
+        let todaysDate = moment.tz(moment(), 'America/Chicago')
+        let twoWeeksAgoDate = moment(todaysDate).subtract(14, 'days')
+        let twoWeeksAgoDate_start = moment(todaysDate)
+            .subtract(14, 'days')
+            .startOf('day')
+        let twoWeeksAgoDate_end = moment(todaysDate)
+            .subtract(14, 'days')
+            .endOf('day')
+
+        let twoWeekOldJobs = await Models.job.findAll({
+            where: {
+                status: 'active',
+                [Op.and]: [
+                    {
+                        renewed: {
+                            [Op.gt]: twoWeeksAgoDate_start,
+                        },
+                    },
+                    {
+                        renewed: {
+                            [Op.lt]: twoWeeksAgoDate_end,
+                        },
+                    },
+                ],
+            },
+            include: [
+                {
+                    model: Models.employer,
+                    where: {
+                        user_id: {
+                            [Op.ne]: 'unclaimed',
+                        },
+                    },
+                    include: [
+                        {
+                            model: Models.user,
+                        },
+                    ],
+                },
+            ],
+        })
+
+        if (twoWeekOldJobs.length > 0) {
+            twoWeekOldJobs.forEach(job => {
+                console.log(
+                    `Send an email about job ${job.title} to ${job.employer.user.email} -> /admin/jobs/${job.id}`
+                )
+
+                var data = {
+                    from: 'Work Hays <no-reply@workhays.com>',
+                    to: job.employer.user.email,
+                    subject: 'Expired Job Notice',
+                    html: `
+                <p>Hello,</p>
+                <p>
+                    This is an automated message to let you know that your position, ${job.title}, has expired.
+                </p>
+                <p>
+                    Please <a href="https://workhays.com/signin">signin</a> to your account to renew your job opening for an additional two
+                    weeks. Until then, your position will not be viewable to the public from Work Hays.
+                </p>
+                <p>
+                    If you have any questions, please contact us at support@workhays.com
+                </p>
+                <p>Thank you,</p>
+                <p>Work Hays<br>support@workhays.com</p>
+            `,
+                }
+
+                // send the email
+                mailgun.messages().send(data, function(error, body) {
+                    console.log(body)
+                })
+            })
+        }
+
+        let response = {
+            todaysDate: todaysDate,
+            twoWeeksAgoDate: twoWeeksAgoDate,
+            twoWeeksAgoDate_start,
+            twoWeeksAgoDate_end,
+            data: twoWeekOldJobs,
+        }
+
+        res.status(200).json(response)
     } catch (err) {
         console.log(err)
         res.status(500).json({
