@@ -369,13 +369,16 @@ exports.sendExpiredEmail = async (req, res) => {
             })
         }
 
-        // temporary - remove this
-        // send email to myself to make sure the cron job is firing
+        /**
+         * Can remove whenever, just set this up to make sure reminder is working
+         */
         mailgun.messages().send({
             from: 'Work Hays <no-reply@workhays.com>',
-            to: 'gmorganbland@gmail.com',
+            to: 'support@workhays.com',
             subject: 'Expired Job Notice',
-            html: `Cron job is working`,
+            html: `Cron job is performing normally. Sent expired email alert to ${
+                twoWeekOldJobs.length ? twoWeekOldJobs.length : `0`
+            } employers`,
         })
 
         let response = {
