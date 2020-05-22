@@ -374,7 +374,7 @@ exports.sendExpiredEmail = async (req, res) => {
          */
         mailgun.messages().send({
             from: 'Work Hays <no-reply@workhays.com>',
-            to: 'support@workhays.com',
+            to: 'gmorganbland@gmail.com',
             subject: 'Expired Job Notice',
             html: `Cron job is performing normally. Sent expired email alert to ${
                 twoWeekOldJobs.length ? twoWeekOldJobs.length : `0`
@@ -384,9 +384,9 @@ exports.sendExpiredEmail = async (req, res) => {
         let response = {
             todaysDate: todaysDate,
             twoWeeksAgoDate: twoWeeksAgoDate,
-            twoWeeksAgoDate_start,
-            twoWeeksAgoDate_end,
-            data: twoWeekOldJobs,
+            message: `Cron job is performing normally. Sent expired email alert to ${
+                twoWeekOldJobs.length ? twoWeekOldJobs.length : `0`
+            } employers`,
         }
 
         res.status(200).json(response)
