@@ -1,15 +1,25 @@
 var Models = require('../models')
 var moment = require('moment-timezone')
 const { Op } = require('sequelize')
+var industries = require('../config/industries')
 
 exports.list_jobs = async (req, res) => {
     try {
         // total results limit
-        const job_limit = 10
+        const job_limit = 15
 
         const page = parseInt(req.query.page) - 1 || 0
 
-        console.log(`job limit => ${job_limit}`)
+        /**
+         * optional industry filter
+         */
+        const industryFilter = () => {
+            if (req.query.industry) {
+                return {
+                    industry: req.query.industry.toLowerCase(),
+                }
+            }
+        }
 
         const jobs = await Models.job.findAndCountAll({
             where: {
@@ -20,6 +30,7 @@ exports.list_jobs = async (req, res) => {
                         .subtract(14, 'days')
                         .endOf('day'),
                 },
+                ...industryFilter(),
             },
             order: [['renewed', 'DESC']],
             limit: job_limit,
@@ -29,33 +40,13 @@ exports.list_jobs = async (req, res) => {
 
         if (!jobs) throw 'Jobs not found'
 
-        console.log(jobs)
-
-        // var buildStatus = function(job) {
-        //     // expiration is 2 weeks. Check if createdAt is older than two week, set expired instead of inactive for more verbose messages for users
-
-        //     var TWO_WEEKS_OLD = moment
-        //         .tz(moment(), 'America/Chicago')
-        //         .subtract(14, 'days')
-        //         .endOf('day')
-        //     var jobCreatedAt = moment.tz(job.createdAt, 'America/Chicago').utc()
-
-        //     if (jobCreatedAt > TWO_WEEKS_OLD) {
-        //         return job
-        //     }
-
-        // }
-
-        // var formattedJobs = jobs.rows.map(function (job) {
-        //     return buildStatus(job)
-        // })
-
         res.render('pages/public/index', {
             jobs: jobs.rows,
             count: jobs.count,
             pages: Math.ceil(jobs.count / job_limit),
             current_page: page + 1,
             moment: moment,
+            industries: industries.industries,
         })
     } catch (err) {
         console.log('Error in list_jobs')
@@ -88,7 +79,9 @@ exports.get_job = async (req, res) => {
 }
 
 exports.new_job = (req, res) => {
-    res.render('pages/private/new_job')
+    res.render('pages/private/new_job', {
+        industries: industries.industries,
+    })
 }
 
 exports.create_job = async (req, res) => {
@@ -108,6 +101,7 @@ exports.create_job = async (req, res) => {
             application_link: req.body.application_link,
             employer_id: employer.dataValues.id,
             status: req.body.status,
+            industry: req.body.industry,
         })
 
         if (!newJob) throw 'Job not created'
@@ -183,6 +177,7 @@ exports.update_job = async (req, res) => {
                 req.body.action_button === 'update'
                     ? req.body.status
                     : 'archived',
+            industry: req.body.industry,
         }
 
         const update_job = await Models.job.update(job, {
@@ -249,6 +244,7 @@ exports.edit_job = async (req, res) => {
                 job: job.dataValues,
                 moment: moment,
                 enabled: enabled,
+                industries: industries.industries,
             })
         } else {
             res.status(404)

@@ -1,13 +1,13 @@
 <%- include('../../partials/page_start', {title:'Employers', description: 'Browse all of the currently registered employers with Work Hays and contact information. Are you an employer? <a class="underline hover:opacity-100" href="/signup">Click here to sign up!</a>',paddingBottom:'pb-32'}) %>
 
-<div class="max-w-4xl mx-auto px-4 lg:px-0">
-        <div class="bg-white shadow rounded -mt-8 overflow-hidden">
+<div class="max-w-4xl mx-auto px-4 lg:px-0 z-20 relative">
+        <div class="bg-white shadow rounded overflow-hidden">
             <ul>
                 <% employers.forEach(function(employer,index) { %>
                     <% if(employer.title) { %>
                         <li class="<%= index === 0 ? 'border-t-none' : 'border-t-2' %> border-gray-100 hover:bg-gray-50 transform transition ease-in-out duration-75 group">
                             <a href="/employers/<%= employer.id %>?from=<%= req.originalUrl %>" class="block w-full p-4 flex justify-between items-center">
-                                <div class="w-8 h-8 bg-gray-300 bg-center bg-cover rounded-full shadow mr-2 items-center justify-center text-center flex text-sm font-bold text-white" 
+                                <div class="w-8 h-8 bg-gray-300 bg-center bg-cover rounded-full shadow mr-2 items-center justify-center text-center flex text-sm font-bold text-white"
                                 style="<%= employer.logo_url ? `background-image:url('${employer.logo_url.replace('public/','/')}')` : 'background-image: linear-gradient( 90deg, rgba(107,52,255,1) 16.5%, rgba(51,159,247,1) 81% );'%>">
                                     <%= employer.logo_url === '' ? employer.title.charAt(0) : null %>
                                 </div>
@@ -60,7 +60,7 @@
                 >
                     Previous
                 </div>
-                <% } %> 
+                <% } %>
                 <% if(current_page < pages) { %>
                 <a
                     href="/employers?page=<%= current_page + 1 %>"
