@@ -125,7 +125,7 @@ button.trix-button.trix-button--icon.trix-button--icon-decrease-nesting-level {
 					</div>
 					<div class="col-span-6">
 						<label class="text-sm text-gray-600 mb-2">
-							* Industry
+							* Industry <%= job.industry ? 'test' : 'null' %>
 						</label>
 						<div class="inline-block relative w-full">
 							<select
@@ -133,6 +133,9 @@ button.trix-button.trix-button--icon.trix-button--icon-decrease-nesting-level {
 								id="industry"
 								<%= job.status === 'archived' ? 'disabled' : null %>
 								class="block appearance-none w-full bg-white shadow px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+								<% if(!job.industry) { %>
+									<option selected value="null">Select Industry...</option>
+								<% } %>
 								<% industries.forEach(function(industry) { %>
 								<option value="<%= industry.value %>" <%= job.industry === industry.value ? 'selected' : null %>>
 									<%= industry.title %></option>

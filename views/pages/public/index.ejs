@@ -43,6 +43,13 @@
 </div>
 
 <div class="max-w-4xl mx-auto px-4 lg:px-0">
+    <% if(count === 0) { %>
+    <div class="py-20 bg-gray-200 shadow-inner rounded">
+        <p class="text-gray-500 text-center px-4">
+            There are currently no jobs listed under this category, please check back soon.
+        </p>
+    </div>
+    <% } %>
     <div class="bg-white shadow rounded overflow-hidden">
         <ul>
             <% jobs.forEach(function(job,index) { %>
@@ -86,7 +93,7 @@
         <div>
             <% if(current_page <= pages && current_page !== 1) { %>
             <a
-                href="/?page=<%= current_page - 1 %>"
+                href="/?page=<%= current_page - 1 %><%= req.query.industry ? '&industry='+req.query.industry : null %>"
                 class="relative inline-flex items-center px-3 py-2 text-sm font-medium rounded text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-500 active:bg-gray-100 active:text-gray-700 transition transform ease-in-out duration-150 shadow hover:-translate-y-0.1"
             >
                 Previous
@@ -101,7 +108,7 @@
             <% } %>
             <% if(current_page < pages) { %>
             <a
-                href="/?page=<%= current_page + 1 %>"
+                href="/?page=<%= current_page + 1 %><%= req.query.industry ? '&industry='+req.query.industry : null %>"
                 class="ml-3 relative inline-flex items-center px-3 py-2 text-sm font-medium rounded text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-500 active:bg-gray-100 active:text-gray-700 transition transform ease-in-out duration-150 shadow hover:-translate-y-0.1"
             >
                 Next

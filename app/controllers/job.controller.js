@@ -6,7 +6,7 @@ var industries = require('../config/industries')
 exports.list_jobs = async (req, res) => {
     try {
         // total results limit
-        const job_limit = 15
+        const job_limit = 12
 
         const page = parseInt(req.query.page) - 1 || 0
 
