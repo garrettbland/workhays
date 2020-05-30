@@ -277,6 +277,12 @@ router.get(
     adminController.sendExpiredEmail
 )
 
+router.get(
+    '/api/create_db_backup',
+    middleware.verifyApiKey,
+    adminController.create_db_backup
+)
+
 // catch 404 and forward to error handler
 router.get('*', (req, res) => {
     res.status(404).render('error')

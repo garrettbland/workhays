@@ -5,11 +5,6 @@ Node app using express, ejs, tailwindcss, and alpinejs
 
 https://smooth.ie/blogs/news/svg-wavey-transitions-between-sections
 
-### Ads
-
-There is a weirdly named .html file in the public
-direcotry. This is for propellor ads
-
 ### Developing locally
 
 Clone this repo, run `npm install`. Then `npm run dev` to fire up the development server on `http://localhost:3000`. Nodemon is used, so it will watch for file changes and hot reload. Run `npm run prod` to setup production environment

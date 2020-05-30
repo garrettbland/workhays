@@ -4,6 +4,7 @@ var env = process.env.NODE_ENV || 'development'
 var moment = require('moment-timezone')
 const { Op } = require('sequelize')
 var config = require(path.join(__dirname, '..', 'config', 'config.json'))[env]
+var exec = require('child_process').exec
 
 exports.get_users = async (req, res) => {
     try {
@@ -390,6 +391,52 @@ exports.sendExpiredEmail = async (req, res) => {
         }
 
         res.status(200).json(response)
+    } catch (err) {
+        console.log(err)
+        res.status(500).json({
+            error: 500,
+            message: err,
+        })
+    }
+}
+
+exports.create_db_backup = (req, res) => {
+    try {
+        /**
+         * Create backup file name
+         */
+        let todays_date = moment
+            .tz(moment(), 'America/Chicago')
+            .format('MM-DD-YYYY')
+        let filename = `workhays_db_dump_${todays_date}.sql`
+
+        /**
+         * Command to run
+         */
+        let command = `mysqldump
+            -u ${config.username}
+            -p ${config.database}
+            --host ${config.host}
+            --password="${config.password}"
+            > ${filename}
+        `
+
+        /**
+         * Exectute command
+         */
+        exec(command, (error, stdout, stderr) => {
+            if (error) {
+                res.status(500).json({
+                    message: `Something went wrong making the backup`,
+                    details: stderr,
+                })
+            }
+
+            res.status(200).json({
+                message: `successfully created backup`,
+                details: filename,
+            })
+        })
     } catch (err) {
         console.log(err)
         res.status(500).json({
