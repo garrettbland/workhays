@@ -22,3 +22,6 @@ version.json
 
 # uploads
 public/uploads/employers/*
+
+# backups directory
+backups/
