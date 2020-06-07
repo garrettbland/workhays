@@ -65,3 +65,11 @@ body {
     -o-animation: rotating 2s linear infinite;
     animation: rotating 2s linear infinite;
 }
+
+#description_input_trix a {
+    @apply text-blue-500;
+}
+
+#description_input_trix a:hover {
+    @apply underline;
+}
