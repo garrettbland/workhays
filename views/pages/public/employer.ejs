@@ -43,6 +43,34 @@ employer.logo_url.replace('public','https://workhays.com') : null}) %>
             >
                 <%- employer.description %>
             </div>
+            <div class="mt-8">
+                <h2 class="text-lg font-semibold mb-2">
+                    Current Job Openings
+                </h2>
+                <div class="bg-white shadow rounded overflow-hidden">
+                    <ul>
+                        <% employer.jobs.forEach(function(job,index) { %>
+                        <li
+                            class="<%= index === 0 ? 'border-t-none' : 'border-t-2' %> border-gray-100 hover:bg-gray-50 transform transition ease-in-out duration-75 group">
+                            <a href="/jobs/<%= job.id %>?from=<%= req.originalUrl %>"
+                                class="block w-full p-4 flex justify-between items-center">
+                                <div class="w-4/5 transform transition ease-in-out duration-150 group-hover:translate-x-1">
+                                    <div class="text-xs text-gray-500 leading-none">
+                                        <%= moment.utc(job.renewed).local().format('ll')%>
+                                    </div>
+                                    <div class="font-bold truncate group-hover:underline group-hover:text-blue-500">
+                                        <%= job.title %>
+                                    </div>
+                                </div>
+                                <div class="flex flex-1 items-center justify-end">
+                                    <i data-feather="arrow-right" class=""></i>
+                                </div>
+                            </a>
+                        </li>
+                        <% }) %>
+                    </ul>
+                </div>
+            </div>
         </div>
         <div class="col-span-1 md:col-span-2 -mt-8 order-1 md:order-3">
             <div class="p-4 bg-white rounded shadow">

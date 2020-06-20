@@ -2,6 +2,7 @@ var Models = require('../models')
 const multer = require('multer')
 var path = require('path')
 const { Op } = require('sequelize')
+var moment = require('moment-timezone')
 
 exports.list_employers = async (req, res) => {
     try {
@@ -42,7 +43,20 @@ exports.list_employers = async (req, res) => {
 
 exports.get_employer = async (req, res) => {
     try {
-        const employer = await Models.employer.findByPk(req.params.employerId)
+        const employer = await Models.employer.findByPk(req.params.employerId, {
+            include: {
+                model: Models.job,
+                where: {
+                    renewed: {
+                        [Op.gt]: moment
+                            .tz(moment(), 'America/Chicago')
+                            .subtract(14, 'days')
+                            .endOf('day'),
+                    },
+                },
+            },
+            order: [[Models.job, 'renewed', 'DESC']],
+        })
 
         if (!employer) throw 'Employer not found'
 
@@ -54,6 +68,7 @@ exports.get_employer = async (req, res) => {
 
         res.render('pages/public/employer', {
             req: req,
+            moment: moment,
             employer: {
                 ...employer.dataValues,
                 website_url: employer.dataValues.website_url
