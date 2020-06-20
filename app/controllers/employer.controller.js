@@ -43,9 +43,13 @@ exports.list_employers = async (req, res) => {
 
 exports.get_employer = async (req, res) => {
     try {
-        const employer = await Models.employer.findByPk(req.params.employerId, {
+        const employer = await Models.employer.findAndCountAll({
+            where: {
+                id: req.params.employerId,
+            },
             include: {
                 model: Models.job,
+                required: false,
                 where: {
                     renewed: {
                         [Op.gt]: moment
@@ -54,11 +58,15 @@ exports.get_employer = async (req, res) => {
                             .endOf('day'),
                     },
                 },
+                // order: [['renewed', 'DESC']],
             },
             order: [[Models.job, 'renewed', 'DESC']],
+            limit: 1,
         })
 
-        if (!employer) throw 'Employer not found'
+        console.log(employer)
+
+        if (employer.count === 0) throw 'Employer not found'
 
         const validateUrl = value => {
             return /^(?:(?:(?:https?|ftp):)?\/\/)(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:[/?#]\S*)?$/i.test(
@@ -69,18 +77,20 @@ exports.get_employer = async (req, res) => {
         res.render('pages/public/employer', {
             req: req,
             moment: moment,
+            job_count: employer.rows[0].jobs ? employer.rows[0].jobs.length : 0,
             employer: {
-                ...employer.dataValues,
-                website_url: employer.dataValues.website_url
-                    ? validateUrl(employer.dataValues.website_url)
-                        ? employer.dataValues.website_url
-                        : 'http://' + employer.dataValues.website_url
+                ...employer.rows[0].dataValues,
+                website_url: employer.rows[0].website_url
+                    ? validateUrl(employer.rows[0].website_url)
+                        ? employer.rows[0].website_url
+                        : 'http://' + employer.rows[0].website_url
                     : null,
             },
         })
     } catch (err) {
         // res.send(err)
         console.log('Error in get_employer')
+        console.log(err)
         res.status(404)
         res.render('error')
     }
