@@ -86,7 +86,10 @@ router.get('/logout', authController.logout)
 router.get('/sitemap.xml', sitemapController.generateSitemap)
 router.get('/claim', claimController.list_unclaimed_employers)
 router.get('/claim/:employerId', claimController.get_unclaimed_employer)
-
+router
+    .route('/advertise')
+    .get((req, res) => res.render('pages/public/advertise'))
+    .post(contactController.contact_form)
 /*
 
 Private Routes
