@@ -1,27 +1,14 @@
-# dotenv environment variables file
-.env
-.env.test
-app/config/config.json
-
-# Dependency directories
+# node
 node_modules/
-.npm
-yarn.lock
 
-# mac os
+# MacOS
 .DS_Store
 
-# styles
-public/dist
+# build directory
+dist/
 
-# misc
-.idea
+# Parcel
+.cache/
 
-# build version
-version.json
-
-# uploads
-public/uploads/employers/*
-
-# backups directory
-backups/
+# Misc
+*.log

@@ -1,0 +1,16 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+  functions = "src/functions"
+  NODE_ENV = "10.15.3"
+
+[dev]
+  command = "npm run dev"
+  port = 3000
+  publish = "dist"
+  autoLaunch = true
+
+[[redirects]]
+  from = "/jobs/*"
+  to = "/.netlify/functions/job"
+  status = 200
