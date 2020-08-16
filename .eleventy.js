@@ -2,6 +2,31 @@ const htmlmin = require('html-minifier')
 
 module.exports = function (eleventyConfig) {
     /**
+     * Custom tag to use render to match updated liquid api
+     */
+    eleventyConfig.addLiquidTag('render', function (liquidEngine) {
+        return {
+            parse: function (tagToken, remainingTokens) {
+                // retrieves file name & stores in 'str' key
+                // Example usage {% render 'head.liquid' %}
+                this.str = tagToken.args
+            },
+            render: function (scope, hash) {
+                // Takes in filename argument and removes file extension & quotes
+                var fileName = this.str
+                    .replace('.liquid', '')
+                    .slice(1, -1)
+
+                // render file using liquidEngine that ships with netlify
+                var body = liquidEngine.renderFile(fileName, {})
+
+                // Once rendered, resolve the promise to continue with build
+                return Promise.resolve(body)
+            },
+        }
+    })
+
+    /**
      * Pass public folder to top level of dist
      */
     eleventyConfig.addPassthroughCopy({ public: '/' })
