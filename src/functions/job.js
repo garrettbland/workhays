@@ -16,7 +16,7 @@ exports.handler = async (event, context, callback) => {
 
         return {
             statusCode: 200,
-            body: layout({ jobId: jobId }),
+            body: layout({ jobId: jobId, event: event }),
         }
     } catch (err) {
         return { statusCode: 500, body: err.toString() }
