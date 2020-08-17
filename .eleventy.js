@@ -52,8 +52,8 @@ module.exports = function (eleventyConfig) {
         passthroughFileCopy: true,
         dir: {
             input: 'src/pages',
-            includes: '../_includes',
-            layouts: '../_includes',
+            includes: '../functions/_includes',
+            layouts: '../functions/_includes',
             data: '../_data',
             output: 'dist',
         },

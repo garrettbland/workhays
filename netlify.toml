@@ -11,5 +11,5 @@
 
 [[redirects]]
   from = "/jobs/*"
-  to = "/.netlify/functions/job"
+  to = "/.netlify/functions/job?id=:splat"
   status = 200
