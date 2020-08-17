@@ -20,7 +20,7 @@ module.exports = (data) => `
             data.event.queryStringParameters.id
         )}</h1>
         <div>
-            ${JSON.stringify(data.event.queryStringParameters)}
+            ${JSON.stringify(data.event)}
         </div>
     </body>
 </html>
