@@ -2,7 +2,6 @@ var path = require('path')
 var { Liquid } = require('liquidjs')
 var engine = new Liquid({
     root: path.join(__dirname, '/_includes'),
-    extname: '.liquid',
 })
 
 exports.handler = async (event, context, callback) => {
@@ -10,7 +9,7 @@ exports.handler = async (event, context, callback) => {
         // get the job id from request
         const jobId = event.queryStringParameters.id
 
-        var body = await engine.renderFile('layout', {
+        var body = await engine.renderFile('layout.liquid', {
             content: `<h1>Job id: ${jobId}</h1>`,
         })
 
