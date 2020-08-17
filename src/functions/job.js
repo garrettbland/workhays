@@ -8,10 +8,10 @@ var engine = new Liquid({
 exports.handler = async (event, context, callback) => {
     try {
         // get the job id from request
-        const path = event.queryStringParameters.id.replace('/', '')
+        const jobId = event.queryStringParameters.id
 
         var body = await engine.renderFile('layout', {
-            content: `<h1>Job id: ${path}</h1>`,
+            content: `<h1>Job id: ${jobId}</h1>`,
         })
 
         return {
