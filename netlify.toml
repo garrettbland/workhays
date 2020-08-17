@@ -14,6 +14,18 @@
   to = "/.netlify/functions/job?id=:splat"
   status = 200
 
+[[redirects]]
+  from = "/jobs/:id/*"
+  to = "/404"
+  force = false
+  status = 404
+
+[[redirects]]
+  from = "/jobs"
+  to = "/404"
+  force = false
+  status = 404
+
 # 404 Redirect
 [[redirects]]
   from = "/*"

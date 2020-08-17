@@ -8,7 +8,14 @@ var layout = require('./_includes/head.11ty.js')
 exports.handler = async (event, context, callback) => {
     try {
         // get the job id from request
+        //const jobId = event.queryStringParameters.id
+
+        // gets the job id from request
+        // netlify dev and prod work differently, idk why
+        // has to deal with redirects
         const jobId = event.queryStringParameters.id
+            ? event.queryStringParameters.id
+            : event.path.split('/')[2]
 
         // var body = await engine.renderFile('layout.liquid', {
         //     content: `<h1>Job id: ${jobId}</h1>`,
@@ -16,7 +23,7 @@ exports.handler = async (event, context, callback) => {
 
         return {
             statusCode: 200,
-            body: layout({ jobId: jobId, event: event }),
+            body: layout({ jobId: jobId }),
         }
     } catch (err) {
         return { statusCode: 500, body: err.toString() }
