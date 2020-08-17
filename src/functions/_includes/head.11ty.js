@@ -16,7 +16,9 @@ module.exports = (data) => `
         <link rel="stylesheet" type="text/css" href="/assets/main.css" />
     </head>
     <body>
-        <h1>Job id: ${JSON.stringify(data.event)}</h1>
+        <h1>Job id: ${JSON.stringify(
+            data.event.queryStringParameters.id
+        )}</h1>
     </body>
 </html>
 `
