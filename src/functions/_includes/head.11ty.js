@@ -19,6 +19,9 @@ module.exports = (data) => `
         <h1>Job id: ${JSON.stringify(
             data.event.queryStringParameters.id
         )}</h1>
+        <div>
+            ${JSON.stringify(data.event.queryStringParameters)}
+        </div>
     </body>
 </html>
 `
