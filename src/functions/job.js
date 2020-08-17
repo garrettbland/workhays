@@ -1,7 +1,7 @@
 var path = require('path')
 var { Liquid } = require('liquidjs')
 var engine = new Liquid({
-    root: path.resolve(__dirname, './_includes'),
+    root: path.join(__dirname, '/_includes'),
     extname: '.liquid',
 })
 
