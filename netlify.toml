@@ -10,6 +10,11 @@
   autoLaunch = true
 
 [[redirects]]
+  from = "/jobs/:id"
+  to = "/.netlify/functions/job?id=:id"
+  status = 200
+
+[[redirects]]
   from = "/jobs/:id/*"
   to = "/404"
   force = false
@@ -20,11 +25,6 @@
   to = "/404"
   force = false
   status = 404
-
-[[redirects]]
-  from = "/jobs/*"
-  to = "/.netlify/functions/job?id=:splat"
-  status = 200
 
 # 404 Redirect
 [[redirects]]
