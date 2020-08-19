@@ -3,7 +3,7 @@ var path = require('path')
 // var engine = new Liquid({
 //     root: path.join(__dirname, '/_includes'),
 // })
-var layout = require('./_includes/head.11ty.js')
+var layout = require('./_includes/layout.11ty.js')
 
 exports.handler = async (event, context, callback) => {
     try {
