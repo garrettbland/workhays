@@ -1,7 +1,7 @@
 {
     "name": "workhays",
     "version": "2.0.0",
-    "description": "Work Hays using Netlify",
+    "description": "Work Hays using Firebase",
     "main": "index.js",
     "babel": {
         "presets": [
@@ -21,6 +21,7 @@
         "clean": "rimraf dist",
         "serve:eleventy": "npx @11ty/eleventy --serve",
         "serve:parcel": "cross-env NODE_ENV=development parcel watch src/js/main.js --out-dir dist/assets",
+        "serve:firebase": "firebase serve",
         "dev": "npm-run-all clean --parallel serve:*",
         "build:eleventy": "npx @11ty/eleventy",
         "build:parcel": "cross-env NODE_ENV=production parcel build ./src/js/main.js --out-dir dist/assets",
@@ -48,7 +49,7 @@
         "parcel-bundler": "^1.12.4",
         "prettier": "^2.0.5",
         "rimraf": "^3.0.2",
-        "tailwindcss": "^1.6.2"
+        "tailwindcss": "^1.7.2"
     },
     "dependencies": {
         "feather-icons": "^4.28.0",

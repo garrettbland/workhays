@@ -1,4 +1,4 @@
-var head = require('./head.11ty.js')
+var head = require('./head')
 
 module.exports = (data) => `
 <html>

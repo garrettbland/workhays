@@ -12,3 +12,5 @@ dist/
 
 # Misc
 *.log
+
+.firebase
