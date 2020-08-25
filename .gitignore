@@ -13,4 +13,12 @@ dist/
 # Misc
 *.log
 
+<<<<<<< Updated upstream
 .firebase
+=======
+# backups directory
+backups/
+
+.cache
+dist
+>>>>>>> Stashed changes
