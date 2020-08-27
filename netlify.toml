@@ -11,7 +11,7 @@
 
 [[redirects]]
   from = "/jobs/:id"
-  to = "/.netlify/functions/job?id=:id"
+  to = "https://7nja098l04.execute-api.us-east-1.amazonaws.com/staging/jobs/:id"
   status = 200
 
 [[redirects]]
