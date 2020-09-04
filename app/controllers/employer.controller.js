@@ -100,17 +100,17 @@ exports.update_employer = async (req, res) => {
     try {
         // define storage location for images
         const storage = multer.diskStorage({
-            destination: function(req, file, cb) {
+            destination: function (req, file, cb) {
                 cb(null, 'public/uploads/employers/')
             },
 
             // By default, multer removes file extensions so let's add them back
-            filename: function(req, file, cb) {
+            filename: function (req, file, cb) {
                 cb(null, Date.now() + path.extname(file.originalname))
             },
         })
 
-        const imageFilter = function(req, file, cb) {
+        const imageFilter = function (req, file, cb) {
             // Accept images only
             if (!file.originalname.match(/\.(jpg|JPG|jpeg|JPEG|png|PNG)$/)) {
                 req.fileValidationError = 'Only image files are allowed!'
@@ -125,7 +125,7 @@ exports.update_employer = async (req, res) => {
             limits: { fileSize: 1 * 1024 * 1024 },
         }).single('logo_url')
 
-        upload(req, res, async function(err) {
+        upload(req, res, async function (err) {
             // req.file contains information of uploaded file
             // req.body contains information of text fields, if there were any
 
