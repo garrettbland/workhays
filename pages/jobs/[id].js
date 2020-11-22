@@ -1,9 +1,11 @@
+import Layout from '@/components/Layout'
+
 const Job = ({ data }) => {
     return (
-        <div>
+        <Layout>
             <div>This is a dynamic page {data.job_title}</div>
             <div>{data.job_id}</div>
-        </div>
+        </Layout>
     )
 }
 
