@@ -1,12 +1,20 @@
 import Layout from '@/components/Layout'
+import Header from '@/components/Header'
 
 const Home = () => {
     return (
         <Layout>
-            <div>
-                <div className="text-indigo-600">Home Page</div>
-            </div>
+            <Header title="Work haysss" />
+            <CurrentJobs />
         </Layout>
+    )
+}
+
+const CurrentJobs = () => {
+    return (
+        <div>
+            <div>Current Jobs</div>
+        </div>
     )
 }
 
