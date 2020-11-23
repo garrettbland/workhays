@@ -36,10 +36,10 @@ const DesktopNavbar = () => {
     return (
         <div className="hidden md:flex max-w-4xl mx-auto justify-between items-center">
             <LogoTitle />
-            <div className="hidden md:grid grid-flow-col md:gap-4">
+            <div className="hidden md:grid grid-flow-col md:gap-2">
                 {links.map(({ title, href }) => (
                     <Link href={href}>
-                        <a>{title}</a>
+                        <a className="px-3 py-2 rounded-lg hover:bg-gray-600">{title}</a>
                     </Link>
                 ))}
             </div>
@@ -51,24 +51,22 @@ const MobileNavbar = () => {
     return (
         <div className="flex md:hidden justify-between items-center">
             <LogoTitle />
-            <div className="flex flex-row items-center">
-                <span className="w-5 h-5 text-red-500">
-                    <svg
-                        viewBox="0 0 20 20"
-                        version="1.1"
-                        xmlns="http://www.w3.org/2000/svg"
-                        xlink="http://www.w3.org/1999/xlink"
-                    >
-                        <g stroke="none" stroke-width="1" fill="inherit" fill-rule="evenodd">
-                            <g id="icon-shape">
-                                <path
-                                    d="M0,3 L20,3 L20,5 L0,5 L0,3 Z M0,9 L20,9 L20,11 L0,11 L0,9 Z M0,15 L20,15 L20,17 L0,17 L0,15 Z"
-                                    id="Combined-Shape"
-                                ></path>
-                            </g>
-                        </g>
-                    </svg>
-                </span>
+            <div className="w-8 h-8 text-gray-500 rounded-lg bg-gray-100 flex items-center justify-center">
+                <svg
+                    className="w-full h-full p-1"
+                    viewBox="0 0 24 24"
+                    width="24"
+                    height="24"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                    fill="none"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                >
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
             </div>
         </div>
     )
