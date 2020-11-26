@@ -34,11 +34,11 @@ const Navbar = () => {
 
 const DesktopNavbar = () => {
     return (
-        <div className="hidden md:flex max-w-4xl mx-auto justify-between items-center">
+        <div className="hidden md:flex max-w-4xl mx-auto justify-between items-center relative z-20">
             <LogoTitle />
             <div className="hidden md:grid grid-flow-col md:gap-2">
-                {links.map(({ title, href }) => (
-                    <Link href={href}>
+                {links.map(({ title, href }, index) => (
+                    <Link href={href} key={index}>
                         <a className="px-3 py-2 rounded-lg hover:bg-gray-600">{title}</a>
                     </Link>
                 ))}
@@ -49,7 +49,7 @@ const DesktopNavbar = () => {
 
 const MobileNavbar = () => {
     return (
-        <div className="flex md:hidden justify-between items-center">
+        <div className="flex md:hidden justify-between items-center relative z-20">
             <LogoTitle />
             <div className="w-8 h-8 text-gray-500 rounded-lg bg-gray-100 flex items-center justify-center">
                 <svg
