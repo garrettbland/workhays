@@ -66,7 +66,7 @@ const Home = () => {
 
 const CurrentJobs = () => {
     return (
-        <div>
+        <div className="max-w-4xl mx-auto">
             <div>Current Jobs</div>
         </div>
     )

@@ -59,7 +59,7 @@ const DesktopNavbar = () => {
 
 const MobileNavbar = () => {
     return (
-        <div className="flex md:hidden justify-between items-center">
+        <div className="flex md:hidden justify-between items-center relative z-20">
             <LogoTitle />
             <div className="w-10 h-10 text-blue-500 rounded-lg bg-white shadow flex items-center justify-center">
                 <svg
