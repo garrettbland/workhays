@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { useState } from 'react'
 
 const links = [
     {
@@ -36,7 +37,7 @@ const Navbar = () => {
 const DesktopNavbar = () => {
     const router = useRouter()
     return (
-        <div className="hidden md:flex justify-between items-center">
+        <div className="hidden md:flex justify-between items-center py-4">
             <LogoTitle />
             <div className="hidden md:grid grid-flow-col md:gap-3">
                 {links.map(({ title, href }, index) => (
@@ -58,27 +59,91 @@ const DesktopNavbar = () => {
 }
 
 const MobileNavbar = () => {
+    const [isMenuShowing, setMenu] = useState(false)
+
     return (
-        <div className="flex md:hidden justify-between items-center relative z-20">
-            <LogoTitle />
-            <div className="w-10 h-10 text-blue-500 rounded-lg bg-white shadow flex items-center justify-center">
-                <svg
-                    className="w-full h-full p-2"
-                    viewBox="0 0 24 24"
-                    width="24"
-                    height="24"
-                    stroke="currentColor"
-                    strokeWidth="1.8"
-                    fill="none"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
+        <>
+            <div className="flex md:hidden justify-between items-center relative">
+                <LogoTitle />
+                <button
+                    onClick={() => setMenu(!isMenuShowing)}
+                    className="fixed top-0 right-0 z-50 m-4 w-10 h-10 text-blue-500 rounded-lg bg-white shadow flex items-center justify-center overflow-hidden focus:outline-none"
                 >
-                    <line x1="3" y1="12" x2="21" y2="12"></line>
-                    <line x1="3" y1="6" x2="21" y2="6"></line>
-                    <line x1="3" y1="18" x2="21" y2="18"></line>
-                </svg>
+                    <svg
+                        className="w-full h-full p-2 shadow-inner"
+                        viewBox="0 0 24 24"
+                        width="24"
+                        height="24"
+                        stroke="currentColor"
+                        strokeWidth="1.8"
+                        fill="none"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                    >
+                        <line
+                            x1="18"
+                            y1="6"
+                            x2="6"
+                            y2="18"
+                            className={`transition duration-150 ${
+                                isMenuShowing ? 'opacity-100' : 'opacity-0'
+                            }`}
+                        ></line>
+                        <line
+                            x1="6"
+                            y1="6"
+                            x2="18"
+                            y2="18"
+                            className={`transition duration-150 ${
+                                isMenuShowing ? 'opacity-100' : 'opacity-0'
+                            }`}
+                        ></line>
+                        <line
+                            x1="3"
+                            y1="12"
+                            x2="21"
+                            y2="12"
+                            className={`transition duration-150 ${
+                                isMenuShowing ? 'opacity-0' : 'opacity-100'
+                            }`}
+                        ></line>
+                        <line
+                            x1="3"
+                            y1="6"
+                            x2="21"
+                            y2="6"
+                            className={`transition duration-150 ${
+                                isMenuShowing ? 'opacity-0' : 'opacity-100'
+                            }`}
+                        ></line>
+                        <line
+                            x1="3"
+                            y1="18"
+                            x2="21"
+                            y2="18"
+                            className={`transition duration-150 ${
+                                isMenuShowing ? 'opacity-0' : 'opacity-100'
+                            }`}
+                        ></line>
+                    </svg>
+                </button>
             </div>
-        </div>
+            <div
+                style={{ backdropFilter: 'blur(20px)' }}
+                className={`fixed z-30 top-0 left-0 w-screen h-screen transition duration-150 bg-black bg-opacity-40 ${
+                    isMenuShowing ? 'opacity-100' : 'opacity-0'
+                }`}
+            ></div>
+            <div
+                className={`fixed top-0 left-0 z-40 w-2/3 bg-white h-screen transform transition duration-200 ease-in-out shadow-lg ${
+                    isMenuShowing ? 'translate-x-0' : '-translate-x-full'
+                }`}
+            >
+                <div className="p-4">
+                    <div className="text-xl font-black">Menu</div>
+                </div>
+            </div>
+        </>
     )
 }
 

@@ -16,7 +16,7 @@ const Home = () => {
                         backgroundImage: `url('https://images.unsplash.com/photo-1529479627062-5f1f0b88912a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2150&q=80')`,
                     }}
                 ></div>
-                <div className="w-full h-full absolute top-0 left-0 bg-gradient-to-b from-indigo-600 to-transparent"></div>
+                <div className="w-full h-full absolute top-0 left-0 bg-gradient-to-b  from-indigo-600 to-transparent"></div>
                 <Row className="relative px-4 lg:px-0">
                     <Navbar />
                     <div className="pt-12 pb-32">
@@ -32,7 +32,7 @@ const Home = () => {
                 </Row>
                 <div class="absolute bottom-0 left-0 w-full overflow-hidden">
                     <svg
-                        className="h-16 w-full text-white"
+                        className="h-16 w-full text-gray-100"
                         data-name="Layer 1"
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 1200 120"
