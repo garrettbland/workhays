@@ -130,12 +130,12 @@ const MobileNavbar = () => {
             </div>
             <div
                 style={{ backdropFilter: 'blur(20px)' }}
-                className={`fixed z-30 top-0 left-0 w-screen h-screen transition duration-150 bg-black bg-opacity-40 ${
-                    isMenuShowing ? 'opacity-100' : 'opacity-0'
+                className={`fixed md:hidden top-0 left-0 w-screen h-screen transition duration-150 bg-black bg-opacity-40 ${
+                    isMenuShowing ? 'opacity-100 z-30' : 'opacity-0 hidden'
                 }`}
             ></div>
             <div
-                className={`fixed top-0 left-0 z-40 w-2/3 bg-white h-screen transform transition duration-200 ease-in-out shadow-lg ${
+                className={`fixed md:hidden top-0 left-0 z-40 w-2/3 bg-white h-screen transform transition duration-200 ease-in-out shadow-lg ${
                     isMenuShowing ? 'translate-x-0' : '-translate-x-full'
                 }`}
             >
