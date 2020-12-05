@@ -19,7 +19,7 @@ const Home = () => {
                 <div className="w-full h-full absolute top-0 left-0 bg-gradient-to-b  from-indigo-600 to-transparent"></div>
                 <Row className="relative px-4 lg:px-0">
                     <Navbar />
-                    <div className="pt-12 pb-32">
+                    <div className="pt-12 pb-36">
                         <h1 className="text-4xl font-extrabold text-white">Current Job Openings</h1>
                         <p className="text-white text-xl font-light">
                             Browse current job openings in Hays, KS and surrounding communities. Are

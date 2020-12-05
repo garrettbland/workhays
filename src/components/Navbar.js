@@ -129,6 +129,7 @@ const MobileNavbar = () => {
                 </button>
             </div>
             <div
+                onClick={() => setMenu(false)}
                 style={{ backdropFilter: 'blur(20px)' }}
                 className={`fixed md:hidden top-0 left-0 w-screen h-screen transition duration-150 bg-black bg-opacity-40 ${
                     isMenuShowing ? 'opacity-100 z-30' : 'opacity-0 hidden'
