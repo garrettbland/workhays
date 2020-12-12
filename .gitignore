@@ -25,3 +25,8 @@ public/uploads/employers/*
 
 # backups directory
 backups/
+
+# next on netlify stuff
+.next/
+out_functions/
+out_publish/
