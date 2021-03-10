@@ -90,6 +90,9 @@ router
     .route('/advertise')
     .get((req, res) => res.render('pages/public/advertise'))
     .post(contactController.contact_form)
+router
+    .route('/blog/4-ways-to-build-a-long-lasting-IT-career')
+    .get((req, res) => res.render('pages/public/blogpost'))
 /*
 
 Private Routes
