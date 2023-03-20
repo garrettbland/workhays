@@ -264,6 +264,12 @@ router.post(
     middleware.isAdmin,
     adminController.create_job
 )
+
+/**
+ * Retrieve public jobs and return in json format
+ */
+router.get('/api/public-jobs', jobController.api_get_public_jobs)
+
 router.get(
     '/api/jobs',
     middleware.isLoggedIn,

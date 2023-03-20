@@ -56,6 +56,71 @@ exports.list_jobs = async (req, res) => {
     }
 }
 
+/**
+ * Initialize new cache with default time to live.
+ * Cache ttl is set in milliseconds
+ */
+let publicJobsCache = {
+    jobs: null
+}
+let public_CACHE_TTL = 900000 // 15 minutes
+exports.api_get_public_jobs = async (req, res) => {
+    try {
+
+        /**
+         * Initialize new empty jobs variable to be set
+         * by cache or new fetch to database
+         */
+        let jobs
+
+        /**
+         * Check to see if cache is set
+         */
+        if (publicJobsCache.jobs && Date.now() < Date.now() + public_CACHE_TTL) {
+            /**
+             * Cache is set and data is still younger than TTL. Return
+             * cached value
+             */
+            console.log('using cache...')
+            jobs = publicJobsCache.jobs
+            jobs['usingCache'] = true
+        } else {
+            /**
+             * Cache is not being used. Fetch new data from db
+             */
+            console.log('using new value...')
+            jobs = await Models.job.findAndCountAll({
+                where: {
+                    status: 'active',
+                    renewed: {
+                        [Op.gt]: moment
+                            .tz(moment(), 'America/Chicago')
+                            .subtract(14, 'days')
+                            .endOf('day'),
+                    }
+                },
+                order: [['renewed', 'DESC']],
+                include: Models.employer,
+            })
+            publicJobsCache.jobs = jobs
+            jobs['usingCache'] = false
+        }
+
+        res.status(200).json({
+            data: {
+                usingCache: jobs.usingCache,
+                count: jobs.count,
+                jobs: jobs.rows
+            }
+        })
+    } catch (err) {
+        res.status(500).json({
+            error: 500,
+            message: err.message,
+        })
+    }
+}
+
 exports.get_job = async (req, res) => {
     try {
         const job = await Models.job.findByPk(req.params.jobId, {
