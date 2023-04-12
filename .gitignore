@@ -36,3 +36,15 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Architech secrets
+preferences.arc
+
+# File built with 'arc deploy --dry-run'
+sam.json
+
+# File built with 'arc deploy' that gets uploaded to CloudFormation
+sam.yaml
+
+# Seeded database file for working locally with fake data
+sandbox-seed.json

@@ -11,7 +11,7 @@ This project uses a handful of various technologies to power. Here is a brief br
 -   [Architect](https://arc.codes/) - AWS Provisioning & Management
     -   [Dynamo DB](https://aws.amazon.com/dynamodb/) - Database
     -   [Cognito](https://aws.amazon.com/cognito/) - Authentication
--   [Netlify](https://www.netlify.com/) - Hosting
+-   [Vercel](https://vercel.com/) - Hosting
 -   [Vitest](https://vitest.dev/) - Testing Framework
 
 ### Getting Started
@@ -30,3 +30,5 @@ npm run dev
 ```
 
 Once complete, you should have a local version of Work Hays running in your environment. An output with the port will be shown in your terminal.
+
+This will also start a sandbox environment running a seeded DynamoDB database, provided by architect. Everything Architect/AWS related can be found under `./arc/**/*`

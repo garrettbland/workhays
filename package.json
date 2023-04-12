@@ -3,12 +3,17 @@
     "version": "2.0.0",
     "private": true,
     "scripts": {
-        "dev": "next dev",
+        "dev": "run-p dev:**",
+        "dev:arc": "cd arc && npx arc sandbox",
+        "dev:next": "next dev",
         "build": "next build",
         "start": "next start",
         "lint": "next lint",
         "test": "vitest run",
-        "test:coverage": "vitest run --coverage"
+        "test:coverage": "vitest run --coverage",
+        "arc:deploy-staging": "cd arc && npx arc deploy --tags project=workhays-staging --verbose",
+        "arc:deploy-dry": "cd arc && npx arc deploy --tags project=workhays-staging --verbose --dry-run",
+        "arc:deploy-prod": "cd arc && npx arc deploy --production --tags project=workhays-production --verbose"
     },
     "dependencies": {
         "next": "^13.3.0",
@@ -16,6 +21,9 @@
         "react-dom": "^18.2.0"
     },
     "devDependencies": {
+        "@architect/architect": "^10.11.0",
+        "@architect/utils": "^3.1.6",
+        "@faker-js/faker": "^7.6.0",
         "@testing-library/react": "^14.0.0",
         "@types/node": "18.15.11",
         "@types/react": "18.0.34",
@@ -25,6 +33,7 @@
         "eslint": "8.38.0",
         "eslint-config-next": "13.3.0",
         "jsdom": "^21.1.1",
+        "npm-run-all": "^4.1.5",
         "postcss": "^8.4.21",
         "prettier": "^2.8.7",
         "tailwindcss": "^3.3.1",
