@@ -1,19 +1,8 @@
+/** @type {import('tailwindcss').Config} */
 module.exports = {
-  theme: {
-    opacity: {
-      '25': '.25',
-      '50': '.5',
-      '75': '.75',
-      '90': '.9'
+    content: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],
+    theme: {
+        extend: {},
     },
-    extend: {
-      spacing: {
-        '0.1': '0.1rem'
-      }
-    }
-  },
-  variants: {
-    translate: ['responsive', 'hover', 'focus', 'active', 'group-hover'],
-  },
-  plugins: [require('@tailwindcss/ui'), require('@tailwindcss/custom-forms')]
+    plugins: [],
 }
