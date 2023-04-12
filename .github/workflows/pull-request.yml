@@ -34,15 +34,20 @@ jobs:
     coverage:
         name: Code Coverage
         runs-on: ubuntu-latest
-        permissions:
-            checks: write
-            pull-requests: write
-            contents: write
         steps:
-            - uses: actions/checkout@v3
-            - uses: ArtiomTr/jest-coverage-report-action@v2
+            - name: Checkout
+              uses: actions/checkout@v3
+
+            - name: Setup node
+              uses: actions/setup-node@v3
               with:
-                  test-script: npm run test:coverage
+                  node-version: 18.x
+                  cache: npm
+
+            - name: NPM install
+              run: npm ci
+
+            - run: npm run test:coverage
 
     deploy:
         name: Architech Deploy Staging
