@@ -1,0 +1,29 @@
+name: Integration
+
+on:
+    # Trigger the workflow on push for the main branch. Branch protections for
+    # main are turned on. Meaning that only a pull request that has passing CI
+    # actions will be allowed to trigger this after being merged.
+    push:
+        branches:
+            - main
+            - master
+
+jobs:
+    deploy:
+        name: Architech Deploy Production
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v3
+
+            - name: Setup node
+              uses: actions/setup-node@v3
+              with:
+                  node-version: 18.x
+                  cache: npm
+
+            - name: NPM install
+              run: npm ci
+
+            - run: 'echo "Architech deploy job to prod aws services"'
