@@ -2,8 +2,6 @@
 
 [Work Hays](https://workhays.com) is a free to use website for employers to post their open positions and for local job seekers to find new opportunities in the Hays, Kansas region.
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/339e9c4e-a413-45c5-bfd0-9e0a050d27e0/deploy-status)](https://app.netlify.com/sites/workhays/deploys)
-
 ### About this project
 
 This project uses a handful of various technologies to power. Here is a brief breakdown.
