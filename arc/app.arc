@@ -8,6 +8,8 @@ region us-east-2
 
 @plugins
 seed-database
+cognito
+ses
 
 # Dynamo DB Tables
 # Working with dynamo database locally stores data in memory using Dynalite
