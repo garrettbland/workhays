@@ -11,8 +11,8 @@ module.exports = {
             cloudformation.Resources['WorkhaysCognitoUserPool'] = {
                 Type: 'AWS::Cognito::UserPool',
                 Properties: {
-                    AliasAttributes: ['email'], // email sign in only. This can't be changed after creation
-                    UsernameAttributes: ['email'],
+                    // AliasAttributes: ['email'], // email sign in only. This can't be changed after creation. It's either this or "Username Attributes". Using both results in errors
+                    UsernameAttributes: ['email'], // email sign in only. This can't be changed after creation
                     Policies: {
                         PasswordPolicy: {
                             MinimumLength: 6, // lowest password policy length
@@ -59,7 +59,7 @@ module.exports = {
                         Ref: 'WorkhaysCognitoUserPool',
                     },
                     ClientName: 'WorkHaysUserPoolClient',
-                    ExplicitAuthFlows: ['ALLOW_USER_PASSWORD_AUTH', 'ALLOW_REFRESH_TOKEN_AUTH'], // username and password authentication
+                    ExplicitAuthFlows: ['ALLOW_REFRESH_TOKEN_AUTH', 'ALLOW_USER_SRP_AUTH'], // email and password authentication
                     GenerateSecret: false,
                     PreventUserExistenceErrors: 'ENABLED', // show user 'incorrect username/password' instead of 'user not found'
                 },

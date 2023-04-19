@@ -16,6 +16,7 @@
         "arc:deploy-prod": "cd arc && npx arc deploy --production --tags project=workhays-production --verbose"
     },
     "dependencies": {
+        "amazon-cognito-identity-js": "^6.2.0",
         "next": "^13.3.0",
         "react": "^18.2.0",
         "react-dom": "^18.2.0"
