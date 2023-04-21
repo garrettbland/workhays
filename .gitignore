@@ -1,32 +1,50 @@
-# dotenv environment variables file
-.env
-.env.test
-app/config/config.json
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# Dependency directories
-node_modules/
-.npm
-yarn.lock
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
 
-# mac os
-.DS_Store
+# testing
+/coverage
 
-# styles
-public/dist
+# next.js
+/.next/
+/out/
+
+# production
+/build
 
 # misc
-.idea
+.DS_Store
+*.pem
 
-# build version
-version.json
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
-# uploads
-public/uploads/employers/*
+# local env files
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
-# backups directory
-backups/
+# vercel
+.vercel
 
-# next on netlify stuff
-.next/
-out_functions/
-out_publish/
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# Architech secrets
+preferences.arc
+
+# File built with 'arc deploy --dry-run'
+sam.json
+
+# File built with 'arc deploy' that gets uploaded to CloudFormation
+sam.yaml
+
+# Seeded database file for working locally with fake data
+sandbox-seed.json
