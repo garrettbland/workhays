@@ -1,5 +1,7 @@
 /**
  * Adds Cognito authentication to CloudFormation
+ *
+ * Will create two user pools and two user clients. One for staging, the other for production
  */
 module.exports = {
     deploy: {
@@ -8,7 +10,10 @@ module.exports = {
              * Create User Pool using Amazon Cognito
              * https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpool.html
              */
-            cloudformation.Resources['WorkhaysCognitoUserPool'] = {
+
+            const STAGE = stage.charAt(0).toUpperCase() + stage.slice(1)
+
+            cloudformation.Resources[`WorkhaysCognitoUserPool${STAGE}`] = {
                 Type: 'AWS::Cognito::UserPool',
                 Properties: {
                     // AliasAttributes: ['email'], // email sign in only. This can't be changed after creation. It's either this or "Username Attributes". Using both results in errors
@@ -43,7 +48,7 @@ module.exports = {
                         EmailSendingAccount: 'COGNITO_DEFAULT', // The default FROM address is no-reply@verificationemail.com
                         ReplyToEmailAddress: 'support@workhays.com',
                     },
-                    UserPoolName: 'WorkHaysUserPool',
+                    UserPoolName: `WorkHaysUserPool${STAGE}`,
                     DeletionProtection: 'ACTIVE',
                 },
             }
@@ -52,13 +57,13 @@ module.exports = {
              * Create User Pool Client using Amazon Cognito
              * https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpoolclient.html
              */
-            cloudformation.Resources['WorkhaysCognitoUserClient'] = {
+            cloudformation.Resources[`WorkhaysCognitoUserClient${STAGE}`] = {
                 Type: 'AWS::Cognito::UserPoolClient',
                 Properties: {
                     UserPoolId: {
-                        Ref: 'WorkhaysCognitoUserPool',
+                        Ref: `WorkhaysCognitoUserPool${STAGE}`,
                     },
-                    ClientName: 'WorkHaysUserPoolClient',
+                    ClientName: `WorkHaysUserPoolClient${STAGE}`,
                     ExplicitAuthFlows: ['ALLOW_REFRESH_TOKEN_AUTH', 'ALLOW_USER_SRP_AUTH'], // email and password authentication
                     GenerateSecret: false,
                     PreventUserExistenceErrors: 'ENABLED', // show user 'incorrect username/password' instead of 'user not found'
@@ -66,7 +71,7 @@ module.exports = {
             }
 
             /**
-             * Return the mutaged CloudFormation document. Will be passed to any other
+             * Return the mutaded CloudFormation document. Will be passed to any other
              * plugins in sequence
              */
             return cloudformation

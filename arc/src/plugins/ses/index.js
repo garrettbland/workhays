@@ -1,5 +1,7 @@
 /**
  * Adds Simple Email Service to CloudFormation
+ *
+ * Only creates one email identity for staging and production.
  */
 module.exports = {
     deploy: {
@@ -8,7 +10,7 @@ module.exports = {
              * Add Amazon Simple Email Service to CloudFormation
              * https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-emailidentity.html
              */
-            cloudformation.Resources['WorkhaysSES'] = {
+            cloudformation.Resources[`WorkhaysSES`] = {
                 Type: 'AWS::SES::EmailIdentity',
                 Properties: {
                     EmailIdentity: 'workhays.com',
@@ -20,7 +22,7 @@ module.exports = {
             }
 
             /**
-             * Return the mutaged CloudFormation document. Will be passed to any other
+             * Return the mutated CloudFormation document. Will be passed to any other
              * plugins in sequence
              */
             return cloudformation
