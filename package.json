@@ -3,42 +3,27 @@
     "version": "2.0.0",
     "private": true,
     "scripts": {
+        "arc-init": "npx arc init",
+        "arc-hydrate": "npx arc hydrate",
         "dev": "run-p dev:**",
-        "dev:arc": "cd arc && npx arc sandbox",
-        "dev:next": "next dev",
-        "build": "next build",
-        "start": "next start",
-        "lint": "next lint",
-        "test": "vitest run",
-        "test:coverage": "vitest run --coverage",
+        "dev:arc": "npx arc sandbox",
         "arc:deploy-staging": "cd arc && npx arc deploy --tags project=workhays-staging --verbose",
         "arc:deploy-dry": "cd arc && npx arc deploy --tags project=workhays-staging --verbose --dry-run",
         "arc:deploy-prod": "cd arc && npx arc deploy --production --tags project=workhays-production --verbose"
     },
     "dependencies": {
-        "amazon-cognito-identity-js": "^6.2.0",
-        "next": "^13.3.0",
-        "react": "^18.2.0",
-        "react-dom": "^18.2.0"
+        "@architect/functions": "~5.4.0",
+        "amazon-cognito-identity-js": "^6.2.0"
     },
     "devDependencies": {
-        "@architect/architect": "^10.11.0",
-        "@architect/utils": "^3.1.6",
+        "@architect/architect": "^10.13.1",
+        "@architect/plugin-typescript": "^1.1.1",
+        "@architect/utils": "^3.1.9",
         "@faker-js/faker": "^7.6.0",
-        "@testing-library/react": "^14.0.0",
+        "@types/aws-lambda": "^8.10.119",
         "@types/node": "18.15.11",
-        "@types/react": "18.0.34",
-        "@vitejs/plugin-react": "^3.1.0",
-        "@vitest/coverage-istanbul": "^0.30.1",
-        "autoprefixer": "^10.4.14",
-        "eslint": "8.38.0",
-        "eslint-config-next": "13.3.0",
-        "jsdom": "^21.1.1",
         "npm-run-all": "^4.1.5",
-        "postcss": "^8.4.21",
-        "prettier": "^2.8.7",
-        "tailwindcss": "^3.3.1",
-        "vitest": "^0.30.1"
+        "prettier": "^2.8.7"
     },
     "prettier": {
         "semi": false,
@@ -47,8 +32,5 @@
         "printWidth": 100,
         "tabWidth": 4,
         "trailingComma": "es5"
-    },
-    "eslintConfig": {
-        "extends": "next/core-web-vitals"
     }
 }
