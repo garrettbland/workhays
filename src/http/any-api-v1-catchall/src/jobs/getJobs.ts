@@ -1,4 +1,4 @@
-export const getJobs = (req) => {
+export const getJobs = (req, res, next) => {
     return {
         jobs: [
             {
