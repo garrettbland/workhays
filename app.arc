@@ -32,6 +32,7 @@ seed-database
 cognito
 ses
 tailwindcss
+parcel
 
 # Typescript esbuild config location
 @typescript
