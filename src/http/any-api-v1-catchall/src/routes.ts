@@ -1,5 +1,5 @@
 import { METHODS } from 'lambda-api'
-import { getJobs } from './jobs/getJobs'
+import { getJobs } from './api/jobs/getJobs'
 
 type Route = {
     method: METHODS
@@ -8,7 +8,7 @@ type Route = {
 }
 
 /**
- * API routes
+ * All custom API routes
  */
 export const ROUTES: Route[] = [
     {
@@ -16,6 +16,7 @@ export const ROUTES: Route[] = [
         path: 'status',
         action: (req, res, next) => {
             return {
+                version: 'v1',
                 status: 'all good',
             }
         },

@@ -44,7 +44,7 @@ const startWatcher = (config = DEFAULT_CONFIG) => {
      */
     watcherProcess.on('exit', (code) => {
         if (code === null) return
-        date?.error(`CLI closed unexpectedly with code ${code}`)
+        update?.error(`CLI closed unexpectedly with code ${code}`)
         process.exit()
     })
 

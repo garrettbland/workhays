@@ -66,7 +66,7 @@ This will also start a sandbox environment running a seeded DynamoDB database, p
 ### Hydrating
 
 During development (`npm run dev`) Arc will hydrate and make sure all functions
-have necessary dependencies installed. `npm run hydrate` will copy all shared
+have necessary dependencies installed. `npm run arc-hydrate` will copy all shared
 code into @http functions. This can be useful for testing or CI.
 
 [arc hydrate docs](https://arc.codes/docs/en/reference/cli/hydrate)

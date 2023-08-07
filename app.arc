@@ -31,6 +31,11 @@ architect/plugin-typescript
 seed-database
 cognito
 ses
+tailwindcss
+
+# Typescript esbuild config location
+@typescript
+esbuild-config environment/esbuild-config.js
 
 # Dynamo DB Tables
 # Working with dynamo database locally stores data in memory using Dynalite
@@ -39,10 +44,6 @@ ses
 workhays
   PK *String
   SK **String
-
-# Allows lambdas to share code. Automatically gets copied into all functions
-# Usage: import { x } from '@architect/shared/<filename>'
-@shared
 
 # Global Secondary Indexes for Dynamo DB Tables
 @tables-indexes
@@ -56,6 +57,17 @@ workhays
   GSI2SK **String
   name GSI2
 
+# Allows lambdas to share code. Automatically gets copied into all functions
+# Usage: import { x } from '@architect/shared/<filename>'
+@shared
+
+# Automatically copy the contents of src/views into all GET lambdas
+@views
+
 # Automatically scaffold resources that do not exist
 @create
 autocreate true
+
+# Sandbox settings
+@sandbox
+livereload true
