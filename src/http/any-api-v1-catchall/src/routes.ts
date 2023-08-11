@@ -1,5 +1,6 @@
 import { METHODS } from 'lambda-api'
 import { getJobs } from './api/jobs/getJobs'
+import { postContact, getContacts } from './api/contacts'
 
 type Route = {
     method: METHODS
@@ -25,5 +26,15 @@ export const ROUTES: Route[] = [
         method: 'GET',
         path: 'jobs',
         action: getJobs,
+    },
+    {
+        method: 'POST',
+        path: 'contact',
+        action: postContact,
+    },
+    {
+        method: 'GET',
+        path: 'contact',
+        action: getContacts,
     },
 ]

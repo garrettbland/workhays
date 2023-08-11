@@ -9,7 +9,7 @@ export const handler = async (req: APIGatewayProxyEventV2, context: Context) => 
      */
     const api = lambdaApi({
         base: '/api/v1/',
-        version: '2.0',
+        version: '1.0',
     })
 
     /**

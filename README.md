@@ -36,13 +36,24 @@ This will also start a sandbox environment running a seeded DynamoDB database, p
 ### Project Layout
 
 ```js
+├── .github/workflows/ // Github Workflows for CI/CD
 ├── public/ // Public files that are copied to s3 bucket
+├── environment/ // Esbuild related files
 ├── src/
+│   ├── apps/ // React & Javascript applications
+│       └── admin/ // React SPA for employers & admins
+│       └── contact/ // React app for contact form
 │   ├── http/ // Arc HTTP endpoints
-│       └── get-catchall/ // React SSR
-│   ├── types/ // Typings for project
+│       └── any-api-v1-catchall/ // API v1 endpoints
+│       └── any-catchall/ // Fallback page for 404's
+│       └── get-index/ // Home page
+│       └── get-{**}/ // Remaining web pages
 │   ├── plugins/ // Arc local plugins
+│       └── cognito/ // AWS Cognito Cloudformation
+│       └── parcel/ // Javascript Bundler for React Apps
 │       └── seed-database/ // Add's fake data for development
+│       └── ses/ // AWS Simple Email Service (SES) Cloudformation
+│       └── tailwindcss/ // Tailwind CSS Styling & Plugins
 ├── '.gitignore' // Ignore files from SCM
 ├── 'app.arc' // Architect config
 ├── 'jest.config.js' // Jest testing config

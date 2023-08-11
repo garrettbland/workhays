@@ -2,6 +2,9 @@ const { dirname, resolve } = require('path')
 const { mkdir } = require('fs/promises')
 const { updater } = require('@architect/utils')
 const { Parcel } = require('@parcel/core')
+const { startWatcher } = require('./watch')
+const { build } = require('./build')
+
 // const { startWatcher, build } = require('./cli')
 /**
  * https://parceljs.org/features/parcel-api/
@@ -92,11 +95,15 @@ module.exports = {
     deploy: {
         // Pre-deploy operations
         start: async ({ arc, cloudformation, dryRun, inventory, stage }) => {
-            // Run operations prior to deployment
-            // Optionally return mutated `cloudformation`
-            update.start('Starting production build...')
-            await build({ update })
-            update.done('Completed minified build for production')
+            const bundler = new Parcel({
+                entries: ['./src/apps/admin/index.tsx', './src/apps/contact/index.tsx'],
+                defaultConfig: '@parcel/config-default',
+                mode: 'production',
+                defaultTargetOptions: {
+                    distDir: './public',
+                },
+            })
+            await build({ update, bundler })
         },
         // Architect service discovery and config data
         // services: async ({ arc, cloudformation, dryRun, inventory, stage }) => {
@@ -119,37 +126,43 @@ module.exports = {
     sandbox: {
         // Startup operations
         start: async ({ arc, inventory, invoke }) => {
-            //inventory.inv._project.cwd
-            update.start('Starting Parcel...')
-
-            let bundler = new Parcel({
+            const bundler = new Parcel({
                 entries: ['./src/apps/admin/index.tsx', './src/apps/contact/index.tsx'],
                 defaultConfig: '@parcel/config-default',
                 mode: 'development',
                 defaultTargetOptions: {
                     distDir: './public',
                 },
-                hmrOptions: {},
             })
-
-            console.log(bundler)
-
-            parcelProcess = await bundler.watch((err, event) => {
-                if (err) {
-                    // fatal error
-                    throw err
-                }
-
-                if (event.type === 'buildSuccess') {
-                    let bundles = event.bundleGraph.getBundles()
-                    update?.status(`✨ Built ${bundles.length} bundles in ${event.buildTime}ms!`)
-                } else if (event.type === 'buildFailure') {
-                    console.log(event.diagnostics)
-                }
+            parcelProcess = await startWatcher({
+                update,
+                bundler,
             })
-
-            //tailwindProcess = await startWatcher({ update })
-            update.done('Started Parcel')
+            //inventory.inv._project.cwd
+            // update.start('Starting Parcel...')
+            // let bundler = new Parcel({
+            //     entries: ['./src/apps/admin/index.tsx', './src/apps/contact/index.tsx'],
+            //     defaultConfig: '@parcel/config-default',
+            //     mode: 'development',
+            //     defaultTargetOptions: {
+            //         distDir: './public',
+            //     },
+            // })
+            // parcelProcess = await bundler.watch((err, event) => {
+            //     update?.start
+            //     if (err) {
+            //         // fatal error
+            //         throw err
+            //     }
+            //     if (event.type === 'buildSuccess') {
+            //         let bundles = event.bundleGraph.getBundles()
+            //         update?.status(`✨ Built ${bundles.length} bundles in ${event.buildTime}ms!`)
+            //     } else if (event.type === 'buildFailure') {
+            //         console.log(event.diagnostics)
+            //     }
+            // })
+            // //tailwindProcess = await startWatcher({ update })
+            // update.done('Started Parcel')
         },
 
         // Project filesystem watcher
