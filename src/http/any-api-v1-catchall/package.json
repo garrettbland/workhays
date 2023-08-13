@@ -1,5 +1,6 @@
 {
-  "dependencies": {
-    "lambda-api": "^1.0.2"
-  }
+    "dependencies": {
+        "lambda-api": "^1.0.2",
+        "nanoid": "^4.0.2"
+    }
 }

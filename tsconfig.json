@@ -3,7 +3,7 @@
         "baseUrl": ".",
         "jsx": "react-jsx",
         "paths": {
-            "@architect/shared/*": ["src/views", "src/views/*"],
+            "@architect/shared/*": ["src/shared", "src/shared/*"],
             "@architect/views/*": ["src/views", "src/views/*"]
         }
     }

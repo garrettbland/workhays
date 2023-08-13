@@ -1,4 +1,5 @@
 import { useForm, Form } from 'react-hook-form'
+import { VALID_EMAIL_PATTERN } from '@architect/shared/validEmail'
 
 export const ContactForm = () => {
     const {
@@ -55,7 +56,7 @@ export const ContactForm = () => {
                     <input
                         {...register('email', {
                             required: true,
-                            pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                            pattern: VALID_EMAIL_PATTERN,
                         })}
                         placeholder="Email"
                         className={errors.email ? 'border border-red-500' : ''}

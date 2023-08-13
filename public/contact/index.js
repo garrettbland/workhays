@@ -24347,6 +24347,7 @@ parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "ContactForm", ()=>ContactForm);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _reactHookForm = require("react-hook-form");
+var _validEmail = require("@architect/shared/validEmail");
 const ContactForm = ()=>{
     const { register, handleSubmit, watch, reset, control, formState: { errors, isSubmitting, isSubmitSuccessful } } = (0, _reactHookForm.useForm)();
     // const onSubmit = async (data, e) => {
@@ -24367,7 +24368,7 @@ const ContactForm = ()=>{
                 ]
             }, void 0, true, {
                 fileName: "src/apps/contact/Contact.tsx",
-                lineNumber: 24,
+                lineNumber: 25,
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
@@ -24375,7 +24376,7 @@ const ContactForm = ()=>{
                 children: "Contact Us Form"
             }, void 0, false, {
                 fileName: "src/apps/contact/Contact.tsx",
-                lineNumber: 25,
+                lineNumber: 26,
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactHookForm.Form), {
@@ -24395,7 +24396,7 @@ const ContactForm = ()=>{
                                 children: "First Name *"
                             }, void 0, false, {
                                 fileName: "src/apps/contact/Contact.tsx",
-                                lineNumber: 38,
+                                lineNumber: 39,
                                 columnNumber: 21
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
@@ -24406,13 +24407,13 @@ const ContactForm = ()=>{
                                 className: errors.first_name ? "border border-red-500" : ""
                             }, void 0, false, {
                                 fileName: "src/apps/contact/Contact.tsx",
-                                lineNumber: 39,
+                                lineNumber: 40,
                                 columnNumber: 21
                             }, undefined)
                         ]
                     }, void 0, true, {
                         fileName: "src/apps/contact/Contact.tsx",
-                        lineNumber: 37,
+                        lineNumber: 38,
                         columnNumber: 17
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -24421,7 +24422,7 @@ const ContactForm = ()=>{
                                 children: "Last Name *"
                             }, void 0, false, {
                                 fileName: "src/apps/contact/Contact.tsx",
-                                lineNumber: 46,
+                                lineNumber: 47,
                                 columnNumber: 21
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
@@ -24432,13 +24433,13 @@ const ContactForm = ()=>{
                                 className: errors.last_name ? "border border-red-500" : ""
                             }, void 0, false, {
                                 fileName: "src/apps/contact/Contact.tsx",
-                                lineNumber: 47,
+                                lineNumber: 48,
                                 columnNumber: 21
                             }, undefined)
                         ]
                     }, void 0, true, {
                         fileName: "src/apps/contact/Contact.tsx",
-                        lineNumber: 45,
+                        lineNumber: 46,
                         columnNumber: 17
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -24447,19 +24448,19 @@ const ContactForm = ()=>{
                                 children: "Email *"
                             }, void 0, false, {
                                 fileName: "src/apps/contact/Contact.tsx",
-                                lineNumber: 54,
+                                lineNumber: 55,
                                 columnNumber: 21
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
                                 ...register("email", {
                                     required: true,
-                                    pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+                                    pattern: (0, _validEmail.VALID_EMAIL_PATTERN)
                                 }),
                                 placeholder: "Email",
                                 className: errors.email ? "border border-red-500" : ""
                             }, void 0, false, {
                                 fileName: "src/apps/contact/Contact.tsx",
-                                lineNumber: 55,
+                                lineNumber: 56,
                                 columnNumber: 21
                             }, undefined),
                             errors.email?.type === "pattern" && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
@@ -24467,13 +24468,13 @@ const ContactForm = ()=>{
                                 children: "Enter valid email"
                             }, void 0, false, {
                                 fileName: "src/apps/contact/Contact.tsx",
-                                lineNumber: 64,
+                                lineNumber: 65,
                                 columnNumber: 25
                             }, undefined)
                         ]
                     }, void 0, true, {
                         fileName: "src/apps/contact/Contact.tsx",
-                        lineNumber: 53,
+                        lineNumber: 54,
                         columnNumber: 17
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -24482,7 +24483,7 @@ const ContactForm = ()=>{
                                 children: "Business"
                             }, void 0, false, {
                                 fileName: "src/apps/contact/Contact.tsx",
-                                lineNumber: 68,
+                                lineNumber: 69,
                                 columnNumber: 21
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
@@ -24492,13 +24493,13 @@ const ContactForm = ()=>{
                                 placeholder: "Business"
                             }, void 0, false, {
                                 fileName: "src/apps/contact/Contact.tsx",
-                                lineNumber: 69,
+                                lineNumber: 70,
                                 columnNumber: 21
                             }, undefined)
                         ]
                     }, void 0, true, {
                         fileName: "src/apps/contact/Contact.tsx",
-                        lineNumber: 67,
+                        lineNumber: 68,
                         columnNumber: 17
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -24507,7 +24508,7 @@ const ContactForm = ()=>{
                                 children: "Message"
                             }, void 0, false, {
                                 fileName: "src/apps/contact/Contact.tsx",
-                                lineNumber: 72,
+                                lineNumber: 73,
                                 columnNumber: 21
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("textarea", {
@@ -24519,34 +24520,34 @@ const ContactForm = ()=>{
                                 className: errors.message ? "border border-red-500" : ""
                             }, void 0, false, {
                                 fileName: "src/apps/contact/Contact.tsx",
-                                lineNumber: 73,
+                                lineNumber: 74,
                                 columnNumber: 21
                             }, undefined)
                         ]
                     }, void 0, true, {
                         fileName: "src/apps/contact/Contact.tsx",
-                        lineNumber: 71,
+                        lineNumber: 72,
                         columnNumber: 17
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                         children: isSubmitting ? "LOADING" : "NOT LOADING..."
                     }, void 0, false, {
                         fileName: "src/apps/contact/Contact.tsx",
-                        lineNumber: 80,
+                        lineNumber: 81,
                         columnNumber: 17
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                         children: errors?.root?.server ? "Form submit failure" : ""
                     }, void 0, false, {
                         fileName: "src/apps/contact/Contact.tsx",
-                        lineNumber: 81,
+                        lineNumber: 82,
                         columnNumber: 17
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                         children: isSubmitSuccessful ? "Success" : ""
                     }, void 0, false, {
                         fileName: "src/apps/contact/Contact.tsx",
-                        lineNumber: 82,
+                        lineNumber: 83,
                         columnNumber: 17
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
@@ -24554,20 +24555,20 @@ const ContactForm = ()=>{
                         children: "Submit"
                     }, void 0, false, {
                         fileName: "src/apps/contact/Contact.tsx",
-                        lineNumber: 83,
+                        lineNumber: 84,
                         columnNumber: 17
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/apps/contact/Contact.tsx",
-                lineNumber: 27,
+                lineNumber: 28,
                 columnNumber: 13
             }, undefined)
         ]
     }, void 0, true);
 };
 
-},{"react/jsx-dev-runtime":"iTorj","react-hook-form":"kRky9","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"kRky9":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react-hook-form":"kRky9","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@architect/shared/validEmail":"j2Wj4"}],"kRky9":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "Controller", ()=>Controller);
@@ -26661,6 +26662,16 @@ exports.export = function(dest, destName, get) {
     });
 };
 
-},{}]},["iIXzl"], "iIXzl", "parcelRequire0aca")
+},{}],"j2Wj4":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "VALID_EMAIL_PATTERN", ()=>VALID_EMAIL_PATTERN);
+parcelHelpers.export(exports, "isValidEmail", ()=>isValidEmail);
+const VALID_EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const isValidEmail = (email)=>{
+    return VALID_EMAIL_PATTERN.test(email);
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["iIXzl"], "iIXzl", "parcelRequire0aca")
 
 //# sourceMappingURL=index.js.map
