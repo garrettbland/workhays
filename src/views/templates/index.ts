@@ -1,6 +1,22 @@
 import { compile, render, templates } from 'squirrelly'
-import { SquirrellyPartial, LayoutRenderer } from 'src/types/template'
 import { DEFAULT_LAYOUT } from './config'
+
+type SquirrellyPartial = {
+    title: string
+    partial: string
+}
+
+type LayoutRenderer = {
+    ({
+        layout,
+        content,
+        data,
+    }: {
+        layout?: string
+        content: string
+        data: Record<string, any>
+    }): string
+}
 
 /**
  * Loops through the partials and defines them to use within out .html

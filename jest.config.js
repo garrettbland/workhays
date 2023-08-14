@@ -1,11 +1,13 @@
 // /** @type {import('ts-jest').JestConfigWithTsJest} */
 module.exports = {
-    preset: 'ts-jest',
+    preset: 'ts-jest/presets/js-with-ts',
     testEnvironment: 'node',
     moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'html'],
-    // transformIgnorePatterns: ['node_modules/nanoid'],
+    roots: ['<rootDir>/src'],
+    testMatch: ['**/__tests__/**/*.+(ts|tsx|js)', '**/?(*.)+(spec|test).+(ts|tsx|js)'],
     transform: {
-        '^.+\\.ts?$': 'esbuild-jest',
+        '^.+\\.ts?$': 'ts-jest',
         '\\.(html)$': '<rootDir>/environment/htmlLoader.js',
     },
+    transformIgnorePatterns: ['node_modules/(?!nanoid/.*)'],
 }

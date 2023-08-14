@@ -2,6 +2,8 @@
     "compilerOptions": {
         "baseUrl": ".",
         "jsx": "react-jsx",
+        "allowJs": true,
+        "esModuleInterop": true,
         "paths": {
             "@architect/shared/*": ["src/shared", "src/shared/*"],
             "@architect/views/*": ["src/views", "src/views/*"]
