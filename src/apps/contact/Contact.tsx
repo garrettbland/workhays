@@ -10,21 +10,9 @@ export const ContactForm = () => {
         control,
         formState: { errors, isSubmitting, isSubmitSuccessful },
     } = useForm()
-    // const onSubmit = async (data, e) => {
-    //     await sleep(2000)
-
-    //     e.target.reset()
-    //     setStatus('LOADING')
-    //     console.log('submitted')
-    //     console.log('data', data)
-    //     setStatus('SUCCESS')
-    // }
-    // console.log(watch('first_name')) // watch input value by passing the name of it
     return (
         <>
-            <div>Status: {status}</div>
             <h1 className="text-blue-900">Contact Us Form</h1>
-            {/* "handleSubmit" will validate your inputs before invoking "onSubmit" */}
             <Form
                 action="/api/v1/contact"
                 method="post"
@@ -34,7 +22,6 @@ export const ContactForm = () => {
                 onError={() => alert('There was an error submitting your form')}
                 validateStatus={(status) => status === 200}
             >
-                {/* <form onSubmit={handleSubmit(onSubmit)}> */}
                 <div>
                     <label>First Name *</label>
                     <input
@@ -82,7 +69,6 @@ export const ContactForm = () => {
                 <div>{errors?.root?.server ? 'Form submit failure' : ''}</div>
                 <div>{isSubmitSuccessful ? 'Success' : ''}</div>
                 <button type="submit">Submit</button>
-                {/* </form> */}
             </Form>
         </>
     )
