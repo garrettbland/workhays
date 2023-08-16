@@ -6,13 +6,17 @@
 
 This project uses a handful of various technologies to power. Here is a brief breakdown.
 
--   [Next JS](https://nextjs.org/) - React SSR Framework
--   [Tailwind CSS](https://tailwindcss.com/) - Styling
 -   [Architect](https://arc.codes/) - AWS Provisioning & Management
+    -   [Lambda](https://aws.amazon.com/lambda/) - Server Side Functions
     -   [Dynamo DB](https://aws.amazon.com/dynamodb/) - Database
     -   [Cognito](https://aws.amazon.com/cognito/) - Authentication
--   [Vercel](https://vercel.com/) - Hosting
--   [Vitest](https://vitest.dev/) - Testing Framework
+    -   [SES](https://aws.amazon.com/ses/) - Email Notifications
+-   [Jest](https://jestjs.io/) - Testing Framework
+-   [Parcel](https://parceljs.org/) - Javascript Compiler & Bundler
+-   [Tailwind CSS](https://tailwindcss.com/) - Styling
+-   [Squirrelly](https://squirrelly.js.org/) - HTML Template Engine (used for SSR)
+-   [React](https://react.dev/) - Javascript Library (used for Admin interface, Forms, Navbar, etc)
+-   [Lambda API](https://github.com/jeremydaly/lambda-api) - Light API framework for single Lambda function
 
 ### Getting Started
 
@@ -29,9 +33,12 @@ cd workhays && nvm use && npm install
 npm run dev
 ```
 
-Once complete, you should have a local version of Work Hays running in your environment. An output with the port will be shown in your terminal.
+Once complete, you will have a local version of Work Hays running in your environment. An output with the port will be shown in your terminal. This boots up Arc's sandbox environment as well as any sandbox plugins. This starts the following and will watch for file changes.
 
-This will also start a sandbox environment running a seeded DynamoDB database, provided by architect. Everything Architect/AWS related can be found under `./arc/**/*`
+-   Arc serverless functions
+-   Tailwind CSS watcher
+-   Parcel compiler
+-   Local DynamoDB database (using dynalite) and seeds database with fake data (using Faker)
 
 ### Project Layout
 

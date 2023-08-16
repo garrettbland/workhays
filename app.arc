@@ -37,6 +37,7 @@ parcel
 # Typescript esbuild config location
 @typescript
 esbuild-config environment/esbuild-config.js
+base-runtime nodejs18.x # Set the Lambda base runtime to Node.js 18
 
 # Dynamo DB Tables
 # Working with dynamo database locally stores data in memory using Dynalite

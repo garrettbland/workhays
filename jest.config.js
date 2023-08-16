@@ -6,8 +6,12 @@ module.exports = {
             testEnvironment: 'node',
             moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'html'],
             preset: 'ts-jest/presets/js-with-ts',
-            roots: ['<rootDir>/src/http'],
-            testMatch: ['**/__tests__/**/*.+(ts|js)', '**/?(*.)+(spec|test).+(ts|js)'],
+            roots: ['<rootDir>/src'],
+            testMatch: [
+                '**/http/**/?(*.)+(spec|test).+(ts|js)',
+                '**/shared/**/?(*.)+(spec|test).+(ts|js)',
+                '**/views/**/?(*.)+(spec|test).+(ts|js)',
+            ],
             transform: {
                 '^.+\\.ts?$': 'ts-jest',
                 '\\.(html)$': '<rootDir>/environment/htmlLoader.js',
@@ -20,7 +24,7 @@ module.exports = {
             moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'html'],
             preset: 'ts-jest/presets/js-with-ts',
             roots: ['<rootDir>/src/apps'],
-            testMatch: ['**/__tests__/**/*.+(ts|tsx|js)', '**/?(*.)+(spec|test).+(ts|tsx|js)'],
+            testMatch: ['**/?(*.)+(spec|test).+(ts|js|tsx|jsx)'],
             transform: {
                 '^.+\\.(ts|tsx|js)?$': 'ts-jest',
             },

@@ -24350,33 +24350,14 @@ var _reactHookForm = require("react-hook-form");
 var _validEmail = require("@architect/shared/validEmail");
 const ContactForm = ()=>{
     const { register, handleSubmit, watch, reset, control, formState: { errors, isSubmitting, isSubmitSuccessful } } = (0, _reactHookForm.useForm)();
-    // const onSubmit = async (data, e) => {
-    //     await sleep(2000)
-    //     e.target.reset()
-    //     setStatus('LOADING')
-    //     console.log('submitted')
-    //     console.log('data', data)
-    //     setStatus('SUCCESS')
-    // }
-    // console.log(watch('first_name')) // watch input value by passing the name of it
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
         children: [
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                children: [
-                    "Status: ",
-                    status
-                ]
-            }, void 0, true, {
-                fileName: "src/apps/contact/Contact.tsx",
-                lineNumber: 25,
-                columnNumber: 13
-            }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
                 className: "text-blue-900",
                 children: "Contact Us Form"
             }, void 0, false, {
                 fileName: "src/apps/contact/Contact.tsx",
-                lineNumber: 26,
+                lineNumber: 15,
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactHookForm.Form), {
@@ -24388,7 +24369,7 @@ const ContactForm = ()=>{
                 },
                 onSuccess: ()=>reset(),
                 onError: ()=>alert("There was an error submitting your form"),
-                validateStatus: (status1)=>status1 === 200,
+                validateStatus: (status)=>status === 200,
                 children: [
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                         children: [
@@ -24396,7 +24377,7 @@ const ContactForm = ()=>{
                                 children: "First Name *"
                             }, void 0, false, {
                                 fileName: "src/apps/contact/Contact.tsx",
-                                lineNumber: 39,
+                                lineNumber: 26,
                                 columnNumber: 21
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
@@ -24407,13 +24388,13 @@ const ContactForm = ()=>{
                                 className: errors.first_name ? "border border-red-500" : ""
                             }, void 0, false, {
                                 fileName: "src/apps/contact/Contact.tsx",
-                                lineNumber: 40,
+                                lineNumber: 27,
                                 columnNumber: 21
                             }, undefined)
                         ]
                     }, void 0, true, {
                         fileName: "src/apps/contact/Contact.tsx",
-                        lineNumber: 38,
+                        lineNumber: 25,
                         columnNumber: 17
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -24422,7 +24403,7 @@ const ContactForm = ()=>{
                                 children: "Last Name *"
                             }, void 0, false, {
                                 fileName: "src/apps/contact/Contact.tsx",
-                                lineNumber: 47,
+                                lineNumber: 34,
                                 columnNumber: 21
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
@@ -24433,13 +24414,13 @@ const ContactForm = ()=>{
                                 className: errors.last_name ? "border border-red-500" : ""
                             }, void 0, false, {
                                 fileName: "src/apps/contact/Contact.tsx",
-                                lineNumber: 48,
+                                lineNumber: 35,
                                 columnNumber: 21
                             }, undefined)
                         ]
                     }, void 0, true, {
                         fileName: "src/apps/contact/Contact.tsx",
-                        lineNumber: 46,
+                        lineNumber: 33,
                         columnNumber: 17
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -24448,7 +24429,7 @@ const ContactForm = ()=>{
                                 children: "Email *"
                             }, void 0, false, {
                                 fileName: "src/apps/contact/Contact.tsx",
-                                lineNumber: 55,
+                                lineNumber: 42,
                                 columnNumber: 21
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
@@ -24460,7 +24441,7 @@ const ContactForm = ()=>{
                                 className: errors.email ? "border border-red-500" : ""
                             }, void 0, false, {
                                 fileName: "src/apps/contact/Contact.tsx",
-                                lineNumber: 56,
+                                lineNumber: 43,
                                 columnNumber: 21
                             }, undefined),
                             errors.email?.type === "pattern" && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
@@ -24468,13 +24449,13 @@ const ContactForm = ()=>{
                                 children: "Enter valid email"
                             }, void 0, false, {
                                 fileName: "src/apps/contact/Contact.tsx",
-                                lineNumber: 65,
+                                lineNumber: 52,
                                 columnNumber: 25
                             }, undefined)
                         ]
                     }, void 0, true, {
                         fileName: "src/apps/contact/Contact.tsx",
-                        lineNumber: 54,
+                        lineNumber: 41,
                         columnNumber: 17
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -24483,7 +24464,7 @@ const ContactForm = ()=>{
                                 children: "Business"
                             }, void 0, false, {
                                 fileName: "src/apps/contact/Contact.tsx",
-                                lineNumber: 69,
+                                lineNumber: 56,
                                 columnNumber: 21
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
@@ -24493,13 +24474,13 @@ const ContactForm = ()=>{
                                 placeholder: "Business"
                             }, void 0, false, {
                                 fileName: "src/apps/contact/Contact.tsx",
-                                lineNumber: 70,
+                                lineNumber: 57,
                                 columnNumber: 21
                             }, undefined)
                         ]
                     }, void 0, true, {
                         fileName: "src/apps/contact/Contact.tsx",
-                        lineNumber: 68,
+                        lineNumber: 55,
                         columnNumber: 17
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -24508,7 +24489,7 @@ const ContactForm = ()=>{
                                 children: "Message"
                             }, void 0, false, {
                                 fileName: "src/apps/contact/Contact.tsx",
-                                lineNumber: 73,
+                                lineNumber: 60,
                                 columnNumber: 21
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("textarea", {
@@ -24520,34 +24501,34 @@ const ContactForm = ()=>{
                                 className: errors.message ? "border border-red-500" : ""
                             }, void 0, false, {
                                 fileName: "src/apps/contact/Contact.tsx",
-                                lineNumber: 74,
+                                lineNumber: 61,
                                 columnNumber: 21
                             }, undefined)
                         ]
                     }, void 0, true, {
                         fileName: "src/apps/contact/Contact.tsx",
-                        lineNumber: 72,
+                        lineNumber: 59,
                         columnNumber: 17
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                         children: isSubmitting ? "LOADING" : "NOT LOADING..."
                     }, void 0, false, {
                         fileName: "src/apps/contact/Contact.tsx",
-                        lineNumber: 81,
+                        lineNumber: 68,
                         columnNumber: 17
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                         children: errors?.root?.server ? "Form submit failure" : ""
                     }, void 0, false, {
                         fileName: "src/apps/contact/Contact.tsx",
-                        lineNumber: 82,
+                        lineNumber: 69,
                         columnNumber: 17
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                         children: isSubmitSuccessful ? "Success" : ""
                     }, void 0, false, {
                         fileName: "src/apps/contact/Contact.tsx",
-                        lineNumber: 83,
+                        lineNumber: 70,
                         columnNumber: 17
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
@@ -24555,13 +24536,13 @@ const ContactForm = ()=>{
                         children: "Submit"
                     }, void 0, false, {
                         fileName: "src/apps/contact/Contact.tsx",
-                        lineNumber: 84,
+                        lineNumber: 71,
                         columnNumber: 17
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/apps/contact/Contact.tsx",
-                lineNumber: 28,
+                lineNumber: 16,
                 columnNumber: 13
             }, undefined)
         ]
