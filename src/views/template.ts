@@ -16,6 +16,9 @@ export const Template = (html: string, pageData?: Record<string, any>) => {
         last: 'Work Hays Footer',
         site: {
             title: 'Work Hays',
+            version: '2.0.0',
+            svg_logo: '/_static/work-hays-logo.svg',
+            png_logo: '/_static/work-hays-logo.png',
         },
         pageTitle: 'To Do',
         ...pageData,

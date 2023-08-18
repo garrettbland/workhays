@@ -57,7 +57,7 @@ export const ContactForm = () => {
                     <input {...register('business', { required: false })} placeholder="Business" />
                 </div>
                 <div>
-                    <label>Message</label>
+                    <label>Message *</label>
                     <textarea
                         {...register('message', { required: true })}
                         placeholder="Your Message"

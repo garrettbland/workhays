@@ -24486,7 +24486,7 @@ const ContactForm = ()=>{
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                         children: [
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
-                                children: "Message"
+                                children: "Message *"
                             }, void 0, false, {
                                 fileName: "src/apps/contact/Contact.tsx",
                                 lineNumber: 60,
