@@ -1,12 +1,32 @@
 {
     "compilerOptions": {
         "baseUrl": ".",
-        "jsx": "react-jsx",
+        "jsx": "preserve",
         "allowJs": true,
+        "checkJs": true,
         "esModuleInterop": true,
-        "paths": {
-            "@architect/shared/*": ["src/shared", "src/shared/*"],
-            "@architect/views/*": ["src/views", "src/views/*"]
-        }
-    }
+        "lib": ["dom", "dom.iterable", "esnext"],
+        "skipLibCheck": true,
+        "strict": false,
+        "noEmit": true,
+        "incremental": true,
+        "module": "esnext",
+        "moduleResolution": "node",
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+        "plugins": [
+            {
+                "name": "next"
+            }
+        ]
+    },
+    "include": [
+        "next-env.d.ts",
+        ".next/types/**/*.ts",
+        "**/*.ts",
+        "**/*.tsx",
+        "src/http/get-v1-jobs/index.mjs",
+        "src/http/get-v1/index.mjs"
+    ],
+    "exclude": ["node_modules"]
 }

@@ -3,41 +3,35 @@ workhays
 
 @aws
 profile architect # local aws named profile used to deploy from local machine
-runtime typescript # sets TS as the the default runtime for your entire project
+runtime node
 region us-east-2
 
 # Http endpoints
 @http
-get /
-get /jobs/:jobId
-get /about
-get /contact
-get /privacy
-get /terms
-get /faqs
-get /faqs/:faqId
-any /api/v1/* # API v1. Express app or fastify or something
-any /* # Catchall - 404
-
-# Defines static files that will be uploaded to s3
-# prune will automatically remove assets from S3 bucket 
-# not found in the static folder set below
-@static
-folder public
-prune true
+get /v1
+get /v1/jobs
+# post /v1/contacts
+# get /
+# get /jobs/:jobId
+# get /about
+# get /contact
+# get /privacy
+# get /terms
+# get /faqs
+# get /faqs/:faqId
+# any /api/v1/*
+# any /*
 
 @plugins
-architect/plugin-typescript
+# architect/plugin-typescript
 seed-database
 cognito
 ses
-tailwindcss
-parcel
+next
 
 # Typescript esbuild config location
-@typescript
-esbuild-config environment/esbuild-config.js
-base-runtime nodejs18.x # Set the Lambda base runtime to Node.js 18
+# @typescript
+# base-runtime nodejs18.x # Set the Lambda base runtime to Node.js 18
 
 # Dynamo DB Tables
 # Working with dynamo database locally stores data in memory using Dynalite
@@ -63,13 +57,6 @@ workhays
 # Usage: import { x } from '@architect/shared/<filename>'
 @shared
 
-# Automatically copy the contents of src/views into all GET lambdas
-@views
-
-# Automatically scaffold resources that do not exist
+# Automatically run arc init to create boilerplate Lambda handlers for new resources
 @create
 autocreate true
-
-# Sandbox settings
-@sandbox
-livereload true
