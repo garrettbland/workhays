@@ -1,7 +1,8 @@
+import React from 'react'
 import { useForm, Form } from 'react-hook-form'
-import { VALID_EMAIL_PATTERN } from '@architect/shared/validEmail'
+import { VALID_EMAIL_PATTERN } from '../shared/validEmail.mjs'
 
-export const ContactForm = () => {
+const Contact = () => {
     const {
         register,
         handleSubmit,
@@ -10,6 +11,7 @@ export const ContactForm = () => {
         control,
         formState: { errors, isSubmitting, isSubmitSuccessful },
     } = useForm()
+
     return (
         <>
             <h1 className="text-blue-900">Contact Us Form</h1>
@@ -73,3 +75,5 @@ export const ContactForm = () => {
         </>
     )
 }
+
+export default Contact

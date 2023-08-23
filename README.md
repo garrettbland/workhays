@@ -46,9 +46,9 @@ Coming soon...Diagram of arc, next js, auth, ses, ect...
 ├── .github/workflows/ // Github Workflows for CI/CD
 ├── public/ // Public files used by Next JS
 ├── src/
-│   ├── app/ // Next JS App Directory
 │   ├── components/ // React JS Components
 │   ├── http/ // Arc HTTP endpoints
+│   ├── pages/ // Next JS Pages Directory
 │   ├── plugins/ // Arc plugins
 │       └── cognito/ // AWS Cognito Cloudformation
 │       └── next/ // NextJS Server

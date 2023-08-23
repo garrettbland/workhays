@@ -26,7 +26,8 @@
         "**/*.ts",
         "**/*.tsx",
         "src/http/get-v1-jobs/index.mjs",
-        "src/http/get-v1/index.mjs"
+        "src/http/get-v1/index.mjs",
+        "src/shared/__tests__/validEmail.test.js"
     ],
     "exclude": ["node_modules"]
 }

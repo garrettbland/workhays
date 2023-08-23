@@ -1,4 +1,5 @@
-import { isValidEmail } from '../validEmail'
+import { isValidEmail } from '../validEmail.mjs'
+// const validation = require('../validEmail.mjs')
 
 const VALID_EMAILS = ['tom@hanks.com', 'abc123@apple.co.com']
 const INVALID_EMAILS = [
@@ -20,11 +21,4 @@ describe('isValidEmail Utility', () => {
             expect(isValidEmail(email)).toEqual(false)
         })
     })
-    // it('Should return false for example list of invalid emails', () => {
-    //     INVALID_EMAILS.forEach((email) => {
-    //         describe(email, () => {
-    //             expect(isValidEmail(email)).toEqual(false)
-    //         })
-    //     })
-    // })
 })
