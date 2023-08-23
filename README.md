@@ -33,10 +33,14 @@ $ npm run dev
 Once complete, you will have a local version of Work Hays running in your environment. An output with the port will be shown in your terminal. This boots up Arc's sandbox environment as well as any sandbox plugins. This starts the following and will watch for file changes.
 
 -   Arc serverless functions
--   Tailwind CSS watcher
+-   Next JS Server / TailwindCSS
 -   Local DynamoDB database (using dynalite) and seeds database with fake data (using Faker)
 
-### Workhays Achitecture
+Live reload is also enabled for both HTTP endpoints and Next JS. The Architect server will be running at port `3333`, while the Next JS web application server will be running on port `3000`. In `next.config.js`, rewrites are configured for the `/api` routes.
+
+It is setup to re-write `localhost:3000/api/*route*` -> `localhost:3333/*route*`. This allows us to make normal fetch calls without having to define the port, and it looks nicer.
+
+### Achitecture
 
 Coming soon...Diagram of arc, next js, auth, ses, ect...
 
@@ -66,7 +70,7 @@ Coming soon...Diagram of arc, next js, auth, ses, ect...
 1. Add `@http` entry to `app.arc`
 2. Run `npm run arc-init`
 3. Validate that the new directory has been created in `src/http`
-4. Update new `index.ts` file with some code
+4. Update the new `index.js` file with some code
 5. Start local sandbox to ensure new endpoint is working with `npm run dev`
 
 ### Hydrating
@@ -102,3 +106,7 @@ production
 ### Development
 
 To get startd, clone this repo, run `npm install`, and then `npm run dev`. This will start the local Arc sandbox running a local dynamo database with faked data (see `src/plugins/seed-database` plugin) and local http endpoints. This also starts the web app proceccesses (client side bundle, css files, etc) and will rebuild when there are changes.
+
+### Testing
+
+Coming soon. Stuff about jest testing.

@@ -1,13 +1,7 @@
-.parcel-cache
 node_modules/
 .DS_Store
-dist
 
-# Public directory auto built files from development
-public/style.css
-
-# .build directory is where Architech transpiles our lambdas using esbuild
-.build
+# Arc environment values
 preferences.arc
 
 # File built with 'arc deploy --dry-run'
@@ -21,3 +15,6 @@ sandbox-seed.json
 
 # Next JS
 .next
+
+# TS generated file from tsc --noEmit
+tsconfig.tsbuildinfo
