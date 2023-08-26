@@ -1,11 +1,41 @@
-import { Button } from '../components/Button'
+import { PageTitle } from '@/components/PageTitle'
 
 const Home = () => {
     return (
         <>
-            <h1 className="text-blue-500 text-4xl font-extrabold">Hello, Next.js!</h1>
-
-            <Button />
+            <PageTitle
+                title="Current Job Openings"
+                description="Browse current job openings in Hays, KS and surrounding communities."
+            />
+            <div className="border rounded">
+                <div className="flex flex-row justify-between items-center p-2 border-b">
+                    <div>
+                        <div>Horizon Appliance</div>
+                        <div>Retail Sales Associate</div>
+                    </div>
+                    <div className="flex flex-row items-center justify-end">
+                        <div>June 10, 2022</div>
+                    </div>
+                </div>
+                <div className="flex flex-row justify-between items-center p-2 border-b">
+                    <div>
+                        <div>Horizon Appliance</div>
+                        <div>Retail Sales Associate</div>
+                    </div>
+                    <div className="flex flex-row items-center justify-end">
+                        <div>June 10, 2022</div>
+                    </div>
+                </div>
+                <div className="flex flex-row justify-between items-center p-2 border-b">
+                    <div>
+                        <div>Horizon Appliance</div>
+                        <div>Retail Sales Associate</div>
+                    </div>
+                    <div className="flex flex-row items-center justify-end">
+                        <div>June 10, 2022</div>
+                    </div>
+                </div>
+            </div>
         </>
     )
 }

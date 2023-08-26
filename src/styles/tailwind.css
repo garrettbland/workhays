@@ -1,3 +1,24 @@
+/* Import tailwindcss directives */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* ======= Custom classes go below ======= */
+
+/* Base Input Styling */
+input[type='text'],
+input[type='email'],
+input[type='password'],
+textarea {
+    @apply block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50;
+}
+
+/* Invalid Input Styling */
+/* input[aria-invalid='true'],
+textarea {
+    @apply focus:outline-none border-red-500 focus:ring-red-500 ring-0;
+} */
+
+.disabled {
+    @apply opacity-50 hover:cursor-not-allowed;
+}

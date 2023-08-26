@@ -1,3 +1,16 @@
-export const Button = () => {
-    return <button>wat!!!</button>
+import { ButtonHTMLAttributes } from 'react'
+
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+    title: string
+}
+
+export const Button = ({ title, type = 'button' }: ButtonProps) => {
+    return (
+        <button
+            className="bg-indigo-600 hover:bg-indigo-700 text-white rounded px-5 py-2 transition-all"
+            type={type}
+        >
+            {title}
+        </button>
+    )
 }

@@ -3,7 +3,7 @@ workhays
 
 @aws
 profile architect # local aws named profile used to deploy from local machine
-runtime node
+runtime nodejs18.x
 region us-east-2
 
 # Http endpoints
