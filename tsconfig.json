@@ -31,7 +31,9 @@
         "**/*.tsx",
         "src/http/get-v1-jobs/index.mjs",
         "src/http/get-v1/index.mjs",
-        "src/shared/__tests__/validEmail.test.js"
+        "src/shared/__tests__/validEmail.test.js",
+        "src/shared/generateId.mjs",
+        "src/shared/isNotEmpty.mjs"
     ],
     "exclude": ["node_modules"]
 }

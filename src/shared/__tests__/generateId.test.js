@@ -1,4 +1,4 @@
-import { generateRandomId } from '../../../../../shared/generateId.mjs'
+import { generateRandomId } from '../generateId.mjs'
 
 describe('generateId', () => {
     it('Should return a random string', () => {

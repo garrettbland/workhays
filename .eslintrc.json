@@ -3,12 +3,6 @@
     "plugins": ["@typescript-eslint"],
     "extends": ["next/core-web-vitals", "plugin:@typescript-eslint/recommended"],
     "rules": {
-        "camelcase": [
-            "error",
-            {
-                "ignoreDestructuring": true
-            }
-        ],
         "no-unused-vars": ["error"],
         "@typescript-eslint/naming-convention": [
             "error",

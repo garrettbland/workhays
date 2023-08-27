@@ -10,6 +10,8 @@ region us-east-2
 @http
 get /v1
 get /v1/jobs
+get /v1/contacts
+post /v1/contacts
 # post /v1/contacts
 # get /
 # get /jobs/:jobId
