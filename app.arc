@@ -62,3 +62,5 @@ workhays
 # Automatically run arc init to create boilerplate Lambda handlers for new resources
 @create
 autocreate true
+templates
+  http templates/http.mjs
