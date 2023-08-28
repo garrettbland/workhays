@@ -1,8 +1,11 @@
 node_modules/
 .DS_Store
 
+# Environment variables
+.env
+
 # Arc environment values
-preferences.arc
+# preferences.arc
 
 # File built with 'arc deploy --dry-run'
 sam.json

@@ -58,9 +58,3 @@ workhays
 # Allows lambdas to share code. Automatically gets copied into all functions
 # Usage: import { x } from '@architect/shared/<filename>'
 @shared
-
-# Automatically run arc init to create boilerplate Lambda handlers for new resources
-@create
-autocreate true
-templates
-  http templates/http.mjs
