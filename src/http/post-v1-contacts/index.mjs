@@ -4,9 +4,10 @@ import { isValidEmail, generateRandomId } from '../../shared/index.mjs'
 /**
  * Endpoint for contact submissions
  *
- * POST /v1/contacts\
- * Body Requirements:\
- * `first_name`,`last_name`,`email`,`message`
+ * POST /v1/contacts
+ *
+ * Body Requirements:
+ *`first_name`,`last_name`,`email`,`message`
  *
  * @param {import('@architect/functions/types/http').HttpRequest} req
  * @returns {Promise<import('@architect/functions/types/http').HttpResponse>}

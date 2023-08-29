@@ -60,8 +60,10 @@ Coming soon...Diagram of arc, next js, auth, ses, ect...
 │       └── ses/ // AWS Simple Email Service (SES) Cloudformation
 │   ├── shared/ // Automatically gets copied into all Arc endpoints
 │   ├── styles/ // CSS Styling (TailwindCSS)
+├── templates/ // Resource templates used by Arc
+├── '.env' // Defines secrets & environment variables for Arc & Next.js
 ├── 'app.arc' // Arc config
-├── 'preferences.arc' // Defines secrets & environment variables for Arc
+├── 'prefs.arc' // Defines environment options for Arc
 ├── 'tailwind.config.js' // TailwindCSS Config
 ```
 

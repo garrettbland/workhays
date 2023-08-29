@@ -2,4 +2,4 @@
 @create
 autocreate true
 templates
-  http templates/main.mjs
+  http templates/index.mjs

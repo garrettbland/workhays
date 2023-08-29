@@ -8,10 +8,10 @@ region us-east-2
 
 # Http endpoints
 @http
-get /v1
 get /v1/jobs
 get /v1/contacts
 post /v1/contacts
+any /v1/*
 # post /v1/contacts
 # get /
 # get /jobs/:jobId
@@ -30,10 +30,6 @@ seed-database
 cognito
 ses
 next
-
-# Typescript esbuild config location
-# @typescript
-# base-runtime nodejs18.x # Set the Lambda base runtime to Node.js 18
 
 # Dynamo DB Tables
 # Working with dynamo database locally stores data in memory using Dynalite

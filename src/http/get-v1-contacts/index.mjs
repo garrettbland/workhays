@@ -3,7 +3,7 @@ import arc from '@architect/functions'
 /**
  * Endpoint for retrieving contact submissions
  *
- * GET /v1/contacts\
+ * GET /v1/contacts
  *
  * @returns {Promise<import('@architect/functions/types/http').HttpResponse>}
  */
