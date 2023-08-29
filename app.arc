@@ -11,7 +11,7 @@ region us-east-2
 get /v1/jobs
 get /v1/contacts
 post /v1/contacts
-any /v1/*
+any /*
 # post /v1/contacts
 # get /
 # get /jobs/:jobId
@@ -23,6 +23,10 @@ any /v1/*
 # get /faqs/:faqId
 # any /api/v1/*
 # any /*
+
+# SNS Topics
+@events
+contact-submission
 
 @plugins
 # architect/plugin-typescript

@@ -1,7 +1,7 @@
 import arc from '@architect/functions'
 
 /**
- * Catchall endpoint for API v1
+ * Catchall endpoint for Workhays API
  *
  * @returns {Promise<import('@architect/functions/types/http').HttpResponse>}
  */

@@ -49,6 +49,13 @@ export const main = async (req) => {
             message, // attribute
         })
 
+        await arc.events.publish({
+            name: 'contact-submission',
+            payload: {
+                ...req.body,
+            },
+        })
+
         return {
             json: {
                 message: 'Successfully posted contact',
