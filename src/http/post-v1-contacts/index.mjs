@@ -12,7 +12,7 @@ import { isValidEmail, generateRandomId } from '../../shared/index.mjs'
  * @param {import('@architect/functions/types/http').HttpRequest} req
  * @returns {Promise<import('@architect/functions/types/http').HttpResponse>}
  */
-const main = async (req) => {
+export const main = async (req) => {
     try {
         let client = await arc.tables()
         let workhaysTable = client.workhays
@@ -57,6 +57,7 @@ const main = async (req) => {
         }
     } catch (err) {
         return {
+            status: 500,
             json: {
                 message: 'Error posting submission',
                 err: String(err),

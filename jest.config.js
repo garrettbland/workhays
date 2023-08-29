@@ -12,6 +12,7 @@ module.exports = {
             transform: {
                 '^.+\\.(mj|j)s?$': '@swc/jest',
             },
+            transformIgnorePatterns: ['node_modules/(?!nanoid/.*)'],
         },
         {
             displayName: 'Browser',
