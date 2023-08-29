@@ -13,7 +13,6 @@ const main = async () => {
         let workhaysTable = client.workhays
 
         const allContacts = await workhaysTable.query({
-            // IndexName: 'GSI1',
             KeyConditionExpression: 'PK = :contactType',
             ExpressionAttributeValues: {
                 ':contactType': 'CONTACT',
@@ -22,7 +21,9 @@ const main = async () => {
 
         return {
             json: {
-                allContacts,
+                data: {
+                    ...allContacts,
+                },
             },
         }
     } catch (err) {

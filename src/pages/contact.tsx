@@ -2,18 +2,11 @@ import Link from 'next/link'
 import { useForm, Form } from 'react-hook-form'
 import { VALID_EMAIL_PATTERN } from '../shared/validEmail.mjs'
 import { Button, PageTitle, Callout, MaxContentWidth } from '@/components'
-import {
-    BookOpenIcon,
-    CheckIcon,
-    ExclamationCircleIcon,
-    MailIcon,
-} from '@heroicons/react/24/outline'
+import { BookOpenIcon, CheckIcon, ExclamationCircleIcon } from '@heroicons/react/24/outline'
 
 const Contact = () => {
     const {
         register,
-        handleSubmit,
-        watch,
         reset,
         control,
         formState: { errors, isSubmitting, isSubmitSuccessful },
@@ -43,11 +36,14 @@ const Contact = () => {
             </Callout>
             <MaxContentWidth>
                 <Form
-                    action="/api/v1/contact"
+                    action="/api/v1/contacts"
                     method="post"
                     control={control}
                     headers={{ 'Content-Type': 'application/json' }}
-                    onSuccess={() => reset()}
+                    onSuccess={() => {
+                        reset()
+                        window.scrollTo(0, 0)
+                    }}
                     onError={() => {
                         // Log Error
                         // Check errors from server (like if validations failed)

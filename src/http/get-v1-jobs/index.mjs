@@ -28,7 +28,9 @@ export const main = async () => {
 
     return {
         json: {
-            activeJobs,
+            data: {
+                ...activeJobs,
+            },
         },
     }
 }
