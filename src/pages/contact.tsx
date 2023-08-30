@@ -12,6 +12,8 @@ const Contact = () => {
         formState: { errors, isSubmitting, isSubmitSuccessful },
     } = useForm()
 
+    const scrollToTop = () => window.scrollTo(0, 0)
+
     return (
         <>
             {errors?.root?.server && (
@@ -42,12 +44,12 @@ const Contact = () => {
                     headers={{ 'Content-Type': 'application/json' }}
                     onSuccess={() => {
                         reset()
-                        window.scrollTo(0, 0)
+                        scrollToTop()
                     }}
                     onError={() => {
                         // Log Error
                         // Check errors from server (like if validations failed)
-                        window.scrollTo(0, 0)
+                        scrollToTop()
                     }}
                     validateStatus={(status) => status === 200}
                     className="flex flex-col space-y-4"

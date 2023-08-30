@@ -6,18 +6,19 @@ import { isValidEmail, generateRandomId } from '../../shared/index.mjs'
  *
  * POST /v1/contacts
  *
- * Body Requirements:
- *`first_name`,`last_name`,`email`,`message`
+ * Body
+ * Required: `first_name`,`last_name`,`email`,`message`
+ * Optional: `business`
  *
  * @param {import('@architect/functions/types/http').HttpRequest} req
  * @returns {Promise<import('@architect/functions/types/http').HttpResponse>}
  */
 export const main = async (req) => {
     try {
-        let client = await arc.tables()
-        let workhaysTable = client.workhays
+        const client = await arc.tables()
+        const workhaysTable = client.workhays
 
-        const { first_name, last_name, email, business = null, message } = req.body
+        const { first_name, last_name, email, business, message } = req.body
 
         /**
          * Validations
@@ -39,20 +40,32 @@ export const main = async (req) => {
             }
         }
 
-        const inputForm = await workhaysTable.put({
+        /**
+         * Item that will be stored in table
+         * @type {import('../../types/contacts.mjs').ContactSubmission}
+         */
+        const databaseItem = {
             PK: 'CONTACT', // type
             SK: generateRandomId(), // id
             first_name, // attribue
             last_name, // attribute
             email, // attribute
-            business, // attribute
+            business: business ?? null, // attribute
             message, // attribute
-        })
+        }
 
+        /**
+         * Put item into table
+         */
+        const inputForm = await workhaysTable.put(databaseItem)
+
+        /**
+         * Publish SNS topic for contact event/notification
+         */
         await arc.events.publish({
             name: 'contact-submission',
             payload: {
-                ...req.body,
+                ...inputForm,
             },
         })
 
@@ -63,6 +76,7 @@ export const main = async (req) => {
             },
         }
     } catch (err) {
+        console.log(err)
         return {
             status: 500,
             json: {
