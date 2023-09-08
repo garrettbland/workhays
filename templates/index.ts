@@ -1,12 +1,10 @@
 import arc from '@architect/functions'
+import { HttpResponse, HttpRequest } from '@architect/functions/types/http'
 
 /**
  * HTTP Endpoint
- *
- * @param {import('@architect/functions/types/http').HttpRequest} req
- * @returns {Promise<import('@architect/functions/types/http').HttpResponse>}
  */
-const main = async (req) => {
+const main = async (req: HttpRequest): Promise<HttpResponse> => {
     try {
         return {
             json: {
