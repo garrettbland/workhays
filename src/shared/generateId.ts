@@ -9,6 +9,5 @@ const nanoid = customAlphabet(CUSTOM_ALPHABET, 15)
 
 /**
  * Returns a random id to be used within database
- * @returns {string}
  */
-export const generateRandomId = () => nanoid()
+export const generateRandomId = (): string => nanoid()

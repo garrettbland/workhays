@@ -1,5 +1,6 @@
-import { main } from '../index.mjs'
+import { main } from '../index'
 import arc from '@architect/functions'
+import { HttpRequest } from '@architect/functions/types/http'
 
 jest.mock('@architect/functions', () => {
     return {
@@ -7,11 +8,13 @@ jest.mock('@architect/functions', () => {
             async: jest.fn(),
         },
         tables: jest.fn(),
+        events: {
+            publish: jest.fn(),
+        },
     }
 })
 
-/** @type {any} */
-const mockRequest = {
+const mockRequest: HttpRequest = {
     httpMethod: 'POST',
     path: '/v1/contacts',
     resource: '/v1/contacts',

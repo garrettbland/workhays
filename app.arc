@@ -3,7 +3,8 @@ workhays
 
 @aws
 profile architect # local aws named profile used to deploy from local machine
-runtime nodejs18.x
+# runtime nodejs18.x
+runtime typescript
 region us-east-2
 
 # Http endpoints
@@ -29,7 +30,7 @@ any /*
 contact-submission
 
 @plugins
-# architect/plugin-typescript
+architect/plugin-typescript
 seed-database
 cognito
 ses

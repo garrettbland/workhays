@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-        "baseUrl": ".",
+        "baseUrl": "src",
         "jsx": "preserve",
         "allowJs": true,
         "checkJs": true,
@@ -20,21 +20,24 @@
             }
         ],
         "paths": {
-            "@/components/*": ["src/components/*"],
-            "@/components": ["src/components"]
+            "@components/*": ["components/*"],
+            "@components": ["components"],
+            "@architect/shared/*": ["shared/*"],
+            "@architect/shared": ["shared"]
         }
     },
     "include": [
         "next-env.d.ts",
         ".next/types/**/*.ts",
         "**/*.ts",
-        "**/*.tsx",
-        "src/http/get-v1-jobs/index.mjs",
-        "src/http/get-v1/index.mjs",
-        "src/shared/__tests__/validEmail.test.js",
-        "src/shared/generateId.mjs",
-        "src/shared/isNotEmpty.mjs",
-        "src/types/contacts.mjs"
+        "**/*.tsx"
+        // "src/http/get-v1-jobs/index.ts",
+        // "src/http/get-v1/index.mjs",
+        // "src/shared/__tests__/validEmail.test.mjs",
+        // "src/shared/generateId.ts",
+        // "src/shared/isNotEmpty.mjs",
+        // "src/types/contacts.mjs",
+        // "src/shared/__tests__/generateId.test.ts"
     ],
     "exclude": ["node_modules"]
 }

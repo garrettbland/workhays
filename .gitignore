@@ -7,6 +7,9 @@ node_modules/
 # Arc environment values
 # preferences.arc
 
+# Arc esbuild
+.build
+
 # File built with 'arc deploy --dry-run'
 sam.json
 

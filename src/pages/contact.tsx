@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { useForm, Form } from 'react-hook-form'
-import { VALID_EMAIL_PATTERN } from '../shared/validEmail.mjs'
-import { Button, PageTitle, Callout, MaxContentWidth } from '@/components'
+import { VALID_EMAIL_PATTERN } from '../shared/validEmail.js'
+import { Button, PageTitle, Callout, MaxContentWidth } from '@components'
 import { BookOpenIcon, CheckIcon, ExclamationCircleIcon } from '@heroicons/react/24/outline'
 
 const Contact = () => {

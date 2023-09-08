@@ -1,16 +1,15 @@
 import arc from '@architect/functions'
+import { HttpResponse } from '@architect/functions/types/http'
 
 /**
  * Endpoint for retrieving contact submissions
  *
  * GET /v1/contacts
- *
- * @returns {Promise<import('@architect/functions/types/http').HttpResponse>}
  */
-const main = async () => {
+const main = async (): Promise<HttpResponse> => {
     try {
-        let client = await arc.tables()
-        let workhaysTable = client.workhays
+        const client = await arc.tables()
+        const workhaysTable = client.workhays
 
         const allContacts = await workhaysTable.query({
             KeyConditionExpression: 'PK = :contactType',

@@ -6,11 +6,11 @@ module.exports = {
             moduleFileExtensions: ['js', 'mjs', 'ts'],
             roots: ['<rootDir>/src'],
             testMatch: [
-                '**/http/**/?(*.)+(spec|test).+(mjs|js)',
+                '**/http/**/?(*.)+(spec|test).+(mjs|js|ts)',
                 '**/shared/**/?(*.)+(spec|test).+(mjs|js|ts)',
             ],
             transform: {
-                '^.+\\.(mj|j)s?$': '@swc/jest',
+                '^.+\\.(mj|j|t)s?$': '@swc/jest',
             },
             transformIgnorePatterns: ['node_modules/(?!nanoid/.*)'],
         },

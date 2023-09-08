@@ -1,6 +1,6 @@
 import type { AppProps } from 'next/app'
 import '../styles/tailwind.css'
-import { Layout } from '@/components/Layout'
+import { Layout } from '@components/Layout'
 import { Lexend_Deca as LexendDeca } from 'next/font/google'
 
 const lexend = LexendDeca({

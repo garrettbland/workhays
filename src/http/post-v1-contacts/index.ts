@@ -1,5 +1,6 @@
 import arc from '@architect/functions'
-import { isValidEmail, generateRandomId } from '../../shared/index.mjs'
+import { HttpRequest, HttpResponse } from '@architect/functions/types/http'
+import { isValidEmail, generateRandomId } from '@architect/shared'
 
 /**
  * Endpoint for contact submissions
@@ -9,11 +10,8 @@ import { isValidEmail, generateRandomId } from '../../shared/index.mjs'
  * Body
  * Required: `first_name`,`last_name`,`email`,`message`
  * Optional: `business`
- *
- * @param {import('@architect/functions/types/http').HttpRequest} req
- * @returns {Promise<import('@architect/functions/types/http').HttpResponse>}
  */
-export const main = async (req) => {
+export const main = async (req: HttpRequest): Promise<HttpResponse> => {
     try {
         const client = await arc.tables()
         const workhaysTable = client.workhays

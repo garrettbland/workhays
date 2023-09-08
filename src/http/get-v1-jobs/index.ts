@@ -1,4 +1,5 @@
 import arc from '@architect/functions'
+import { HttpRequest, HttpResponse } from '@architect/functions/types/http'
 
 /**
  * Retrieves Jobs
@@ -9,13 +10,10 @@ import arc from '@architect/functions'
  * - active
  * - inactive
  * - etc
- *
- * @param {import('@architect/functions/types/http').HttpRequest} req
- * @returns {Promise<import('@architect/functions/types/http').HttpResponse>}
  */
-export const main = async () => {
-    let client = await arc.tables()
-    let workhaysTable = client.workhays
+export const main = async (req: HttpRequest): Promise<HttpResponse> => {
+    const client = await arc.tables()
+    const workhaysTable = client.workhays
 
     /**
      * todaysDate will be in format 'YYYY-MM-DD'

@@ -1,5 +1,4 @@
-import { isValidEmail } from '../validEmail.mjs'
-// const validation = require('../validEmail.mjs')
+import { isValidEmail } from '../validEmail'
 
 const VALID_EMAILS = ['tom@hanks.com', 'abc123@apple.co.com']
 const INVALID_EMAILS = [

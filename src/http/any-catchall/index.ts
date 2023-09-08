@@ -1,11 +1,10 @@
 import arc from '@architect/functions'
+import { HttpResponse } from '@architect/functions/types/http'
 
 /**
  * Catchall endpoint for Workhays API
- *
- * @returns {Promise<import('@architect/functions/types/http').HttpResponse>}
  */
-const main = async () => {
+const main = async (): Promise<HttpResponse> => {
     return {
         status: 404,
         json: {
