@@ -85,7 +85,7 @@ code into @http functions. This can be useful for testing or CI.
 
 ### Deploying
 
-More coming soon...
+Coming soon...
 
 ### Environment Variables
 
