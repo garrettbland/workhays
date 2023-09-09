@@ -22,8 +22,10 @@
         "paths": {
             "@components/*": ["components/*"],
             "@components": ["components"],
-            "@architect/shared/*": ["shared/*"],
-            "@architect/shared": ["shared"]
+            "@utils/*": ["utils/*"],
+            "@utils": ["utils"],
+            "@custom-types/*": ["types/*"],
+            "@custom-types": ["types"]
         }
     },
     "include": [

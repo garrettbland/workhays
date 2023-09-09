@@ -58,4 +58,4 @@ workhays
 
 # Allows lambdas to share code. Automatically gets copied into all functions
 # Usage: import { x } from '@architect/shared/<filename>'
-@shared
+# @shared

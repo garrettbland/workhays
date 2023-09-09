@@ -1,6 +1,6 @@
 import arc from '@architect/functions'
 import { HttpRequest, HttpResponse } from '@architect/functions/types/http'
-import { isValidEmail, generateRandomId } from '@architect/shared'
+import { isValidEmail, generateRandomId } from '@utils'
 
 /**
  * Endpoint for contact submissions

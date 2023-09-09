@@ -1,3 +1,4 @@
+/** @type {import('jest').Config} */
 module.exports = {
     projects: [
         {
@@ -7,12 +8,16 @@ module.exports = {
             roots: ['<rootDir>/src'],
             testMatch: [
                 '**/http/**/?(*.)+(spec|test).+(mjs|js|ts)',
-                '**/shared/**/?(*.)+(spec|test).+(mjs|js|ts)',
+                '**/utils/**/?(*.)+(spec|test).+(mjs|js|ts)',
             ],
             transform: {
                 '^.+\\.(mj|j|t)s?$': '@swc/jest',
             },
             transformIgnorePatterns: ['node_modules/(?!nanoid/.*)'],
+            moduleNameMapper: {
+                '^@utils': '<rootDir>/src/utils',
+                '^@utils/(.*)$': '<rootDir>/src/utils/$1',
+            },
         },
         {
             displayName: 'Browser',

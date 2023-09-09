@@ -1,8 +1,9 @@
 import Link from 'next/link'
 import { useForm, Form } from 'react-hook-form'
-import { VALID_EMAIL_PATTERN } from '../shared/validEmail.js'
+import { VALID_EMAIL_PATTERN } from 'utils'
 import { Button, PageTitle, Callout, MaxContentWidth } from '@components'
 import { BookOpenIcon, CheckIcon, ExclamationCircleIcon } from '@heroicons/react/24/outline'
+import { ContactForm } from '@custom-types'
 
 const Contact = () => {
     const {
@@ -10,7 +11,7 @@ const Contact = () => {
         reset,
         control,
         formState: { errors, isSubmitting, isSubmitSuccessful },
-    } = useForm()
+    } = useForm<ContactForm>()
 
     const scrollToTop = () => window.scrollTo(0, 0)
 
