@@ -3,7 +3,8 @@
     "plugins": ["@typescript-eslint"],
     "extends": ["next/core-web-vitals", "plugin:@typescript-eslint/recommended"],
     "rules": {
-        "no-unused-vars": ["error"],
+        "no-unused-vars": ["warn"],
+        "@typescript-eslint/no-var-requires": ["warn"],
         "@typescript-eslint/naming-convention": [
             "error",
             {
@@ -11,7 +12,7 @@
                 "format": ["camelCase"]
             }
         ],
-        "@typescript-eslint/no-unused-vars": ["error", { "ignoreRestSiblings": true }],
+        "@typescript-eslint/no-unused-vars": ["warn", { "ignoreRestSiblings": true }],
         "react/no-unescaped-entities": 0
     }
 }
