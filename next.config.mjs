@@ -19,9 +19,13 @@ const nextConfig = {
     webpack: (config, { dev }) => {
         console.log('using webpack...')
         config.module.rules.push({
-            test: /src\/events|http|plugins/,
+            test: /^(http|events|plugins)$/,
             loader: 'ignore-loader',
         })
+        // config.module.rules.push({
+        //     test: /src\/events|http|plugins/,
+        //     loader: 'ignore-loader',
+        // })
         return config
     },
     async rewrites() {
@@ -33,7 +37,7 @@ const nextConfig = {
         ]
     },
     reactStrictMode: true,
-    pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
+    pageExtensions: ['tsx', 'jsx', 'md', 'mdx'],
 }
 
 // Merge MDX config with Next.js config
