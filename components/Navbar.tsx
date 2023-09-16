@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import logo from '../../public/work-hays-logo.svg'
-import { Button } from '@components/Button'
+import logo from '../public/work-hays-logo.svg'
+import { Button } from './Button'
 
 export const Navbar = () => {
     const [isSignedIn] = useState<boolean>(false)

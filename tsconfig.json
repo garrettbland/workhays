@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-        "baseUrl": "src",
+        "baseUrl": ".",
         "jsx": "preserve",
         "allowJs": true,
         "checkJs": true,
@@ -22,10 +22,10 @@
         "paths": {
             "@components/*": ["components/*"],
             "@components": ["components"],
-            "@utils/*": ["utils/*"],
-            "@utils": ["utils"],
-            "@custom-types/*": ["types/*"],
-            "@custom-types": ["types"]
+            "@utils/*": ["src/utils/*"],
+            "@utils": ["src/utils"],
+            "@custom-types/*": ["src/types/*"],
+            "@custom-types": ["src/types"]
         }
     },
     "include": [

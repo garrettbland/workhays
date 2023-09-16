@@ -1,15 +1,14 @@
 import arc from '@architect/functions'
 import { SESClient, SendEmailCommand } from '@aws-sdk/client-ses'
+import { ContactSubmission } from '@custom-types/contacts'
 
 /**
  * Contact Submission Lambda. Will be executed from SNS topic 'contact-submission'
  *
  * Currently using sandbox domain 'mail.garrettbland.com' and test success email to
  * verify that it's working. Currently workhays email is setup through mailgun
- *
- * @param {import('../../types/contacts.mjs').ContactSubmission} event
  */
-export const main = async (event) => {
+export const main = async (event: ContactSubmission) => {
     try {
         const client = new SESClient()
         const input = {

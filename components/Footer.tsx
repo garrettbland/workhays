@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import logo from '../../public/work-hays-logo.svg'
+import logo from '../public/work-hays-logo.svg'
 
 const VERSION = '2.0.0'
 const FOOTER_LINKS = [
