@@ -16,6 +16,14 @@ const withMDX = mdx({
  */
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+    webpack: (config, { dev }) => {
+        console.log('using webpack...')
+        config.module.rules.push({
+            test: /src\/events|http|plugins/,
+            loader: 'ignore-loader',
+        })
+        return config
+    },
     async rewrites() {
         return [
             {
