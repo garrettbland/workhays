@@ -117,3 +117,7 @@ staging
 production
   ARC_APP_SECRET "dfskdsf02032"
 ```
+
+### Hosting
+
+Coming soon...
