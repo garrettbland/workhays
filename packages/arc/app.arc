@@ -34,7 +34,6 @@ architect/plugin-typescript
 seed-database
 cognito
 ses
-next
 
 # Dynamo DB Tables
 # Working with dynamo database locally stores data in memory using Dynalite

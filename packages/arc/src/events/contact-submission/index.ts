@@ -1,6 +1,6 @@
 import arc from '@architect/functions'
 import { SESClient, SendEmailCommand } from '@aws-sdk/client-ses'
-import { ContactSubmission } from '@custom-types/contacts'
+import { ContactSubmission } from 'types'
 
 /**
  * Contact Submission Lambda. Will be executed from SNS topic 'contact-submission'

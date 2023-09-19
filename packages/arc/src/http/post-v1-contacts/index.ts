@@ -1,6 +1,7 @@
 import arc from '@architect/functions'
 import { HttpRequest, HttpResponse } from '@architect/functions/types/http'
-import { isValidEmail, generateRandomId } from '@utils'
+import { isValidEmail, generateRandomId } from 'utilities'
+import { ContactSubmission } from 'types'
 
 /**
  * Endpoint for contact submissions
@@ -40,9 +41,8 @@ export const main = async (req: HttpRequest): Promise<HttpResponse> => {
 
         /**
          * Item that will be stored in table
-         * @type {import('../../types/contacts.mjs').ContactSubmission}
          */
-        const databaseItem = {
+        const databaseItem: ContactSubmission = {
             PK: 'CONTACT', // type
             SK: generateRandomId(), // id
             first_name, // attribue

@@ -89,13 +89,13 @@ const EMPLOYER_IDs = employers.map((employer) => employer.PK)
 const jobs = [...Array(50)].map(() => {
     const jobStatus = faker.helpers.arrayElement(JOB_STATUS)
     return {
-        PK: faker.datatype.uuid(), // unique id
+        PK: faker.string.uuid(), // unique id
         SK: 'JOB', // type
         GSI1PK: `JOB#${jobStatus}`, // type#<status>
         GSI1SK: faker.date.soon(), // expires
         GSI2PK: `EMPLOYER#${faker.helpers.arrayElement(EMPLOYER_IDs)}`, // employer#<employer id>
         GSI2SK: `JOB#${jobStatus}`, // job#<status>
-        title: faker.name.jobTitle(), // job title
+        title: faker.person.jobTitle(), // job title
     }
 })
 

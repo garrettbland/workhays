@@ -13,7 +13,7 @@ const AVAILABLE_STATUSES = ['ACTIVE', 'PENDING']
 const employers = [...Array(20)].map(() => {
     const employerStatus = faker.helpers.arrayElement(AVAILABLE_STATUSES)
     return {
-        PK: faker.datatype.uuid(), // unique id
+        PK: faker.string.uuid(), // unique id
         SK: 'EMPLOYER', // type
         GSI1PK: `EMPLOYER`, // type
         GSI1SK: employerStatus, // status

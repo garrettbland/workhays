@@ -20,26 +20,20 @@
             }
         ],
         "paths": {
-            "@components/*": ["components/*"],
-            "@components": ["components"],
-            "@utils/*": ["src/utils/*"],
-            "@utils": ["src/utils"],
+            "@components": ["packages/next/components"],
+            "@components/*": ["packages/next/components/*"],
+            "@custom-types": ["src/types"],
             "@custom-types/*": ["src/types/*"],
-            "@custom-types": ["src/types"]
+            "@utils": ["src/utils"],
+            "@utils/*": ["src/utils/*"]
         }
     },
     "include": [
-        "next-env.d.ts",
+        "packages/web/next-env.d.ts",
         ".next/types/**/*.ts",
         "**/*.ts",
-        "**/*.tsx"
-        // "src/http/get-v1-jobs/index.ts",
-        // "src/http/get-v1/index.mjs",
-        // "src/shared/__tests__/validEmail.test.mjs",
-        // "src/shared/generateId.ts",
-        // "src/shared/isNotEmpty.mjs",
-        // "src/types/contacts.mjs",
-        // "src/shared/__tests__/generateId.test.ts"
+        "**/*.tsx",
+        "packages/utilities/demo/app.ts"
     ],
     "exclude": ["node_modules"]
 }

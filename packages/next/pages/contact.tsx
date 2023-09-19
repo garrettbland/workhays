@@ -1,9 +1,9 @@
 import Link from 'next/link'
 import { useForm, Form } from 'react-hook-form'
-import { VALID_EMAIL_PATTERN } from '@utils'
+import { VALID_EMAIL_PATTERN } from 'utilities'
 import { Button, PageTitle, Callout, MaxContentWidth } from '../components'
 import { BookOpenIcon, CheckIcon, ExclamationCircleIcon } from '@heroicons/react/24/outline'
-import { ContactForm } from '@custom-types'
+import { ContactForm } from 'types'
 
 const Contact = () => {
     const {

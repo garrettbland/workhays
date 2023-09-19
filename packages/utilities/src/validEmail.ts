@@ -1,4 +1,4 @@
-export const VALID_EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+import { VALID_EMAIL_PATTERN } from './constants'
 
 /**
  * Returns boolean if string is a valid email or not

@@ -4,16 +4,18 @@
 
 ### About this project
 
-This project uses a handful of various technologies to power. Here is a brief breakdown.
+This project is a monorepo that powers the Web application and the API. It uses NX and NPM
+workspaces to manage the projects and dependencies. Various technologies are used for each.
+Here is a brief breakdown.
 
--   [Architect](https://arc.codes/) - AWS Provisioning & Management
+-   [NX](https://nx.dev/getting-started/intro) - Monorepo manager
+-   [Next JS](https://nextjs.org/) - Web App & Admin
+    -   [Tailwind CSS](https://tailwindcss.com/) - Styling
+-   [Architect](https://arc.codes/) - API, AWS Provisioning & Management
     -   [Lambda](https://aws.amazon.com/lambda/) - Server Side Functions
     -   [Dynamo DB](https://aws.amazon.com/dynamodb/) - Database
     -   [Cognito](https://aws.amazon.com/cognito/) - Authentication
     -   [SES](https://aws.amazon.com/ses/) - Email Notifications
--   [Jest](https://jestjs.io/) - Testing Framework
--   [Tailwind CSS](https://tailwindcss.com/) - Styling
--   [Next JS](https://nextjs.org/) - Web App & Admin
 
 ### Getting Started
 
@@ -33,7 +35,7 @@ $ npm run dev
 Once complete, you will have a local version of Work Hays running in your environment. An output with the port will be shown in your terminal. This boots up Arc's sandbox environment as well as any sandbox plugins. This starts the following and will watch for file changes.
 
 -   Arc serverless functions
--   Next JS Server / TailwindCSS
+-   Next JS Server
 -   Local DynamoDB database (using dynalite) and seeds database with fake data (using Faker)
 
 Live reload is also enabled for both HTTP endpoints and Next JS. The Architect server will be running at port `3333`, while the Next JS web application server will be running on port `3000`. In `next.config.js`, rewrites are configured for the `/api` routes.
@@ -46,25 +48,36 @@ Coming soon...Diagram of arc, next js, auth, ses, ect...
 
 ### Project Layout
 
+Not all files and folders are listed, but these cover the important ones.
+
 ```js
-├── .github/workflows/ // Github Workflows for CI/CD
-├── public/ // Public files used by Next JS
-├── src/
-│   ├── components/ // React JS Components
-│   ├── http/ // Arc HTTP endpoints
-│   ├── pages/ // Next JS Pages Directory
-│   ├── plugins/ // Arc plugins
-│       └── cognito/ // AWS Cognito Cloudformation
-│       └── next/ // NextJS Server
-│       └── seed-database/ // Add's fake data for development
-│       └── ses/ // AWS Simple Email Service (SES) Cloudformation
-│   ├── shared/ // Automatically gets copied into all Arc endpoints
-│   ├── styles/ // CSS Styling (TailwindCSS)
-├── templates/ // Resource templates used by Arc
-├── '.env' // Defines secrets & environment variables for Arc & Next.js
-├── 'app.arc' // Arc config
-├── 'prefs.arc' // Defines environment options for Arc
-├── 'tailwind.config.js' // TailwindCSS Config
+.github/workflows/ // Github Workflows for CI/CD
+packages // Monorepo packages (managed by NX)
+├── arc // Arc Serverless API
+│   ├── events // SES Events
+│   ├── http // Lambda Functions
+│   ├── plugins // Arc local plugins
+│   │   ├── cognito // AWS Cognito Cloudformation
+│   │   ├── seed-database // Fake data for development
+│   │   └── ses // AWS Simple Email Service (SES) Cloudformation
+│   ├── templates // Resource templates used by Arc
+│   ├── '.env' // Environment file
+│   ├── 'app.arc' // Architect Project manifest
+│   └── 'prefs.arc' // Local Architect preferences
+├── next // Next JS Web App
+│   ├── components // React Components
+│   ├── pages // Next JS Pages Directory
+│   ├── public // Public files and images
+│   ├── styles // CSS Styling (Processed by PostCSS)
+│   └── 'next.config.mjs' // Next JS Config
+│   └── 'postcss.config.js' // PostCSS Config
+│   └── 'tailwind.config.js' // TailwindCSS Config
+│   └── 'tsconfig.json' // Typescript Config
+├── types // Shared Typescript types package
+└── utilities // Shared utilities package
+.eslintrc.json // Global eslint rules
+.nvmrc // Projects node version
+.nx.json // NX config file
 ```
 
 ### Adding HTTP Endpoints
@@ -104,11 +117,3 @@ staging
 production
   ARC_APP_SECRET "dfskdsf02032"
 ```
-
-### Development
-
-To get startd, clone this repo, run `npm install`, and then `npm run dev`. This will start the local Arc sandbox running a local dynamo database with faked data (see `src/plugins/seed-database` plugin) and local http endpoints. This also starts the web app proceccesses (client side bundle, css files, etc) and will rebuild when there are changes.
-
-### Testing
-
-Coming soon. Stuff about jest testing.

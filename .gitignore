@@ -24,3 +24,9 @@ sandbox-seed.json
 
 # TS generated file from tsc --noEmit
 tsconfig.tsbuildinfo
+
+# Bundled directories
+dist
+
+# Parcel Cache
+.parcel-cache
