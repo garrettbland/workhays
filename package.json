@@ -9,6 +9,7 @@
         "build": "nx exec -- next build",
         "lint": "nx exec -- next lint",
         "build:utilities": "npx nx run utilities:build",
+        "build:next": "npx nx run next:build",
         "dev": "npm run open-browser && npx nx run-many -t dev -p arc next",
         "open-browser": "open http://localhost:3000"
     },
