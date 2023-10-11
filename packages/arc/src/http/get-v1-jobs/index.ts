@@ -33,6 +33,25 @@ export const main = async (req: HttpRequest): Promise<HttpResponse> => {
      * - Get active jobs that are not expired, sort DESC
      * - Get jobs by employer
      */
+
+    /**
+     * TO DO: Move this into Utilities
+     */
+    const jsonParseKey = <T>(rawJson: string): T | undefined => {
+        try {
+            return JSON.parse(rawJson)
+        } catch (e) {
+            console.error(e)
+            return undefined
+        }
+    }
+
+    /**
+     * TO DO: encodeURIComponent(JSON.stringify())
+     */
+    const LAST_KEY = jsonParseKey<Record<string, string>>(
+        req.queryStringParameters.LastEvaluatedKey
+    )
     const activeJobs = await workhaysTable.query({
         IndexName: 'GSI1',
         KeyConditionExpression: 'GSI1PK = :activeJob and GSI1SK >= :todaysDate',
@@ -42,6 +61,9 @@ export const main = async (req: HttpRequest): Promise<HttpResponse> => {
         },
         Limit: 12,
         ScanIndexForward: false, // true = ascending, false = descending
+        ...(LAST_KEY && {
+            ExclusiveStartKey: LAST_KEY,
+        }),
     })
 
     return {
