@@ -95,20 +95,32 @@ More coming soon...
 
 ### Environment Variables
 
-Create a `preferences.arc` file in the root directory. This file is ignored by git and is not commited. The `@env` pragma is used so we can use different environment variables for different environment. Example below.
+Create a `prefs.arc` file in the root directory. This file is ignored by git and is not commited. The `@env` pragma is used so we can use different environment variables for different environment. Example below.
 
 ```
-# preferences.arc
+# prefs.arc
 
 @env
 testing
-  ARC_APP_SECRET "dsfdfsa012864"
+  DB_USERNAME user_example
+  DB_PASSWORD pass_example
+  DB_NAME db_name_example
+  DB_HOST '123.456.789'
+  MAILGUN_API_KEY blah-blah-blah
 
 staging
-  ARC_APP_SECRET "sdf9023490ds"
+  DB_USERNAME user_example
+  DB_PASSWORD pass_example
+  DB_NAME db_name_example
+  DB_HOST '123.456.789'
+  MAILGUN_API_KEY blah-blah-blah
 
 production
-  ARC_APP_SECRET "dfskdsf02032"
+  DB_USERNAME forge
+  DB_PASSWORD pass_example
+  DB_NAME db_name_example
+  DB_HOST '123.456.789'
+  MAILGUN_API_KEY blah-blah-blah
 ```
 
 ### Development

@@ -96,7 +96,14 @@ module.exports = {
         // Pre-deploy operations
         start: async ({ arc, cloudformation, dryRun, inventory, stage }) => {
             const bundler = new Parcel({
-                entries: ['./src/apps/admin/index.tsx', './src/apps/contact/index.tsx'],
+                /**
+                 * TO DO: Setup a glob to find entry js files in "apps"
+                 */
+                entries: [
+                    './src/apps/admin/index.tsx',
+                    './src/apps/contact/index.tsx',
+                    './src/apps/v1/main.js',
+                ],
                 defaultConfig: '@parcel/config-default',
                 mode: 'production',
                 defaultTargetOptions: {
@@ -127,7 +134,11 @@ module.exports = {
         // Startup operations
         start: async ({ arc, inventory, invoke }) => {
             const bundler = new Parcel({
-                entries: ['./src/apps/admin/index.tsx', './src/apps/contact/index.tsx'],
+                entries: [
+                    './src/apps/admin/index.tsx',
+                    './src/apps/contact/index.tsx',
+                    './src/apps/v1/main.js',
+                ],
                 defaultConfig: '@parcel/config-default',
                 mode: 'development',
                 defaultTargetOptions: {

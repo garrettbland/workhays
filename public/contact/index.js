@@ -24549,7 +24549,7 @@ const ContactForm = ()=>{
     }, void 0, true);
 };
 
-},{"react/jsx-dev-runtime":"iTorj","react-hook-form":"kRky9","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@architect/shared/validEmail":"j2Wj4"}],"kRky9":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react-hook-form":"kRky9","@architect/shared/validEmail":"j2Wj4","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"kRky9":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "Controller", ()=>Controller);
