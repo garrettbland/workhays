@@ -1,7 +1,7 @@
 <%- include('../../partials/page_start', {title: 'Sign Up', description: `Register today as an
 employer to post job openings and contact information to Work Hays.`}) %>
 
-<div class="max-w-2xl mx-auto mt-8 px-4 md:px-0">
+<!-- <div class="max-w-2xl mx-auto mt-8 px-4 md:px-0">
     <div class="rounded bg-orange-50 border-2 border-orange-400 p-4">
         <div class="flex">
             <div><i data-feather="alert-circle" class="mr-2 pt-1"></i></div>
@@ -17,7 +17,7 @@ employer to post job openings and contact information to Work Hays.`}) %>
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
 <div x-data="signup()" class="max-w-2xl mx-auto mt-8 px-4 md:px-0">
     <div class="text-lg font-bold pb-2">Sign up as an employer</div>
@@ -32,7 +32,19 @@ employer to post job openings and contact information to Work Hays.`}) %>
         <a href="/signin" class="text-blue-500 hover:underline">Click here</a> to sign in.
     </div>
 
-    <% if(flashMessages.success) { %>
+    <% if(req.query.emailTaken === "true") { %>
+    <div class="mb-8 p-4 bg-red-500 rounded shadow text-white flex items-center mx-4 md:mx-0">
+        <div class="mr-4">
+            <i data-feather="alert-circle" class="w-5 h-5"></i>
+        </div>
+        <div>
+            <p class="font-bold leading-5">Error</p>
+            <p class="text-base leading-tight">Sorry, it looks like that email is already taken.</p>
+        </div>
+    </div>
+    <% } %>
+
+    <!-- <% if(flashMessages.success) { %>
     <div class="mb-8 p-4 bg-green-400 rounded shadow text-white flex items-center">
         <div class="mr-4">
             <i data-feather="alert-circle" class="w-5 h-5"></i>
@@ -42,14 +54,19 @@ employer to post job openings and contact information to Work Hays.`}) %>
             <p class="text-base leading-tight"><%= flashMessages.success %></p>
         </div>
     </div>
-    <% } %> <% if(flashMessages.error) { %>
+    <% } %>  -->
+
+    <% if(req.query.error === "true") { %>
     <div class="mb-8 p-4 bg-red-500 rounded shadow text-white flex items-center">
         <div class="mr-4">
             <i data-feather="alert-circle" class="w-5 h-5"></i>
         </div>
         <div>
             <p class="font-bold leading-5">Error</p>
-            <p class="text-base leading-tight"><%= flashMessages.error %></p>
+            <p class="text-base leading-tight">
+                Something went wrong creating your account. Please try again or
+                <a href="/contact" class="underline">contact us</a> if the problem persists.
+            </p>
         </div>
     </div>
     <% } %>

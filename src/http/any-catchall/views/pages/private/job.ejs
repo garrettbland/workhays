@@ -54,6 +54,70 @@ button.trix-button.trix-button--icon.trix-button--icon-decrease-nesting-level {
 				<% } %>
 			<% } %>
 
+			<% if(req.query.updatedJob === "true") { %>
+			<div class="mb-8 p-4 bg-green-500 rounded shadow text-white flex items-center mx-4 lg:mx-0">
+				<div class="mr-4">
+					<i data-feather="check-circle" class="w-5 h-5"></i>
+				</div>
+				<div>
+					<p class="font-bold leading-5">
+						Success
+					</p>
+					<p class="text-base leading-tight">
+						Your changes have been saved.
+					</p>
+				</div>
+			</div>
+			<% } %>
+
+		<% if(req.query.updatedJob === "false") { %>
+			<div class="mb-8 p-4 bg-red-500 rounded shadow text-white flex items-center mx-4 lg:mx-0">
+				<div class="mr-4">
+					<i data-feather="alert-circle" class="w-5 h-5"></i>
+				</div>
+				<div>
+					<p class="font-bold leading-5">
+						Error
+					</p>
+					<p class="text-base leading-tight">
+						Something went wrong. Your changes have not been saved, please try again.
+					</p>
+				</div>
+			</div>
+			<% } %>
+
+		<% if(req.query.renewSuccess === "true") { %>
+			<div class="mb-8 p-4 bg-green-500 rounded shadow text-white flex items-center mx-4 lg:mx-0">
+				<div class="mr-4">
+					<i data-feather="check-circle" class="w-5 h-5"></i>
+				</div>
+				<div>
+					<p class="font-bold leading-5">
+						Success
+					</p>
+					<p class="text-base leading-tight">
+						Your job has been renewed
+					</p>
+				</div>
+			</div>
+			<% } %>
+
+		<% if(req.query.renewSuccess === "false") { %>
+			<div class="mb-8 p-4 bg-red-500 rounded shadow text-white flex items-center mx-4 lg:mx-0">
+				<div class="mr-4">
+					<i data-feather="alert-circle" class="w-5 h-5"></i>
+				</div>
+				<div>
+					<p class="font-bold leading-5">
+						Error
+					</p>
+					<p class="text-base leading-tight">
+						Something went wrong renewing your job, please try again.
+					</p>
+				</div>
+			</div>
+			<% } %>
+
 			<div x-show="showErrorMessage" class="mb-8 p-4 bg-red-500 rounded shadow text-white flex items-center mx-4 lg:mx-0" style="display:none;">
 				<div class="mr-4">
 					<i data-feather="alert-circle" class="w-5 h-5"></i>

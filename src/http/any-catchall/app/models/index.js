@@ -6,7 +6,6 @@ var Sequelize = require('sequelize')
 var env = process.env.NODE_ENV || 'development'
 // var config = require('../config/config.json')[env]
 var config = require('../../config')
-console.log('HERE')
 
 var contact = require('./contact')
 var employer = require('./employer')
@@ -29,7 +28,6 @@ var sequelize = new Sequelize(
     }
 )
 
-console.log('HERERERE')
 var db = {}
 
 db.sequelize = sequelize

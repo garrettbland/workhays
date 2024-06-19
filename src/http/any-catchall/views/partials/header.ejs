@@ -61,17 +61,3 @@
         </svg>
     </div>
 </div>
-
-<% if (activeUrl === 'admin') { %> <% if(flashMessages) { if(flashMessages.success) { %>
-<div class="mx-4">
-    <div class="bg-green-400 shadow rounded max-w-4xl mx-auto px-4 py-3 text-white mt-6">
-        Success. <%= flashMessages.success %>
-    </div>
-</div>
-<% } if(flashMessages.error) { %>
-<div class="mx-4">
-    <div class="bg-red-500 shadow rounded max-w-4xl mx-auto px-4 py-3 text-white mt-6">
-        Error. <%= flashMessages.error %>
-    </div>
-</div>
-<% } %> <% } %> <% } %>

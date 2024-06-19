@@ -7,7 +7,45 @@ archive job listings.`}) %>
         <div class="col-span-1 md:col-span-6">
             <!-- content -->
 
-            <% if(user.status === 'pending') { %>
+            <% if(req.query.archivedJob === "true") { %>
+            <div
+                class="mb-8 p-4 bg-green-500 rounded shadow text-white flex items-center mx-4 lg:mx-0"
+            >
+                <div class="mr-4">
+                    <i data-feather="check-circle" class="w-5 h-5"></i>
+                </div>
+                <div>
+                    <p class="font-bold leading-5">Success</p>
+                    <p class="text-base leading-tight">Job archived created successfully.</p>
+                </div>
+            </div>
+            <% } %> <% if(req.query.newJobCreated === "true") { %>
+            <div
+                class="mb-8 p-4 bg-green-500 rounded shadow text-white flex items-center mx-4 lg:mx-0"
+            >
+                <div class="mr-4">
+                    <i data-feather="check-circle" class="w-5 h-5"></i>
+                </div>
+                <div>
+                    <p class="font-bold leading-5">Success</p>
+                    <p class="text-base leading-tight">New job created successfully.</p>
+                </div>
+            </div>
+            <% } %> <% if(req.query.newJobCreated === "false") { %>
+            <div
+                class="mb-8 p-4 bg-red-500 rounded shadow text-white flex items-center mx-4 lg:mx-0"
+            >
+                <div class="mr-4">
+                    <i data-feather="alert-circle" class="w-5 h-5"></i>
+                </div>
+                <div>
+                    <p class="font-bold leading-5">Error</p>
+                    <p class="text-base leading-tight">
+                        Something went wrong creating your job, please try again.
+                    </p>
+                </div>
+            </div>
+            <% } %> <% if(user.status === 'pending') { %>
             <div class="col-span-3 rounded shadow p-4 flex flex-col bg-white">
                 <div class="text-lg mb-2">
                     Status: <span class="font-bold text-orange-500">Pending</span>

@@ -57,20 +57,17 @@ var logger = require('morgan')
 const bodyParser = require('body-parser')
 var passport = require('passport')
 var session = require('express-session')
-var flash = require('connect-flash')
+// var flash = require('connect-flash')
 // const fs = require('fs')
 const serverless = require('serverless-http')
 var models = require('./app/models/index.js')
-let arc = require('@architect/functions')
-
+var checkUserToken = require('./routes/middleware.js').checkUserToken
 // get app version
 // let rawdata = fs.readFileSync('./version.json')
 // let versionFile = JSON.parse(rawdata)
 let version = '0.9'
 
 var app = express()
-
-console.log('STARTING...')
 
 // attached appRoot to global object for root directory for file uploads
 // global.appRoot = path.resolve(__dirname);
@@ -88,36 +85,35 @@ app.use(express.static(path.join(__dirname, 'public')))
 // For Passport
 // session secret
 app.use(session({ secret: 'w0rkH@ys!2020', resave: true, saveUninitialized: true }))
-app.use(passport.initialize())
+// app.use(passport.initialize())
 // persistent login sessions
-app.use(passport.session())
-app.use(flash())
-
-console.log('STILL HERE...')
+// app.use(passport.session())
+// app.use(flash())
 
 // Models
 // var models = require('./app/models')
 
-console.log('AFTER MODELS')
-
 // load passport strategies
-require('./app/config/passport.js')(passport, models.user, models.employer)
-
-console.log('AFTER PASSPORT')
+// require('./app/config/passport.js')(passport, models.user, models.employer)
 
 // add currentUser and active url to each request && set version
+app.use(checkUserToken)
 app.use(function (req, res, next) {
+    /**
+     * This res.locals.blah = blah stuff is so express can access
+     * req.thing in express/ejs files.
+     */
+
     res.locals.APP_VERSION = version
-    res.locals.user = req.user
+
+    // res.user = req.user
     res.locals.activeUrl = req.path.split('/')[1] // [0] will be empty since routes start with '/'
     res.locals.adminPage = req.path.split('/')[1] + req.path.split('/')[2]
     res.locals.req = req
-    res.locals.flashMessages = req.flash()
-    console.log('get current user ====>')
+    // res.locals.flashMessages = req.flash()
+    // console.log('get current user ====>')
     next()
 })
-
-console.log('AFTER ACTIVE URL STUFF')
 
 // Routes
 app.use('/', require('./routes/routes.js'))

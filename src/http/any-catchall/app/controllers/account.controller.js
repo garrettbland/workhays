@@ -29,12 +29,9 @@ exports.index = async (req, res) => {
 
         if (!jobs) throw 'Jobs not found'
 
-        var TWO_WEEKS_OLD = moment
-            .tz(moment(), 'America/Chicago')
-            .subtract(14, 'days')
-            .endOf('day')
+        var TWO_WEEKS_OLD = moment.tz(moment(), 'America/Chicago').subtract(14, 'days').endOf('day')
 
-        var totalActiveJobs = jobs.filter(function(job) {
+        var totalActiveJobs = jobs.filter(function (job) {
             var jobCreatedAt = moment.tz(job.renewed, 'America/Chicago').utc()
             if (job.status === 'active') {
                 if (jobCreatedAt >= TWO_WEEKS_OLD) {
@@ -47,7 +44,7 @@ exports.index = async (req, res) => {
             }
         })
 
-        var totalExpiredJobs = jobs.filter(function(job) {
+        var totalExpiredJobs = jobs.filter(function (job) {
             var jobRenewed = moment.tz(job.renewed, 'America/Chicago').utc()
             if (job.status === 'active') {
                 if (jobRenewed <= TWO_WEEKS_OLD) {
@@ -60,13 +57,8 @@ exports.index = async (req, res) => {
             }
         })
 
-        var checkIfEmployerSetup = function(employer) {
-            if (
-                !employer.title ||
-                !employer.contact ||
-                !employer.email ||
-                !employer.phone
-            ) {
+        var checkIfEmployerSetup = function (employer) {
+            if (!employer.title || !employer.contact || !employer.email || !employer.phone) {
                 return false
             } else {
                 return true
@@ -77,7 +69,6 @@ exports.index = async (req, res) => {
             activeJobs: totalActiveJobs.length,
             expiredJobs: totalExpiredJobs.length,
             employerSetup: checkIfEmployerSetup(employer.dataValues),
-            message: req.flash('accountMessage'),
         })
     } catch (err) {
         console.log('Error in list_jobs')
@@ -102,27 +93,20 @@ exports.jobs = async (req, res) => {
         const jobs = await Models.job.findAll({
             where: {
                 employer_id: employer.id,
-                [Op.or]: [
-                    { status: 'active' },
-                    { status: 'inactive' },
-                    { status: 'archived' },
-                ],
+                [Op.or]: [{ status: 'active' }, { status: 'inactive' }, { status: 'archived' }],
             },
             order: [['createdAt', 'DESC']],
         })
 
         if (!jobs) throw 'Jobs not found'
 
-        var buildStatus = function(job) {
+        var buildStatus = function (job) {
             if (job.status === 'archived') {
                 return null
             } else {
                 if (
                     job.renewed >
-                    moment
-                        .tz(moment(), 'America/Chicago')
-                        .subtract(14, 'days')
-                        .endOf('day')
+                    moment.tz(moment(), 'America/Chicago').subtract(14, 'days').endOf('day')
                 ) {
                     return 'active'
                 } else {
@@ -131,7 +115,7 @@ exports.jobs = async (req, res) => {
             }
         }
 
-        var formattedJobs = jobs.map(function(job) {
+        var formattedJobs = jobs.map(function (job) {
             return {
                 ...job.dataValues,
                 formattedStatus: buildStatus(job.dataValues),

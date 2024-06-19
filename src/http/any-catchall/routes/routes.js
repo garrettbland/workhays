@@ -19,6 +19,8 @@ var passport = require('passport')
 var router = express.Router()
 var middleware = require('./middleware')
 
+var auth = require('../app/config/passport')
+
 /*
 
 Controllers
@@ -32,7 +34,7 @@ var contactController = require('../app/controllers/contact.controller')
 var subscriberController = require('../app/controllers/subscriber.controller')
 var adminController = require('../app/controllers/admin.controller')
 var sitemapController = require('../app/controllers/sitemap.controller')
-var claimController = require('../app/controllers/claim.controller')
+// var claimController = require('../app/controllers/claim.controller')
 
 /*
 
@@ -50,36 +52,15 @@ router.get('/employers', employerController.list_employers)
 router.get('/employers/:employerId', employerController.get_employer)
 router.get('/about', (req, res) => res.render('pages/public/about'))
 router.get('/help', (req, res) => res.render('pages/public/help'))
-router.get('/terms', (req, res) => {
-    console.log('this is happening...')
-    res.render('pages/public/terms')
-    //res.json({ message: 'Hello from Express on AWS Lambda!' })
-})
+router.get('/terms', (req, res) => res.render('pages/public/terms'))
 router.get('/login', (req, res) => res.render('pages/public/login'))
-router
-    .route('/signin')
-    .get(authController.signin)
-    .post(
-        passport.authenticate('local-signin', {
-            successRedirect: '/admin/dashboard',
-            failureRedirect: '/signin',
-        })
-    )
-router
-    .route('/signup')
-    .get(authController.signup)
-    .post(
-        passport.authenticate('local-signup', {
-            successRedirect: '/admin/dashboard',
-            failureRedirect: '/signup',
-        })
-    )
+router.route('/signin').get(authController.signin).post(auth.signIn)
+router.route('/signup').get(authController.signup).post(auth.signUp)
+
 router
     .route('/password-reset')
     .get((req, res) => {
-        res.render('pages/public/passwordreset', {
-            message: req.flash('message'),
-        })
+        res.render('pages/public/passwordreset')
     })
     .post(authController.password_reset)
 router
@@ -88,8 +69,8 @@ router
     .post(authController.change_password)
 router.get('/logout', authController.logout)
 router.get('/sitemap.xml', sitemapController.generateSitemap)
-router.get('/claim', claimController.list_unclaimed_employers)
-router.get('/claim/:employerId', claimController.get_unclaimed_employer)
+// router.get('/claim', claimController.list_unclaimed_employers)
+// router.get('/claim/:employerId', claimController.get_unclaimed_employer)
 router
     .route('/advertise')
     .get((req, res) => res.render('pages/public/advertise'))

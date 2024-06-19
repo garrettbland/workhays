@@ -7,6 +7,33 @@ information or change your password.`}) %>
         <div x-data="profile()" class="col-span-1 md:col-span-6">
             <!-- content -->
 
+            <% if(req.query.emailInUse === "true") { %>
+            <div class="mb-8 p-4 bg-red-500 rounded shadow text-white flex items-center">
+                <div class="mr-4">
+                    <i data-feather="alert-circle" class="w-5 h-5"></i>
+                </div>
+                <div>
+                    <p class="font-bold leading-5">Error</p>
+                    <p class="text-base leading-tight">
+                        Email is already in use. Please try again with a different email.
+                    </p>
+                </div>
+            </div>
+            <% } %> <% if(req.query.emailNotUpdated === "true") { %>
+            <div class="mb-8 p-4 bg-red-500 rounded shadow text-white flex items-center">
+                <div class="mr-4">
+                    <i data-feather="alert-circle" class="w-5 h-5"></i>
+                </div>
+                <div>
+                    <p class="font-bold leading-5">Error</p>
+                    <p class="text-base leading-tight">
+                        Something went wrong updating your email. Please try again or
+                        <a href="/contact" class="underline">contact us</a> if the problem persists.
+                    </p>
+                </div>
+            </div>
+            <% } %>
+
             <div
                 x-show="showEmailErrorMessage"
                 class="mb-8 p-4 bg-red-500 rounded shadow text-white flex items-center mx-4 lg:mx-0"

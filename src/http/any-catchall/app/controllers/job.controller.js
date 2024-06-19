@@ -173,14 +173,13 @@ exports.create_job = async (req, res) => {
 
         res.status(200)
         // res.render('pages/account')
-        req.flash('success', 'New job created successfully')
-        res.redirect('/admin/jobs')
+        //req.flash('success', 'New job created successfully')
+        res.redirect('/admin/jobs?newJobCreated=true')
     } catch (err) {
         // res.send(err)
-        req.flash('error', 'Something went wrong creating job, please try again.')
+        //req.flash('error', 'Something went wrong creating job, please try again.')
         console.log('Error in create_job')
-        res.status(200)
-        res.render('error')
+        res.redirect('/admin/jobs?newJobCreated=false')
     }
 }
 
@@ -206,15 +205,16 @@ exports.renew_job = async (req, res) => {
 
         if (!renew_job) throw 'Job not renewed'
 
-        req.flash('success', 'Job successfully renewed')
-        res.redirect('/admin/jobs/' + req.params.jobId + '?from=/admin/jobs')
+        // req.flash('success', 'Job successfully renewed')
+        res.redirect('/admin/jobs/' + req.params.jobId + '?from=/admin/jobs?renewSuccess=true')
     } catch (err) {
         console.log(err)
         // res.send(err)
-        req.flash('error', 'Something went wrong renewing your job, please try again.')
+        //req.flash('error', 'Something went wrong renewing your job, please try again.')
         console.log('Error in renew_job')
-        res.status(200)
-        res.redirect('/admin/jobs')
+        // res.status(200)
+        // res.redirect('/admin/jobs')
+        res.redirect('/admin/jobs/' + req.params.jobId + '?from=/admin/jobs?renewSuccess=false')
     }
 }
 
@@ -252,18 +252,17 @@ exports.update_job = async (req, res) => {
         // })
 
         if (req.body.action_button === 'update') {
-            req.flash('success', 'Job updated successfully')
-            res.redirect('/admin/jobs/' + req.params.jobId + '?from=/admin/jobs')
+            // req.flash('success', 'Job updated successfully')
+            res.redirect('/admin/jobs/' + req.params.jobId + '?from=/admin/jobs&updatedJob=true')
         } else {
-            req.flash('success', 'Job archived successfully')
-            res.redirect('/admin/jobs')
+            // req.flash('success', 'Job archived successfully')
+            res.redirect('/admin/jobs?archivedJob=true')
         }
     } catch (err) {
+        console.log('error updating job', err)
         // res.send(err)
-        req.flash('error', 'Something went wrong, please try again.')
-        console.log('Error in update_job')
-        res.status(200)
-        res.redirect('/admin/jobs')
+        // req.flash('error', 'Something went wrong, please try again.')
+        res.redirect('/admin/jobs/' + req.params.jobId + '?from=/admin/jobs&updatedJob=false')
     }
 }
 

@@ -5,11 +5,13 @@ var env = process.env.NODE_ENV || 'development'
 var config = require('../../config')
 const uuidv1 = require('uuid/v1')
 var bCrypt = require('bcrypt-nodejs')
+var MAILGUN = require('mailgun-js')
 
 exports.signup = function (req, res) {
-    res.render('pages/public/signup', {
-        message: req.flash('error'),
-    })
+    res.render('pages/public/signup')
+    // res.render('pages/public/signup', {
+    //     message: req.flash('error'),
+    // })
 }
 
 exports.signin = function (req, res) {
@@ -17,9 +19,8 @@ exports.signin = function (req, res) {
 }
 
 exports.logout = function (req, res) {
-    req.session.destroy(function (err) {
-        res.redirect('/signin')
-    })
+    res.clearCookie('workhays-auth-jwt')
+    res.redirect('/signin')
 }
 
 exports.password_reset = async (req, res) => {
@@ -59,7 +60,7 @@ exports.password_reset = async (req, res) => {
 
         var api_key = config.getEnvironment(env).mailgun_api_key
         var domain = 'mg.workhays.com'
-        var mailgun = require('mailgun-js')({ apiKey: api_key, domain: domain })
+        var mailgun = MAILGUN({ apiKey: api_key, domain: domain })
 
         var data = {
             from: 'Work Hays <support@workhays.com>',
@@ -76,16 +77,16 @@ exports.password_reset = async (req, res) => {
             console.log(body)
         })
 
-        res.status(200)
-        req.flash('success', 'An email has been sent to your email account with instructions')
-        res.redirect('/password-reset')
+        // res.status(200)
+        // req.flash('success', 'An email has been sent to your email account with instructions')
+        res.redirect('/password-reset?success=true')
     } catch (err) {
         console.log('Error in password_reset =====>')
         console.log(err)
-        req.flash('error', 'Something went wrong. Please try again.')
-        res.redirect('/password-reset')
-        res.status(200)
-        res.render('error')
+        // req.flash('error', 'Something went wrong. Please try again.')
+        res.redirect('/password-reset?error=true')
+        // res.status(200)
+        // res.render('error')
     }
 }
 
@@ -177,7 +178,8 @@ exports.change_email = async (req, res) => {
         })
 
         if (user) {
-            throw 'Email is already in use. Please try again with a different email.'
+            console.log('Email is already in use. Please try again with a different email.')
+            res.redirect('/admin/profile?emailInUse=true')
         }
 
         console.log('changing email! =====>')
@@ -194,16 +196,17 @@ exports.change_email = async (req, res) => {
         })
 
         if (!updated_user) {
-            req.flash('error', 'Email not updated. Please try again.')
-            res.redirect('/admin/profile')
+            //req.flash('error', 'Email not updated. Please try again.')
+            res.redirect('/admin/profile?emailNotUpdated=true')
         }
 
-        req.flash('success', 'Profile updated successfully')
-        res.redirect('/admin/profile')
+        // req.flash('success', 'Profile updated successfully')
+        res.clearCookie('workhays-auth-jwt')
+        res.redirect('/signin?profileUpdated=true')
     } catch (err) {
-        req.flash('error', err)
+        // req.flash('error', err)
         console.log('Error in change email')
         console.log(err)
-        res.redirect('/admin/profile')
+        res.redirect('/admin/profile?emailNotUpdated=true')
     }
 }

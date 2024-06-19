@@ -1,27 +1,63 @@
-exports.isLoggedIn = (req, res, next) => {
-    if (req.isAuthenticated()) return next()
+const jwt = require('jsonwebtoken')
 
-    res.redirect('/signin')
+exports.checkUserToken = (req, res, next) => {
+    const token = req.cookies['workhays-auth-jwt']
+
+    if (token) {
+        jwt.verify(token, 'your_jwt_secret', (err, user) => {
+            if (user) {
+                req.user = user
+                res.locals.user = user
+            }
+        })
+    } else {
+        req.user = null
+        res.locals.user = null
+    }
+
+    next()
+}
+
+exports.isLoggedIn = (req, res, next) => {
+    console.log('MIDDLEWARE ISLOGGEDIN is happening...')
+
+    const token = req.cookies['workhays-auth-jwt']
+
+    if (!token) {
+        res.redirect('/signin')
+    }
+
+    jwt.verify(token, 'your_jwt_secret', (err, user) => {
+        console.log('CHECKING USER FROM TOEKN')
+
+        if (err) {
+            //return res.status(401).json({ message: 'Invalid token' })
+            res.redirect('/signin?message=invalid_token')
+        }
+
+        req.user = user
+        res.locals.user = user
+        next()
+    })
 }
 
 exports.isLocked = (req, res, next) => {
-    if (res.locals.user.status === 'locked') {
-        req.session.destroy(function(err) {
-            res.redirect('/signin?locked=true')
-        })
+    if (req.user.status === 'locked') {
+        res.clearCookie('workhays-auth-jwt')
+        res.redirect('/signin?locked=true')
     }
 
     next()
 }
 
 exports.isUserVerified = (req, res, next) => {
-    if (res.locals.user.status === 'verified') return next()
+    if (req.user.status === 'verified') return next()
 
     res.redirect('/admin/dashboard')
 }
 
 exports.isAdmin = (req, res, next) => {
-    if (res.locals.user.role === 'admin') {
+    if (req.user.role === 'admin') {
         return next()
     }
 
