@@ -1,3 +1,5 @@
+const mysql2 = require('mysql2')
+
 const envs = {
     development: {
         username: process.env.DB_USERNAME,
@@ -5,6 +7,7 @@ const envs = {
         database: process.env.DB_NAME,
         host: process.env.DB_HOST,
         dialect: 'mysql',
+        dialectModule: mysql2,
         mailgun_api_key: process.env.MAILGUN_API_KEY,
     },
     production: {
@@ -13,6 +16,7 @@ const envs = {
         database: process.env.DB_NAME,
         host: process.env.DB_HOST,
         dialect: 'mysql',
+        dialectModule: mysql2,
         mailgun_api_key: process.env.MAILGUN_API_KEY,
     },
 }

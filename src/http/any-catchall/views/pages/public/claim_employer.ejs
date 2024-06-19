@@ -1,5 +1,5 @@
-<%- include('../../partials/page_start', {title: 'Claim this business', description: `Complete the
-form below to apply for ownership of this business and positions listed.`}) %>
+<%- include('../../partials/page_start', {title: 'Claim this business', description: "Complete the
+form below to apply for ownership of this business and positions listed."}) %>
 
 <div x-data="signup()" class="max-w-2xl mx-auto mt-8">
     <div class="text-lg font-bold pb-2 px-4 md:px-0">Request to claim business</div>
@@ -15,28 +15,6 @@ form below to apply for ownership of this business and positions listed.`}) %>
         access to all current jobs listed. If you have questions, please
         <a class="text-blue-500 hover:underline" href="/contact">contact us</a>.
     </div>
-
-    <% if(flashMessages.success) { %>
-    <div class="mb-8 p-4 bg-green-400 rounded shadow text-white flex items-center mx-4 md:mx-0">
-        <div class="mr-4">
-            <i data-feather="alert-circle" class="w-5 h-5"></i>
-        </div>
-        <div>
-            <p class="font-bold leading-5">Success</p>
-            <p class="text-base leading-tight"><%= flashMessages.success %></p>
-        </div>
-    </div>
-    <% } %> <% if(flashMessages.error) { %>
-    <div class="mb-8 p-4 bg-red-500 rounded shadow text-white flex items-center mx-4 md:mx-0">
-        <div class="mr-4">
-            <i data-feather="alert-circle" class="w-5 h-5"></i>
-        </div>
-        <div>
-            <p class="font-bold leading-5">Error</p>
-            <p class="text-base leading-tight"><%= flashMessages.error %></p>
-        </div>
-    </div>
-    <% } %>
 
     <div
         x-show="showErrorMessage"
