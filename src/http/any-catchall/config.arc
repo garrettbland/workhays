@@ -1,2 +1,3 @@
 @aws
-timeout 30
+timeout 15
+memory 512
