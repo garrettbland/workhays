@@ -75,6 +75,7 @@ var app = express()
 // view engine setup
 app.set('views', './views')
 app.set('view engine', 'ejs')
+app.engine('ejs', require('ejs').__express)
 
 app.use(logger('dev'))
 app.use(bodyParser.json({ limit: '10mb' }))
