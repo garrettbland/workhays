@@ -49,13 +49,13 @@
 //     )
 // }
 
-var createError = require('http-errors')
+// var createError = require('http-errors')
 var express = require('express')
-var path = require('path')
+// var path = require('path')
 var cookieParser = require('cookie-parser')
 var logger = require('morgan')
 const bodyParser = require('body-parser')
-var passport = require('passport')
+// var passport = require('passport')
 var session = require('express-session')
 // var flash = require('connect-flash')
 // const fs = require('fs')
@@ -81,7 +81,7 @@ app.use(logger('dev'))
 app.use(bodyParser.json({ limit: '10mb' }))
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
-app.use(express.static(path.join(__dirname, 'public')))
+// app.use(express.static(path.join(__dirname, 'public')))
 
 // For Passport
 // session secret

@@ -95,7 +95,7 @@ More coming soon...
 
 ### Environment Variables
 
-Create a `prefs.arc` file in the root directory. This file is ignored by git and is not commited. The `@env` pragma is used so we can use different environment variables for different environment. Example below.
+Run `npx arc env` to populate `prefs.arc` from AWS. This file is ignored by git and is not commited. The `@env` pragma is used so we can use different environment variables for different environment. Example below.
 
 ```
 # prefs.arc
