@@ -52,7 +52,7 @@ Once complete, you will have a local version of Work Hays running in your enviro
 │       └── contact/ // React app for contact form
 │   ├── http/ // Arc HTTP endpoints
 │       └── any-api-v1-catchall/ // API v1 endpoints
-│       └── any-catchall/ // Fallback page for 404's
+│       └── any-catchall/ // Fallback page for 404's (Currently legacy work hays express app)
 │       └── get-index/ // Home page
 │       └── get-{**}/ // Remaining web pages
 │   ├── plugins/ // Arc local plugins
@@ -95,7 +95,9 @@ More coming soon...
 
 ### Environment Variables
 
-Run `npx arc env` to populate `prefs.arc` from AWS. This file is ignored by git and is not commited. The `@env` pragma is used so we can use different environment variables for different environment. Example below.
+Run `npx arc env` to populate `prefs.arc` from AWS. This file is ignored by git and is not commited. The `@env` pragma is used so we can use different environment variables for different environment. Example below. The environment variables come from lambda environment variables. https://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars.html
+
+To add a environment variable to AWS, run `npx arc env --add --env testing|staging|production {NAME} {VALUE}`. This will add it to AWS for your lambdas to use, and it will update `prefs.arc`. Do not modify `prefs.arc` manually.
 
 ```
 # prefs.arc

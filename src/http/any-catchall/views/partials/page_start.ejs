@@ -2,5 +2,7 @@
 <html lang="en">
     <%- include('./head.ejs') %>
     <body class="bg-gray-100">
+        <% if (process.env.ENV !== 'production') { %>
+        <div class="bg-orange-400 px-4 py-1 text-center text-orange-900">Environment: <span class="font-semibold"><%= process.env.ENV %></span></div>
+        <% }%>
         <%- include('./header.ejs') %>
-

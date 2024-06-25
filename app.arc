@@ -3,11 +3,13 @@ workhays
 
 @aws
 profile architect # local aws named profile used to deploy from local machine
-runtime node # sets TS as the the default runtime for your entire project
+# runtime node # sets TS as the the default runtime for your entire project
+runtime typescript # sets TS as the the default runtime for your entire project
 region us-east-2
 
 # Http endpoints
 @http
+get /terms
 # get /
 # get /jobs/:jobId
 # get /about
@@ -28,7 +30,7 @@ folder public
 prune true
 
 @plugins
-# architect/plugin-typescript
+architect/plugin-typescript
 # seed-database
 # cognito
 # ses
@@ -36,9 +38,9 @@ tailwindcss
 parcel
 
 # Typescript esbuild config location
-#@typescript
-#esbuild-config environment/esbuild-config.js
-#base-runtime nodejs18.x # Set the Lambda base runtime to Node.js 18
+@typescript
+esbuild-config environment/esbuild-config.js
+base-runtime nodejs18.x # Set the Lambda base runtime to Node.js 18
 
 # Dynamo DB Tables
 # Working with dynamo database locally stores data in memory using Dynalite

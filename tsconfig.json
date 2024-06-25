@@ -5,7 +5,8 @@
         "allowJs": true,
         "esModuleInterop": true,
         "paths": {
-            "@architect/shared/*": ["src/shared", "src/shared/*"]
+            "@architect/shared/*": ["src/shared", "src/shared/*"],
+            "@architect/views/*": ["src/views", "src/views/*"]
         }
     }
 }

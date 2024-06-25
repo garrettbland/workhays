@@ -105,6 +105,8 @@ app.use(function (req, res, next) {
      * req.thing in express/ejs files.
      */
 
+    res.locals.environment = process.env.ENV
+
     res.locals.APP_VERSION = version
 
     // res.user = req.user
