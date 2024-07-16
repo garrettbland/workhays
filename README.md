@@ -72,7 +72,7 @@ Once complete, you will have a local version of Work Hays running in your enviro
 └── 'typings.d.ts' // Project declaration file
 ```
 
-### Adding HTTP Endpoints
+### Adding HTTP Endpoints (Or other resources/lambdas)
 
 1. Add `@http` entry to `app.arc`
 2. Run `npx arc init`
@@ -101,6 +101,13 @@ To add a environment variable to AWS, run `npx arc env --add --env testing|stagi
 
 ```
 # prefs.arc
+
+# Local preferences that I don't want ignored, but here we are
+@create
+autocreate true
+templates
+  http src/templates/http.ts
+  scheduled src/templates/scheduled.ts
 
 @env
 testing

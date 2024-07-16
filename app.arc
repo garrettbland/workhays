@@ -9,7 +9,7 @@ region us-east-2
 
 # Http endpoints
 @http
-get /terms
+# get /terms
 # get /
 # get /jobs/:jobId
 # get /about
@@ -21,6 +21,11 @@ get /terms
 # any /api/v1/* # API v1. Express app or fastify or something
 # any /* # Catchall - 404
 any /* # Expres app - entire work hays app
+
+# Scheduled functions
+# cron(0 0 10 * * *) not working? Causes UPDATE_ROLLBACK_IN_PROGRESS in cloudformation
+@scheduled
+daily-expiration-alert rate(1 day) # Daily
 
 # Defines static files that will be uploaded to s3
 # prune will automatically remove assets from S3 bucket 
@@ -36,6 +41,7 @@ architect/plugin-typescript
 # ses
 tailwindcss
 parcel
+scheduled
 
 # Typescript esbuild config location
 @typescript
