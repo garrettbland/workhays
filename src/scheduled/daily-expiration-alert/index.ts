@@ -5,17 +5,24 @@ import fetch from 'node-fetch'
  * must save file to trigger invocation (see plugins/scheduled)
  */
 export const handler = async (req) => {
-    console.log('Scheduled Once a day Expiration Alert running...')
+    console.log(`Scheduled Once a day Expiration Alert running in "${process.env.ENV}" environment...`)
 
-    // const response = await fetch(
-    //     'https://workhays.com/api/send_expiration_alert?api_key=sbjafdi43290sdnjk24389',
-    //     { method: 'POST' }
-    // )
-    console.log(`Environment: ${process.env.ENV}`)
-    const response = await fetch('https://workhays.com/api/public-jobs')
-    const data = await response.json()
+    let data
 
-    console.log(data)
+    if (process.env.ENV === 'testing') {
+        data = {
+            message: 'Scheduled Function Running in test mode',
+            stage: process.env.ENV,
+        }
+    } else  {
+        const response = await fetch(
+            'https://workhays.com/api/send_expiration_alert?api_key=sbjafdi43290sdnjk24389',
+            { method: 'POST' }
+        )
+        data = await response.json()
+    }
+
+    console.log(`Data:`, data)
 
     return {
         statusCode: 200,
