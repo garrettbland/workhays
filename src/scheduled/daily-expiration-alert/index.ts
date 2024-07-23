@@ -1,11 +1,11 @@
-import fetch from 'node-fetch'
-
 /**
  * Daily scheduled function to trigger email alerts. During development,
  * must save file to trigger invocation (see plugins/scheduled)
  */
 export const handler = async (req) => {
-    console.log(`Scheduled Once a day Expiration Alert running in "${process.env.ENV}" environment...`)
+    console.log(
+        `Scheduled Once a day Expiration Alert running in "${process.env.ENV}" environment...`
+    )
 
     let data
 
@@ -14,12 +14,18 @@ export const handler = async (req) => {
             message: 'Scheduled Function Running in test mode',
             stage: process.env.ENV,
         }
-    } else  {
-        const response = await fetch(
-            'https://workhays.com/api/send_expiration_alert?api_key=sbjafdi43290sdnjk24389',
-            { method: 'POST' }
-        )
-        data = await response.json()
+    } else {
+        // const response = await fetch(
+        //     'https://workhays.com/api/send_expiration_alert?api_key=sbjafdi43290sdnjk24389',
+        //     { method: 'POST' }
+        // )
+        const response = await fetch('https://workhays.com/api/public-jobs', {
+            method: 'GET',
+        })
+        const rawData = await response.json()
+        data = {
+            count: rawData.data.count,
+        }
     }
 
     console.log(`Data:`, data)
