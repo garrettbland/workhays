@@ -4,6 +4,12 @@ var path = require('path')
 const { Op } = require('sequelize')
 var moment = require('moment-timezone')
 
+// Only employers whose owner has been approved (or admin-created "unclaimed"
+// employers) are shown publicly. Keeps spam sign-ups from getting public pages.
+const publiclyVisible = Models.Sequelize.literal(
+    "(`employer`.`user_id` = 'unclaimed' OR `employer`.`user_id` IN (SELECT `id` FROM `users` WHERE `status` = 'verified'))"
+)
+
 exports.list_employers = async (req, res) => {
     try {
         // total results limit
@@ -14,8 +20,9 @@ exports.list_employers = async (req, res) => {
         const employers = await Models.employer.findAndCountAll({
             where: {
                 title: {
-                    [Op.ne]: null,
+                    [Op.and]: [{ [Op.ne]: null }, { [Op.ne]: '' }],
                 },
+                [Op.and]: [publiclyVisible],
             },
             order: [['title', 'ASC']],
             limit: employer_limit,
@@ -46,6 +53,7 @@ exports.get_employer = async (req, res) => {
         const employer = await Models.employer.findAndCountAll({
             where: {
                 id: req.params.employerId,
+                [Op.and]: [publiclyVisible],
             },
             include: {
                 model: Models.job,

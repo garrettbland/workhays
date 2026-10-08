@@ -16,7 +16,19 @@ exports.generateSitemap = async (req, res) => {
             order: [['renewed', 'DESC']],
         })
 
-        const employers = await Models.employer.findAll()
+        // Only list approved (or unclaimed) employers with a name
+        const employers = await Models.employer.findAll({
+            where: {
+                title: {
+                    [Op.and]: [{ [Op.ne]: null }, { [Op.ne]: '' }],
+                },
+                [Op.and]: [
+                    Models.Sequelize.literal(
+                        "(`employer`.`user_id` = 'unclaimed' OR `employer`.`user_id` IN (SELECT `id` FROM `users` WHERE `status` = 'verified'))"
+                    ),
+                ],
+            },
+        })
 
         const lastModDate = moment.tz(moment(), 'America/Chicago').format('YYYY-MM-DD')
 
